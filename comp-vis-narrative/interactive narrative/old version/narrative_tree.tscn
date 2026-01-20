@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ge2ao7ly2m0"]
+
+[ext_resource type="PackedScene" uid="uid://jewr6posbb1u" path="res://interactive narrative/old version/slide.tscn" id="1_ojgsa"]
+
+[node name="NarrativeTree" type="Node2D"]
+
+[node name="Slide" parent="." node_paths=PackedStringArray("option_list") instance=ExtResource("1_ojgsa")]
+body_text = "The text goes here and sdf sd"
+option_list = {
+"i walk inside": NodePath("../Slide2")
+}
+
+[node name="Slide2" parent="." node_paths=PackedStringArray("option_list") instance=ExtResource("1_ojgsa")]
+visible = false
+option_list = {
+"default": null
+}
