@@ -12,63 +12,81 @@ Visual Narrative Fire 100 idk the name tbh TODO Change this
 }
 
 
-:: \ Ending 1: Dueling Theory {"position":"1675,200","size":"100,100"}
+:: \ Ending 1: Dueling Theory {"position":"2200,525","size":"100,100"}
 
 
 
-:: \ Ending 3: Disaster Theory {"position":"1675,475","size":"100,100"}
+:: \ Ending 3: Disaster Theory {"position":"2200,800","size":"100,100"}
 
 
 
-:: \ Shelter 1 {"position":"1200,325","size":"100,100"}
-This would expand in a similar nature to the other paths, either the other dinosaur is already in the cave (duel or disaster), the triceratops is dead in the cave (tyrannosaur only, dinner), or the cave is empty (disaster)
-
-
-:: \ Tri Food 1 {"position":"1200,500","size":"100,100"}
+:: \ Tri Food 1 {"position":"1400,650","size":"100,100"}
 The Tyrannosaur appears while the Triceratops eats.
 
-[[Tri Alive 2]] 
+[[Tri Alive 2]]
 
 
-:: \ Triceratops 1 {"position":"975,425","size":"100,100"}
+:: \ Triceratops 1 {"position":"1175,575","size":"100,100"}
 (Description of the Triceratops here)
 
 What is the Triceratops doing?
 
 1. [[Looking for food -> Tri Food 1]]
-2. [[Looking for shelter -> Shelter 1]] (depending on what weather the player selected?)
+2. [[Looking for shelter ->Tri Shelter 1]] (depending on what weather the player selected?)
 
 
-:: \ Triceratops Dead {"position":"1425,175","size":"100,100"}
-[[Ending 2: Dinner Theory]] 
+:: \ Triceratops Dead {"position":"1625,325","size":"100,100"}
+[[Ending 2: Dinner Theory]]
 
 
-:: \ Tyran Food 1 {"position":"1125,175","size":"100,100"}
+:: \ Tyran Food 1 {"position":"1325,325","size":"100,100"}
 What does the Tyrannosaur find?
 
 1. [[ Triceratops Dead]]
 2. [[Triceratops Alive]]
 
 
-:: \ Tyrannosaur 1 {"position":"975,250","size":"100,100"}
+:: \ Tyran Shelter 2 {"position":"1650,150","size":"100,100"}
+What does the Tyrannosaur do?
+
+1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
+2. [[Ignore the Triceratops and take shelter from the rain -> Ending 3: Disaster Theory]]
+
+
+:: \ Tyrannosaur 1 {"position":"1175,400","size":"100,100"}
 (Description of the Tyrannosaur here)
 
 What is the Tyrannosaur doing?
 
 1. [[Looking for food -> Tyran Food 1]]
-2. [[Looking for shelter -> Shelter 1]] (depending on what weather the player selected?)
+2. [[Looking for shelter ->Tyran Shelter 1]] (depending on what weather the player selected?)
 
 
-:: Ending 2: Dinner Theory {"position":"1675,350","size":"100,100"}
+:: Ending 2: Dinner Theory {"position":"2200,675","size":"100,100"}
 
 
 
-:: Environment Part 1 {"position":"675,325","size":"100,100"}
-(Basic description of the environment will go here) What time of day is it? (Non-Choice/ Flavor Choice)
+:: Environment Part 1 {"position":"700,475","size":"100,100"}
+(Basic description of the environment will go here) (see "The Environment" passage with some notes) What time of day is it? (Non-Choice/ Flavor Choice)
 
 1. Morning
 2. Noon
 3. Night
+
+[[Environment Part 2]] 
+
+
+:: Environment Part 2 {"position":"850,475","size":"100,100"}
+(Description based on flavor choice from part 1) (also there's some kind of river or stream)
+
+What creature can be found in the river? (Another flavor/ non-choice)
+
+1. An Alligator
+2. A Turtle
+
+(next, a dinosaur enters the scene)
+
+[[First Dino]] 
 
 
 :: Evidence 1: Riverbed Rock {"position":"700,25","size":"100,100"}
@@ -87,14 +105,14 @@ Tyrannosaur teeth were found within the body of the Triceratops, including one f
 Bones in the Triceratops' tail are fused together. This is indicative of either an old injury, or a possible bone disease.
 
 
-:: First Dino {"position":"825,325","size":"100,100"}
+:: First Dino {"position":"1025,475","size":"100,100"}
 Who enters the scene first?
 
 1. [[The Tyrannosaur -> Tyrannosaur 1]]
 2. [[The Triceratops -> Triceratops 1]]
 
 
-:: Intro Part 1 {"position":"525,325","size":"100,100"}
+:: Intro Part 1 {"position":"475,475","size":"100,100"}
 Some questions have simple answers. Some do not. The origin of a fossil containing signs of a struggle between a Nanotyrannus and a Triceratops falls into the latter category. Does it derive from a struggle eons ago between predator and prey? Is it mere coincidence, the product of fabulous happenstance, with a flood washing traces of the two beasts together?
 
 
@@ -123,15 +141,37 @@ There are 3 primary hypotheses for what could have happened to these dinos:
 3. The Disaster Hypothesis: The dinos did not interact at all, and instead a flash flood caused their deaths and buried them together
 
 
-:: Tri Alive 2 {"position":"1425,500","size":"100,100"}
+:: Tri Alive 2 {"position":"1625,650","size":"100,100"}
 What does the Tyrannosaur do?
 
 1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
-2. [[Keep its distance from the Triceratops -> Ending 3: Disaster Theory]] 
+2. [[Keep its distance from the Triceratops -> Ending 3: Disaster Theory]]
 
 
-:: Triceratops Alive {"position":"1425,350","size":"100,100"}
+:: Tri Shelter 1 {"position":"1400,825","size":"100,100"}
+What does the Triceratops find?
+
+[[A Tyrannosaur ->Tri Shelter 2]]
+[[Nothing -> Ending 3: Disaster Theory]]
+
+
+:: Tri Shelter 2 {"position":"1625,875","size":"100,100"}
 What does the Tyrannosaur do?
 
 1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
-2. [[Find Smaller Prey Near the River -> Ending 3: Disaster Theory]] 
+2. [[Keep its distance from the Triceratops -> Ending 3: Disaster Theory]]
+
+
+:: Triceratops Alive {"position":"1625,500","size":"100,100"}
+What does the Tyrannosaur do?
+
+1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
+2. [[Find Smaller Prey Near the River -> Ending 3: Disaster Theory]]
+
+
+:: Tyran Shelter 1 {"position":"1400,175","size":"100,100"}
+What does the Tyrannosaur find in the cave?
+
+[[A living Triceratops -> Tyran Shelter 2]]
+[[A dead Triceratops->Ending 2: Dinner Theory]] 
+
