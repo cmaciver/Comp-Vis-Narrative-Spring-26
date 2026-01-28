@@ -1,5 +1,5 @@
 :: StoryTitle
-Visual Narrative Fire 100 idk the name tbh TODO Change this
+Once, There Were Two Dinosaurs
 
 
 :: StoryData
@@ -67,26 +67,53 @@ What is the Tyrannosaur doing?
 
 
 :: Environment Part 1 {"position":"700,475","size":"100,100"}
-(Basic description of the environment will go here) (see "The Environment" passage with some notes) What time of day is it? (Non-Choice/ Flavor Choice)
+(set:$isMorning to false)(set:$isNoon to false)(set:$isNight to false)
+Perhaps a trip through time could better illuminate the possibilities.
 
-1. Morning
-2. Noon
-3. Night
+Forget the world of Man, of mammalian dominance, of the entire Anthropocene, and instead envision a world teeming with ancient ancestors of modern life, most notably, dinosaurs.
 
-[[Environment Part 2]] 
+The world of the dinosaurs was not entirely incomprehensible to us; those that take comfort in familiar settings may find some solace in the environment. 
+
+The surrounding landscape is dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
+
+Their shapes are at once familiar and alien, atavistic forms patterned along basic biological principles which have been aesthetically red-shifted through millions of years of evolution.
+
+Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
+
+Ferns and mosses thrive in the underbrush, their fronds and cushions adding texture to the forest floor.
+
+Alongside the smaller foliage, leaf litter carpets the ground, muffling footsteps and providing both ample cover and a source of food for smaller creatures.
+
+Branches and fallen logs lie scattered about, remnants of past storms and the natural cycle of growth and decay.
+
+A gentle breeze rustles the leaves, carrying with it the earthy scent of damp soil and vegetation. Petrichor accompanies the scent, wafting up from the drying terrain.
+
+And indeed, the soil is very moist. All of this hints at recent rainfall.
+
+Puddles dot the forest floor, and through a break in the tree line not far off, a river wanders a winding path as so many rivers do, its waters nourished to a higher than usual level by the recent precipitation.
+
+A fleeting inquisition of the sky reveals the forest's canopy of course, along with scattering of clouds, and... well, the time of day of course.
+
+If it wasn't already apparent from the ambient light level, that upward glance revealed...
+(link: "...why, a beautiful red dawn.")[(set: $isMorning to true)(goto: "Environment Part 2")]
+(link: "...the sun at its zenith!")[(set: $isNoon to true)(goto: "Environment Part 2")]
+(link: "...obviously, a dark and starry night, right?")[(set: $isNight to true)(goto: "Environment Part 2")]
+
 
 
 :: Environment Part 2 {"position":"850,475","size":"100,100"}
-(Description based on flavor choice from part 1) (also there's some kind of river or stream)
+(set:$isAlligator to false)(set:$isTurtle to false)
+(if:$isMorning is true)[The sun is just rising over the horizon, almost invisible through the canopy were it not for a small break in the trees. What can be seen of the sky is a mosaic in warm tones, with a soft gradient emanating from the sun in the break, shifting and blending around the trunks and branches.]
+(if:$isNoon is true)[The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, with only a few wisps of clouds drifting lazily across the expanse.]
+(if:$isNight is true)[The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.]
 
-What creature can be found in the river? (Another flavor/ non-choice)
+Early mammals infrequently scurry about in the underbrush, cloaking themselves from sight with the fallen leaves and branches. 
 
-1. An Alligator
-2. A Turtle
+Of particular note, however, is what can be found in the river. 
 
-(next, a dinosaur enters the scene)
-
-[[First Dino]] 
+A second inquisition, this time of the waterway reveals...
+(link: "...a distant relative of modern alligators lurking near the bank.")[(set:$isAlligator to true)(goto: "First Dino")]
+(link: "...disturbances on the water's surface from a soft-shelled ancient turtle.")[(set:$isTurtle to true)(goto: "First Dino")]
 
 
 :: Evidence 1: Riverbed Rock {"position":"700,25","size":"100,100"}
@@ -113,7 +140,16 @@ Who enters the scene first?
 
 
 :: Intro Part 1 {"position":"475,475","size":"100,100"}
-Some questions have simple answers. Some do not. The origin of a fossil containing signs of a struggle between a Nanotyrannus and a Triceratops falls into the latter category. Does it derive from a struggle eons ago between predator and prey? Is it mere coincidence, the product of fabulous happenstance, with a flood washing traces of the two beasts together?
+Some questions have simple answers. And, unfortunately, some do not. The fate of a pair of dinosaurs found fossilized together belongs to the latter category.
+
+Does it derive from a struggle eons ago between predator and prey? 
+
+Was the Triceratops already dead, its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
+
+Or is it the product of fabulous happenstance, with a flood washing traces of the two beasts together?
+
+[[Continue ->Environment Part 1]]
+
 
 
 :: The Environment {"position":"1225,25","size":"100,100"}
