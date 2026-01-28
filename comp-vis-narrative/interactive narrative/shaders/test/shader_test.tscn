@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://bb5x5npv4x0j7"]
+
+[ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_ys1hy"]
+[ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/test/dinos.jpg" id="2_uy86w"]
+[ext_resource type="Material" uid="uid://w5bj4rra43xs" path="res://interactive narrative/shaders/fade_vinette_material.tres" id="2_ys1hy"]
+
+[sub_resource type="Gradient" id="Gradient_ys1hy"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.76862746, 0.6784314, 1, 1, 0.27450982, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uy86w"]
+gradient = SubResource("Gradient_ys1hy")
+fill_from = Vector2(0.14018692, 0.78504676)
+
+[sub_resource type="Gradient" id="Gradient_c4c1b"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ys1hy"]
+gradient = SubResource("Gradient_c4c1b")
+fill_from = Vector2(0.23831776, 0.7242991)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_6clb7"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2kxr6"]
+gradient = SubResource("Gradient_6clb7")
+fill_from = Vector2(1, 0)
+
+[node name="ShaderTest" type="Node2D"]
+
+[node name="gradient" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(421, 203)
+scale = Vector2(13.556065, 7.3125)
+texture = SubResource("GradientTexture2D_uy86w")
+
+[node name="black" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_ys1hy")
+
+[node name="godot" type="Sprite2D" parent="."]
+position = Vector2(503.49994, 238.50002)
+scale = Vector2(8.367187, 4.242188)
+texture = ExtResource("1_ys1hy")
+
+[node name="dinos" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(547, 263)
+scale = Vector2(0.555, 0.45432457)
+texture = ExtResource("2_uy86w")
+
+[node name="shader" type="Sprite2D" parent="."]
+material = ExtResource("2_ys1hy")
+position = Vector2(550, 266)
+scale = Vector2(13.7890625, 7.3593755)
+texture = SubResource("GradientTexture2D_2kxr6")
