@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bb5x5npv4x0j7"]
+[gd_scene load_steps=12 format=3 uid="uid://bb5x5npv4x0j7"]
 
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_ys1hy"]
 [ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/test/dinos.jpg" id="2_uy86w"]
 [ext_resource type="Material" uid="uid://w5bj4rra43xs" path="res://interactive narrative/shaders/fade_vinette_material.tres" id="2_ys1hy"]
+[ext_resource type="Shader" uid="uid://4l46tkdh785k" path="res://interactive narrative/shaders/test/shader_test.gdshader" id="4_265ja"]
 
 [sub_resource type="Gradient" id="Gradient_ys1hy"]
 interpolation_mode = 2
@@ -24,6 +25,11 @@ fill_to = Vector2(0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2kxr6"]
 gradient = SubResource("Gradient_6clb7")
 fill_from = Vector2(1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m2eo"]
+shader = ExtResource("4_265ja")
+shader_parameter/pieces = 13.0
+shader_parameter/pixel_amount = 0.9270000440325
 
 [node name="ShaderTest" type="Node2D"]
 
@@ -48,8 +54,15 @@ position = Vector2(547, 263)
 scale = Vector2(0.555, 0.45432457)
 texture = ExtResource("2_uy86w")
 
-[node name="shader" type="Sprite2D" parent="."]
+[node name="vignette shader" type="Sprite2D" parent="."]
 material = ExtResource("2_ys1hy")
 position = Vector2(550, 266)
 scale = Vector2(13.7890625, 7.3593755)
 texture = SubResource("GradientTexture2D_2kxr6")
+
+[node name="stupid sprite" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_3m2eo")
+position = Vector2(-205.00003, 11)
+scale = Vector2(13.042008, 8.536877)
+texture = ExtResource("1_ys1hy")
