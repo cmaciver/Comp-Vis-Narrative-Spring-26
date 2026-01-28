@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://w5bj4rra43xs"]
 
-[ext_resource type="Shader" uid="uid://djup10okrsqy0" path="res://interactive narrative/shaders/fade_in_transition.gdshader" id="1_eyyu8"]
+[ext_resource type="Shader" uid="uid://djup10okrsqy0" path="res://interactive narrative/shaders/src/fade_in_transition.gdshader" id="1_hc72u"]
 
 [sub_resource type="Curve" id="Curve_eyyu8"]
 _data = [Vector2(0, 0), 0.0, 0.48689705, 0, 0, Vector2(0.5350553, 0.44171774), 1.397426, 1.397426, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -35,8 +35,8 @@ texture_mode = 1
 curve = SubResource("Curve_kon8h")
 
 [resource]
-shader = ExtResource("1_eyyu8")
-shader_parameter/trans_timer = 0.4400000209
+shader = ExtResource("1_hc72u")
+shader_parameter/trans_timer = 0.0
 shader_parameter/radius_curve = SubResource("CurveTexture_0ddfi")
 shader_parameter/hole_edge_gradient_curve = SubResource("CurveTexture_coqku")
 shader_parameter/hole_alpha_curve = SubResource("CurveTexture_1txpm")
