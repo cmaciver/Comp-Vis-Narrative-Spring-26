@@ -1,0 +1,213 @@
+:: StoryTitle
+Once, There Were Two Dinosaurs
+
+
+:: StoryData
+{
+  "ifid": "E95DC292-5D86-4F56-96FA-28D9AFCC9655",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Intro Part 1",
+  "zoom": 1
+}
+
+
+:: \ Ending 1: Dueling Theory {"position":"2200,525","size":"100,100"}
+
+
+
+:: \ Ending 3: Disaster Theory {"position":"2200,800","size":"100,100"}
+
+
+
+:: \ Tri Food 1 {"position":"1400,650","size":"100,100"}
+The Tyrannosaur appears while the Triceratops eats.
+
+[[Tri Alive 2]]
+
+
+:: \ Triceratops 1 {"position":"1175,575","size":"100,100"}
+(Description of the Triceratops here)
+
+What is the Triceratops doing?
+
+1. [[Looking for food -> Tri Food 1]]
+2. [[Looking for shelter ->Tri Shelter 1]] (depending on what weather the player selected?)
+
+
+:: \ Triceratops Dead {"position":"1625,325","size":"100,100"}
+[[Ending 2: Dinner Theory]]
+
+
+:: \ Tyran Food 1 {"position":"1325,325","size":"100,100"}
+What does the Tyrannosaur find?
+
+1. [[ Triceratops Dead]]
+2. [[Triceratops Alive]]
+
+
+:: \ Tyran Shelter 2 {"position":"1650,150","size":"100,100"}
+What does the Tyrannosaur do?
+
+1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
+2. [[Ignore the Triceratops and take shelter from the rain -> Ending 3: Disaster Theory]]
+
+
+:: \ Tyrannosaur 1 {"position":"1175,400","size":"100,100"}
+(Description of the Tyrannosaur here)
+
+What is the Tyrannosaur doing?
+
+1. [[Looking for food -> Tyran Food 1]]
+2. [[Looking for shelter ->Tyran Shelter 1]] (depending on what weather the player selected?)
+
+
+:: Ending 2: Dinner Theory {"position":"2200,675","size":"100,100"}
+
+
+
+:: Environment Part 1 {"position":"700,475","size":"100,100"}
+(set:$isMorning to false)(set:$isNoon to false)(set:$isNight to false)
+Perhaps a trip through time could better illuminate the possibilities.
+
+Forget the world of Man, of mammalian dominance, of the entire Anthropocene, and instead envision a world teeming with ancient ancestors of modern life, most notably, dinosaurs.
+
+The world of the dinosaurs was not entirely incomprehensible to us; those that take comfort in familiar settings may find some solace in the environment these two creatures inhabited.
+
+The surrounding landscape is clearly a forest, dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
+
+Their shapes are at once familiar and alien, atavistic forms patterned along basic biological principles which have been aesthetically red-shifted through millions of years of evolution.
+
+Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
+
+Ferns and mosses thrive in the underbrush, their fronds and cushions adding texture to the forest floor.
+
+Alongside the smaller foliage, leaf litter carpets the ground, muffling footsteps and providing both ample cover and a source of food for smaller creatures.
+
+Branches and fallen logs lie scattered about, remnants of past storms and the natural cycle of growth and decay.
+
+A gentle breeze rustles the leaves, carrying with it the earthy scent of damp soil and vegetation. Petrichor accompanies the scent, wafting up from the drying terrain.
+
+And indeed, the soil is very moist. All of this hints at recent rainfall.
+
+Puddles dot the forest floor, and through a break in the tree line not far off, a river wanders a winding path as so many rivers do, its waters nourished to a higher than usual level by the recent precipitation.
+
+A fleeting inquisition of the sky reveals the forest's canopy of course, along with scattering of clouds, and... well, the time of day of course.
+
+If it wasn't already apparent from the ambient light level, that upward glance revealed...
+(link: "...why, a beautiful red dawn.")[(set: $isMorning to true)(goto: "Environment Part 2")]
+(link: "...the sun at its zenith!")[(set: $isNoon to true)(goto: "Environment Part 2")]
+(link: "...obviously, a dark and starry night, right?")[(set: $isNight to true)(goto: "Environment Part 2")]
+
+
+
+:: Environment Part 2 {"position":"850,475","size":"100,100"}
+(set:$isAlligator to false)(set:$isTurtle to false)
+(if:$isMorning is true)[The sun is just rising over the horizon, almost invisible through the canopy were it not for a small break in the trees. What can be seen of the sky is a mosaic in warm tones, with a soft gradient emanating from the sun in the break, shifting and blending around the trunks and branches.]
+(if:$isNoon is true)[The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, with only a few wisps of clouds drifting lazily across the expanse.]
+(if:$isNight is true)[The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.]
+
+Early mammals infrequently scurry about in the underbrush, cloaking themselves from sight with the fallen leaves and branches. 
+
+Of particular note, however, is what can be found in the river. 
+
+A second inquisition, this time of the waterway reveals...
+(link: "...a distant relative of modern alligators lurking near the bank.")[(set:$isAlligator to true)(goto: "First Dino")]
+(link: "...disturbances on the water's surface from a soft-shelled ancient turtle.")[(set:$isTurtle to true)(goto: "First Dino")]
+
+
+:: Evidence 1: Riverbed Rock {"position":"700,25","size":"100,100"}
+The dinos were buried in a riverbed. There was a flood, and it moved their bodies to the river, but the flood may not have been the cause of their deaths.
+
+
+:: Evidence 2: Cracked Skull {"position":"825,25","size":"100,100"}
+The tyrannosaur's skull was found damaged, with a huge crack down the center. This may be evidence of how the dinosaur died, or the fossil could have been damaged over time.
+
+
+:: Evidence 3: Embedded Tooth {"position":"950,25","size":"100,100"}
+Tyrannosaur teeth were found within the body of the Triceratops, including one found embedded in the Triceratops' spine. Researchers currently do not know who these teeth belonged to, and there is a possibility of other Tyrannosaurs being present.
+
+
+:: Evidence 4: Tail Trauma {"position":"1075,25","size":"100,100"}
+Bones in the Triceratops' tail are fused together. This is indicative of either an old injury, or a possible bone disease.
+
+
+:: First Dino {"position":"1025,475","size":"100,100"}
+Who enters the scene first?
+
+1. [[The Tyrannosaur -> Tyrannosaur 1]]
+2. [[The Triceratops -> Triceratops 1]]
+
+
+:: Intro Part 1 {"position":"475,475","size":"100,100"}
+Some questions have simple answers. And, unfortunately, some do not. The fate of a pair of dinosaurs found fossilized together belongs to the latter category.
+
+Does it derive from a struggle eons ago between the predator, a Nanotyrannus lancensis, and its prey, a Triceratops horridus?
+
+Was the Triceratops already dead, its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
+
+Or is it the product of fabulous happenstance, with a flood washing traces of the two beasts together?
+
+[[Continue ->Environment Part 1]]
+
+
+
+:: The Environment {"position":"1225,25","size":"100,100"}
+What we know:
+
+* The dinos lived 67 million years ago
+* The dinos lived in a similar environment to eastern NC
+* Dense woodlands, low floodplains, lots of rivers and streams flowing to the sea
+* Other creatures that would have occupied the landscape include ancient turtles and alligators
+
+What we don't know:
+* Time of day
+* What creatures were present
+* The weather
+* The exact landscape the dinos were in when the situation took place
+
+
+:: The Hypotheses {"position":"550,25","size":"100,100"}
+There are 3 primary hypotheses for what could have happened to these dinos:
+
+1. The Duel Hypothesis: The dinos died fighting one another
+
+2. The Dinner Hypothesis: The triceratops was already dead, and the tyrannosaur died while eating it.
+
+3. The Disaster Hypothesis: The dinos did not interact at all, and instead a flash flood caused their deaths and buried them together
+
+
+:: Tri Alive 2 {"position":"1625,650","size":"100,100"}
+What does the Tyrannosaur do?
+
+1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
+2. [[Keep its distance from the Triceratops -> Ending 3: Disaster Theory]]
+
+
+:: Tri Shelter 1 {"position":"1400,825","size":"100,100"}
+What does the Triceratops find?
+
+[[A Tyrannosaur ->Tri Shelter 2]]
+[[Nothing -> Ending 3: Disaster Theory]]
+
+
+:: Tri Shelter 2 {"position":"1625,875","size":"100,100"}
+What does the Tyrannosaur do?
+
+1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
+2. [[Keep its distance from the Triceratops -> Ending 3: Disaster Theory]]
+
+
+:: Triceratops Alive {"position":"1625,500","size":"100,100"}
+What does the Tyrannosaur do?
+
+1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
+2. [[Find Smaller Prey Near the River -> Ending 3: Disaster Theory]]
+
+
+:: Tyran Shelter 1 {"position":"1400,175","size":"100,100"}
+What does the Tyrannosaur find in the cave?
+
+[[A living Triceratops -> Tyran Shelter 2]]
+[[A dead Triceratops->Ending 2: Dinner Theory]] 
+
