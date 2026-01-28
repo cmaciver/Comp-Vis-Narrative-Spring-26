@@ -54,12 +54,26 @@ What does the Tyrannosaur do?
 
 
 :: \ Tyrannosaur 1 {"position":"1175,400","size":"100,100"}
-(Description of the Tyrannosaur here)
+(if:$isMorning is true)[The Tyrannosaur glides into view, bathed in the warm, golden light of the early morning sun.]
+(if:$isNoon is true)[The Tyrannosaur strides clearly into view, illuminated by the bright midday sun overhead.]
+(if:$isNight is true)[The Tyrannosaur emerges from the gloom of the forest, a dark shape hardly discernible in the pale light of the moon.]
 
-What is the Tyrannosaur doing?
+A distant cousin of the Tyrannosaurus rex, this smaller predator is nonetheless formidable, with sharp teeth and keen senses honed for hunting.
 
-1. [[Looking for food -> Tyran Food 1]]
-2. [[Looking for shelter ->Tyran Shelter 1]] (depending on what weather the player selected?)
+From its maw can be seen a set of terrifyingly sharp teeth. The rear teeth are serrated for slicing through flesh, while the front teeth seem more adapted for gripping and tearing.
+
+Long, powerful legs carry it forward in measured strides. Unlike its famous cousin, the Nanotyrannus possesses longer legs relative to its body size, a build suited for speed and agility. 
+
+The arms are differently proportioned as well. Clawed fingers extend, occasionally flexing as the creature moves. Longer and more functional than those of the T. rex, it isn't hard to imagine the Nanotyrannus using its forelimbs to grasp prey or manipulate objects.
+
+As the Nanotyrannus moves, a far more unique facet of its appearance becomes clear. A fresh gash runs along the side of its head, perhaps from a recent fight, or from an accident. 
+
+The wound appears to be healing, but the size and depth of the injury suggest a grim severity.
+
+As it continues forward, the Tyrannosaur's gaze locks onto something in the distance.
+
+(link: "A distant form. A Triceratops perhaps?")[(goto: " Tyran Food 1")]
+(link: "Some sort of recession in a hill. Looks like a cave.")[(goto: "Tyran Shelter 1")]
 
 
 :: Ending 2: Dinner Theory {"position":"2200,675","size":"100,100"}
@@ -92,7 +106,7 @@ And indeed, the soil is very moist. All of this hints at recent rainfall.
 
 Puddles dot the forest floor, and through a break in the tree line not far off, a river wanders a winding path as so many rivers do, its waters nourished to a higher than usual level by the recent precipitation.
 
-A fleeting inquisition of the sky reveals the forest's canopy of course, along with scattering of clouds, and... well, the time of day of course.
+A fleeting inquisition of the sky reveals the forest's canopy of course, along with a scattering of clouds, and... well, the time of day of course.
 
 If it wasn't already apparent from the ambient light level, that upward glance revealed...
 (link: "...why, a beautiful red dawn.")[(set: $isMorning to true)(goto: "Environment Part 2")]
@@ -104,7 +118,7 @@ If it wasn't already apparent from the ambient light level, that upward glance r
 :: Environment Part 2 {"position":"850,475","size":"100,100"}
 (set:$isAlligator to false)(set:$isTurtle to false)
 (if:$isMorning is true)[The sun is just rising over the horizon, almost invisible through the canopy were it not for a small break in the trees. What can be seen of the sky is a mosaic in warm tones, with a soft gradient emanating from the sun in the break, shifting and blending around the trunks and branches.]
-(if:$isNoon is true)[The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, with only a few wisps of clouds drifting lazily across the expanse.]
+(if:$isNoon is true)[The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, save for the scattered clouds which drift lazily across the expanse.]
 (if:$isNight is true)[The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.]
 
 Early mammals infrequently scurry about in the underbrush, cloaking themselves from sight with the fallen leaves and branches. 
@@ -133,10 +147,15 @@ Bones in the Triceratops' tail are fused together. This is indicative of either 
 
 
 :: First Dino {"position":"1025,475","size":"100,100"}
-Who enters the scene first?
+(if:$isAlligator is true)[The alligator-ancestor is quite familiar. Like modern alligators, it lurks in the water like a mimic of a floating log, its scaly hide camouflaged against the murky riverbed. Its eyes and nostrils protrud just above the water's surface, allowing it to survey the surroundings while remaining mostly submerged. But unlike the modern iteration, an inspection of the mouth would reveal a set of shorter teeth, more suited for a diet of turtles and other small creatures.]
+(if:$isTurtle is true)[The ancient soft-shelled turtle has risen from the muddy riverbed, its streamlined body adapted for greater agility compared to turtles with hard shells. Its soft, leathery carapace is covered in algae and mud, providing effective camouflage against the riverbed. Compared to modern soft-shelled turtles, the underside bones of this specimen have a stronger suture, providing better defense for their stomach and other vital organs. Perhaps the turtle is going to bask on a nearby rock, or maybe it's searching for food or a spot to lay eggs.]
 
-1. [[The Tyrannosaur -> Tyrannosaur 1]]
-2. [[The Triceratops -> Triceratops 1]]
+A branch can be heard in the distance breaking. Leaves crunch underfoot as something large approaches. (if:$isTurtle is true)[With a splash, the turtle quickly retreats back into the depth of the river, disappearing from sight.]  (if:$isAlligator is true)[Impassively surveying the area, the alligator remains still, its vigil uncompromised by this latest disturbance. Perhaps it hopes that whatever is approaching will pass by the beach. Or perhaps the concept of such things as hope are beyond what the the animal's brain is capable of.]
+
+Something large looms through the treeline. Something resembling...
+
+(link: "...a predator. It's the Tyrannosaur!")[(goto: " Tyrannosaur 1")]
+(link: "...an herbivore. It's the Triceratops!")[(goto: " Triceratops 1")]
 
 
 :: Intro Part 1 {"position":"475,475","size":"100,100"}
