@@ -1,43 +1,15 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://w5bj4rra43xs"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://w5bj4rra43xs"]
 
-[ext_resource type="Shader" uid="uid://djup10okrsqy0" path="res://interactive narrative/shaders/src/fade_in_transition.gdshader" id="1_hc72u"]
-
-[sub_resource type="Curve" id="Curve_eyyu8"]
-_data = [Vector2(0, 0), 0.0, 0.48689705, 0, 0, Vector2(0.5350553, 0.44171774), 1.397426, 1.397426, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_1txpm"]
-texture_mode = 1
-curve = SubResource("Curve_eyyu8")
-
-[sub_resource type="Curve" id="Curve_am5v1"]
-_data = [Vector2(0, 0), 0.0, 2.9166756, 0, 0, Vector2(1, 1), 3.6711043e-07, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_coqku"]
-texture_mode = 1
-curve = SubResource("Curve_am5v1")
-
-[sub_resource type="Curve" id="Curve_r0jhc"]
-_data = [Vector2(0, 0), 0.0, 1.4223583, 0, 0, Vector2(0.71955717, 0.4118098), 0.6079532, 0.6079532, 0, 0, Vector2(1, 1), -0.6886969, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_0ddfi"]
-texture_mode = 1
-curve = SubResource("Curve_r0jhc")
-
-[sub_resource type="Curve" id="Curve_kon8h"]
-_data = [Vector2(0.63468635, 1), 0.0, -0.08442745, 0, 0, Vector2(1, 0), -8.624622, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_8bciw"]
-texture_mode = 1
-curve = SubResource("Curve_kon8h")
+[ext_resource type="Shader" uid="uid://djup10okrsqy0" path="res://interactive narrative/shaders/src/fade_in_transition.gdshader" id="1_3x8w5"]
+[ext_resource type="Texture2D" uid="uid://c3376uw267oa7" path="res://interactive narrative/shaders/textures/hole_alpha.png" id="2_p0dby"]
+[ext_resource type="Texture2D" uid="uid://cb2uqs1jo2k3i" path="res://interactive narrative/shaders/textures/hole_edge_gradient.png" id="3_rnupd"]
+[ext_resource type="Texture2D" uid="uid://cumpdpf55gj8" path="res://interactive narrative/shaders/textures/radius_curve.png" id="4_scgtv"]
+[ext_resource type="Texture2D" uid="uid://mx1yycogshtk" path="res://interactive narrative/shaders/textures/total_alpha.png" id="5_j12io"]
 
 [resource]
-shader = ExtResource("1_hc72u")
+shader = ExtResource("1_3x8w5")
 shader_parameter/trans_timer = 0.0
-shader_parameter/radius_curve = SubResource("CurveTexture_0ddfi")
-shader_parameter/hole_edge_gradient_curve = SubResource("CurveTexture_coqku")
-shader_parameter/hole_alpha_curve = SubResource("CurveTexture_1txpm")
-shader_parameter/total_alpha_curve = SubResource("CurveTexture_8bciw")
+shader_parameter/radius_curve = ExtResource("4_scgtv")
+shader_parameter/hole_edge_gradient_curve = ExtResource("3_rnupd")
+shader_parameter/hole_alpha_curve = ExtResource("2_p0dby")
+shader_parameter/total_alpha_curve = ExtResource("5_j12io")

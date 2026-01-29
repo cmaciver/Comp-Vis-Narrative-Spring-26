@@ -72,6 +72,13 @@ script = ExtResource("1_3m2eo")
 filename = "radius_curve"
 curve = SubResource("CurveTexture_0ddfi")
 
+[node name="WACKYvignette shader" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("2_ys1hy")
+position = Vector2(489.00003, 244)
+scale = Vector2(15.253906, 7.601563)
+texture = SubResource("GradientTexture2D_2kxr6")
+
 [node name="stupid sprite" type="Sprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_3m2eo")
