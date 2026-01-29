@@ -36,14 +36,40 @@ What is the Triceratops doing?
 
 
 :: \ Triceratops Dead {"position":"1625,325","size":"100,100"}
-[[Ending 2: Dinner Theory]]
+As the Nanotyrannus approaches the Triceratops, another figure becomes clear through the trees. It's another Tyrannosaur, and it doesn't look like it wants to share.
+
+Blood from the Triceratops already marks the second Tyrannosaur's jaws, and a tooth can be seen lodged in the Triceratops' spine.
+
+The two predators circle one another, growling and snapping their jaws. 
+
+Overhead, the gathering clouds continue to darken the sky, their foreboding presence matching the tension between the two dinosaurs. A drop falls, landing on the Nanotyrannus' snout.
+
+After a tense standoff, they lunge at one another, engaging in a fierce battle.
+
+Gnashing teeth and slashing claws find purchase in scale and bone, the sounds of the fight echoing through the forest.
+
+With a savage bite, the second Tyrannosaur lands a crushing blow to the first's head, tearing flesh and cracking the skull.
+
+But despite its grievous injury, the first Tyrannosaur fights on, driven by hunger and rage.
+
+With a drive born of desperation, the Nanotyrannus continues to battle, never yielding, until finally, the second Tyrannosaur breaks away, looking for easier prey.
+
+With the immediate threat gone, the wounded Nanotyrannus turns its attention back to the Triceratops carcass. It is time to feed.
+
+[[Continue ->Ending 2: Dinner Theory]]
 
 
 :: \ Tyran Food 1 {"position":"1325,325","size":"100,100"}
-What does the Tyrannosaur find?
+Following its keen senses, the Nanotyrannus approaches the distant form. In the sky, clouds are beginning to gather again, hinting at a sequel to the recent rainfall.
 
-1. [[ Triceratops Dead]]
-2. [[Triceratops Alive]]
+As it continues its long strides, a small lizard-like creature darts out of the path of the oncoming predator, disappearing into the underbrush with a rustle of leaves.
+
+As the figure draws nearer, certain details become clear. The creature is a Triceratops, its three prominent facial horns and large frill unmistakable even from a distance.
+
+Moreover, it looks like...
+
+(link: "...the Triceratops isn't moving. It must be dead.")[(goto: " Triceratops Dead")]
+(link: "...the Triceratops is grazing peacefully.")[(goto: "Triceratops Alive")]
 
 
 :: \ Tyran Shelter 2 {"position":"1650,150","size":"100,100"}
@@ -66,10 +92,6 @@ Long, powerful legs carry it forward in measured strides. Unlike its famous cous
 
 The arms are differently proportioned as well. Clawed fingers extend, occasionally flexing as the creature moves. Longer and more functional than those of the T. rex, it isn't hard to imagine the Nanotyrannus using its forelimbs to grasp prey or manipulate objects.
 
-As the Nanotyrannus moves, a far more unique facet of its appearance becomes clear. A fresh gash runs along the side of its head, perhaps from a recent fight, or from an accident. 
-
-The wound appears to be healing, but the size and depth of the injury suggest a grim severity.
-
 As it continues forward, the Tyrannosaur's gaze locks onto something in the distance.
 
 (link: "A distant form. A Triceratops perhaps?")[(goto: " Tyran Food 1")]
@@ -90,7 +112,7 @@ The world of the dinosaurs was not entirely incomprehensible to us; those that t
 
 The surrounding landscape is clearly a forest, dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
 
-Their shapes are at once familiar and alien, atavistic forms patterned along basic biological principles which have been aesthetically red-shifted through millions of years of evolution.
+Their shapes are at once familiar and alien. The plants are patterned along basic biological principles, but their appearance is millions of years of evolution removed from familiar modern forms.
 
 Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
 
@@ -108,7 +130,7 @@ Puddles dot the forest floor, and through a break in the tree line not far off, 
 
 A fleeting inquisition of the sky reveals the forest's canopy of course, along with a scattering of clouds, and... well, the time of day of course.
 
-If it wasn't already apparent from the ambient light level, that upward glance revealed...
+If it wasn't already apparent from the ambient light level, that upward glance shows...
 (link: "...why, a beautiful red dawn.")[(set: $isMorning to true)(goto: "Environment Part 2")]
 (link: "...the sun at its zenith!")[(set: $isNoon to true)(goto: "Environment Part 2")]
 (link: "...obviously, a dark and starry night, right?")[(set: $isNight to true)(goto: "Environment Part 2")]
@@ -121,7 +143,7 @@ If it wasn't already apparent from the ambient light level, that upward glance r
 (if:$isNoon is true)[The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, save for the scattered clouds which drift lazily across the expanse.]
 (if:$isNight is true)[The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.]
 
-Early mammals infrequently scurry about in the underbrush, cloaking themselves from sight with the fallen leaves and branches. 
+Early mammals infrequently scurry about in the underbrush, cloaking themselves from sight with the fallen leaves and branches as they search for underground burrows to hide in.
 
 Of particular note, however, is what can be found in the river. 
 
@@ -218,15 +240,29 @@ What does the Tyrannosaur do?
 
 
 :: Triceratops Alive {"position":"1625,500","size":"100,100"}
-What does the Tyrannosaur do?
+As the Nanotyrannus approaches the Triceratops, the larger herbivore lifts its head, sensing the presence of the predator.
 
-1. [[Attack the Triceratops -> Ending 1: Dueling Theory]]
-2. [[Find Smaller Prey Near the River -> Ending 3: Disaster Theory]]
+Its three prominent facial horns (if:$isMorning is true)[glow softly in the gentle morning light, one last gap in the clouds allowing some few rays to filter through](if:$isNoon is true)[are starkly illuminated by the bright midday sun as it continues to shine through a swiftly closing gap in the clouds](if:$isNight is true)[are faintly visible as the moonlight struggles to penetrate the cloud cover].
+
+The horns portend a struggle, and one the Nanotyrannus seems to think twice about engaging in.
+
+Overhead, the gathering clouds continue to darken the sky, their foreboding presence matching the tension between the two dinosaurs. A drop falls from the sky onto the Triceratops' frill.
+
+As it circles the Triceratops warily, the Tyrannosaur seems to come to a decision.
+
+(link: "With a sudden lunge, the Tyrannosaur attacks the Triceratops!")[(goto: "Ending 1: Dueling Theory")]
+(link: "Deciding the risk isn't worth it, the Tyrannosaur backs away.")[(goto: "Ending 3: Disaster Theory")]
 
 
 :: Tyran Shelter 1 {"position":"1400,175","size":"100,100"}
-What does the Tyrannosaur find in the cave?
+The Nanotyrannus approaches the cave, its keen senses alert for any signs of danger or opportunity.
 
-[[A living Triceratops -> Tyran Shelter 2]]
-[[A dead Triceratops->Ending 2: Dinner Theory]] 
+In the sky, clouds are beginning to gather again, hinting at a sequel to the recent rainfall. Perhaps shelter from the impending weather is a wise choice.
+
+The faint illumination from the cave's mouth betrays a form within.
+
+As the Tyrannosaur draws nearer, the form becomes clearer.
+
+[[It's moving! It's a living Triceratops! -> Tyran Shelter 2]]
+[[A dead Triceratops. A meal at last! ->Ending 2: Dinner Theory]]
 
