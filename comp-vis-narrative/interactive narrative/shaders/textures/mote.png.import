@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mx1yycogshtk"
-path="res://.godot/imported/total_alpha.png-94c15ad4e3dd81652bc98f8c91856182.ctex"
+uid="uid://bjjyfon1vy80u"
+path="res://.godot/imported/mote.png-439489d7e34581b4994254215581a18b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/shaders/textures/total_alpha.png"
-dest_files=["res://.godot/imported/total_alpha.png-94c15ad4e3dd81652bc98f8c91856182.ctex"]
+source_file="res://interactive narrative/shaders/textures/mote.png"
+dest_files=["res://.godot/imported/mote.png-439489d7e34581b4994254215581a18b.ctex"]
 
 [params]
 

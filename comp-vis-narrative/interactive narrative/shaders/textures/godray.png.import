@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb2uqs1jo2k3i"
-path="res://.godot/imported/hole_edge_gradient.png-3dc86dad6ec524d072853b7637051a3e.ctex"
+uid="uid://brrriij0ywxu4"
+path="res://.godot/imported/godray.png-244dd2ecd09410e0866cf2ba123d1f15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/shaders/textures/hole_edge_gradient.png"
-dest_files=["res://.godot/imported/hole_edge_gradient.png-3dc86dad6ec524d072853b7637051a3e.ctex"]
+source_file="res://interactive narrative/shaders/textures/godray.png"
+dest_files=["res://.godot/imported/godray.png-244dd2ecd09410e0866cf2ba123d1f15.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3376uw267oa7"
-path="res://.godot/imported/hole_alpha.png-4e8928ec4073e79e1199406745d956d1.ctex"
+uid="uid://bwl2atrc322tf"
+path="res://.godot/imported/raindrop1.png-45cf72822e99fd7dffb6042ca7224794.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/shaders/textures/hole_alpha.png"
-dest_files=["res://.godot/imported/hole_alpha.png-4e8928ec4073e79e1199406745d956d1.ctex"]
+source_file="res://interactive narrative/shaders/textures/raindrop1.png"
+dest_files=["res://.godot/imported/raindrop1.png-45cf72822e99fd7dffb6042ca7224794.ctex"]
 
 [params]
 
