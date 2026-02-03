@@ -1,0 +1,296 @@
+~ start
+## Intro Part 1
+Some questions have simple answers. And, unfortunately, some do not. The fate of a pair of dinosaurs found fossilized together belongs to the latter category.
+Does it derive from a struggle eons ago between the predator, a Nanotyrannus lancensis, and its prey, a Triceratops horridus?
+Was the Triceratops already dead, its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
+Or is it the product of fabulous happenstance, with a flood washing traces of the two beasts together?
+
+## Environment Part 1 (and some of 2)
+~ environment
+Perhaps a trip through time could better illuminate the possibilities.
+Forget the world of Man, of mammalian dominance, of the entire Anthropocene, and instead envision a world teeming with ancient ancestors of modern life, most notably, dinosaurs.
+The world of the dinosaurs was not entirely incomprehensible to us; those that take comfort in familiar settings may find some solace in the environment these two creatures inhabited.
+The surrounding landscape is clearly a forest, dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
+Their shapes are at once familiar and alien. The plants are patterned along basic biological principles, but their appearance is millions of years of evolution removed from familiar modern forms.
+Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
+Ferns and mosses thrive in the underbrush, their fronds and cushions adding texture to the forest floor.
+Alongside the smaller foliage, leaf litter carpets the ground, muffling footsteps and providing both ample cover and a source of food for smaller creatures.
+Branches and fallen logs lie scattered about, remnants of past storms and the natural cycle of growth and decay.
+A gentle breeze rustles the leaves, carrying with it the earthy scent of damp soil and vegetation. Petrichor accompanies the scent, wafting up from the drying terrain.
+And indeed, the soil is very moist. All of this hints at recent rainfall.
+Puddles dot the forest floor, and through a break in the tree line not far off, a river wanders a winding path as so many rivers do, its waters nourished to a higher than usual level by the recent precipitation.
+A fleeting inquisition of the sky reveals the forest's canopy of course, along with a scattering of clouds, and... well, the time of day of course.
+If it wasn't already apparent from the ambient light level, that upward glance revealed...
+- ...why, a beautiful red dawn.
+	set Globals.time = "morning"
+	do update_game_time()
+	The sun is just rising over the horizon, almost invisible through the canopy were it not for a small break in the trees. What can be seen of the sky is a mosaic in warm tones, with a soft gradient emanating from the sun in the break, shifting and blending around the trunks and branches.
+
+- ...the sun at its zenith!
+	set Globals.time = "noon"
+	do update_game_time()
+	The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, save for the scattered clouds which drift lazily across the expanse.
+
+- ...obviously, a dark and starry night, right?
+	set Globals.time = "night"
+	do update_game_time()
+	The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.
+
+
+## Environment Part 2 ( and some of the next )
+Early mammals infrequently scurry about in the underbrush, cloaking themselves from sight with the fallen leaves and branches as they search for underground burrows to hide in.
+Of particular note, however, is what can be found in the river. 
+A second inquisition, this time of the waterway reveals...
+- ...a distant relative of modern alligators lurking near the bank.
+	set Globals.prey = "alligator"
+	do render_prey()
+	The alligator-ancestor is quite familiar. Like modern alligators, it lurks in the water like a mimic of a floating log, its scaly hide camouflaged against the murky riverbed. Its eyes and nostrils protrud just above the water's surface, allowing it to survey the surroundings while remaining mostly submerged. But unlike the modern iteration, an inspection of the mouth would reveal a set of shorter teeth, more suited for a diet of turtles and other small creatures.
+
+- ...disturbances on the water's surface from a soft-shelled ancient turtle.
+	set Globals.prey = "turtle"
+	The ancient soft-shelled turtle has risen from the muddy riverbed, its streamlined body adapted for greater agility compared to turtles with hard shells. Its soft, leathery carapace is covered in algae and mud, providing effective camouflage against the riverbed. Compared to modern soft-shelled turtles, the underside bones of this specimen have a stronger suture, providing better defense for their stomach and other vital organs. Perhaps the turtle is going to bask on a nearby rock, or maybe it's searching for food or a spot to lay eggs.
+	do render_prey()
+
+## First Dino
+~ first_dino
+A branch can be heard in the distance breaking. Leaves crunch underfoot as something large approaches.
+if Globals.prey == "turtle":
+	With a splash, the turtle quickly retreats back into the depth of the river, disappearing from sight.
+
+if Globals.prey == "alligator":
+	Impassively surveying the area, the alligator remains still, its vigil uncompromised by this latest disturbance. Perhaps it hopes that whatever is approaching will pass by the beach. Or perhaps the concept of such things as hope are beyond what the the animal's brain is capable of.
+
+Something large looms through the treeline. Something resembling...
+- ...a predator. It's the Tyrannosaur!
+	=> tyrannosaur_1
+- ...an herbivore. It's the Triceratops!
+	=> triceratops_1
+
+
+~ tyrannosaur_1
+if Globals.time == "morning":
+	The Tyrannosaur glides into view, bathed in the warm, golden light of the early morning sun.
+if Globals.time == "noon":
+	The Tyrannosaur strides clearly into view, illuminated by the bright midday sun overhead.
+if Globals.time == "night":
+	The Tyrannosaur emerges from the gloom of the forest, a dark shape hardly discernible in the pale light of the moon.
+
+set Globals.POV = "NanoTyrannus"
+A distant cousin of the Tyrannosaurus rex, this smaller predator is nonetheless formidable, with sharp teeth and keen senses honed for hunting.
+From its maw can be seen a set of terrifyingly sharp teeth. The rear teeth are serrated for slicing through flesh, while the front teeth seem more adapted for gripping and tearing.
+Long, powerful legs carry it forward in measured strides. Unlike its famous cousin, the Nanotyrannus possesses longer legs relative to its body size, a build suited for speed and agility. 
+The arms are differently proportioned as well. Clawed fingers extend, occasionally flexing as the creature moves. Longer and more functional than those of the T. rex, it isn't hard to imagine the Nanotyrannus using its forelimbs to grasp prey or manipulate objects.
+As it continues forward, the Tyrannosaur's gaze locks onto something in the distance.
+- A distant form. A Triceratops perhaps?
+	=> tyran_food_1
+- Some sort of recession in a hill. Looks like a cave.
+	=> tyran_shelter_1
+
+
+~ triceratops_1
+if Globals.time == "morning":
+	The Triceratops ambles into view, its frill and horns casting distinct shadows in the soft morning light.
+if Globals.time == "noon":
+	The Triceratops steadily moves into view, its features clearly illuminated by the bright midday sun.
+if Globals.time == "night":
+	The Triceratops emerges from the darkness of the forest, its silhouette starkly outlined against the pale moonlight.
+
+set Globals.POV = "Triceratops"
+A large herbivorous dinosaur, the Triceratops horridus is easily recognizable by its three prominent facial horns; two long ones above the eyes and a shorter one on the nose, as well as its large bony frill that extends from the back of its skull.
+Its robust body is supported by sturdy legs, built for bearing its considerable weight as it forages for vegetation.
+The frills and horns serve both as defensive weapons capable of goring foolish predators, and as display structures for wooing potential mates or intimidating rivals.
+Its beak-like mouth is well-suited for grasping and plucking, and its low slung head allows it to graze close to the ground, though taller vegetation could be knocked down with its horns and bulk if necessary.
+As it moves forward, the Triceratops appears to be searching for something.
+- Something to eat?
+	=> tri_food_1
+- A spot to rest and relax for a while?
+	=> tri_shelter_1
+
+
+~ tyran_food_1
+set Globals.nano_hurt_head = false
+Following its keen senses, the Nanotyrannus approaches the distant form. In the sky, clouds are beginning to gather again, hinting at a sequel to the recent rainfall.
+As it continues its long strides, a small lizard-like creature darts out of the path of the oncoming predator, disappearing into the underbrush with a rustle of leaves.
+As the figure draws nearer, certain details become clear. The creature is a Triceratops, its three prominent facial horns and large frill unmistakable even from a distance.
+Moreover, it looks like...
+- ...the Triceratops isn't moving. It must be dead.
+	=> triceratops_dead
+- ...the Triceratops is grazing peacefully.
+	=> triceratops_alive
+
+
+~ tyran_shelter_1
+The Nanotyrannus approaches the cave, alert for any signs of danger or opportunity.
+In the sky, clouds are beginning to gather again, hinting at a sequel to the recent rainfall. There is wisdom in seeking shelter from the impending storm.
+The Nanotyrannus steps cautiously into the cave's shadowy interior.
+Perhaps searching for some morsel of food, the Tyrannosaur's continues deeper.
+A sound emanates from the entrance, and with a start, the Tyrannosaur halts its advance.
+The faint illumination from the cave's mouth betrays a form standing just outside.
+As the Tyrannosaur's eyes adjust to the dim light, the form becomes clearer. 
+It only takes a moment for the Nanotyrannus to recognize...
+- ...A walking meal! A Triceratops!
+	=> shelter_2
+- ...Nothing but a small raptor, hardly worth the effort of the hunt. But off to another side of the cave, there looks to be the corpse of a Triceratops. Food at last!
+	=> ending_2
+
+
+~ tri_food_1
+The Triceratops is clearly in search of food. Its head is lowered, and it appears to be scanning the ground for something edible.
+Some ferns must have caught its attention, as it moves toward a small cluster of the plants.
+Bending down, the Triceratops uses its beak-like mouth to grasp and pluck the fronds.
+Using its rows of flat teeth, the Triceratops begins to chew the tough plant material, grinding it down for digestion.
+Within its jaw, the Triceratops' teeth are arranged in groups of several rows, forming dental batteries. 
+While there were several hundred teeth present in the mouth, continual wear from chewing and replacement of teeth meant that only a fraction were in use at any given time.
+As it feeds, the Triceratops seems to relax, its eyes half-closed in contentment.
+How sad, what comes next. 
+A peal of thunder rumbles through the forest, while rapidly darkening clouds gather overhead, their presence heralding the arrival of nothing less than a fully grown Nanotyrannus lancensis hungry for a meal.
+- Continue
+	=> triceratops_alive
+
+
+~ tri_shelter_1
+Continuing its ambling, the Triceratops comes across a recession in a hillside. It appears to be a cave, its mouth dark and foreboding.
+However, [if Globals.time=="morning"]the warmth of the morning sun seems to be weakening as clouds gather overhead[/if][if Globals.time=="noon"]the promise of a warm midday sun is quickly fading as clouds gather overhead[/if][if Globals.time=="night"]the coolness of the night air is becoming more pronounced as clouds gather overhead[/if], hinting at an impending rainstorm.
+Seeking shelter from the coming weather seems prudent, and foreboding as the cave may be, it is better than being caught out in the open in a downpour.
+As the Triceratops approaches the cave, unaware of any potential dangers within, there seems to be a slight sound emanating from inside.
+
+- It's just a trick of the wind from the approaching storm.
+	=> ending_3
+- Something is definitely in there... A Nanotyrannus!
+	=> shelter_2
+
+
+~ shelter_2
+Situated in the rear of the cave, the Nanotyrannus peers out at the Triceratops standing just outside. Backlit by what remains of [if Globals.time=="morning"]the dimming morning light[/if][if Globals.time=="noon"]the rapidly fading midday sun[/if][if Globals.time=="night"]the faltering moonlight[/if], the Triceratops is far more visible than the Tyrannosaur inside the cave.
+With its hearing impaired as rain begins to trickle, then pour from the sky, the Triceratops is unaware of the Nanotyrannus' presence, though this won't last forever.
+Undoubtedly, the Triceratops is seeking shelter from the storm, just as the Nanotyrannus is.
+Unlike the Triceratops, the Nanotyrannus has the initiative. Be that as it may, the Triceratops is going to notice the Tyrannosaur sooner or later. 
+If the Nanotyrannus is going to act, it must do so now.
+- Fortune favors the bold. And food favors the hungry. With a lunge out of the cave's mouth, the Tyrannosaur emerges into the rainstorm, ready for a fight!
+	=> ending_1
+- Discrending_1 valor. Food will have to wait, as the rain is coming down quite heavily now. Alarmingly heavy, in fact.
+	=> ending_3
+
+
+~ triceratops_dead
+set Globals.nano_hurt_head = true
+As the Nanotyrannus approaches the Triceratops, another figure becomes clear through the trees. It's a larger Tyrannosaur, and it doesn't look like it wants to share.
+Blood from the Triceratops already paints the second Tyrannosaur's jaws crimson, and a tooth can be seen lodged in the Triceratops' spine.
+The two predators circle one another, growling and snapping their jaws. 
+Overhead, the gathering clouds continue to darken the sky, their foreboding presence matching the tension between the two dinosaurs. A drop falls, landing on the hungry Nanotyrannus' snout.
+After a tense standoff, they lunge at one another, engaging in a fierce battle.
+Gnashing teeth and slashing claws find purchase in scale and bone, the sounds of the fight echoing through the forest.
+With a savage bite, the larger Tyrannosaur lands a crushing blow to the first's head, tearing flesh and cracking the skull.
+But despite its grievous injury, the plucky Nanotyrannus fights on. Consumed by hunger and rage, it refuses to yield.
+With desperation, the Nanotyrannus continues to fight on unwaveringly, until finally, the larger Tyrannosaur breaks away, looking for easier prey.
+With the immediate threat gone, the wounded Nanotyrannus turns its attention back to the Triceratops carcass. It is time to feed.
+- Continue
+	=> ending_2
+
+
+~ triceratops_alive
+As the Nanotyrannus approaches the Triceratops, the larger herbivore lifts its head, sensing the presence of the predator.
+Its three prominent facial horns [if Globals.time=="morning"]glow softly in the gentle morning light, one last gap in the clouds allowing some few rays to filter through[/if][if Globals.time=="noon"]are starkly illuminated by the bright midday sun as it continues to shine through a swiftly closing gap in the clouds[/if][if Globals.time=="night"]are faintly visible as the moonlight struggles to penetrate the cloud cover[/if].
+The horns portend a struggle, and one the Nanotyrannus seems to think twice about engaging in.
+Overhead, the gathering clouds continue to darken the sky, their foreboding presence matching the tension between the two dinosaurs. A drop falls from the sky onto the Triceratops' frill.
+As it circles the Triceratops warily, the Tyrannosaur seems to come to a decision.
+- With a sudden lunge, the Tyrannosaur attacks the Triceratops!
+	=> ending_1
+- Deciding the risk isn't worth it, the Tyrannosaur backs away, retreating to shelter to wait out the storm, while the Triceratops does the same.
+	=> ending_3
+
+
+~ ending_1
+Its frill and horns silhouetted as a bolt of lightning splits the sky behind it, the Triceratops stands its ground against the charging Nanotyrannus.
+This is a fight to the death. No quarter will be given, nor one granted. 
+The opening blow comes from the Triceratops, which lowers its head and smashes its horns into the face of the Tyrannosaur.
+Against any other predator, this would be a devastating strike, but the Nanotyrannus weathers the blow, its thick skull absorbing much of the impact.
+Though the damage must be considerable, the Tyrannosaur retaliates with a savage bite to the Triceratops' flank.
+A unique advantage of the Nanotyrannus compared to other Tyrannosaurs came from its strong neck muscles, which allowed it to flex its head with tremendous force.
+In the fight, this translated to powerful bites, tearing gaping wounds in the Triceratops' tough hide. 
+One particular bite found purchase in the spine, with a tooth lodged firmly in the bone being torn free from the Tyrannosaur's jaw.
+As both dinosaurs continue to exchange blows, the rain begins to fall in earnest, turning the forest floor into a muddy quagmire.
+Mud and blood mix together, splattering both combatants as they struggle for dominance.
+Neither dinosaur shows any sign of yielding, their battle continuing unabated despite the worsening weather.
+The fight continues for what feels like an eternity, until finally, the Triceratops falters, its strength waning from the relentless assault.
+But the Nanotyrannus is hardly victorious. Its head bears a grievous wound from the Triceratops' horns, its skull cracked and bleeding profusely.
+It will not be long before the Tyrannosaur joins the Triceratops in death.
+=> end_screen
+
+
+~ ending_2
+if Globals.nano_hurt_head:
+	The Nanotyrannus, its head throbbing with pain from the earlier fight, does not hesitate as it approaches the Triceratops carcass.
+	A hard fought meal awaits, and the predator is determined to make the most of it before any more competitors arrive.
+	The rain has steadily intensified, and at this point, is falling in sheets, drenching both the carcass and the Tyrannosaur.
+	The Triceratops lies still, much as it did when the Nanotyrannus first arrived, but now the rain patters against its frill and horns, and rivulets of water run down its sides.
+	Marks are visible where the previous Tyrannosaur bit into the Triceratops, including the earlier mentioned tooth lodged in the spine.
+	The Nanotyrannus wastes no time, sinking its teeth into the Triceratops' flank.
+	As it feeds, the Tyrannosaur winces, the pain from its head injury flaring up with each movement.
+	It doesn't seem to be going away, and in fact appears to be worsening. 
+	The Tyrannosaur shakes its head, trying to alleviate the discomfort, but to no avail.
+	Stumbling, the Nanotyrannus pulls back from the carcass, its vision blurred by pain and rain.
+	With a heavy thud, the Tyrannosaur collapses to the ground, unconscious from the injury.
+	It will never feed again.
+else:
+	Inside the shelter of the cave, the Nanotyrannus hungrily chomps down on a piece of meat torn from the Triceratops carcass.
+	What a stroke of luck, to find such an easy meal!
+	Outside the cave, the rain continues to pour, drumming against the rock face.
+	Rivulets penetrate the cave entrance, slickening the ground where the Tyrannosaur stands.
+	As it feeds, the Nanotyrannus remains alert, ears twitching at every sound.
+	As it goes for another bite, a sudden crack of thunder reverberates through the cave, causing the Tyrannosaur to flinch.
+	What rotten luck it is, that the slick ground and positioning of the Nanotyrannus causes it to lose its footing just perfectly to impale part of its neck on the Triceratops' horn.
+	Blood flows freely from the wound as the Tyrannosaur struggles to free itself, but the more it thrashes, the deeper the horn sinks into its flesh.
+	With one final effort, the Nanotyrannus manages to pull free, but in doing so, it exacerbates the injury.
+	The Tyrannosaur staggers back, head swimming from blood loss and pain.
+	Its legs weakened from blood loss, the Tyrannosaur stumbles, collapsing to the ground beside its dinner.
+	It will not be long before the Tyrannosaur joins the Triceratops in death.
+=> end_screen
+
+
+~ ending_3
+if Globals.POV == "Triceratops":
+	The shelter of a cave proves fleeting as the rain intensifies outside.
+	Drumming on the rock face, the sound is deafening, drowning out all other noise.
+	Fleeing the cave as water begins to flow into it, the Triceratops steps back into the forest, seeking higher ground.
+	The storm shows no mercy.
+	Thunder cracks overhead, rattling the very bones of the Triceratops while wind whips through the trees and rain turns the leaf litter into a muddy mush.
+	The ground, already saturated from earlier rains, can hold no more.
+	Water begins to pool, the puddles from earlier swelling into larger bodies, then eroding channels between roots and fallen logs, transforming the forest floor into a tapestry of rushing streams.
+	Within minutes, the these streams converge into a fast, churning sheet of water, flooding the river. 
+	The Triceratops continues to try and struggle toward higher ground, but the current tugs at its legs, pulling and slipping over the slick earth.
+	It braces, hooves digging, only for the softened soil to crumble and give way.
+	As the water continues to surge past it, any hope of footing is lost and with it, any chance of escape.
+	It stumbles, then slides, its massive bulk now at the mercy of the flood.
+	Branches, bits of earth, and other flotsam batter its flanks, and the Triceratops gurgles out in alarm.
+	Beside it, astonishingly, is a Nanotyrannus, also swept up in the torrent, struggling to keep its head above water.
+
+
+if Globals.POV == "NanoTyrannus":
+	The trickle of water into the cave, which had been a nuisance, has by now become a miniature river.
+	The Nanotyrannus steps out into the storm, seeking higher ground as the rain intensifies.
+	It is a deluge, drowning scents and dulling sound, a curtain of water that hides everything beyond a few feet.
+	Apex predator though it may be, the Tyrannosaur is but an insignificant speck in the face of nature's fury.
+	The ground, already saturated from earlier rains, can hold no more.
+	Water begins to pool, the puddles from earlier swelling into larger bodies, then eroding channels between roots and fallen logs, transforming the forest floor into a tapestry of rushing streams.
+	Within minutes, the these streams converge into a fast, churning sheet of water, flooding the river. 
+	The Nanotyrannus feels the pull at its ankles first, then at its knees, and the current grows stronger with each heartbeat.
+	It tries to climb a fallen log, but the log lifts and turns with the surge, becoming another piece of flotsam whioch sweeps the Tyrannosaur off its feet.
+	Now nothing more than a helpless passenger in the churning flow the predator snaps its jaws impotently at empty water as it fights for breath, its vision blurred by rain and spray.
+	What irony it is, that in this moment the Nanotyrannus spots what in any other circumstance would be its prey\: a Triceratops, also caught in the flood.
+
+The torrent carries both beasts toward the river, a roaring vein of water that has swelled beyond its banks.
+Strong currents rapidly pull the Triceratops into the river, and then much to its horror, beneath the froth.
+The Tyrannosaur swiftly follows, both dinosaurs now submerged in the churning waters.
+It does not take long for the flood to overwhelm them. Their struggles grow frantic, then weak, and finally still, pinned by mud and debris on the riverbed.
+In time, the waters will recede, leaving behind the heavy hush of a forest that survived, and a pair of bodies that did not.
+
+
+~ end_screen
+...
+Or perhaps, something else entirely transpired...
+- Restart
+	=> start
+- Quit
+	=> END
+
