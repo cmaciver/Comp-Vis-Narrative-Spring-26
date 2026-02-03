@@ -3,6 +3,7 @@ shader_type canvas_item;
 uniform float pieces :hint_range(1.0, 100.0, 1.)= 10;
 uniform float pixel_amount :hint_range(0.0, 1.0)= 1.;
 
+// this effect is highly silly
 void vertex() {
 	// Called for every vertex the material is visible on.
 	UV -= vec2(0.5, 0.5);
