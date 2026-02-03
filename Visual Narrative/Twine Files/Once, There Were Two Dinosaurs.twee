@@ -131,7 +131,7 @@ As it feeds, the Triceratops seems to relax, its eyes half-closed in contentment
 
 How sad, what comes next. 
 
-A peal of thunder rumbles through the forest, while rapidly darkening clouds gather overhead, their presence heralding the arrival of nothing less than a fully grow Nanotyrannus lancensis hungry for a meal.
+A peal of thunder rumbles through the forest, while rapidly darkening clouds gather overhead, their presence heralding the arrival of nothing less than a fully grown Nanotyrannus lancensis hungry for a meal.
 
 [[Continue ->Triceratops Alive]]
 
@@ -401,7 +401,7 @@ There are 3 primary hypotheses for what could have happened to these dinos:
 :: Tri Shelter 1 {"position":"1400,825","size":"100,100"}
 Continuing its ambling, the Triceratops comes across a recession in a hillside. It appears to be a cave, its mouth dark and foreboding.
 
-However, $(if:$isMorning is true)[the warmth of the morning sun seems to be weakening as clouds gather overhead](if:$isNoon is true)[the promise of a warm midday sun is quickly fading as clouds gather overhead](if:$isNight is true)[the coolness of the night air is becoming more pronounced as clouds gather overhead], hinting at an impending rainstorm.
+However, (if:$isMorning is true)[the warmth of the morning sun seems to be weakening as clouds gather overhead](if:$isNoon is true)[the promise of a warm midday sun is quickly fading as clouds gather overhead](if:$isNight is true)[the coolness of the night air is becoming more pronounced as clouds gather overhead], hinting at an impending rainstorm.
 
 Seeking shelter from the coming weather seems prudent, and foreboding as the cave may be, it is better than being caught out in the open in a downpour.
 
