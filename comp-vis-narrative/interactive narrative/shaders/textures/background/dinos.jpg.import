@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8gdd7xl4i6g2"
-path="res://.godot/imported/dinos.jpg-53b34c85e225bfaa88eafeb24545af55.ctex"
+path="res://.godot/imported/dinos.jpg-e5f76b7838ea26bc3797deddf053163f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/shaders/test/dinos.jpg"
-dest_files=["res://.godot/imported/dinos.jpg-53b34c85e225bfaa88eafeb24545af55.ctex"]
+source_file="res://interactive narrative/shaders/textures/background/dinos.jpg"
+dest_files=["res://.godot/imported/dinos.jpg-e5f76b7838ea26bc3797deddf053163f.ctex"]
 
 [params]
 

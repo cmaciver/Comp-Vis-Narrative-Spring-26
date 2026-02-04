@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbkxwlg7h1oc5"
-path="res://.godot/imported/nature.jpeg-a2988c37f6a99579edff05fda65773af.ctex"
+uid="uid://d3fymw77onf5u"
+path="res://.godot/imported/uv-test.png-5397e751e1f9667257d0995c88779da1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/shaders/textures/nature.jpeg"
-dest_files=["res://.godot/imported/nature.jpeg-a2988c37f6a99579edff05fda65773af.ctex"]
+source_file="res://interactive narrative/shaders/textures/background/uv-test.png"
+dest_files=["res://.godot/imported/uv-test.png-5397e751e1f9667257d0995c88779da1.ctex"]
 
 [params]
 

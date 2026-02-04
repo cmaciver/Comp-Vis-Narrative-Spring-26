@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cecu3ilo31of5" path="res://interactive narrative/shaders/test/curve_baker.gd" id="1_3m2eo"]
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_ys1hy"]
-[ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/test/dinos.jpg" id="2_uy86w"]
+[ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/textures/background/dinos.jpg" id="2_uy86w"]
 [ext_resource type="Material" uid="uid://w5bj4rra43xs" path="res://interactive narrative/shaders/src/fade_vinette_material.tres" id="2_ys1hy"]
 [ext_resource type="Shader" uid="uid://4l46tkdh785k" path="res://interactive narrative/shaders/src/shader_test.gdshader" id="4_265ja"]
 [ext_resource type="Texture2D" uid="uid://bjjyfon1vy80u" path="res://interactive narrative/shaders/textures/mote.png" id="6_63xm7"]
