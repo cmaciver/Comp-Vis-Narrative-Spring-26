@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://brur46v5q83va"]
+
+[ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_lofyh"]
+[ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/test/dinos.jpg" id="2_tan56"]
+[ext_resource type="Texture2D" uid="uid://cbkxwlg7h1oc5" path="res://interactive narrative/shaders/textures/nature.jpeg" id="3_j07tb"]
+[ext_resource type="Shader" uid="uid://dej1wh34qcufj" path="res://interactive narrative/shaders/src/nighttime.gdshader" id="4_tan56"]
+
+[sub_resource type="Gradient" id="Gradient_ys1hy"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.76862746, 0.6784314, 1, 1, 0.27450982, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1s5o"]
+gradient = SubResource("Gradient_ys1hy")
+fill_from = Vector2(0.14018692, 0.78504676)
+
+[sub_resource type="Gradient" id="Gradient_c4c1b"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cce46"]
+gradient = SubResource("Gradient_c4c1b")
+fill_from = Vector2(0.23831776, 0.7242991)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j07tb"]
+shader = ExtResource("4_tan56")
+shader_parameter/switch_point = 0.5
+shader_parameter/spec_pow = 7.4
+shader_parameter/gamma_adjust = 2.4
+
+[node name="DaytimeNighttime" type="Node2D"]
+
+[node name="backgrounds" type="Node2D" parent="."]
+
+[node name="gradient" type="Sprite2D" parent="backgrounds"]
+visible = false
+position = Vector2(421, 203)
+scale = Vector2(13.556065, 7.3125)
+texture = SubResource("GradientTexture2D_g1s5o")
+
+[node name="black" type="Sprite2D" parent="backgrounds"]
+visible = false
+texture = SubResource("GradientTexture2D_cce46")
+
+[node name="godot" type="Sprite2D" parent="backgrounds"]
+visible = false
+position = Vector2(562.5, 278)
+scale = Vector2(9.2890625, 4.859375)
+texture = ExtResource("1_lofyh")
+
+[node name="dinos" type="Sprite2D" parent="backgrounds"]
+visible = false
+position = Vector2(570.5, 324)
+scale = Vector2(0.714375, 0.62779397)
+texture = ExtResource("2_tan56")
+
+[node name="nature" type="Sprite2D" parent="backgrounds"]
+position = Vector2(770, 293)
+scale = Vector2(0.714375, 0.62779397)
+texture = ExtResource("3_j07tb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_j07tb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
