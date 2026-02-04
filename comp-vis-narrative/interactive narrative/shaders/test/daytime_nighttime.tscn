@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://brur46v5q83va"]
+[gd_scene load_steps=14 format=3 uid="uid://brur46v5q83va"]
 
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_k3xsg"]
 [ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/test/dinos.jpg" id="2_ngbe3"]
 [ext_resource type="Texture2D" uid="uid://cbkxwlg7h1oc5" path="res://interactive narrative/shaders/textures/nature.jpeg" id="3_gv0nw"]
 [ext_resource type="Shader" uid="uid://dej1wh34qcufj" path="res://interactive narrative/shaders/src/nighttime.gdshader" id="4_5r6cl"]
+[ext_resource type="Shader" uid="uid://bjxryrefwbilk" path="res://interactive narrative/shaders/src/ripple.gdshader" id="5_5r6cl"]
+[ext_resource type="Texture2D" uid="uid://b2veel4ylqi38" path="res://interactive narrative/shaders/textures/data/penguin.png" id="6_22bap"]
+[ext_resource type="Texture2D" uid="uid://bjjyfon1vy80u" path="res://interactive narrative/shaders/textures/mote.png" id="7_m6d1o"]
 
 [sub_resource type="Gradient" id="Gradient_ys1hy"]
 interpolation_mode = 2
@@ -25,6 +28,12 @@ shader = ExtResource("4_5r6cl")
 shader_parameter/switch_point = 0.5
 shader_parameter/spec_pow = 7.4
 shader_parameter/gamma_adjust = 2.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21jvy"]
+shader = ExtResource("5_5r6cl")
+shader_parameter/ripple_texture = ExtResource("6_22bap")
+shader_parameter/displacement_amount = 0.249999994412
+shader_parameter/ripple_size = 1.0
 
 [node name="DaytimeNighttime" type="Node2D"]
 
@@ -64,3 +73,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="evil penguin" type="Sprite2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_21jvy")
+position = Vector2(1148, 292)
+scale = Vector2(15.083984, 15.222656)
+texture = ExtResource("7_m6d1o")

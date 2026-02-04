@@ -14,8 +14,8 @@ void vertex() {
 void fragment() {
 	vec3 screen_color = textureLod(screen_texture, SCREEN_UV, 0.0).rgb;
 	
-	//vec2 ripple_uv = (UV - vec2(.5)) / ripple_size + vec2(.5);
-	vec2 ripple_uv = (UV - vec2(.5)) / (mod(TIME, TAU)) + vec2(.5);
+	vec2 ripple_uv = (UV - vec2(.5)) / ripple_size + vec2(.5);
+	//vec2 ripple_uv = (UV - vec2(.5)) / (mod(TIME * 2., TAU)) + vec2(.5);
 	float offset_amount = textureLod(ripple_texture, ripple_uv, 0.0).r;
 	
 	vec2 offset_uv = UV - vec2(0.5);

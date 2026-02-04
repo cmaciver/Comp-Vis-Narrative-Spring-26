@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnh0epuxk5rob"]
+[gd_scene load_steps=24 format=3 uid="uid://bnh0epuxk5rob"]
 
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_gxi3p"]
 [ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/test/dinos.jpg" id="2_vj4p1"]
 [ext_resource type="Texture2D" uid="uid://cbkxwlg7h1oc5" path="res://interactive narrative/shaders/textures/nature.jpeg" id="3_qtrwj"]
 [ext_resource type="Texture2D" uid="uid://bjjyfon1vy80u" path="res://interactive narrative/shaders/textures/mote.png" id="4_gxi3p"]
+[ext_resource type="Texture2D" uid="uid://b2veel4ylqi38" path="res://interactive narrative/shaders/textures/data/penguin.png" id="5_qtrwj"]
 [ext_resource type="Shader" uid="uid://bjxryrefwbilk" path="res://interactive narrative/shaders/src/ripple.gdshader" id="5_vj4p1"]
 [ext_resource type="Texture2D" uid="uid://dgfh10uvrk1w0" path="res://interactive narrative/shaders/textures/data/ring distortion.png" id="6_qtrwj"]
 
@@ -21,6 +22,12 @@ fill_from = Vector2(0.14018692, 0.78504676)
 gradient = SubResource("Gradient_c4c1b")
 fill_from = Vector2(0.23831776, 0.7242991)
 fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu66p"]
+shader = ExtResource("5_vj4p1")
+shader_parameter/ripple_texture = ExtResource("5_qtrwj")
+shader_parameter/displacement_amount = 0.249999994412
+shader_parameter/ripple_size = 1.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vj4p1"]
 
@@ -79,13 +86,12 @@ hue_variation_curve = SubResource("CurveTexture_qtrwj")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtrwj"]
 shader = ExtResource("5_vj4p1")
 shader_parameter/ripple_texture = ExtResource("6_qtrwj")
-shader_parameter/displacement_amount = 0.5
-shader_parameter/ripple_size = 0.0
+shader_parameter/displacement_amount = 0.249999994412
+shader_parameter/ripple_size = 1.0
 
 [node name="DaytimeNighttime" type="Node2D"]
 
 [node name="backgrounds" type="Node2D" parent="."]
-visible = false
 
 [node name="gradient" type="Sprite2D" parent="backgrounds"]
 position = Vector2(421, 203)
@@ -93,26 +99,33 @@ scale = Vector2(13.556065, 7.3125)
 texture = SubResource("GradientTexture2D_g1s5o")
 
 [node name="black" type="Sprite2D" parent="backgrounds"]
+visible = false
 texture = SubResource("GradientTexture2D_cce46")
 
 [node name="godot" type="Sprite2D" parent="backgrounds"]
-visible = false
 position = Vector2(562.5, 278)
 scale = Vector2(9.2890625, 4.859375)
 texture = ExtResource("1_gxi3p")
 
 [node name="dinos" type="Sprite2D" parent="backgrounds"]
-visible = false
 position = Vector2(570.5, 324)
 scale = Vector2(0.714375, 0.62779397)
 texture = ExtResource("2_vj4p1")
 
 [node name="nature" type="Sprite2D" parent="backgrounds"]
+visible = false
 position = Vector2(770, 293)
 scale = Vector2(0.714375, 0.62779397)
 texture = ExtResource("3_qtrwj")
 
+[node name="evil penguin" type="Sprite2D" parent="backgrounds"]
+material = SubResource("ShaderMaterial_hu66p")
+position = Vector2(211.00003, 189.00002)
+scale = Vector2(15.083984, 15.222656)
+texture = ExtResource("4_gxi3p")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -140,6 +153,6 @@ process_material = SubResource("ParticleProcessMaterial_qtrwj")
 
 [node name="pulsing thing" type="Sprite2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_qtrwj")
-position = Vector2(574, 319)
-scale = Vector2(85.23352, 49.232418)
+position = Vector2(344, 210.00002)
+scale = Vector2(15.083984, 15.222656)
 texture = ExtResource("4_gxi3p")
