@@ -31,13 +31,11 @@ shader_parameter/gamma_adjust = 2.4
 [node name="backgrounds" type="Node2D" parent="."]
 
 [node name="gradient" type="Sprite2D" parent="backgrounds"]
-visible = false
 position = Vector2(421, 203)
 scale = Vector2(13.556065, 7.3125)
 texture = SubResource("GradientTexture2D_g1s5o")
 
 [node name="black" type="Sprite2D" parent="backgrounds"]
-visible = false
 texture = SubResource("GradientTexture2D_cce46")
 
 [node name="godot" type="Sprite2D" parent="backgrounds"]
@@ -58,6 +56,7 @@ scale = Vector2(0.714375, 0.62779397)
 texture = ExtResource("3_j07tb")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_j07tb")
