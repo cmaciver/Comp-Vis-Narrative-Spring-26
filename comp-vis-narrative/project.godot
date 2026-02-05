@@ -23,6 +23,11 @@ Globals="*res://globals.gd"
 
 runtime/balloon_path="res://interactive narrative/gameplay/balloon.tscn"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
