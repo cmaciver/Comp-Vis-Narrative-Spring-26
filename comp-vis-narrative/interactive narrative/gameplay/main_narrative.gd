@@ -21,15 +21,15 @@ func _process(_delta: float) -> void:
 
 func update_game_time():
 	print("this works, you can just name any function in this script and it just does it")
-	if (Globals.time_of_day == "morning"):
+	if (Globals.time == "morning"):
 		pass
 		# TODO
 	
-	if (Globals.time_of_day == "noon"):
+	if (Globals.time == "noon"):
 		pass
 		# TODO
 	
-	if (Globals.time_of_day == "night"):
+	if (Globals.time == "night"):
 		pass
 		# TODO
 
