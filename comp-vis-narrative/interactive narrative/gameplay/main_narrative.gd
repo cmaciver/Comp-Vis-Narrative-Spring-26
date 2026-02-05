@@ -39,6 +39,6 @@ func render_prey():
 		pass
 		# TODO
 	
-	if (Globals.time_of_day == "turtle"):
+	if (Globals.time == "turtle"):
 		pass
 		# TODO

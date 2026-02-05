@@ -1,26 +1,16 @@
 ~ start
 ## Intro Part 1
-Some questions have simple answers. And, unfortunately, some do not. The fate of a pair of dinosaurs found fossilized together belongs to the latter category.
-Does it derive from a struggle eons ago between the predator, a Nanotyrannus lancensis, and its prey, a Triceratops horridus?
-Was the Triceratops already dead, its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
-Or is it the product of fabulous happenstance, with a flood washing traces of the two beasts together?
+[speed=0.8]Some questions have simple answers. [speed=0.7]And unfortunately,[wait=0.2] some do not.[wait=0.2] [speed=0.8]The fate of a pair of dinosaurs [speed=0.85]found fossilized together [speed=0.88]belongs to the latter category.
+[speed=1]Does it derive from a struggle eons ago between the predator,[wait=0.2] a Nanotyrannus lancensis, and its prey,[wait=0.2] a Triceratops horridus?
+Was the Triceratops already dead,[wait=0.2] its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
+Or is it the product of fabulous happenstance,[wait=0.2] with a flood washing traces of the two beasts together?
 
 ## Environment Part 1 (and some of 2)
 ~ environment
 Perhaps a trip through time could better illuminate the possibilities.
 Forget the world of Man, of mammalian dominance, of the entire Anthropocene, and instead envision a world teeming with ancient ancestors of modern life, most notably, dinosaurs.
 The world of the dinosaurs was not entirely incomprehensible to us; those that take comfort in familiar settings may find some solace in the environment these two creatures inhabited.
-The surrounding landscape is clearly a forest, dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
-Their shapes are at once familiar and alien. The plants are patterned along basic biological principles, but their appearance is millions of years of evolution removed from familiar modern forms.
-Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
-Ferns and mosses thrive in the underbrush, their fronds and cushions adding texture to the forest floor.
-Alongside the smaller foliage, leaf litter carpets the ground, muffling footsteps and providing both ample cover and a source of food for smaller creatures.
-Branches and fallen logs lie scattered about, remnants of past storms and the natural cycle of growth and decay.
-A gentle breeze rustles the leaves, carrying with it the earthy scent of damp soil and vegetation. Petrichor accompanies the scent, wafting up from the drying terrain.
-And indeed, the soil is very moist. All of this hints at recent rainfall.
-Puddles dot the forest floor, and through a break in the tree line not far off, a river wanders a winding path as so many rivers do, its waters nourished to a higher than usual level by the recent precipitation.
-A fleeting inquisition of the sky reveals the forest's canopy of course, along with a scattering of clouds, and... well, the time of day of course.
-If it wasn't already apparent from the ambient light level, that upward glance revealed...
+Look upwards, and behold...
 - ...why, a beautiful red dawn.
 	set Globals.time = "morning"
 	do update_game_time()
@@ -35,6 +25,16 @@ If it wasn't already apparent from the ambient light level, that upward glance r
 	set Globals.time = "night"
 	do update_game_time()
 	The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.
+
+The surrounding landscape is clearly a forest, dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
+Their shapes are at once familiar and alien. The plants are patterned along basic biological principles, but their appearance is millions of years of evolution removed from familiar modern forms.
+Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
+Ferns and mosses thrive in the underbrush, their fronds and cushions adding texture to the forest floor.
+Alongside the smaller foliage, leaf litter carpets the ground, muffling footsteps and providing both ample cover and a source of food for smaller creatures.
+Branches and fallen logs lie scattered about, remnants of past storms and the natural cycle of growth and decay.
+A gentle breeze rustles the leaves, carrying with it the earthy scent of damp soil and vegetation. Petrichor accompanies the scent, wafting up from the drying terrain.
+And indeed, the soil is very moist. All of this hints at recent rainfall.
+Puddles dot the forest floor, and through a break in the tree line not far off, a river wanders a winding path as so many rivers do, its waters nourished to a higher than usual level by the recent precipitation.
 
 
 ## Environment Part 2 ( and some of the next )
