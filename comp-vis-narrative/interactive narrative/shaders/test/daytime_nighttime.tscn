@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://brur46v5q83va"]
+[gd_scene load_steps=15 format=3 uid="uid://brur46v5q83va"]
 
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_k3xsg"]
 [ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/textures/background/dinos.jpg" id="2_ngbe3"]
 [ext_resource type="Texture2D" uid="uid://cbkxwlg7h1oc5" path="res://interactive narrative/shaders/textures/background/nature.jpeg" id="3_gv0nw"]
 [ext_resource type="Shader" uid="uid://dej1wh34qcufj" path="res://interactive narrative/shaders/src/nighttime.gdshader" id="4_5r6cl"]
-[ext_resource type="Shader" uid="uid://bjxryrefwbilk" path="res://interactive narrative/shaders/src/ripple.gdshader" id="5_5r6cl"]
-[ext_resource type="Texture2D" uid="uid://b2veel4ylqi38" path="res://interactive narrative/shaders/textures/data/penguin.png" id="6_22bap"]
-[ext_resource type="Texture2D" uid="uid://bjjyfon1vy80u" path="res://interactive narrative/shaders/textures/mote.png" id="7_m6d1o"]
+[ext_resource type="Texture2D" uid="uid://crggmhr5746pe" path="res://interactive narrative/assets/backgrounds/canyon.jpg" id="4_22bap"]
+[ext_resource type="Texture2D" uid="uid://dp1r03cawiyrm" path="res://interactive narrative/assets/backgrounds/cretaceous-period-landscape-polar-forest.jpg" id="5_m6d1o"]
+[ext_resource type="Shader" uid="uid://j4b32rh3xyhy" path="res://interactive narrative/shaders/src/evening.gdshader" id="5_ngbe3"]
+[ext_resource type="Texture2D" uid="uid://cvgw6s1300mlx" path="res://interactive narrative/assets/backgrounds/forest-iceland.jpeg" id="6_21jvy"]
 
 [sub_resource type="Gradient" id="Gradient_ys1hy"]
 interpolation_mode = 2
@@ -28,23 +29,25 @@ shader = ExtResource("4_5r6cl")
 shader_parameter/switch_point = 0.5
 shader_parameter/spec_pow = 7.4
 shader_parameter/gamma_adjust = 2.4
+shader_parameter/color = Vector3(0, 0, 0.01)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_21jvy"]
-shader = ExtResource("5_5r6cl")
-shader_parameter/ripple_texture = ExtResource("6_22bap")
-shader_parameter/displacement_amount = 0.249999994412
-shader_parameter/ripple_size = 1.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv0nw"]
+shader = ExtResource("5_ngbe3")
+shader_parameter/red_shift = 0.0499999988824
+shader_parameter/yellow_shift = 0.02999999932944
+shader_parameter/gamma_adjust = 2.00999997742448
 
 [node name="DaytimeNighttime" type="Node2D"]
 
 [node name="backgrounds" type="Node2D" parent="."]
 
 [node name="gradient" type="Sprite2D" parent="backgrounds"]
-position = Vector2(421, 203)
-scale = Vector2(13.556065, 7.3125)
+position = Vector2(850, 528)
+scale = Vector2(31.91651, 22.905201)
 texture = SubResource("GradientTexture2D_g1s5o")
 
 [node name="black" type="Sprite2D" parent="backgrounds"]
+visible = false
 texture = SubResource("GradientTexture2D_cce46")
 
 [node name="godot" type="Sprite2D" parent="backgrounds"]
@@ -55,8 +58,8 @@ texture = ExtResource("1_k3xsg")
 
 [node name="dinos" type="Sprite2D" parent="backgrounds"]
 visible = false
-position = Vector2(570.5, 324)
-scale = Vector2(0.714375, 0.62779397)
+position = Vector2(826, 279)
+scale = Vector2(1.2613568, 1.0935842)
 texture = ExtResource("2_ngbe3")
 
 [node name="nature" type="Sprite2D" parent="backgrounds"]
@@ -64,18 +67,47 @@ position = Vector2(770, 293)
 scale = Vector2(0.714375, 0.62779397)
 texture = ExtResource("3_gv0nw")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="nature2" type="Sprite2D" parent="backgrounds"]
+visible = false
+position = Vector2(862.00006, 494)
+scale = Vector2(1.6891496, 1.4486803)
+texture = ExtResource("4_22bap")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="nature3" type="Sprite2D" parent="backgrounds"]
+position = Vector2(651.0001, 495)
+scale = Vector2(1.8502909, 1.5088968)
+texture = ExtResource("5_m6d1o")
+
+[node name="nature4" type="Sprite2D" parent="backgrounds"]
+visible = false
+position = Vector2(429.99997, 463)
+scale = Vector2(2.011484, 1.6111151)
+texture = ExtResource("6_21jvy")
+
+[node name="NIGHT" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="NIGHT"]
 material = SubResource("ShaderMaterial_j07tb")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1958.0
+offset_top = -87.0
+offset_right = 1235.0
+offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="evil penguin" type="Sprite2D" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_21jvy")
-position = Vector2(1148, 292)
-scale = Vector2(15.083984, 15.222656)
-texture = ExtResource("7_m6d1o")
+[node name="EVENING" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="EVENING"]
+material = SubResource("ShaderMaterial_gv0nw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -546.0
+offset_top = 40.0
+offset_right = -207.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2

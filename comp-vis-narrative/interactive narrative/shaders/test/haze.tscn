@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bnh0epuxk5rob"]
+[gd_scene load_steps=30 format=3 uid="uid://bnh0epuxk5rob"]
 
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_gxi3p"]
 [ext_resource type="Texture2D" uid="uid://c8gdd7xl4i6g2" path="res://interactive narrative/shaders/textures/background/dinos.jpg" id="2_vj4p1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b2veel4ylqi38" path="res://interactive narrative/shaders/textures/data/penguin.png" id="5_qtrwj"]
 [ext_resource type="Shader" uid="uid://bjxryrefwbilk" path="res://interactive narrative/shaders/src/ripple.gdshader" id="5_vj4p1"]
 [ext_resource type="Texture2D" uid="uid://dgfh10uvrk1w0" path="res://interactive narrative/shaders/textures/data/ring distortion.png" id="6_qtrwj"]
+[ext_resource type="Shader" uid="uid://7mso0a5o0df6" path="res://interactive narrative/shaders/src/hover.gdshader" id="8_4mrly"]
 
 [sub_resource type="Gradient" id="Gradient_ys1hy"]
 interpolation_mode = 2
@@ -29,6 +30,11 @@ shader = ExtResource("5_vj4p1")
 shader_parameter/ripple_texture = ExtResource("5_qtrwj")
 shader_parameter/displacement_amount = 0.249999994412
 shader_parameter/ripple_size = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kempw"]
+shader = ExtResource("8_4mrly")
+shader_parameter/height = 50.0
+shader_parameter/speed = 1.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vj4p1"]
 
@@ -148,7 +154,7 @@ shader_parameter/thickness = 0.1
 shader_parameter/displacement_amount = 0.41999999061216
 shader_parameter/brightness_diff = 1.1
 
-[node name="DaytimeNighttime" type="Node2D"]
+[node name="DaytimeNighttime2" type="Node2D"]
 
 [node name="backgrounds" type="Node2D" parent="."]
 
@@ -172,6 +178,7 @@ scale = Vector2(0.714375, 0.62779397)
 texture = ExtResource("2_vj4p1")
 
 [node name="uvtest" type="Sprite2D" parent="backgrounds"]
+visible = false
 position = Vector2(808, 306.00003)
 scale = Vector2(0.714375, 0.62779397)
 texture = ExtResource("3_4mrly")
@@ -193,11 +200,17 @@ texture = ExtResource("4_gxi3p")
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_kempw")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -80.0
+offset_right = -208.00012
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9392223, 0.7595656)
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
@@ -218,7 +231,7 @@ process_material = SubResource("ParticleProcessMaterial_qtrwj")
 
 [node name="pulsing thing" type="Sprite2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_qtrwj")
-position = Vector2(314, 142)
+position = Vector2(1039, 276)
 scale = Vector2(15.083984, 15.222656)
 texture = ExtResource("4_gxi3p")
 
@@ -236,6 +249,6 @@ copy_mode = 2
 
 [node name="water surface2" type="Sprite2D" parent="CanvasLayer2"]
 material = SubResource("ShaderMaterial_4mrly")
-position = Vector2(847, 333)
+position = Vector2(883, 310)
 scale = Vector2(27.729492, 26.111328)
 texture = ExtResource("4_gxi3p")

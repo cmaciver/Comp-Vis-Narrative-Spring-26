@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4rvgxfv6pauy"]
+
+[ext_resource type="Texture2D" uid="uid://bh6dkt6b3uji8" path="res://interactive narrative/assets/black_bg.png" id="1_s373j"]
+[ext_resource type="Shader" uid="uid://7mso0a5o0df6" path="res://interactive narrative/shaders/src/hover.gdshader" id="2_ynwcm"]
+[ext_resource type="Texture2D" uid="uid://dhs4kegjnrbes" path="res://interactive narrative/assets/earf.png" id="3_keo85"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8ccj"]
+shader = ExtResource("2_ynwcm")
+shader_parameter/height = 30.46000144685
+shader_parameter/speed = 0.54000002565
+
+[node name="Earf" type="Node2D"]
+
+[node name="black" type="Sprite2D" parent="."]
+texture = ExtResource("1_s373j")
+centered = false
+
+[node name="earf" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r8ccj")
+position = Vector2(953, 534)
+texture = ExtResource("3_keo85")
