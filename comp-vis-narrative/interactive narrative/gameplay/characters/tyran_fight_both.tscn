@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://0rmywoj0t3ff"]
+
+[ext_resource type="Texture2D" uid="uid://cbn1cjcslueud" path="res://interactive narrative/assets/dinos/tyran_fight_both.png" id="1_nxjjk"]
+
+[node name="DuelingDinos" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_nxjjk")
