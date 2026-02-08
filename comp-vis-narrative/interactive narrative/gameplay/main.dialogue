@@ -1,6 +1,6 @@
 ~ start
 ## Intro Part 1
-do add_scene("res://interactive narrative/gameplay/scenes/earf.tscn", 7.0)
+do change_scene("res://interactive narrative/gameplay/scenes/earf.tscn", 7.0)
 [speed=0.8]Some questions have simple answers. And unfortunately,[wait=0.2] [speed=0.5]some do not.[wait=0.2] [speed=0.8]The fate of a pair of dinosaurs [speed=0.85]found fossilized together [speed=0.88]belongs to the latter category.
 [speed=1]Does it derive from a struggle eons ago between the predator,[wait=0.2] a Nanotyrannus lancensis, and its prey,[wait=0.2] a Triceratops horridus?
 Was the Triceratops already dead,[wait=0.2] its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
@@ -8,7 +8,7 @@ Or is it the product of fabulous happenstance,[wait=0.2] with a flood washing tr
 
 ## Environment Part 1 (and some of 2)
 ~ environment
-do add_scene("res://interactive narrative/gameplay/scenes/fossil.tscn")
+do change_scene("res://interactive narrative/gameplay/scenes/fossil.tscn")
 Perhaps a trip through time could better illuminate the possibilities.
 do set_ripple_size(1)
 [speed=0.8]Forget the world of Man,[wait=0.2] [speed=0.7]of mammalian dominance,[wait=0.3] of the entire Anthropocene,[wait=0.2] [speed=0.85]and instead envision a world teeming with ancient ancestors of modern life,[wait=0.2] most notably, dinosaurs.

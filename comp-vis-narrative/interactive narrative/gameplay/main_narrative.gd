@@ -23,8 +23,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-	
-func add_scene(path, timing_overide=1.5):
+
+
+func change_scene(path, timing_overide=1.5):
 	
 	if current_scene:
 		current_vignette.tween_opacity(1.0, 0.0, timing_overide)
@@ -44,6 +45,13 @@ func add_scene(path, timing_overide=1.5):
 	if timing_overide != 1.5: # maybe refactor this out of here, and just always call this
 		current_vignette.autoplay = false
 		current_vignette.tween_opacity(0.0, 1.0, timing_overide)
+
+
+func add_scene(path):
+	var new_scene_resource = load(path) # maybe find a less laggy way to do this?
+	var new_scene_instance = new_scene_resource.instantiate()
+	add_child(new_scene_instance)
+
 
 func set_ripple_size(size: int):
 	$Ripple.set_ripple_size(size)
