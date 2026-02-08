@@ -63,11 +63,13 @@ A second inquisition,[wait=0.2] this time of the waterway reveals...
 ~ first_dino
 A branch can be heard in the distance breaking. Leaves crunch underfoot as something large approaches.
 if Globals.prey == "turtle":
+	do add_character("res://interactive narrative/gameplay/characters/turtle.tscn", Vector2(100,100))
 	With a splash,[wait=0.2] the turtle quickly retreats back into the depth of the river,[wait=0.2] disappearing from sight.
 
 if Globals.prey == "alligator":
 	Impassively surveying the area,[wait=0.2] the alligator remains still,[wait=0.2] its vigil uncompromised by this latest disturbance. Perhaps it hopes that whatever is approaching will pass by the beach. Or perhaps the concept of such things as hope are beyond what the the animal's brain is capable of.
 
+do remove_character("Turtle")
 Something large looms through the treeline. Something resembling...
 - ...a predator. It's the Tyrannosaur!
 	=> tyrannosaur_1

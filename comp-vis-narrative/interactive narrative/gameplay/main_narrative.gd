@@ -15,7 +15,7 @@ func _ready() -> void:
 	DialogueManager.show_dialogue_balloon_scene(
 		load("res://interactive narrative/gameplay/balloon.tscn"), 
 		load("res://interactive narrative/gameplay/main.dialogue"),
-		"environment"
+		"first_dino"
 		#"ending_3" # change back to "start" later
 	)
 
@@ -47,16 +47,25 @@ func change_scene(path, timing_overide=1.5):
 		current_vignette.tween_opacity(0.0, 1.0, timing_overide)
 
 
-func add_scene(path):
+## ADDING AND REMOVING CHARACTERS
+func add_character(path, pos=Vector2(960, 540)):
 	var new_scene_resource = load(path) # maybe find a less laggy way to do this?
 	var new_scene_instance = new_scene_resource.instantiate()
-	add_child(new_scene_instance)
+	$Characters.add_child(new_scene_instance)
+	
+	new_scene_instance.position = pos
+
+func remove_character(c_name: String):
+	var child: Character = $Characters.get_node(c_name)
+	child.fade_out()
 
 
+# MANAGING THE RIPPLE
 func set_ripple_size(size: int):
 	$Ripple.set_ripple_size(size)
 
 
+## TIME OF DAY STUFF
 func update_game_time():
 	print("this works, you can just name any function in this script and it just does it")
 	if (Globals.time == "morning"):
@@ -71,12 +80,12 @@ func update_game_time():
 		pass
 		# TODO
 
-
-func render_prey():
-	if (Globals.prey == "alligator"):
-		pass
-		# TODO
-	
-	if (Globals.time == "turtle"):
-		pass
-		# TODO
+#
+#func render_prey():
+	#if (Globals.prey == "alligator"):
+		#pass
+		## TODO
+	#
+	#if (Globals.time == "turtle"):
+		#pass
+		## TODO
