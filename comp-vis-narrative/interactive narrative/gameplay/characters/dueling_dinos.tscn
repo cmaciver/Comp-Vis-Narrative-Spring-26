@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c5bokws55lf8k"]
+
+[ext_resource type="Texture2D" uid="uid://d12t5ubbepott" path="res://interactive narrative/assets/other_animal/gator.png" id="1_3v607"]
+
+[node name="DuelingDinos" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_3v607")

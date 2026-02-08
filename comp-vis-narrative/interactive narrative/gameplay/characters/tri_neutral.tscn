@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://djcu6d4uyyx6e"]
+
+[ext_resource type="Texture2D" uid="uid://b8lgtsump2smn" path="res://interactive narrative/assets/dinos/tri_neutral.png" id="1_n0i1u"]
+
+[node name="DuelingDinos" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_n0i1u")
