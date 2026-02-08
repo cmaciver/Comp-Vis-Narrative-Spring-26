@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp8im8wuyfn4l"
-path="res://.godot/imported/outdoor_bg_nosky.png-a7d70870cbefde9efd78957d1a1cb461.ctex"
+uid="uid://btvtkrh2xipvs"
+path="res://.godot/imported/tyran_neutral.png-1293bf5b9507b0608ad7e29c97eaf3e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/assets/outdoor_bg_nosky.png"
-dest_files=["res://.godot/imported/outdoor_bg_nosky.png-a7d70870cbefde9efd78957d1a1cb461.ctex"]
+source_file="res://interactive narrative/assets/dinos/tyran_neutral.png"
+dest_files=["res://.godot/imported/tyran_neutral.png-1293bf5b9507b0608ad7e29c97eaf3e3.ctex"]
 
 [params]
 

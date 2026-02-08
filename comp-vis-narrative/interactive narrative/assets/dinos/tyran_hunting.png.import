@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr76813182s5u"
-path="res://.godot/imported/outdoor_bg_sky.png-227c59d5f4e5946ef7bc7883369ed700.ctex"
+uid="uid://dqskf2lwhleav"
+path="res://.godot/imported/tyran_hunting.png-68dc96dfecee3d6f556339221ba502a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/assets/outdoor_bg_sky.png"
-dest_files=["res://.godot/imported/outdoor_bg_sky.png-227c59d5f4e5946ef7bc7883369ed700.ctex"]
+source_file="res://interactive narrative/assets/dinos/tyran_hunting.png"
+dest_files=["res://.godot/imported/tyran_hunting.png-68dc96dfecee3d6f556339221ba502a6.ctex"]
 
 [params]
 

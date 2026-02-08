@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhs4kegjnrbes"
-path="res://.godot/imported/earf.png-b6ffedffaa75372f31c86ae60a15dbcf.ctex"
+uid="uid://d12t5ubbepott"
+path="res://.godot/imported/dueling_dinos.png-806f0a005cd9752781984ce1b921feca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/assets/earf.png"
-dest_files=["res://.godot/imported/earf.png-b6ffedffaa75372f31c86ae60a15dbcf.ctex"]
+source_file="res://interactive narrative/assets/dinos/dueling_dinos.png"
+dest_files=["res://.godot/imported/dueling_dinos.png-806f0a005cd9752781984ce1b921feca.ctex"]
 
 [params]
 

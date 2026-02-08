@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh6dkt6b3uji8"
-path="res://.godot/imported/black_bg.png-e867dd3c2278e67887df76841cbee0cd.ctex"
+uid="uid://cqo6xwkb5yw2k"
+path="res://.godot/imported/gator.png-942675cd7f6121e92a14d50ab6b38e82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/assets/black_bg.png"
-dest_files=["res://.godot/imported/black_bg.png-e867dd3c2278e67887df76841cbee0cd.ctex"]
+source_file="res://interactive narrative/assets/other_animal/gator.png"
+dest_files=["res://.godot/imported/gator.png-942675cd7f6121e92a14d50ab6b38e82.ctex"]
 
 [params]
 

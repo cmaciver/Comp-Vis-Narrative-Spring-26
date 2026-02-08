@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4rvgxfv6pauy"]
 
-[ext_resource type="Texture2D" uid="uid://bh6dkt6b3uji8" path="res://interactive narrative/assets/black_bg.png" id="1_s373j"]
+[ext_resource type="Texture2D" uid="uid://bh6dkt6b3uji8" path="res://interactive narrative/assets/backgrounds/black_bg.png" id="1_s373j"]
 [ext_resource type="Shader" uid="uid://7mso0a5o0df6" path="res://interactive narrative/shaders/src/hover.gdshader" id="2_ynwcm"]
-[ext_resource type="Texture2D" uid="uid://dhs4kegjnrbes" path="res://interactive narrative/assets/earf.png" id="3_keo85"]
+[ext_resource type="Texture2D" uid="uid://dhs4kegjnrbes" path="res://interactive narrative/assets/other_animal/earf.png" id="3_keo85"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r8ccj"]
 shader = ExtResource("2_ynwcm")

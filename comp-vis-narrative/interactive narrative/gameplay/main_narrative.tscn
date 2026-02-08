@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://bqh5t06xoustk" path="res://interactive narrative/gameplay/main_narrative.gd" id="1_u8mih"]
 
-[node name="Test" type="Node2D"]
+[node name="MainNarrative" type="Node2D"]
 script = ExtResource("1_u8mih")
