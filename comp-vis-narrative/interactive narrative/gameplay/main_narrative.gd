@@ -57,7 +57,9 @@ func add_character(path, pos=Vector2(960, 540)):
 
 func remove_character(c_name: String):
 	var child: Character = $Characters.get_node(c_name)
-	child.fade_out()
+	
+	if child:
+		child.fade_out()
 
 
 # MANAGING THE RIPPLE
