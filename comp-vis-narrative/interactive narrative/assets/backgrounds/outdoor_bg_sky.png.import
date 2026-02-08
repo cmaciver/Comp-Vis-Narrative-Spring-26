@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr76813182s5u"
-path="res://.godot/imported/outdoor_bg_sky.png-afaa9e61ce3f5dbb6af3f2dd069a7ceb.ctex"
+path="res://.godot/imported/outdoor_bg_sky.png-c581e3255ba327b87b6e74572bb86804.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/assets/other_animal/outdoor_bg_sky.png"
-dest_files=["res://.godot/imported/outdoor_bg_sky.png-afaa9e61ce3f5dbb6af3f2dd069a7ceb.ctex"]
+source_file="res://interactive narrative/assets/backgrounds/outdoor_bg_sky.png"
+dest_files=["res://.godot/imported/outdoor_bg_sky.png-c581e3255ba327b87b6e74572bb86804.ctex"]
 
 [params]
 

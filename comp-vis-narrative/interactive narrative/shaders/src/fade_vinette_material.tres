@@ -8,7 +8,7 @@
 
 [resource]
 shader = ExtResource("1_3x8w5")
-shader_parameter/trans_timer = 0.48800002318
+shader_parameter/trans_timer = 0.0
 shader_parameter/radius_curve = ExtResource("4_rnupd")
 shader_parameter/hole_edge_gradient_curve = ExtResource("3_p0dby")
 shader_parameter/hole_alpha_curve = ExtResource("2_3x8w5")

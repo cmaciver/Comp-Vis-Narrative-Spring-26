@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dp8im8wuyfn4l"
-path="res://.godot/imported/outdoor_bg_nosky.png-5b53225fbe168c2bb49673571b767a4b.ctex"
+path="res://.godot/imported/outdoor_bg_nosky.png-ef87a2d4e7d2d0fbba459ba40a095749.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://interactive narrative/assets/other_animal/outdoor_bg_nosky.png"
-dest_files=["res://.godot/imported/outdoor_bg_nosky.png-5b53225fbe168c2bb49673571b767a4b.ctex"]
+source_file="res://interactive narrative/assets/backgrounds/outdoor_bg_nosky.png"
+dest_files=["res://.godot/imported/outdoor_bg_nosky.png-ef87a2d4e7d2d0fbba459ba40a095749.ctex"]
 
 [params]
 

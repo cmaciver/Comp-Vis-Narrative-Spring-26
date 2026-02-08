@@ -144,8 +144,8 @@ void fragment() {
 shader = SubResource("Shader_rhgod")
 shader_parameter/max_radius = 0.5
 shader_parameter/thickness = 0.1
-shader_parameter/displacement_amount = 0.1
-shader_parameter/brightness_diff = 1.749999983236
+shader_parameter/displacement_amount = 0.0
+shader_parameter/brightness_diff = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4mrly"]
 shader = SubResource("Shader_rhgod")
@@ -155,6 +155,7 @@ shader_parameter/displacement_amount = 0.41999999061216
 shader_parameter/brightness_diff = 1.1
 
 [node name="DaytimeNighttime2" type="Node2D"]
+scale = Vector2(1, 0.9811411)
 
 [node name="backgrounds" type="Node2D" parent="."]
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://u6tx8qaog43o"]
+[gd_scene load_steps=8 format=3 uid="uid://u6tx8qaog43o"]
 
+[ext_resource type="Script" uid="uid://cts1v474w8jew" path="res://interactive narrative/shaders/vignette.gd" id="1_1ume0"]
 [ext_resource type="Shader" uid="uid://djup10okrsqy0" path="res://interactive narrative/shaders/src/fade_in_transition.gdshader" id="1_pbx5g"]
 [ext_resource type="Texture2D" uid="uid://c3376uw267oa7" path="res://interactive narrative/shaders/textures/data/hole_alpha.png" id="2_1ume0"]
 [ext_resource type="Texture2D" uid="uid://cb2uqs1jo2k3i" path="res://interactive narrative/shaders/textures/data/hole_edge_gradient.png" id="3_rfpw0"]
@@ -14,7 +15,10 @@ shader_parameter/hole_edge_gradient_curve = ExtResource("3_rfpw0")
 shader_parameter/hole_alpha_curve = ExtResource("2_1ume0")
 shader_parameter/total_alpha_curve = ExtResource("5_yiaxu")
 
-[node name="Vignette" type="ColorRect"]
+[node name="Vignette" type="CanvasLayer"]
+script = ExtResource("1_1ume0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_nljf7")
 anchors_preset = 15
 anchor_right = 1.0

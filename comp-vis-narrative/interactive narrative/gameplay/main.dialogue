@@ -1,5 +1,6 @@
 ~ start
 ## Intro Part 1
+do add_scene("res://interactive narrative/gameplay/scenes/earf.tscn", 7.0)
 [speed=0.8]Some questions have simple answers. And unfortunately,[wait=0.2] [speed=0.5]some do not.[wait=0.2] [speed=0.8]The fate of a pair of dinosaurs [speed=0.85]found fossilized together [speed=0.88]belongs to the latter category.
 [speed=1]Does it derive from a struggle eons ago between the predator,[wait=0.2] a Nanotyrannus lancensis, and its prey,[wait=0.2] a Triceratops horridus?
 Was the Triceratops already dead,[wait=0.2] its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
@@ -7,25 +8,32 @@ Or is it the product of fabulous happenstance,[wait=0.2] with a flood washing tr
 
 ## Environment Part 1 (and some of 2)
 ~ environment
+do add_scene("res://interactive narrative/gameplay/scenes/fossil.tscn")
 Perhaps a trip through time could better illuminate the possibilities.
+do set_ripple_size(1)
 [speed=0.8]Forget the world of Man,[wait=0.2] [speed=0.7]of mammalian dominance,[wait=0.3] of the entire Anthropocene,[wait=0.2] [speed=0.85]and instead envision a world teeming with ancient ancestors of modern life,[wait=0.2] most notably, dinosaurs.
 [speed=0.5]The world of the dinosaurs was not entirely incomprehensible to us; [speed=1]those that take comfort in familiar settings may find some [speed=1.2]solace in the environment these two creatures inhabited.
+do set_ripple_size(2)
 Look upwards, and behold...
 - ...why, a beautiful red dawn.
 	set Globals.time = "morning"
 	do update_game_time()
+	do set_ripple_size(1)
 	The sun is just rising over the horizon, almost invisible through the canopy were it not for a small break in the trees. What can be seen of the sky is a mosaic in warm tones, with a soft gradient emanating from the sun in the break, shifting and blending around the trunks and branches.
 
 - ...the sun at its zenith!
 	set Globals.time = "noon"
 	do update_game_time()
+	do set_ripple_size(1)
 	The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, save for the scattered clouds which drift lazily across the expanse.
 
 - ...obviously, a dark and starry night, right?
 	set Globals.time = "night"
 	do update_game_time()
+	do set_ripple_size(1)
 	The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.
 
+do set_ripple_size(0)
 The surrounding landscape is clearly a forest, dotted with trees and foliage, their lush greenery fitting perfectly into the temperate climate.
 Their shapes are at once familiar and alien. The plants are patterned along basic biological principles, but their appearance is millions of years of evolution removed from familiar modern forms.
 Conifers with needle-like leaves stretch skyward, while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.

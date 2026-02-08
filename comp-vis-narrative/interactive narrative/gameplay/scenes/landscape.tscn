@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0l86w1hjul3i"]
 
-[ext_resource type="Texture2D" uid="uid://dp8im8wuyfn4l" path="res://interactive narrative/assets/other_animal/outdoor_bg_nosky.png" id="1_e7ult"]
+[ext_resource type="Texture2D" uid="uid://dp8im8wuyfn4l" path="res://interactive narrative/assets/backgrounds/outdoor_bg_nosky.png" id="1_e7ult"]
 [ext_resource type="Shader" uid="uid://dej1wh34qcufj" path="res://interactive narrative/shaders/src/nighttime.gdshader" id="1_gtdpo"]
-[ext_resource type="Texture2D" uid="uid://dr76813182s5u" path="res://interactive narrative/assets/other_animal/outdoor_bg_sky.png" id="3_fcwcu"]
+[ext_resource type="Texture2D" uid="uid://dr76813182s5u" path="res://interactive narrative/assets/backgrounds/outdoor_bg_sky.png" id="3_fcwcu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a208x"]
 shader = ExtResource("1_gtdpo")
