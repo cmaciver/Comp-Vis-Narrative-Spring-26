@@ -43,7 +43,7 @@ _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 0.056179762), 0.0, 0.0, 0, 0, Vector2(0.19696969, 1), 0.0, 0.0, 0, 0, Vector2(0.36363637, -1), 0.0, 0.0, 0, 0, Vector2(0.43939394, 1), 0.0, 0.0, 0, 0, Vector2(0.5909091, -1), 0.0, 0.0, 0, 0, Vector2(0.5984849, 1), 0.0, 0.0, 0, 0, Vector2(0.70454544, -1), 0.0, 0.0, 0, 0, Vector2(0.8181818, 1), 0.0, 0.0, 0, 0, Vector2(0.9166667, -1), 0.0, 0.0, 0, 0]
 point_count = 9
 
-[sub_resource type="CurveTexture" id="CurveTexture_qtrwj"]
+[sub_resource type="CurveTexture" id="CurveTexture_4mrly"]
 curve = SubResource("Curve_vj4p1")
 
 [sub_resource type="Curve" id="Curve_gxi3p"]
@@ -51,21 +51,21 @@ _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34090906, -1.4157302), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_vj4p1"]
+[sub_resource type="CurveTexture" id="CurveTexture_kempw"]
 curve = SubResource("Curve_gxi3p")
 
 [sub_resource type="Curve" id="Curve_qtrwj"]
 _data = [Vector2(0, 0.48314613), 0.0, 0.0, 0, 0, Vector2(0.21969697, 1), 0.0, 0.0, 0, 0, Vector2(0.32575756, 0), 0.0, 0.0, 0, 0, Vector2(0.68939394, 0.52808994), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
 
-[sub_resource type="CurveTexture" id="CurveTexture_hu66p"]
+[sub_resource type="CurveTexture" id="CurveTexture_mesbp"]
 curve = SubResource("Curve_qtrwj")
 
 [sub_resource type="Curve" id="Curve_rhgod"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_4mrly"]
+[sub_resource type="CurveTexture" id="CurveTexture_epnrg"]
 curve = SubResource("Curve_rhgod")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qtrwj"]
@@ -79,16 +79,16 @@ emission_ring_inner_radius = 100.0
 emission_ring_cone_angle = 90.0
 angular_velocity_min = -160.94002
 angular_velocity_max = 118.58998
-orbit_velocity_curve = SubResource("CurveTexture_vj4p1")
-radial_velocity_curve = SubResource("CurveTexture_hu66p")
+orbit_velocity_curve = SubResource("CurveTexture_kempw")
+radial_velocity_curve = SubResource("CurveTexture_mesbp")
 radial_accel_min = 27.059998
 radial_accel_max = 48.239998
 tangential_accel_min = -48.24
 tangential_accel_max = 41.179996
-scale_curve = SubResource("CurveTexture_4mrly")
+scale_curve = SubResource("CurveTexture_epnrg")
 hue_variation_min = -2.2351742e-08
 hue_variation_max = 0.44999996
-hue_variation_curve = SubResource("CurveTexture_qtrwj")
+hue_variation_curve = SubResource("CurveTexture_4mrly")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtrwj"]
 shader = ExtResource("5_vj4p1")
@@ -198,7 +198,6 @@ scale = Vector2(15.083984, 15.222656)
 texture = ExtResource("4_gxi3p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_kempw")

@@ -3,7 +3,6 @@ extends Node2D
 var current_scene
 var current_vignette : Vignette
 @onready var audio_manager: AudioManager = $AudioManager
-@onready var transition_manager : IntroTransitionManager = $IntroTransitionManager
 
 var vignette = preload("res://interactive narrative/shaders/Vignette.tscn")
 
@@ -119,8 +118,8 @@ func remove_all_characters_keep_pov():
 
 # MANAGING THE INTRO TRANSITION
 func intro_transition(step: int):
-	$Ripple.set_ripple_size(step)
-	transition_manager.intro_step(step)
+	#$Ripple.set_ripple_size(step)
+	current_scene.intro_step(step)
 
 
 ## TIME OF DAY STUFF
