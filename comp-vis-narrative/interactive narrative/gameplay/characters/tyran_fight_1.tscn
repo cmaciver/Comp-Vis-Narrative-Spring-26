@@ -4,6 +4,6 @@
 [ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_hw2k3"]
 
 [node name="TyranFight1" type="Sprite2D"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("1_cwcl1")
 script = ExtResource("2_hw2k3")

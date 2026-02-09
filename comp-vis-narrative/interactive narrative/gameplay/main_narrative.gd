@@ -48,25 +48,61 @@ func change_scene(path, timing_overide=1.5):
 
 
 ## ADDING AND REMOVING CHARACTERS
+
+# Add character will add the given character to the scene if it doesn't exist, 
+# and if it does exist, it will move the pre-existing character to the given position. 
+# This assumes that we only ever want one instance of each character on the screen at a time.
 func add_character(path, pos=Vector2(960, 540)):
 	var new_scene_resource = load(path) # maybe find a less laggy way to do this?
 	var new_scene_instance = new_scene_resource.instantiate()
 	var character_id = new_scene_instance.name
 	new_scene_instance.set_meta("character_id", character_id)
+	var existing_character = find_character_by_id(character_id)
+
+	# If the character already exists, just move it to the new position and return
+	if existing_character:
+		existing_character.position = pos
+		return
 	$Characters.add_child(new_scene_instance)
 	
 	new_scene_instance.position = pos
 
-func remove_character(c_name: String):
+# Given a character ID, finds the character node in the characters node with that ID and returns it. 
+# If no such character exists, returns null.
+func find_character_by_id(character_id: String) -> Character:
 	for child in $Characters.get_children():
-		if child is Character and child.get_meta("character_id", "") == c_name:
-			child.fade_out()
+		if child is Character and child.get_meta("character_id", "") == character_id:
+			return child
+	return null
 
-# This function shall fade all characters in the characters node out. 
-func remove_all_characters():
+# Given a character ID, finds the character with that ID and calls its fade_out function, 
+# which will fade it out and then remove it from the scene. Or does nothing if no such character exists I guess...
+func remove_character(c_name: String):
+	var child = find_character_by_id(c_name)
+	if child:
+		child.fade_out()
+
+# This function shall fade all characters in the characters node out,
+# except for any characters whose IDs are in the keep_ids array.
+func remove_all_characters(keep_ids: Array = []):
 	for child in $Characters.get_children():
 		if child is Character:
+			var character_id = child.get_meta("character_id", "")
+			if keep_ids.has(character_id):
+				continue
 			child.fade_out()
+
+# Shorthand for calling remove_all_characters
+# with a keep_ids array that keeps the character of the current POV alive.
+func remove_all_characters_keep_pov():
+	var keep_prefix = "Tri" if Globals.POV == "Triceratops" else "Tyran"
+	var keep_ids: Array = []
+	for child in $Characters.get_children():
+		if child is Character:
+			var character_id = str(child.get_meta("character_id", ""))
+			if character_id.begins_with(keep_prefix):
+				keep_ids.append(character_id)
+	remove_all_characters(keep_ids)
 
 
 # MANAGING THE RIPPLE

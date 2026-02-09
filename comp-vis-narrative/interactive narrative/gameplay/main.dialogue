@@ -179,7 +179,6 @@ As the Triceratops approaches the cave,[wait=0.2] unaware of any potential dange
 
 
 ~ shelter_2
-do remove_all_characters()
 do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
 do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 Situated in the rear of the cave,[wait=0.2] the Nanotyrannus peers out at the Triceratops standing just outside. Backlit by what remains of [if Globals.time=="morning"]the dimming morning light[/if][if Globals.time=="noon"]the rapidly fading midday sun[/if][if Globals.time=="night"]the faltering moonlight[/if],[wait=0.2] the Triceratops is far more visible than the Tyrannosaur inside the cave.
@@ -253,7 +252,7 @@ It will not be long before the Tyrannosaur joins the Triceratops in death.
 
 
 ~ ending_2
-do remove_all_characters()
+do remove_all_characters(["TriDead", "TyranHunting"])
 do add_character("res://interactive narrative/gameplay/characters/tri_dead.tscn", Vector2(1440,540))
 do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 if Globals.nano_hurt_head:
@@ -286,7 +285,7 @@ else:
 
 
 ~ ending_3
-do remove_all_characters()
+do remove_all_characters_keep_pov()
 if Globals.POV == "Triceratops":
 	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(960,540))
 	The shelter of a cave proves fleeting as the rain intensifies outside.
@@ -302,7 +301,6 @@ if Globals.POV == "Triceratops":
 	As the water continues to surge past it,[wait=0.2] any hope of footing is lost and with it,[wait=0.2] any chance of escape.
 	It stumbles,[wait=0.2] then slides,[wait=0.2] its massive bulk now at the mercy of the flood.
 	Branches,[wait=0.2] bits of earth,[wait=0.2] and other flotsam batter its flanks,[wait=0.2] and the Triceratops gurgles out in alarm.
-	do remove_character("TriNeutral")
 	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 	do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
 	Beside it,[wait=0.2] astonishingly,[wait=0.2] is a Nanotyrannus,[wait=0.2] also swept up in the torrent,[wait=0.2] struggling to keep its head above water.
@@ -320,7 +318,6 @@ if Globals.POV == "NanoTyrannus":
 	The Nanotyrannus feels the pull at its ankles first,[wait=0.2] then at its knees,[wait=0.2] and the current grows stronger with each heartbeat.
 	It tries to climb a fallen log,[wait=0.2] but the log lifts and turns with the surge,[wait=0.2] becoming another piece of flotsam whioch sweeps the Tyrannosaur off its feet.
 	Now nothing more than a helpless passenger in the churning flow the predator snaps its jaws impotently at empty water as it fights for breath,[wait=0.2] its vision blurred by rain and spray.
-	do remove_character("TyranNeutral")
 	do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
 	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 	What irony it is,[wait=0.2] that in this moment the Nanotyrannus spots what in any other circumstance would be its prey\: a Triceratops,[wait=0.2] also caught in the flood.

@@ -4,6 +4,6 @@
 [ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_q1lhp"]
 
 [node name="TyranHunting" type="Sprite2D"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("1_tr0ct")
 script = ExtResource("2_q1lhp")
