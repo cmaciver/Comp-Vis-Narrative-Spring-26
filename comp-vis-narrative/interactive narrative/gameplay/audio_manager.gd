@@ -37,17 +37,12 @@ var current_bgm_player: AudioStreamPlayer = null
 # This is the key into the background_music_map.
 var current_bgm_key := ""
 
-# Current volume of the background music, in decibels. 
+# Current volume of the background music, measured in percent of the max volume, on a linear scale.
 # In the steady state, music will be playing at this volume (I think?).
-var bgm_volume_db := 0.0
+var bgm_max_volume_linear := 1.0
 
 # Used to determine silence volume for fading in from silence/out to silence.
-# Large absolute negative values like -80 will cause a linear tween to spend more time at very low volumes, 
-# which can make a fade at a given constant fade_time feel less smooth since a lot of the fade_time will
-# be spent in absolute silence, then suddenly the linear increase will cross the boundary at which point
-# the music becomes audible, but because it starts at a lower volume it will have a greater slope at that point.
-# So the rate of change of volume will be much higher at the point where the music becomes audible.
-var bgm_silence_db := -40.0
+var bgm_silence_linear := 0.00
 
 ## Switches the background music to the given key, fading out the old music and fading in the new music over the given fade time.
 ## If the key is an empty string, just fades out the current music without fading in new music.
@@ -56,7 +51,7 @@ var bgm_silence_db := -40.0
 ## **param** key The key of the background music to switch to.
 ## [br] 
 ## **param** fade_time The time in seconds to fade out the old music and fade in the new music.
-func switch_background_music(key: String, fade_time: float = 8.0) -> void:
+func switch_background_music(key: String, fade_time: float = 4.0) -> void:
 	# Basic validation of parameters.
 
 	if key != "" and not background_music_map.has(key):
@@ -92,7 +87,7 @@ func switch_background_music(key: String, fade_time: float = 8.0) -> void:
 
 		# We set the volume to silence before starting to play, 
 		# so that it can fade in from silence rather than abruptly starting at full volume.
-		current_bgm_player.volume_db = bgm_silence_db
+		current_bgm_player.volume_linear = bgm_silence_linear
 
 		# "void play(from_position: float = 0.0)" will start playing the audio stream from the given position (in seconds).
 		current_bgm_player.play()
@@ -100,7 +95,7 @@ func switch_background_music(key: String, fade_time: float = 8.0) -> void:
 		current_bgm_key = key
 
 		# Fade in from silence to the target volume.
-		tween.tween_property(current_bgm_player, "volume_db", bgm_volume_db, fade_time)
+		tween.tween_property(current_bgm_player, "volume_linear", bgm_max_volume_linear, fade_time)
 		
 		# We're done, so we can return early.
 		return 
@@ -115,7 +110,7 @@ func switch_background_music(key: String, fade_time: float = 8.0) -> void:
 
 	# Start fading out the old music to silence.
 	var old_music_tween = get_tree().create_tween()
-	old_music_tween.tween_property(old_bgm_player, "volume_db", bgm_silence_db, fade_time * 2)
+	old_music_tween.tween_property(old_bgm_player, "volume_linear", bgm_silence_linear, fade_time)
 
 	# After fading out, we stop the old music completely. 
 	# If the key is an empty string, that means we just want to fade out the current music without fading in new music, 
@@ -137,12 +132,12 @@ func switch_background_music(key: String, fade_time: float = 8.0) -> void:
 		# Start playing the new music on the new player, 
 		# but with its volume set to silence so that it fades in from silence rather than abruptly starting at full volume.
 		current_bgm_player.stream = background_music_map[key]
-		current_bgm_player.volume_db = bgm_silence_db
+		current_bgm_player.volume_linear = bgm_silence_linear
 		current_bgm_player.play()
 		current_bgm_key = key
 
 		# Start fading in the new music to the target volume.
-		tween.tween_property(current_bgm_player, "volume_db", bgm_volume_db, fade_time * 0.5)
+		tween.tween_property(current_bgm_player, "volume_linear", bgm_max_volume_linear, fade_time * 0.5)
 
 		# We're done.
 
