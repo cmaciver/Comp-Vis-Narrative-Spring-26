@@ -1,6 +1,7 @@
 ~ start
 ## Intro Part 1
 do change_scene("res://interactive narrative/gameplay/scenes/earf.tscn", 7.0)
+do switch_background_music("mystery_loop_1", 6.0)
 [speed=0.8]Some questions have simple answers. And unfortunately,[wait=0.2] [speed=0.5]some do not.[wait=0.2] [speed=0.8]The fate of a pair of dinosaurs [speed=0.85]found fossilized together [speed=0.88]belongs to the latter category.
 [speed=1]Does it derive from a struggle eons ago between the predator,[wait=0.2] a Nanotyrannus lancensis, and its prey,[wait=0.2] a Triceratops horridus?
 Was the Triceratops already dead,[wait=0.2] its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?

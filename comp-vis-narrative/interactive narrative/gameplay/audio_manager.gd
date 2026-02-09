@@ -1,10 +1,11 @@
 extends Node
 class_name AudioManager
 
-# It isn't clear why, but I did not have to do anything to FOREST_LOOP_1 and FOREST_LOOP_2 to get them to loop properly, 
-# or do anything to TURTLE_SPLASH_SFX to get it to not loop, so I guess the looping behavior is just determined by something in the audio file itself?
+# It isn't clear why, but I did not have to do anything to the loops to get them to loop properly, 
+# or do anything to the SFXs to get it to not loop, so I guess the looping behavior is just determined by something in the audio file itself?
 const FOREST_LOOP_1: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop1.wav")
 const FOREST_LOOP_2: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop2.wav")
+const MYSTERY_LOOP_1: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/mysteryAmbience.wav")
 const TURTLE_SPLASH_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/turtleSplash.wav")
 
 # Defines a map between a string and a sound effect,
@@ -16,7 +17,8 @@ var sound_effects_map = {
 
 var background_music_map = {
 	"forest_loop_1": FOREST_LOOP_1,
-	"forest_loop_2": FOREST_LOOP_2
+	"forest_loop_2": FOREST_LOOP_2,
+	"mystery_loop_1": MYSTERY_LOOP_1
 }
 
 # Two AudioStreamPlayers are used for background music, so that we can crossfade between them.
@@ -40,7 +42,12 @@ var current_bgm_key := ""
 var bgm_volume_db := 0.0
 
 # Used to determine silence volume for fading in from silence/out to silence.
-var bgm_silence_db := -80.0
+# Large absolute negative values like -80 will cause a linear tween to spend more time at very low volumes, 
+# which can make a fade at a given constant fade_time feel less smooth since a lot of the fade_time will
+# be spent in absolute silence, then suddenly the linear increase will cross the boundary at which point
+# the music becomes audible, but because it starts at a lower volume it will have a greater slope at that point.
+# So the rate of change of volume will be much higher at the point where the music becomes audible.
+var bgm_silence_db := -40.0
 
 ## Switches the background music to the given key, fading out the old music and fading in the new music over the given fade time.
 ## If the key is an empty string, just fades out the current music without fading in new music.
