@@ -1,5 +1,21 @@
 extends Node2D
 
+const forestLoop1 : AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop1.wav")
+const forestLoop2 : AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop2.wav")
+const turtleSplashSfx : AudioStreamWAV = preload("res://interactive narrative/assets/sounds/turtleSplash.wav")
+
+# Defines a map between a string and a sound effect,
+# so that the dialogue script can just call play_sound("sfx_name"),
+# or switch_background_music("bgm_name"), and this script will know which sound to play.
+var sound_effects_map = {
+	"turtle_splash": turtleSplashSfx
+}
+
+var background_music_map = {
+	"forest_loop_1": forestLoop1,
+	"forest_loop_2": forestLoop2
+}
+
 var current_scene
 var current_vignette : Vignette
 
