@@ -15,7 +15,7 @@ func _ready() -> void:
 	DialogueManager.show_dialogue_balloon_scene(
 		load("res://interactive narrative/gameplay/balloon.tscn"), 
 		load("res://interactive narrative/gameplay/main.dialogue"),
-		"first_dino"
+		"start"
 		#"ending_3" # change back to "start" later
 	)
 
@@ -51,15 +51,22 @@ func change_scene(path, timing_overide=1.5):
 func add_character(path, pos=Vector2(960, 540)):
 	var new_scene_resource = load(path) # maybe find a less laggy way to do this?
 	var new_scene_instance = new_scene_resource.instantiate()
+	var character_id = new_scene_instance.name
+	new_scene_instance.set_meta("character_id", character_id)
 	$Characters.add_child(new_scene_instance)
 	
 	new_scene_instance.position = pos
 
 func remove_character(c_name: String):
-	var child: Character = $Characters.get_node(c_name)
-	
-	if child:
-		child.fade_out()
+	for child in $Characters.get_children():
+		if child is Character and child.get_meta("character_id", "") == c_name:
+			child.fade_out()
+
+# This function shall fade all characters in the characters node out. 
+func remove_all_characters():
+	for child in $Characters.get_children():
+		if child is Character:
+			child.fade_out()
 
 
 # MANAGING THE RIPPLE

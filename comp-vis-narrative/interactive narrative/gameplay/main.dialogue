@@ -10,30 +10,30 @@ Or is it the product of fabulous happenstance,[wait=0.2] with a flood washing tr
 ~ environment
 do change_scene("res://interactive narrative/gameplay/scenes/fossil.tscn")
 Perhaps a trip through time could better illuminate the possibilities.
-do set_ripple_size(1)
+# do set_ripple_size(1)
 [speed=0.8]Forget the world of Man,[wait=0.2] [speed=0.7]of mammalian dominance,[wait=0.3] of the entire Anthropocene,[wait=0.2] [speed=0.85]and instead envision a world teeming with ancient ancestors of modern life,[wait=0.2] most notably, dinosaurs.
 [speed=0.5]The world of the dinosaurs was not entirely incomprehensible to us; [speed=1]those that take comfort in familiar settings may find some [speed=1.2]solace in the environment these two creatures inhabited.
-do set_ripple_size(2)
+# do set_ripple_size(2)
 Look upwards, and behold...
 - ...why, a beautiful red dawn.
 	set Globals.time = "morning"
 	do update_game_time()
-	do set_ripple_size(1)
+	# do set_ripple_size(1)
 	The sun is just rising over the horizon, almost invisible through the canopy were it not for a small break in the trees. What can be seen of the sky is a mosaic in warm tones, with a soft gradient emanating from the sun in the break, shifting and blending around the trunks and branches.
 
 - ...the sun at its zenith!
 	set Globals.time = "noon"
 	do update_game_time()
-	do set_ripple_size(1)
+	# do set_ripple_size(1)
 	The sun is high overhead, its light filtering through the leaves in brilliant shafts that illuminate the forest floor in patches of brightness. Leaves hungrily drink up the profuse sunlight, converting water and carbon dioxide into both essential glucose and the oxygen that fills the air. The sky above is a clear blue, save for the scattered clouds which drift lazily across the expanse.
 
 - ...obviously, a dark and starry night, right?
 	set Globals.time = "night"
 	do update_game_time()
-	do set_ripple_size(1)
+	# do set_ripple_size(1)
 	The moon seems ever so slightly larger than usual. Reflected sunlight from the lunar surface paints the forest in silver, grey, and black. Puddles on the ground glisten faintly, mirroring the starlit sky above. This is a land which has never known light pollution, and what stars are visible through the canopy have an immaculate clarity.
 
-do set_ripple_size(0)
+# do set_ripple_size(0)
 The surrounding landscape is clearly a forest,[wait=0.2][speed=0.7] dotted with trees and foliage,[wait=0.2] their lush greenery fitting perfectly into the temperate climate.
 Their shapes are at once familiar and alien. The plants are patterned along basic biological principles,[wait=0.2] but their appearance is millions of years of evolution removed from familiar modern forms.
 Conifers with needle-like leaves stretch skyward,[wait=0.2] while the occasional ancient ancestor of a modern oak or magnolia present broad leaves.
@@ -46,30 +46,32 @@ Puddles dot the forest floor,[wait=0.2] and through a break in the tree line not
 
 
 ## Environment Part 2 ( and some of the next )
+do add_character("res://interactive narrative/gameplay/characters/mammal.tscn", Vector2(960,540))
 Early mammals infrequently scurry about in the underbrush,[wait=0.2] cloaking themselves from sight with the fallen leaves and branches as they search for underground burrows to hide in.
 Of particular note,[wait=0.2] however,[wait=0.2] is what can be found in the river. 
+do remove_character("Mammal")
 A second inquisition,[wait=0.2] this time of the waterway reveals...
 - ...a distant relative of modern alligators lurking near the bank.
 	set Globals.prey = "alligator"
-	do render_prey()
+	do add_character("res://interactive narrative/gameplay/characters/gator.tscn", Vector2(960,540))
 	The alligator-ancestor is quite familiar. Like modern alligators,[wait=0.2] it lurks in the water like a mimic of a floating log,[wait=0.2] its scaly hide camouflaged against the murky riverbed. Its eyes and nostrils protrud just above the water's surface,[wait=0.2] allowing it to survey the surroundings while remaining mostly submerged. But unlike the modern iteration,[wait=0.2] an inspection of the mouth would reveal a set of shorter teeth,[wait=0.2] more suited for a diet of turtles and other small creatures.
 
 - ...disturbances on the water's surface from a soft-shelled ancient turtle.
 	set Globals.prey = "turtle"
+	do add_character("res://interactive narrative/gameplay/characters/turtle.tscn", Vector2(960,540))
 	The ancient soft-shelled turtle has risen from the muddy riverbed,[wait=0.2] its streamlined body adapted for greater agility compared to turtles with hard shells. Its soft,[wait=0.2] leathery carapace is covered in algae and mud,[wait=0.2] providing effective camouflage against the riverbed. Compared to modern soft-shelled turtles,[wait=0.2] the underside bones of this specimen have a stronger suture,[wait=0.2] providing better defense for their stomach and other vital organs. Perhaps the turtle is going to bask on a nearby rock,[wait=0.2] or maybe it's searching for food or a spot to lay eggs.
-	do render_prey()
 
 ## First Dino
 ~ first_dino
 A branch can be heard in the distance breaking. Leaves crunch underfoot as something large approaches.
 if Globals.prey == "turtle":
-	do add_character("res://interactive narrative/gameplay/characters/turtle.tscn", Vector2(100,100))
 	With a splash,[wait=0.2] the turtle quickly retreats back into the depth of the river,[wait=0.2] disappearing from sight.
 
 if Globals.prey == "alligator":
 	Impassively surveying the area,[wait=0.2] the alligator remains still,[wait=0.2] its vigil uncompromised by this latest disturbance. Perhaps it hopes that whatever is approaching will pass by the beach. Or perhaps the concept of such things as hope are beyond what the the animal's brain is capable of.
 
 do remove_character("Turtle")
+do remove_character("Gator")
 Something large looms through the treeline. Something resembling...
 - ...a predator. It's the Tyrannosaur!
 	=> tyrannosaur_1
@@ -78,6 +80,7 @@ Something large looms through the treeline. Something resembling...
 
 
 ~ tyrannosaur_1
+do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(960,540))
 if Globals.time == "morning":
 	The Tyrannosaur glides into view,[wait=0.2] bathed in the warm,[wait=0.2] golden light of the early morning sun.
 if Globals.time == "noon":
@@ -98,6 +101,7 @@ As it continues forward,[wait=0.2] the Tyrannosaur's gaze locks onto something i
 
 
 ~ triceratops_1
+do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(960,540))
 if Globals.time == "morning":
 	The Triceratops ambles into view,[wait=0.2] its frill and horns casting distinct shadows in the soft morning light.
 if Globals.time == "noon":
@@ -118,6 +122,8 @@ As it moves forward,[wait=0.2] the Triceratops appears to be searching for somet
 
 
 ~ tyran_food_1
+do remove_character("TyranNeutral")
+do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 set Globals.nano_hurt_head = false
 Following its keen senses,[wait=0.2] the Nanotyrannus approaches the distant form. In the sky,[wait=0.2] clouds are beginning to gather again,[wait=0.2] hinting at a sequel to the recent rainfall.
 As it continues its long strides,[wait=0.2] a small lizard-like creature darts out of the path of the oncoming predator,[wait=0.2] disappearing into the underbrush with a rustle of leaves.
@@ -147,6 +153,8 @@ It only takes a moment for the Nanotyrannus to recognize...
 ~ tri_food_1
 The Triceratops is clearly in search of food. Its head is lowered,[wait=0.2] and it appears to be scanning the ground for something edible.
 Some ferns must have caught its attention,[wait=0.2] as it moves toward a small cluster of the plants.
+do remove_character("TriNeutral")
+do add_character("res://interactive narrative/gameplay/characters/tri_eating.tscn", Vector2(960,540))
 Bending down,[wait=0.2] the Triceratops uses its beak-like mouth to grasp and pluck the fronds.
 Using its rows of flat teeth,[wait=0.2] the Triceratops begins to chew the tough plant material,[wait=0.2] grinding it down for digestion.
 Within its jaw,[wait=0.2] the Triceratops' teeth are arranged in groups of several rows,[wait=0.2] forming dental batteries. 
@@ -171,6 +179,9 @@ As the Triceratops approaches the cave,[wait=0.2] unaware of any potential dange
 
 
 ~ shelter_2
+do remove_all_characters()
+do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
+do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 Situated in the rear of the cave,[wait=0.2] the Nanotyrannus peers out at the Triceratops standing just outside. Backlit by what remains of [if Globals.time=="morning"]the dimming morning light[/if][if Globals.time=="noon"]the rapidly fading midday sun[/if][if Globals.time=="night"]the faltering moonlight[/if],[wait=0.2] the Triceratops is far more visible than the Tyrannosaur inside the cave.
 With its hearing impaired as rain begins to trickle,[wait=0.2] then pour from the sky,[wait=0.2] the Triceratops is unaware of the Nanotyrannus' presence,[wait=0.2] though this won't last forever.
 Undoubtedly,[wait=0.2] the Triceratops is seeking shelter from the storm,[wait=0.2] just as the Nanotyrannus is.
@@ -183,6 +194,10 @@ If the Nanotyrannus is going to act,[wait=0.2] it must do so now.
 
 
 ~ triceratops_dead
+do remove_character("TriNeutral")
+do add_character("res://interactive narrative/gameplay/characters/tri_dead.tscn", Vector2(1440,540))
+do remove_character("TyranHunting")
+do add_character("res://interactive narrative/gameplay/characters/tyran_fight_both.tscn", Vector2(480,540))
 set Globals.nano_hurt_head = true
 As the Nanotyrannus approaches the Triceratops,[wait=0.2] another figure becomes clear through the trees. It's a larger Tyrannosaur,[wait=0.2] and it doesn't look like it wants to share.
 Blood from the Triceratops already paints the second Tyrannosaur's jaws crimson,[wait=0.2] and a tooth can be seen lodged in the Triceratops' spine.
@@ -193,12 +208,19 @@ Gnashing teeth and slashing claws find purchase in scale and bone,[wait=0.2] the
 With a savage bite,[wait=0.2] the larger Tyrannosaur lands a crushing blow to the first's head,[wait=0.2] tearing flesh and cracking the skull.
 But despite its grievous injury,[wait=0.2] the plucky Nanotyrannus fights on. Consumed by hunger and rage,[wait=0.2] it refuses to yield.
 With desperation,[wait=0.2] the Nanotyrannus continues to fight on unwaveringly,[wait=0.2] until finally,[wait=0.2] the larger Tyrannosaur breaks away,[wait=0.2] looking for easier prey.
+do remove_character("TyranFightBoth")
+do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 With the immediate threat gone,[wait=0.2] the wounded Nanotyrannus turns its attention back to the Triceratops carcass. It is time to feed.
 - Continue
 	=> ending_2
 
 
 ~ triceratops_alive
+do remove_character("TyranHunting")
+do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
+do remove_character("TriNeutral")
+do remove_character("TriEating")
+do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 As the Nanotyrannus approaches the Triceratops,[wait=0.2] the larger herbivore lifts its head,[wait=0.2] sensing the presence of the predator.
 Its three prominent facial horns [if Globals.time=="morning"]glow softly in the gentle morning light,[wait=0.2] one last gap in the clouds allowing some few rays to filter through[/if][if Globals.time=="noon"]are starkly illuminated by the bright midday sun as it continues to shine through a swiftly closing gap in the clouds[/if][if Globals.time=="night"]are faintly visible as the moonlight struggles to penetrate the cloud cover[/if].
 The horns portend a struggle,[wait=0.2] and one the Nanotyrannus seems to think twice about engaging in.
@@ -211,6 +233,8 @@ As it circles the Triceratops warily,[wait=0.2] the Tyrannosaur seems to come to
 
 
 ~ ending_1
+do remove_all_characters()
+do add_character("res://interactive narrative/gameplay/characters/dueling_dinos.tscn", Vector2(960,540))
 Its frill and horns silhouetted as a bolt of lightning splits the sky behind it,[wait=0.2] the Triceratops stands its ground against the charging Nanotyrannus.
 This is a fight to the death. No quarter will be given,[wait=0.2] nor one granted. 
 The opening blow comes from the Triceratops,[wait=0.2] which lowers its head and smashes its horns into the face of the Tyrannosaur.
@@ -229,6 +253,9 @@ It will not be long before the Tyrannosaur joins the Triceratops in death.
 
 
 ~ ending_2
+do remove_all_characters()
+do add_character("res://interactive narrative/gameplay/characters/tri_dead.tscn", Vector2(1440,540))
+do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 if Globals.nano_hurt_head:
 	The Nanotyrannus,[wait=0.2] its head throbbing with pain from the earlier fight,[wait=0.2] does not hesitate as it approaches the Triceratops carcass.
 	A hard fought meal awaits,[wait=0.2] and the predator is determined to make the most of it before any more competitors arrive.
@@ -259,7 +286,9 @@ else:
 
 
 ~ ending_3
+do remove_all_characters()
 if Globals.POV == "Triceratops":
+	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(960,540))
 	The shelter of a cave proves fleeting as the rain intensifies outside.
 	Drumming on the rock face,[wait=0.2] the sound is deafening,[wait=0.2] drowning out all other noise.
 	Fleeing the cave as water begins to flow into it,[wait=0.2] the Triceratops steps back into the forest,[wait=0.2] seeking higher ground.
@@ -273,10 +302,14 @@ if Globals.POV == "Triceratops":
 	As the water continues to surge past it,[wait=0.2] any hope of footing is lost and with it,[wait=0.2] any chance of escape.
 	It stumbles,[wait=0.2] then slides,[wait=0.2] its massive bulk now at the mercy of the flood.
 	Branches,[wait=0.2] bits of earth,[wait=0.2] and other flotsam batter its flanks,[wait=0.2] and the Triceratops gurgles out in alarm.
+	do remove_character("TriNeutral")
+	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
+	do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
 	Beside it,[wait=0.2] astonishingly,[wait=0.2] is a Nanotyrannus,[wait=0.2] also swept up in the torrent,[wait=0.2] struggling to keep its head above water.
 
 
 if Globals.POV == "NanoTyrannus":
+	do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(960,540))
 	The trickle of water into the cave,[wait=0.2] which had been a nuisance,[wait=0.2] has by now become a miniature river.
 	The Nanotyrannus steps out into the storm,[wait=0.2] seeking higher ground as the rain intensifies.
 	It is a deluge,[wait=0.2] drowning scents and dulling sound,[wait=0.2] a curtain of water that hides everything beyond a few feet.
@@ -287,6 +320,9 @@ if Globals.POV == "NanoTyrannus":
 	The Nanotyrannus feels the pull at its ankles first,[wait=0.2] then at its knees,[wait=0.2] and the current grows stronger with each heartbeat.
 	It tries to climb a fallen log,[wait=0.2] but the log lifts and turns with the surge,[wait=0.2] becoming another piece of flotsam whioch sweeps the Tyrannosaur off its feet.
 	Now nothing more than a helpless passenger in the churning flow the predator snaps its jaws impotently at empty water as it fights for breath,[wait=0.2] its vision blurred by rain and spray.
+	do remove_character("TyranNeutral")
+	do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
+	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 	What irony it is,[wait=0.2] that in this moment the Nanotyrannus spots what in any other circumstance would be its prey\: a Triceratops,[wait=0.2] also caught in the flood.
 
 The torrent carries both beasts toward the river,[wait=0.2] a roaring vein of water that has swelled beyond its banks.
@@ -297,6 +333,7 @@ In time,[wait=0.2] the waters will recede,[wait=0.2] leaving behind the heavy hu
 
 
 ~ end_screen
+do remove_all_characters()
 ...
 Or perhaps,[wait=0.2] something else entirely transpired...
 - Restart
