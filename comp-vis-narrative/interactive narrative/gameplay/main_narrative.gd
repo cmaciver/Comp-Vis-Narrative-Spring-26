@@ -3,6 +3,7 @@ extends Node2D
 var current_scene
 var current_vignette : Vignette
 @onready var audio_manager: AudioManager = $AudioManager
+@onready var transition_manager : IntroTransitionManager = $IntroTransitionManager
 
 var vignette = preload("res://interactive narrative/shaders/Vignette.tscn")
 
@@ -31,6 +32,7 @@ func change_scene(path, timing_overide=1.5):
 	if current_scene:
 		current_vignette.tween_opacity(1.0, 0.0, timing_overide)
 		await get_tree().create_timer(timing_overide).timeout
+		current_scene.queue_free()
 	
 	# make new scene
 	var new_scene_resource = load(path) # maybe find a less laggy way to do this?
@@ -115,9 +117,10 @@ func remove_all_characters_keep_pov():
 	remove_all_characters(keep_ids)
 
 
-# MANAGING THE RIPPLE
-func set_ripple_size(size: int):
-	$Ripple.set_ripple_size(size)
+# MANAGING THE INTRO TRANSITION
+func intro_transition(step: int):
+	$Ripple.set_ripple_size(step)
+	transition_manager.intro_step(step)
 
 
 ## TIME OF DAY STUFF
