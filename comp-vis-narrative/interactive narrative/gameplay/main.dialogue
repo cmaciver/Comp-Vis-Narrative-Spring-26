@@ -13,6 +13,7 @@ Perhaps a trip through time could better illuminate the possibilities.
 # do set_ripple_size(1)
 [speed=0.8]Forget the world of Man,[wait=0.2] [speed=0.7]of mammalian dominance,[wait=0.3] of the entire Anthropocene,[wait=0.2] [speed=0.85]and instead envision a world teeming with ancient ancestors of modern life,[wait=0.2] most notably, dinosaurs.
 [speed=0.5]The world of the dinosaurs was not entirely incomprehensible to us; [speed=1]those that take comfort in familiar settings may find some [speed=1.2]solace in the environment these two creatures inhabited.
+do switch_background_music("forest_loop_1")
 # do set_ripple_size(2)
 Look upwards, and behold...
 - ...why, a beautiful red dawn.
@@ -63,8 +64,10 @@ A second inquisition,[wait=0.2] this time of the waterway reveals...
 
 ## First Dino
 ~ first_dino
+do switch_background_music("forest_loop_2", 2.0)
 A branch can be heard in the distance breaking. Leaves crunch underfoot as something large approaches.
 if Globals.prey == "turtle":
+	do play_sound_effect("turtle_splash")
 	With a splash,[wait=0.2] the turtle quickly retreats back into the depth of the river,[wait=0.2] disappearing from sight.
 
 if Globals.prey == "alligator":
@@ -136,6 +139,7 @@ Moreover,[wait=0.2] it looks like...
 
 
 ~ tyran_shelter_1
+do switch_background_music("")
 The Nanotyrannus approaches the cave,[wait=0.2] alert for any signs of danger or opportunity.
 In the sky,[wait=0.2] clouds are beginning to gather again,[wait=0.2] hinting at a sequel to the recent rainfall. There is wisdom in seeking shelter from the impending storm.
 The Nanotyrannus steps cautiously into the cave's shadowy interior.
@@ -167,6 +171,7 @@ A peal of thunder rumbles through the forest,[wait=0.2] while rapidly darkening 
 
 
 ~ tri_shelter_1
+do switch_background_music("")
 Continuing its ambling,[wait=0.2] the Triceratops comes across a recession in a hillside. It appears to be a cave,[wait=0.2] its mouth dark and foreboding.
 However,[wait=0.2] [if Globals.time=="morning"]the warmth of the morning sun seems to be weakening as clouds gather overhead[/if][if Globals.time=="noon"]the promise of a warm midday sun is quickly fading as clouds gather overhead[/if][if Globals.time=="night"]the coolness of the night air is becoming more pronounced as clouds gather overhead[/if],[wait=0.2] hinting at an impending rainstorm.
 Seeking shelter from the coming weather seems prudent,[wait=0.2] and foreboding as the cave may be,[wait=0.2] it is better than being caught out in the open in a downpour.
@@ -201,6 +206,7 @@ set Globals.nano_hurt_head = true
 As the Nanotyrannus approaches the Triceratops,[wait=0.2] another figure becomes clear through the trees. It's a larger Tyrannosaur,[wait=0.2] and it doesn't look like it wants to share.
 Blood from the Triceratops already paints the second Tyrannosaur's jaws crimson,[wait=0.2] and a tooth can be seen lodged in the Triceratops' spine.
 The two predators circle one another,[wait=0.2] growling and snapping their jaws. 
+do switch_background_music("")
 Overhead,[wait=0.2] the gathering clouds continue to darken the sky,[wait=0.2] their foreboding presence matching the tension between the two dinosaurs. A drop falls,[wait=0.2] landing on the hungry Nanotyrannus' snout.
 After a tense standoff,[wait=0.2] they lunge at one another,[wait=0.2] engaging in a fierce battle.
 Gnashing teeth and slashing claws find purchase in scale and bone,[wait=0.2] the sounds of the fight echoing through the forest.
@@ -223,6 +229,7 @@ do add_character("res://interactive narrative/gameplay/characters/tri_neutral.ts
 As the Nanotyrannus approaches the Triceratops,[wait=0.2] the larger herbivore lifts its head,[wait=0.2] sensing the presence of the predator.
 Its three prominent facial horns [if Globals.time=="morning"]glow softly in the gentle morning light,[wait=0.2] one last gap in the clouds allowing some few rays to filter through[/if][if Globals.time=="noon"]are starkly illuminated by the bright midday sun as it continues to shine through a swiftly closing gap in the clouds[/if][if Globals.time=="night"]are faintly visible as the moonlight struggles to penetrate the cloud cover[/if].
 The horns portend a struggle,[wait=0.2] and one the Nanotyrannus seems to think twice about engaging in.
+do switch_background_music("")
 Overhead,[wait=0.2] the gathering clouds continue to darken the sky,[wait=0.2] their foreboding presence matching the tension between the two dinosaurs. A drop falls from the sky onto the Triceratops' frill.
 As it circles the Triceratops warily,[wait=0.2] the Tyrannosaur seems to come to a decision.
 - With a sudden lunge, the Tyrannosaur attacks the Triceratops!

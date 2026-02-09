@@ -1,23 +1,8 @@
 extends Node2D
 
-const forestLoop1 : AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop1.wav")
-const forestLoop2 : AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop2.wav")
-const turtleSplashSfx : AudioStreamWAV = preload("res://interactive narrative/assets/sounds/turtleSplash.wav")
-
-# Defines a map between a string and a sound effect,
-# so that the dialogue script can just call play_sound("sfx_name"),
-# or switch_background_music("bgm_name"), and this script will know which sound to play.
-var sound_effects_map = {
-	"turtle_splash": turtleSplashSfx
-}
-
-var background_music_map = {
-	"forest_loop_1": forestLoop1,
-	"forest_loop_2": forestLoop2
-}
-
 var current_scene
 var current_vignette : Vignette
+@onready var audio_manager: AudioManager = $AudioManager
 
 var vignette = preload("res://interactive narrative/shaders/Vignette.tscn")
 
@@ -61,6 +46,15 @@ func change_scene(path, timing_overide=1.5):
 	if timing_overide != 1.5: # maybe refactor this out of here, and just always call this
 		current_vignette.autoplay = false
 		current_vignette.tween_opacity(0.0, 1.0, timing_overide)
+
+
+## AUDIO
+## See audio_manager.gd for details
+func switch_background_music(key: String, fade_time: float = 8.0) -> void:
+	audio_manager.switch_background_music(key, fade_time)
+
+func play_sound_effect(key: String) -> void:
+	audio_manager.play_sound_effect(key)
 
 
 ## ADDING AND REMOVING CHARACTERS
