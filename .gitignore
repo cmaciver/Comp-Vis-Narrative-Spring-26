@@ -14,3 +14,8 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Ignores local VS Code settings, 
+# since these might contain user-specific configurations 
+# which we don't want to share across different environments.
+.vscode/settings.json
