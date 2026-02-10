@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1b4uwcgd83ch"]
+
+[ext_resource type="Texture2D" uid="uid://dtvoarbktowky" path="res://interactive narrative/assets/backgrounds/flooded.jpg" id="1_nya3e"]
+
+[node name="Cave" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nya3e")
