@@ -147,7 +147,7 @@ In the sky,[wait=0.2] clouds are beginning to gather again,[wait=0.2] hinting at
 The Nanotyrannus steps cautiously into the cave's shadowy interior.
 do switch_background_music("cave_ambience", 2.0)
 do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
-# set in_cave = true
+set Globals.in_cave = true
 Perhaps searching for some morsel of food,[wait=0.2] the Tyrannosaur's continues deeper.
 A sound emanates from the entrance,[wait=0.2] and with a start,[wait=0.2] the Tyrannosaur halts its advance.
 do play_sound_effect("cave_entrance_noise")
@@ -181,7 +181,7 @@ A peal of thunder rumbles through the forest,[wait=0.2] while rapidly darkening 
 ~ tri_shelter_1
 do switch_background_music("cave_ambience", 2.0)
 do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
-# set in_cave = true
+set Globals.in_cave = true
 Continuing its ambling,[wait=0.2] the Triceratops comes across a recession in a hillside. It appears to be a cave,[wait=0.2] its mouth dark and foreboding.
 However,[wait=0.2] [if Globals.time=="morning"]the warmth of the morning sun seems to be weakening as clouds gather overhead[/if][if Globals.time=="noon"]the promise of a warm midday sun is quickly fading as clouds gather overhead[/if][if Globals.time=="night"]the coolness of the night air is becoming more pronounced as clouds gather overhead[/if],[wait=0.2] hinting at an impending rainstorm.
 Seeking shelter from the coming weather seems prudent,[wait=0.2] and foreboding as the cave may be,[wait=0.2] it is better than being caught out in the open in a downpour.
@@ -304,7 +304,7 @@ if Globals.nano_hurt_head:
 else:
 	do switch_background_music("cave_ambience", 2.0)
 	do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
-	set in_cave = true
+	set Globals.in_cave = true
 	do play_sound_effect("tyran_eating_in_cave")
 	do remove_all_characters()
 	do add_character("res://interactive narrative/gameplay/characters/dinner_dinos.tscn", Vector2(960,540))
@@ -341,7 +341,7 @@ if Globals.POV == "Triceratops":
 	Water begins to pool,[wait=0.2] the puddles from earlier swelling into larger bodies,[wait=0.2] then eroding channels between roots and fallen logs,[wait=0.2] transforming the forest floor into a tapestry of rushing streams.
 	Within minutes,[wait=0.2] the these streams converge into a fast,[wait=0.2] churning sheet of water,[wait=0.2] flooding the river. 
 	do switch_background_music("flood_ambience", 2.0)
-	set in_cave = false
+	set Globals.in_cave = false
 	do change_scene("res://interactive narrative/gameplay/scenes/flood.tscn")
 	The Triceratops continues to try and struggle toward higher ground,[wait=0.2] but the current tugs at its legs,[wait=0.2] pulling and slipping over the slick earth.
 	It braces,[wait=0.2] hooves digging,[wait=0.2] only for the softened soil to crumble and give way.
@@ -365,7 +365,7 @@ if Globals.POV == "NanoTyrannus":
 	Water begins to pool,[wait=0.2] the puddles from earlier swelling into larger bodies,[wait=0.2] then eroding channels between roots and fallen logs,[wait=0.2] transforming the forest floor into a tapestry of rushing streams.
 	Within minutes,[wait=0.2] the these streams converge into a fast,[wait=0.2] churning sheet of water,[wait=0.2] flooding the river. 
 	do switch_background_music("flood_ambience", 2.0)
-	set in_cave = false
+	set Globals.in_cave = false
 	do change_scene("res://interactive narrative/gameplay/scenes/flood.tscn")
 	The Nanotyrannus feels the pull at its ankles first,[wait=0.2] then at its knees,[wait=0.2] and the current grows stronger with each heartbeat.
 	It tries to climb a fallen log,[wait=0.2] but the log lifts and turns with the surge,[wait=0.2] becoming another piece of flotsam whioch sweeps the Tyrannosaur off its feet.
