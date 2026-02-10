@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://crkq6we376gx1"
+path="res://.godot/imported/heavyRain.wav-3d1f0483c6284c17a17064661403087d.sample"
+
+[deps]
+
+source_file="res://interactive narrative/assets/sounds/heavyRain.wav"
+dest_files=["res://.godot/imported/heavyRain.wav-3d1f0483c6284c17a17064661403087d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

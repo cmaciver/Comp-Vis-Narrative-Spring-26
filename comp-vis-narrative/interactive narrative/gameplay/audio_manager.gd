@@ -6,19 +6,60 @@ class_name AudioManager
 const FOREST_LOOP_1: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop1.wav")
 const FOREST_LOOP_2: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/forestLoop2.wav")
 const MYSTERY_LOOP_1: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/mysteryAmbience.wav")
+const HEAVY_RAIN_AMBIENCE: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/heavyRain.wav")
+const LIGHT_RAIN_AMBIENCE: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/lightRain.wav")
+const FLOOD_AMBIENCE: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/floodAmbience.wav")
+const CAVE_AMBIENCE: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/caveAmbience.wav")
+
 const TURTLE_SPLASH_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/turtleSplash.wav")
+const LIZARD_RUN_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/lizardRun.wav")
+const MAMMAL_SCURRY_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/mammalScurry.wav")
+const GATOR_GROWL_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/gatorGrowl.wav")
+const DINO_FOOTSTEP_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/dinoFootstep.wav")
+const CAVE_ENTRANCE_NOISE_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/caveEntranceNoise.wav")
+const TRI_CHEWING_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/triChewing.wav")
+const DISTANT_THUNDER_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/distantThunder.wav")
+const QUIET_DINO_SNARL_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/quietDinoSnarl.wav")
+const CLOSE_THUNDER_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/closeThunder.wav")
+const TRI_GORING_TYRAN_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/triGoringTyran.wav")
+const TYRAN_RENDING_FLESH_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/tyranRendingFlesh.wav")
+const TYRAN_EATING_OUT_OF_CAVE_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/tyranEatingOutOfCave.wav")
+const TYRAN_EATING_IN_CAVE_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/tyranEatingInCave.wav")
+const TYRAN_FALL_OUT_OF_CAVE_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/tyranFallOutOfCave.wav")
+const TYRAN_FALL_IN_CAVE_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/tyranFallInCave.wav")
+const TYRAN_DROWN_ROAR_SFX: AudioStreamWAV = preload("res://interactive narrative/assets/sounds/tyranDrownRoar.wav")
 
 # Defines a map between a string and a sound effect,
 # so that the dialogue script can just call play_sound("sfx_name"),
 # or switch_background_music("bgm_name"), and this script will know which sound to play.
 var sound_effects_map = {
-	"turtle_splash": TURTLE_SPLASH_SFX
+	"turtle_splash": TURTLE_SPLASH_SFX,
+	"lizard_run": LIZARD_RUN_SFX,
+	"mammal_scurry": MAMMAL_SCURRY_SFX,
+	"gator_growl": GATOR_GROWL_SFX,
+	"dino_footstep": DINO_FOOTSTEP_SFX,
+	"cave_entrance_noise": CAVE_ENTRANCE_NOISE_SFX,
+	"tri_chewing": TRI_CHEWING_SFX,
+	"distant_thunder": DISTANT_THUNDER_SFX,
+	"quiet_dino_snarl": QUIET_DINO_SNARL_SFX,
+	"close_thunder": CLOSE_THUNDER_SFX,
+	"tri_goring_tyran": TRI_GORING_TYRAN_SFX,
+	"tyran_rending_flesh": TYRAN_RENDING_FLESH_SFX,
+	"tyran_eating_out_of_cave": TYRAN_EATING_OUT_OF_CAVE_SFX,
+	"tyran_eating_in_cave": TYRAN_EATING_IN_CAVE_SFX,
+	"tyran_fall_out_of_cave": TYRAN_FALL_OUT_OF_CAVE_SFX,
+	"tyran_fall_in_cave": TYRAN_FALL_IN_CAVE_SFX,
+	"tyran_drown_roar": TYRAN_DROWN_ROAR_SFX
 }
 
 var background_music_map = {
 	"forest_loop_1": FOREST_LOOP_1,
 	"forest_loop_2": FOREST_LOOP_2,
-	"mystery_loop_1": MYSTERY_LOOP_1
+	"mystery_loop_1": MYSTERY_LOOP_1,
+	"heavy_rain": HEAVY_RAIN_AMBIENCE,
+	"light_rain": LIGHT_RAIN_AMBIENCE,
+	"flood_ambience": FLOOD_AMBIENCE,
+	"cave_ambience": CAVE_AMBIENCE
 }
 
 # Two AudioStreamPlayers are used for background music, so that we can crossfade between them.

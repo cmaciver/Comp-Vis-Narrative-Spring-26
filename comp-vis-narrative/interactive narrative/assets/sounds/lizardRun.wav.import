@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://djjq5pehahgdv"
+path="res://.godot/imported/lizardRun.wav-f0b617a7456b5c0053f6b0c31822f4ab.sample"
+
+[deps]
+
+source_file="res://interactive narrative/assets/sounds/lizardRun.wav"
+dest_files=["res://.godot/imported/lizardRun.wav-f0b617a7456b5c0053f6b0c31822f4ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

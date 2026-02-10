@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://djmco70b5u7m7"
+path="res://.godot/imported/mammalScurry.wav-5b57f24708e4533fb4c1677b18d52a62.sample"
+
+[deps]
+
+source_file="res://interactive narrative/assets/sounds/mammalScurry.wav"
+dest_files=["res://.godot/imported/mammalScurry.wav-5b57f24708e4533fb4c1677b18d52a62.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
