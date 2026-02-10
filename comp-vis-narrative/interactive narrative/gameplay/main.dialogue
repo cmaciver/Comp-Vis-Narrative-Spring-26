@@ -2,7 +2,7 @@
 ## Intro Part 1
 do change_scene("res://interactive narrative/gameplay/scenes/fossil.tscn", 7.0)
 do switch_background_music("mystery_loop_1", 6.0)
-[speed=0.8]Some questions have simple answers. And unfortunately,[wait=0.2] [speed=0.5]some do not.[wait=0.2] [speed=0.8]The fate of a pair of dinosaurs [speed=0.85]found fossilized together [speed=0.88]belongs to the latter category.
+[speed=0.8]Some questions have simple answers. [speed=0.5]And unfortunately,[wait=0.2] some do not.[wait=0.2] [speed=0.8]The fate of a pair of dinosaurs [speed=0.85]found fossilized together [speed=0.88]belongs to the latter category.
 [speed=1]Does it derive from a struggle eons ago between the predator,[wait=0.2] a Nanotyrannus lancensis, and its prey,[wait=0.2] a Triceratops horridus?
 Was the Triceratops already dead,[wait=0.2] its carcass a lucky find for a hungry tyrannosaur in search of an easy meal?
 Or is it the product of fabulous happenstance,[wait=0.2] with a flood washing traces of the two beasts together?
@@ -279,18 +279,20 @@ It will not be long before the Tyrannosaur joins the Triceratops in death.
 
 
 ~ ending_2
-do remove_all_characters(["TriDead", "TyranHunting"])
-do add_character("res://interactive narrative/gameplay/characters/tri_dead.tscn", Vector2(1440,540))
-do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 if Globals.nano_hurt_head:
 	do switch_background_music("heavy_rain", 2.0)
 	do make_it_rain()
+	do remove_all_characters(["TriDead", "TyranHunting"])
+	do add_character("res://interactive narrative/gameplay/characters/tri_dead.tscn", Vector2(1440,540))
+	do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 	The Nanotyrannus,[wait=0.2] its head throbbing with pain from the earlier fight,[wait=0.2] does not hesitate as it approaches the Triceratops carcass.
 	A hard fought meal awaits,[wait=0.2] and the predator is determined to make the most of it before any more competitors arrive.
 	The rain has steadily intensified,[wait=0.2] and at this point,[wait=0.2] is falling in sheets,[wait=0.2] drenching both the carcass and the Tyrannosaur.
 	The Triceratops lies still,[wait=0.2] much as it did when the Nanotyrannus first arrived,[wait=0.2] but now the rain patters against its frill and horns,[wait=0.2] and rivulets of water run down its sides.
 	Marks are visible where the previous Tyrannosaur bit into the Triceratops,[wait=0.2] including the earlier mentioned tooth lodged in the spine.
 	do play_sound_effect("tyran_eating_out_of_cave")
+	do remove_all_characters()
+	do add_character("res://interactive narrative/gameplay/characters/dinner_dinos.tscn", Vector2(960,540))
 	The Nanotyrannus wastes no time,[wait=0.2] sinking its teeth into the Triceratops' flank.
 	As it feeds,[wait=0.2] the Tyrannosaur winces,[wait=0.2] the pain from its head injury flaring up with each movement.
 	It doesn't seem to be going away,[wait=0.2] and in fact appears to be worsening. 
@@ -304,6 +306,8 @@ else:
 	do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
 	set in_cave = true
 	do play_sound_effect("tyran_eating_in_cave")
+	do remove_all_characters()
+	do add_character("res://interactive narrative/gameplay/characters/dinner_dinos.tscn", Vector2(960,540))
 	Inside the shelter of the cave,[wait=0.2] the Nanotyrannus hungrily chomps down on a piece of meat torn from the Triceratops carcass.
 	What a stroke of luck,[wait=0.2] to find such an easy meal!
 	Outside the cave,[wait=0.2] the rain continues to pour,[wait=0.2] drumming against the rock face.
@@ -370,6 +374,8 @@ if Globals.POV == "NanoTyrannus":
 	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
 	What irony it is,[wait=0.2] that in this moment the Nanotyrannus spots what in any other circumstance would be its prey\: a Triceratops,[wait=0.2] also caught in the flood.
 
+do remove_all_characters()
+do add_character("res://interactive narrative/gameplay/characters/disaster_dinos.tscn", Vector2(960,540))
 The torrent carries both beasts toward the river,[wait=0.2] a roaring vein of water that has swelled beyond its banks.
 Strong currents rapidly pull the Triceratops into the river,[wait=0.2] and then much to its horror,[wait=0.2] beneath the froth.
 The Tyrannosaur swiftly follows,[wait=0.2] both dinosaurs now submerged in the churning waters.
