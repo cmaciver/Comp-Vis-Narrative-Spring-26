@@ -8,6 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kl005"]
 shader = ExtResource("4_fcwcu")
+shader_parameter/mix_amount = 1.0
 shader_parameter/red_shift = 0.03999999910592
 shader_parameter/yellow_shift = 0.01999999955296
 shader_parameter/gamma_adjust = 2.00999997742448
@@ -47,6 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NIGHT" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="NIGHT"]
 material = SubResource("ShaderMaterial_bv3t5")

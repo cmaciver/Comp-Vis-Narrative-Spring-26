@@ -34,6 +34,13 @@ func intro_step(step: int):
 		# set the TIME
 		if (Globals.time == "morning"):
 			land.get_node("EVENING").visible = true
+			var tween2 = get_tree().create_tween()
+			tween2.tween_method(
+			func(value): land.get_node("EVENING/ColorRect").material.set_shader_parameter("mix_amount", value),  
+				0.0,  # Start value
+				1.0,  # End value
+				trans_time # Duration
+			);
 			
 	
 		if (Globals.time == "noon"):

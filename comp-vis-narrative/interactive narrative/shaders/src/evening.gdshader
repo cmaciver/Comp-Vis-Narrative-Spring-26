@@ -4,6 +4,8 @@ shader_type canvas_item;
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
+uniform float mix_amount : hint_range(0.0, 1.0, 0.1) = 1.0;
+
 uniform float red_shift : hint_range(0.0, 0.1, 0.01) = 0.07;
 uniform float yellow_shift : hint_range(0.0, 0.1, 0.01) = 0.02;
 uniform float gamma_adjust : hint_range(1.0, 10.0, 0.01) = 2.4;
@@ -20,7 +22,7 @@ void fragment() {
 	oklab_c.x *= 0.75;
 	oklab_c.y += red_shift;
 	oklab_c.z += yellow_shift;
-	screen_color = linear_from_oklab(oklab_c);
+	oklab_c = linear_from_oklab(oklab_c);
 
-	COLOR.rgb = screen_color * gamma_adjust;
+	COLOR.rgb = oklab_mix(screen_color, oklab_c * gamma_adjust, mix_amount);
 }
