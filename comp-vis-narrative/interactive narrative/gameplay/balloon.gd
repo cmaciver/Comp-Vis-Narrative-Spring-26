@@ -20,6 +20,8 @@ extends CanvasLayer
 ## A sound player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 
+#@onready var talk_sound: AudioStreamPlayer
+
 ## Temporary game states
 var temporary_game_states: Array = []
 
@@ -71,6 +73,9 @@ var mutation_cooldown: Timer = Timer.new()
 func _ready() -> void:
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
+	
+	#Step sound setup
+	audio_stream_player.stream = load("res://interactive narrative/assets/sounds/dialogue_talk.wav")
 
 	# If the responses menu doesn't have a next action set, use this one
 	if responses_menu.next_action.is_empty():
@@ -211,3 +216,9 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 #endregion
+
+func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
+	if not letter in [".", " "]:
+		#play sound
+		audio_stream_player.pitch_scale = randf_range(0.4, 0.5)
+		audio_stream_player.play()
