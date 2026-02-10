@@ -1,5 +1,8 @@
 Once, There Were Two Dinosaurs
 
+itch: https://i-cam.itch.io/once-there-were-two-dinosaurs
+(doesn't work on Chrome for some reason, try Firefox if you have issues)
+
 Team Fire 100:
 - Claire Aguiar
 - Cam MacIver
