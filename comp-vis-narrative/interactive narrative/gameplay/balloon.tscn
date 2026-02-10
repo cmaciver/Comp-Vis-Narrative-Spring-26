@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://brk1lv3c5bhtr"]
+[gd_scene load_steps=14 format=3 uid="uid://brk1lv3c5bhtr"]
 
 [ext_resource type="Script" uid="uid://dqpatq1i27ue8" path="res://interactive narrative/gameplay/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="FontFile" uid="uid://cjkxlegt6ym66" path="res://interactive narrative/assets/fonts/oxanium/Oxanium-Medium.ttf" id="2_qw1on"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -17,7 +18,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri4m3"]
-bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+bg_color = Color(0.08852414, 0.22821143, 0.35637102, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -29,7 +30,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0njw"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.14426842, 0.29273498, 0.53462416, 0.8)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -41,7 +42,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkmqt"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.14509805, 0.38431373, 0.6431373, 0.81960785)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -53,6 +54,8 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font_size = 20
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("2_qw1on")
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
 Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
 Button/styles/hover = SubResource("StyleBoxFlat_e0njw")
@@ -99,6 +102,8 @@ _data = {
 &"progress": SubResource("Animation_qkmqt")
 }
 
+[sub_resource type="Theme" id="Theme_ad34h"]
+
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
@@ -143,6 +148,8 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("2_qw1on")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "Character"
 fit_content = true
@@ -152,6 +159,8 @@ scroll_active = false
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_qw1on")
+theme_override_font_sizes/normal_font_size = 32
 text = "Dialogue..."
 seconds_per_step = 0.03
 
@@ -178,10 +187,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -290.5
-offset_top = -35.0
-offset_right = 290.5
-offset_bottom = 35.0
+offset_left = -375.0
+offset_top = 185.0
+offset_right = 375.0
+offset_bottom = 255.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -191,7 +200,10 @@ script = ExtResource("3_72ixx")
 response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
+theme = SubResource("Theme_ad34h")
+theme_override_font_sizes/font_size = 24
 text = "Response example"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
