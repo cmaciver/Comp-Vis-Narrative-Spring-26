@@ -18,8 +18,8 @@ func _ready() -> void:
 	DialogueManager.show_dialogue_balloon_scene(
 		load("res://interactive narrative/gameplay/balloon.tscn"), 
 		load("res://interactive narrative/gameplay/main.dialogue"),
-		#"start"
-		"environment"
+		"start"
+		#"environment"
 		#"ending_2"
 		#"ending_3" # change back to "start" later
 	)
