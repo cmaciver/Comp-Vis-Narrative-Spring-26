@@ -130,8 +130,11 @@ func intro_transition(step: int):
 		current_scene = get_node("landscape")
 		
 		var new_vignette : Vignette = vignette.instantiate()
-		current_scene.add_child(new_vignette)
+		
 		current_vignette = new_vignette
+		current_vignette.autoplay = false
+		current_vignette.set_shader_value(1.0)
+		current_scene.add_child(current_vignette)
 
 
 ## TIME OF DAY STUFF
