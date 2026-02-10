@@ -128,6 +128,10 @@ func intro_transition(step: int):
 	
 	if step == 5: 
 		current_scene = get_node("landscape")
+		
+		var new_vignette : Vignette = vignette.instantiate()
+		current_scene.add_child(new_vignette)
+		current_vignette = new_vignette
 
 
 ## TIME OF DAY STUFF
