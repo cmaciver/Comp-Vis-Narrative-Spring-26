@@ -36,6 +36,7 @@ texture = ExtResource("2_gtdpo")
 centered = false
 
 [node name="EVENING" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="EVENING"]
 material = SubResource("ShaderMaterial_kl005")

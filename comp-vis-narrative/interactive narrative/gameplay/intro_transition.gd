@@ -44,7 +44,8 @@ func intro_step(step: int):
 			
 	
 		if (Globals.time == "noon"):
-			pass
+			land.get_node("EVENING").visible = false
+			land.get_node("EVENING").visible = false
 		
 		if (Globals.time == "night"):
 			land.get_node("NIGHT").visible = true
