@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0l86w1hjul3i"]
+[gd_scene load_steps=8 format=3 uid="uid://c0l86w1hjul3i"]
 
 [ext_resource type="Shader" uid="uid://pssp6nej2aw6" path="res://interactive narrative/gameplay/scenes/kuwahara.gdshader" id="1_fcwcu"]
 [ext_resource type="Shader" uid="uid://dej1wh34qcufj" path="res://interactive narrative/shaders/src/nighttime.gdshader" id="1_gtdpo"]
 [ext_resource type="Texture2D" uid="uid://dp1r03cawiyrm" path="res://interactive narrative/assets/backgrounds/cretaceous-period-landscape-polar-forest.jpg" id="2_gtdpo"]
 [ext_resource type="Shader" uid="uid://j4b32rh3xyhy" path="res://interactive narrative/shaders/src/evening.gdshader" id="4_fcwcu"]
-[ext_resource type="PackedScene" uid="uid://bos1hktyecvv0" path="res://interactive narrative/gameplay/characters/gator.tscn" id="5_a208x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kl005"]
 shader = ExtResource("4_fcwcu")
@@ -67,26 +66,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Gator" parent="CanvasLayer" instance=ExtResource("5_a208x")]
-position = Vector2(570, 655.00006)
-scale = Vector2(0.43249997, 0.44888884)
-
-[node name="GatorNIGHT" parent="CanvasLayer" instance=ExtResource("5_a208x")]
-modulate = Color(0.6, 0.6, 0.7372549, 1)
-position = Vector2(1325, 681.00006)
-scale = Vector2(0.43249997, 0.44888884)
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="Gator" parent="CanvasLayer2" instance=ExtResource("5_a208x")]
-position = Vector2(570, 655.00006)
-scale = Vector2(0.43249997, 0.44888884)
-
-[node name="GatorSunset" parent="CanvasLayer2" instance=ExtResource("5_a208x")]
-modulate = Color(0.98, 0.6268734, 0.5194, 1)
-position = Vector2(1320, 684.00006)
-scale = Vector2(0.43249997, 0.44888884)
