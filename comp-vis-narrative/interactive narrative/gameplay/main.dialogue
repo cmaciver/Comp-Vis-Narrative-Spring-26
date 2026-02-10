@@ -47,6 +47,7 @@ Puddles dot the forest floor,[wait=0.2] and through a break in the tree line not
 
 ## Environment Part 2 ( and some of the next )
 do add_character("res://interactive narrative/gameplay/characters/mammal.tscn", Vector2(960,540))
+do play_sound_effect("mammal_scurry")
 Early mammals infrequently scurry about in the underbrush,[wait=0.2] cloaking themselves from sight with the fallen leaves and branches as they search for underground burrows to hide in.
 Of particular note,[wait=0.2] however,[wait=0.2] is what can be found in the river. 
 do remove_character("Mammal")
@@ -54,6 +55,7 @@ A second inquisition,[wait=0.2] this time of the waterway reveals...
 - ...a distant relative of modern alligators lurking near the bank.
 	set Globals.prey = "alligator"
 	do add_character("res://interactive narrative/gameplay/characters/gator.tscn", Vector2(960,540))
+	do play_sound_effect("gator_growl")
 	The alligator-ancestor is quite familiar. Like modern alligators,[wait=0.2] it lurks in the water like a mimic of a floating log,[wait=0.2] its scaly hide camouflaged against the murky riverbed. Its eyes and nostrils protrud just above the water's surface,[wait=0.2] allowing it to survey the surroundings while remaining mostly submerged. But unlike the modern iteration,[wait=0.2] an inspection of the mouth would reveal a set of shorter teeth,[wait=0.2] more suited for a diet of turtles and other small creatures.
 
 - ...disturbances on the water's surface from a soft-shelled ancient turtle.
@@ -64,6 +66,7 @@ A second inquisition,[wait=0.2] this time of the waterway reveals...
 ## First Dino
 ~ first_dino
 do switch_background_music("forest_loop_2", 2.0)
+do play_sound_effect("dino_footstep")
 A branch can be heard in the distance breaking. Leaves crunch underfoot as something large approaches.
 if Globals.prey == "turtle":
 	do play_sound_effect("turtle_splash")
@@ -128,6 +131,7 @@ do remove_character("TyranNeutral")
 do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 set Globals.nano_hurt_head = false
 Following its keen senses,[wait=0.2] the Nanotyrannus approaches the distant form. In the sky,[wait=0.2] clouds are beginning to gather again,[wait=0.2] hinting at a sequel to the recent rainfall.
+do play_sound_effect("lizard_run")
 As it continues its long strides,[wait=0.2] a small lizard-like creature darts out of the path of the oncoming predator,[wait=0.2] disappearing into the underbrush with a rustle of leaves.
 As the figure draws nearer,[wait=0.2] certain details become clear. The creature is a Triceratops,[wait=0.2] its three prominent facial horns and large frill unmistakable even from a distance.
 Moreover,[wait=0.2] it looks like...
@@ -138,12 +142,15 @@ Moreover,[wait=0.2] it looks like...
 
 
 ~ tyran_shelter_1
-do switch_background_music("")
 The Nanotyrannus approaches the cave,[wait=0.2] alert for any signs of danger or opportunity.
 In the sky,[wait=0.2] clouds are beginning to gather again,[wait=0.2] hinting at a sequel to the recent rainfall. There is wisdom in seeking shelter from the impending storm.
 The Nanotyrannus steps cautiously into the cave's shadowy interior.
+do switch_background_music("cave_ambience", 2.0)
+do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
+# set in_cave = true
 Perhaps searching for some morsel of food,[wait=0.2] the Tyrannosaur's continues deeper.
 A sound emanates from the entrance,[wait=0.2] and with a start,[wait=0.2] the Tyrannosaur halts its advance.
+do play_sound_effect("cave_entrance_noise")
 The faint illumination from the cave's mouth betrays a form standing just outside.
 As the Tyrannosaur's eyes adjust to the dim light,[wait=0.2] the form becomes clearer. 
 It only takes a moment for the Nanotyrannus to recognize...
@@ -158,23 +165,28 @@ The Triceratops is clearly in search of food. Its head is lowered,[wait=0.2] and
 Some ferns must have caught its attention,[wait=0.2] as it moves toward a small cluster of the plants.
 do remove_character("TriNeutral")
 do add_character("res://interactive narrative/gameplay/characters/tri_eating.tscn", Vector2(960,540))
+do play_sound_effect("tri_chewing")
 Bending down,[wait=0.2] the Triceratops uses its beak-like mouth to grasp and pluck the fronds.
 Using its rows of flat teeth,[wait=0.2] the Triceratops begins to chew the tough plant material,[wait=0.2] grinding it down for digestion.
 Within its jaw,[wait=0.2] the Triceratops' teeth are arranged in groups of several rows,[wait=0.2] forming dental batteries. 
 While there were several hundred teeth present in the mouth,[wait=0.2] continual wear from chewing and replacement of teeth meant that only a fraction were in use at any given time.
 As it feeds,[wait=0.2] the Triceratops seems to relax,[wait=0.2] its eyes half-closed in contentment.
 How sad,[wait=0.2] what comes next. 
+do play_sound_effect("distant_thunder")
 A peal of thunder rumbles through the forest,[wait=0.2] while rapidly darkening clouds gather overhead,[wait=0.2] their presence heralding the arrival of nothing less than a fully grown Nanotyrannus lancensis hungry for a meal.
 - Continue
 	=> triceratops_alive
 
 
 ~ tri_shelter_1
-do switch_background_music("")
+do switch_background_music("cave_ambience", 2.0)
+do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
+# set in_cave = true
 Continuing its ambling,[wait=0.2] the Triceratops comes across a recession in a hillside. It appears to be a cave,[wait=0.2] its mouth dark and foreboding.
 However,[wait=0.2] [if Globals.time=="morning"]the warmth of the morning sun seems to be weakening as clouds gather overhead[/if][if Globals.time=="noon"]the promise of a warm midday sun is quickly fading as clouds gather overhead[/if][if Globals.time=="night"]the coolness of the night air is becoming more pronounced as clouds gather overhead[/if],[wait=0.2] hinting at an impending rainstorm.
 Seeking shelter from the coming weather seems prudent,[wait=0.2] and foreboding as the cave may be,[wait=0.2] it is better than being caught out in the open in a downpour.
 As the Triceratops approaches the cave,[wait=0.2] unaware of any potential dangers within,[wait=0.2] there seems to be a slight sound emanating from inside.
+do play_sound_effect("quiet_dino_snarl")
 
 - It's just a trick of the wind from the approaching storm.
 	=> ending_3
@@ -205,10 +217,13 @@ set Globals.nano_hurt_head = true
 As the Nanotyrannus approaches the Triceratops,[wait=0.2] another figure becomes clear through the trees. It's a larger Tyrannosaur,[wait=0.2] and it doesn't look like it wants to share.
 Blood from the Triceratops already paints the second Tyrannosaur's jaws crimson,[wait=0.2] and a tooth can be seen lodged in the Triceratops' spine.
 The two predators circle one another,[wait=0.2] growling and snapping their jaws. 
-do switch_background_music("")
+do make_it_rain()
+do switch_background_music("light_rain", 2.0)
 Overhead,[wait=0.2] the gathering clouds continue to darken the sky,[wait=0.2] their foreboding presence matching the tension between the two dinosaurs. A drop falls,[wait=0.2] landing on the hungry Nanotyrannus' snout.
 After a tense standoff,[wait=0.2] they lunge at one another,[wait=0.2] engaging in a fierce battle.
+do play_sound_effect("tyran_drown_roar")
 Gnashing teeth and slashing claws find purchase in scale and bone,[wait=0.2] the sounds of the fight echoing through the forest.
+do play_sound_effect("tyran_rending_flesh")
 With a savage bite,[wait=0.2] the larger Tyrannosaur lands a crushing blow to the first's head,[wait=0.2] tearing flesh and cracking the skull.
 But despite its grievous injury,[wait=0.2] the plucky Nanotyrannus fights on. Consumed by hunger and rage,[wait=0.2] it refuses to yield.
 With desperation,[wait=0.2] the Nanotyrannus continues to fight on unwaveringly,[wait=0.2] until finally,[wait=0.2] the larger Tyrannosaur breaks away,[wait=0.2] looking for easier prey.
@@ -228,7 +243,8 @@ do add_character("res://interactive narrative/gameplay/characters/tri_neutral.ts
 As the Nanotyrannus approaches the Triceratops,[wait=0.2] the larger herbivore lifts its head,[wait=0.2] sensing the presence of the predator.
 Its three prominent facial horns [if Globals.time=="morning"]glow softly in the gentle morning light,[wait=0.2] one last gap in the clouds allowing some few rays to filter through[/if][if Globals.time=="noon"]are starkly illuminated by the bright midday sun as it continues to shine through a swiftly closing gap in the clouds[/if][if Globals.time=="night"]are faintly visible as the moonlight struggles to penetrate the cloud cover[/if].
 The horns portend a struggle,[wait=0.2] and one the Nanotyrannus seems to think twice about engaging in.
-do switch_background_music("")
+do switch_background_music("light_rain", 2.0)
+do make_it_rain()
 Overhead,[wait=0.2] the gathering clouds continue to darken the sky,[wait=0.2] their foreboding presence matching the tension between the two dinosaurs. A drop falls from the sky onto the Triceratops' frill.
 As it circles the Triceratops warily,[wait=0.2] the Tyrannosaur seems to come to a decision.
 - With a sudden lunge, the Tyrannosaur attacks the Triceratops!
@@ -240,11 +256,16 @@ As it circles the Triceratops warily,[wait=0.2] the Tyrannosaur seems to come to
 ~ ending_1
 do remove_all_characters()
 do add_character("res://interactive narrative/gameplay/characters/dueling_dinos.tscn", Vector2(960,540))
+do switch_background_music("heavy_rain", 2.0)
+do make_it_rain()
+do play_sound_effect("close_thunder")
 Its frill and horns silhouetted as a bolt of lightning splits the sky behind it,[wait=0.2] the Triceratops stands its ground against the charging Nanotyrannus.
 This is a fight to the death. No quarter will be given,[wait=0.2] nor one granted. 
 The opening blow comes from the Triceratops,[wait=0.2] which lowers its head and smashes its horns into the face of the Tyrannosaur.
+do play_sound_effect("tri_goring_tyran")
 Against any other predator,[wait=0.2] this would be a devastating strike,[wait=0.2] but the Nanotyrannus weathers the blow,[wait=0.2] its thick skull absorbing much of the impact.
 Though the damage must be considerable,[wait=0.2] the Tyrannosaur retaliates with a savage bite to the Triceratops' flank.
+do play_sound_effect("tyran_rending_flesh")
 A unique advantage of the Nanotyrannus compared to other Tyrannosaurs came from its strong neck muscles,[wait=0.2] which allowed it to flex its head with tremendous force.
 In the fight,[wait=0.2] this translated to powerful bites,[wait=0.2] tearing gaping wounds in the Triceratops' tough hide. 
 One particular bite found purchase in the spine,[wait=0.2] with a tooth lodged firmly in the bone being torn free from the Tyrannosaur's jaw.
@@ -262,29 +283,39 @@ do remove_all_characters(["TriDead", "TyranHunting"])
 do add_character("res://interactive narrative/gameplay/characters/tri_dead.tscn", Vector2(1440,540))
 do add_character("res://interactive narrative/gameplay/characters/tyran_hunting.tscn", Vector2(480,540))
 if Globals.nano_hurt_head:
+	do switch_background_music("heavy_rain", 2.0)
+	do make_it_rain()
 	The Nanotyrannus,[wait=0.2] its head throbbing with pain from the earlier fight,[wait=0.2] does not hesitate as it approaches the Triceratops carcass.
 	A hard fought meal awaits,[wait=0.2] and the predator is determined to make the most of it before any more competitors arrive.
 	The rain has steadily intensified,[wait=0.2] and at this point,[wait=0.2] is falling in sheets,[wait=0.2] drenching both the carcass and the Tyrannosaur.
 	The Triceratops lies still,[wait=0.2] much as it did when the Nanotyrannus first arrived,[wait=0.2] but now the rain patters against its frill and horns,[wait=0.2] and rivulets of water run down its sides.
 	Marks are visible where the previous Tyrannosaur bit into the Triceratops,[wait=0.2] including the earlier mentioned tooth lodged in the spine.
+	do play_sound_effect("tyran_eating_out_of_cave")
 	The Nanotyrannus wastes no time,[wait=0.2] sinking its teeth into the Triceratops' flank.
 	As it feeds,[wait=0.2] the Tyrannosaur winces,[wait=0.2] the pain from its head injury flaring up with each movement.
 	It doesn't seem to be going away,[wait=0.2] and in fact appears to be worsening. 
 	The Tyrannosaur shakes its head,[wait=0.2] trying to alleviate the discomfort,[wait=0.2] but to no avail.
 	Stumbling,[wait=0.2] the Nanotyrannus pulls back from the carcass,[wait=0.2] its vision blurred by pain and rain.
+	do play_sound_effect("tyran_fall_out_of_cave")
 	With a heavy thud,[wait=0.2] the Tyrannosaur collapses to the ground,[wait=0.2] unconscious from the injury.
 	It will never feed again.
 else:
+	do switch_background_music("cave_ambience", 2.0)
+	do change_scene("res://interactive narrative/gameplay/scenes/cave.tscn")
+	set in_cave = true
+	do play_sound_effect("tyran_eating_in_cave")
 	Inside the shelter of the cave,[wait=0.2] the Nanotyrannus hungrily chomps down on a piece of meat torn from the Triceratops carcass.
 	What a stroke of luck,[wait=0.2] to find such an easy meal!
 	Outside the cave,[wait=0.2] the rain continues to pour,[wait=0.2] drumming against the rock face.
 	Rivulets penetrate the cave entrance,[wait=0.2] slickening the ground where the Tyrannosaur stands.
 	As it feeds,[wait=0.2] the Nanotyrannus remains alert,[wait=0.2] ears twitching at every sound.
+	do play_sound_effect("close_thunder")
 	As it goes for another bite,[wait=0.2] a sudden crack of thunder reverberates through the cave,[wait=0.2] causing the Tyrannosaur to flinch.
 	What rotten luck it is,[wait=0.2] that the slick ground and positioning of the Nanotyrannus causes it to lose its footing just perfectly to impale part of its neck on the Triceratops' horn.
 	Blood flows freely from the wound as the Tyrannosaur struggles to free itself,[wait=0.2] but the more it thrashes,[wait=0.2] the deeper the horn sinks into its flesh.
 	With one final effort,[wait=0.2] the Nanotyrannus manages to pull free,[wait=0.2] but in doing so,[wait=0.2] it exacerbates the injury.
 	The Tyrannosaur staggers back,[wait=0.2] head swimming from blood loss and pain.
+	do play_sound_effect("tyran_fall_in_cave")
 	Its legs weakened from blood loss,[wait=0.2] the Tyrannosaur stumbles,[wait=0.2] collapsing to the ground beside its dinner.
 	It will not be long before the Tyrannosaur joins the Triceratops in death.
 => end_screen
@@ -294,14 +325,20 @@ else:
 do remove_all_characters_keep_pov()
 if Globals.POV == "Triceratops":
 	do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(960,540))
+	do switch_background_music("heavy_rain", 2.0)
+	do make_it_rain()
 	The shelter of a cave proves fleeting as the rain intensifies outside.
 	Drumming on the rock face,[wait=0.2] the sound is deafening,[wait=0.2] drowning out all other noise.
 	Fleeing the cave as water begins to flow into it,[wait=0.2] the Triceratops steps back into the forest,[wait=0.2] seeking higher ground.
 	The storm shows no mercy.
+	do play_sound_effect("close_thunder")
 	Thunder cracks overhead,[wait=0.2] rattling the very bones of the Triceratops while wind whips through the trees and rain turns the leaf litter into a muddy mush.
 	The ground,[wait=0.2] already saturated from earlier rains,[wait=0.2] can hold no more.
 	Water begins to pool,[wait=0.2] the puddles from earlier swelling into larger bodies,[wait=0.2] then eroding channels between roots and fallen logs,[wait=0.2] transforming the forest floor into a tapestry of rushing streams.
 	Within minutes,[wait=0.2] the these streams converge into a fast,[wait=0.2] churning sheet of water,[wait=0.2] flooding the river. 
+	do switch_background_music("flood_ambience", 2.0)
+	set in_cave = false
+	do change_scene("res://interactive narrative/gameplay/scenes/flood.tscn")
 	The Triceratops continues to try and struggle toward higher ground,[wait=0.2] but the current tugs at its legs,[wait=0.2] pulling and slipping over the slick earth.
 	It braces,[wait=0.2] hooves digging,[wait=0.2] only for the softened soil to crumble and give way.
 	As the water continues to surge past it,[wait=0.2] any hope of footing is lost and with it,[wait=0.2] any chance of escape.
@@ -314,6 +351,8 @@ if Globals.POV == "Triceratops":
 
 if Globals.POV == "NanoTyrannus":
 	do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(960,540))
+	do switch_background_music("heavy_rain", 2.0)
+	do make_it_rain()
 	The trickle of water into the cave,[wait=0.2] which had been a nuisance,[wait=0.2] has by now become a miniature river.
 	The Nanotyrannus steps out into the storm,[wait=0.2] seeking higher ground as the rain intensifies.
 	It is a deluge,[wait=0.2] drowning scents and dulling sound,[wait=0.2] a curtain of water that hides everything beyond a few feet.
@@ -321,6 +360,9 @@ if Globals.POV == "NanoTyrannus":
 	The ground,[wait=0.2] already saturated from earlier rains,[wait=0.2] can hold no more.
 	Water begins to pool,[wait=0.2] the puddles from earlier swelling into larger bodies,[wait=0.2] then eroding channels between roots and fallen logs,[wait=0.2] transforming the forest floor into a tapestry of rushing streams.
 	Within minutes,[wait=0.2] the these streams converge into a fast,[wait=0.2] churning sheet of water,[wait=0.2] flooding the river. 
+	do switch_background_music("flood_ambience", 2.0)
+	set in_cave = false
+	do change_scene("res://interactive narrative/gameplay/scenes/flood.tscn")
 	The Nanotyrannus feels the pull at its ankles first,[wait=0.2] then at its knees,[wait=0.2] and the current grows stronger with each heartbeat.
 	It tries to climb a fallen log,[wait=0.2] but the log lifts and turns with the surge,[wait=0.2] becoming another piece of flotsam whioch sweeps the Tyrannosaur off its feet.
 	Now nothing more than a helpless passenger in the churning flow the predator snaps its jaws impotently at empty water as it fights for breath,[wait=0.2] its vision blurred by rain and spray.
@@ -331,6 +373,7 @@ if Globals.POV == "NanoTyrannus":
 The torrent carries both beasts toward the river,[wait=0.2] a roaring vein of water that has swelled beyond its banks.
 Strong currents rapidly pull the Triceratops into the river,[wait=0.2] and then much to its horror,[wait=0.2] beneath the froth.
 The Tyrannosaur swiftly follows,[wait=0.2] both dinosaurs now submerged in the churning waters.
+do play_sound_effect("tyran_drown_roar")
 It does not take long for the flood to overwhelm them. Their struggles grow frantic,[wait=0.2] then weak,[wait=0.2] and finally still,[wait=0.2] pinned by mud and debris on the riverbed.
 In time,[wait=0.2] the waters will recede,[wait=0.2] leaving behind the heavy hush of a forest that survived,[wait=0.2] and a pair of bodies that did not.
 
