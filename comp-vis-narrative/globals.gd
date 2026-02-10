@@ -11,3 +11,4 @@ extends Node
 @export var prey = ""
 @export var POV = ""
 @export var nano_hurt_head : bool = false
+@export var in_cave : bool = false

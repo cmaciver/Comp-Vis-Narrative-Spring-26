@@ -6,11 +6,12 @@ func _ready() -> void:
 	modulate = Color(1, 1, 1, 0)
 	
 	var target_color = Color("fff")
-	if Globals.time == "morning":
-		target_color = Color("faa084")
-	
-	if Globals.time == "night":
-		target_color = Color("9999bc")
+	if not Globals.in_cave:
+		if Globals.time == "morning":
+			target_color = Color("faa084")
+		
+		if Globals.time == "night":
+			target_color = Color("9999bc")
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate", target_color, 0.5)
