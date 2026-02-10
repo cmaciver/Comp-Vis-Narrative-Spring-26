@@ -6,6 +6,8 @@ var current_vignette : Vignette
 
 var vignette = preload("res://interactive narrative/shaders/Vignette.tscn")
 
+var rain = preload("res://interactive narrative/gameplay/scenes/rain.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.time = "morning" # having default values for these is probably only a good thing
@@ -151,3 +153,7 @@ func update_game_time():
 	#if (Globals.time == "turtle"):
 		#pass
 		## TODO
+		
+func make_it_rain():
+	var the_rain = rain.instantiate()
+	current_scene.add_child(the_rain)
