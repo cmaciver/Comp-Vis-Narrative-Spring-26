@@ -30,7 +30,8 @@ func _process(_delta: float) -> void:
 func change_scene(path, timing_overide=1.5):
 	
 	if current_scene:
-		current_vignette.tween_opacity(1.0, 0.0, timing_overide)
+		if current_vignette:
+			current_vignette.tween_opacity(1.0, 0.0, timing_overide)
 		await get_tree().create_timer(timing_overide).timeout
 		current_scene.queue_free()
 	
