@@ -2,11 +2,11 @@ Once, There Were Two Dinosaurs
 
 Team Fire 100:
 - Claire Aguiar
-- Cam McIver
+- Cam MacIver
 - Alex Mize
 - Erik Svanes
 
-Built in Godot 4.5
+Built in Godot 4.5.1
 
 Controls
 - Mouse
