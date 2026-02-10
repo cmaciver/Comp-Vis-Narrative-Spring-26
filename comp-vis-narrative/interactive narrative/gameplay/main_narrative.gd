@@ -206,8 +206,7 @@ func change_scene(path, timing_overide=1.5):
 		return
 
 	# If the path is invalid, report an error and do nothing.
-	var file = FileAccess.open(path, FileAccess.READ)
-	if not file:
+	if not ResourceLoader.exists(path):
 		print("Error: Tried to change scene to invalid path: " + str(path))
 		return
 	

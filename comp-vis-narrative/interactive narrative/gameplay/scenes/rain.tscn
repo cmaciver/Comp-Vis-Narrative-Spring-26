@@ -34,9 +34,7 @@ scale_min = 0.25
 scale_max = 0.95
 scale_curve = SubResource("CurveXYZTexture_edkmt")
 color = Color(0.9333369, 1, 1, 0.177)
-collision_mode = 2
-sub_emitter_mode = 3
-sub_emitter_amount_at_collision = 1
+collision_mode = 0
 
 [node name="Rain" type="GPUParticles2D"]
 amount = 8000
