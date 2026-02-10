@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c4rvgxfv6pauy"]
+[gd_scene load_steps=23 format=3 uid="uid://c4rvgxfv6pauy"]
 
 [ext_resource type="Material" uid="uid://w5bj4rra43xs" path="res://interactive narrative/shaders/src/fade_vinette_material.tres" id="1_keo85"]
 [ext_resource type="Texture2D" uid="uid://bh6dkt6b3uji8" path="res://interactive narrative/assets/backgrounds/black_bg.png" id="1_s373j"]
@@ -69,10 +69,120 @@ hue_variation_curve = SubResource("CurveTexture_qtrwj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ll156"]
 shader = ExtResource("8_xx45i")
-shader_parameter/max_radius = 0.5
+shader_parameter/max_radius = 0.0
 shader_parameter/thickness = 0.1
-shader_parameter/displacement_amount = 0.0
+shader_parameter/displacement_amount = 0.1
 shader_parameter/brightness_diff = 1.0
+
+[sub_resource type="Animation" id="Animation_qvhle"]
+resource_name = "new_animation"
+length = 5.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ripple/ColorRect:material:shader_parameter/max_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2999999932944, 0.5, 0.5, 0.5, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ripple/ColorRect:material:shader_parameter/displacement_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 3.0001, 3.0001998, 3.1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 0.45062605, 1, 1),
+"update": 0,
+"values": [0.0, 0.0510000024225, 0.0750000035625, 0.2000000095, 0.1308585716356942, 0.07293507315820899, 0.934000044365, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ripple/ColorRect:material:shader_parameter/brightness_diff")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.00999999977648, 1.1, 1.0, 1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("particles:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 3.1, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.02, 0.4, 1.0, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xx45i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ripple/ColorRect:material:shader_parameter/max_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ripple/ColorRect:material:shader_parameter/displacement_amount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ripple/ColorRect:material:shader_parameter/brightness_diff")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("particles:amount_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vw8px"]
+_data = {
+&"RESET": SubResource("Animation_xx45i"),
+&"new_animation": SubResource("Animation_qvhle")
+}
 
 [node name="Earf" type="Node2D"]
 material = ExtResource("1_keo85")
@@ -109,3 +219,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.992826)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vw8px")
+}

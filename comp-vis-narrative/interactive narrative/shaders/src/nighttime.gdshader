@@ -4,6 +4,8 @@ shader_type canvas_item;
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
+uniform float mix_amount : hint_range(0.0, 1.0, 0.1) = 1.0;
+
 uniform float switch_point : hint_range(0.0, 1.0, 0.01) = 0.5;
 uniform float spec_pow : hint_range(2.0, 10.0, 0.1) = 7.4;
 uniform float gamma_adjust : hint_range(1.0, 10.0, 0.01) = 2.4;
@@ -22,14 +24,13 @@ void fragment() {
 	float spec = pow(oklab_c.x, spec_pow);
 	float top_spec = smoothstep(switch_point, 1.0, spec);
 
-	screen_color.xyz = oklab_mix(color, screen_color.rgb, spec );
-	screen_color.rgb = oklab_mix(color, screen_color.rgb, 1. - top_spec );
-
+	oklab_c.xyz = oklab_mix(color, screen_color.rgb, spec );
+	oklab_c.rgb = oklab_mix(color, oklab_c.rgb, 1. - top_spec );
 
 
 
 	//screen_color = linear_from_oklab(screen_color);
-	COLOR.rgb = screen_color * gamma_adjust;
+	COLOR.rgb = oklab_mix(screen_color, oklab_c * gamma_adjust, mix_amount);
 }
 
 //void light() {

@@ -16,7 +16,8 @@ func _ready() -> void:
 	DialogueManager.show_dialogue_balloon_scene(
 		load("res://interactive narrative/gameplay/balloon.tscn"), 
 		load("res://interactive narrative/gameplay/main.dialogue"),
-		"start"
+		#"start"
+		"environment"
 		#"ending_3" # change back to "start" later
 	)
 
@@ -120,6 +121,9 @@ func remove_all_characters_keep_pov():
 func intro_transition(step: int):
 	#$Ripple.set_ripple_size(step)
 	current_scene.intro_step(step)
+	
+	if step == 5: 
+		current_scene = get_node("landscape")
 
 
 ## TIME OF DAY STUFF

@@ -16,3 +16,4 @@ script = ExtResource("3_audio")
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="Characters" type="CanvasLayer" parent="."]
+layer = 2

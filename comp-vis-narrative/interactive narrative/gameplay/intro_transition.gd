@@ -1,6 +1,8 @@
 extends Node
 class_name IntroTransitionManager
 
+var landscape = preload("res://interactive narrative/gameplay/scenes/landscape.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,56 +14,44 @@ func _process(_delta: float) -> void:
 
 
 func intro_step(step: int):
-	var tween = get_tree().create_tween()
+	print("running intro transition: ", step)
+	var trans_time = 5.0
 	
-	# shoot out a few particles
-	if step == 1:
-		tween.tween_property($particles, "amount_ratio", 0.01, 2.0)
+	$AnimationPlayer.play_section("new_animation", step-1, step, -1, 1 / trans_time)
 	
-	# shoot more particles and small ripple
-	if step == 2:
-		tween.tween_property($particles, "amount_ratio", 0.3, 3.0)
-		
-		tween.tween_method(
-			func(value): 
-				$Ripple/ColorRect.material.set_shader_parameter("max_radius", value),
-				0, 0.3, 3.0,
-		);
-		$Ripple/ColorRect.material.set_shader_parameter("displacement_amount", 0.01)
-
-	
-	# player decision happens after this
-	if step == 3:
-		tween.tween_property($particles, "amount_ratio", 1.0, 3.0)
-		
-		tween.tween_method(
-			func(value): 
-				$Ripple/ColorRect.material.set_shader_parameter("max_radius", value), 
-				0, 0.5, 3.0,
-		);
-		tween.tween_method(
-			func(value): 
-				$Ripple/ColorRect.material.set_shader_parameter("brightness_diff", value),
-				1.0, 1.1, 3.0,
-		);
-		$Ripple/ColorRect.material.set_shader_parameter("displacement_amount", 0.1)
-	
-	# begin to ease up AND FADE IN THE NEXT SCENE
+	# load the landscape BASED ON THE TIME OF DAY
 	if step == 4:
-		tween.tween_property($particles, "amount_ratio", 0.0, 5.0)
+		var land = landscape.instantiate()
+		add_sibling(land)
 		
-		tween.tween_method(
-			func(value): 
-				$Ripple/ColorRect.material.set_shader_parameter("max_radius", value), 
-				0, 0.5, 3.0,
-		);
-		tween.tween_method(
-			func(value): 
-				$Ripple/ColorRect.material.set_shader_parameter("brightness_diff", value),
-				1.0, 1.1, 3.0,
-		);
-		$Ripple/ColorRect.material.set_shader_parameter("displacement_amount", 0.1)
+		
+		var image = land.get_node("image")
+		image.modulate = Color.TRANSPARENT
+		var tween = get_tree().create_tween()
+		tween.tween_property(image, "modulate", Color.WHITE, trans_time)
+		
+		
+		# set the TIME
+		if (Globals.time == "morning"):
+			land.get_node("EVENING").visible = true
+			
+	
+		if (Globals.time == "noon"):
+			pass
+		
+		if (Globals.time == "night"):
+			land.get_node("NIGHT").visible = true
+		
+			var tween2 = get_tree().create_tween()
+			tween2.tween_method(
+			func(value): land.get_node("NIGHT/ColorRect").material.set_shader_parameter("mix_amount", value),  
+				0.0,  # Start value
+				1.0,  # End value
+				trans_time # Duration
+			);
+		
+		
 		
 	if step == 5:
-		pass
+		queue_free()
 	
