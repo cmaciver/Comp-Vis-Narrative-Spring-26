@@ -220,7 +220,7 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 var rng = RandomNumberGenerator.new()
 func _on_dialogue_label_spoke(letter: String, _letter_index: int, _speed: float) -> void:
 	if not letter in [".", " "]:
-		if rng.randf_range(0.0, 1.0) > 0.65:
+		if rng.randf_range(0.0, 1.0) > 0.45:
 			return
 		
 		#play sound
