@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cvwwu3k81d4t4" path="res://interactive narrative/assets/dinos/dinner_dinos.png" id="1_jb400"]
 [ext_resource type="Script" uid="uid://exso1fhxwj50" path="res://interactive narrative/gameplay/characters/character.gd" id="2_7j2t2"]
 
-[node name="TriDead" type="Sprite2D"]
+[node name="DinnerDinos" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_jb400")
 script = ExtResource("2_7j2t2")
