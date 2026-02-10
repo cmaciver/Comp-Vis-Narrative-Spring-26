@@ -5,4 +5,6 @@
 [node name="Cave" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 610.00006)
+scale = Vector2(1.3361111, 1.3361111)
 texture = ExtResource("1_ecjs2")
