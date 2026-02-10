@@ -250,7 +250,7 @@ func play_sound_effect(key: String) -> void:
 # Add character will add the given character to the scene if it doesn't exist, 
 # and if it does exist, it will move the pre-existing character to the given position. 
 # This assumes that we only ever want one instance of each character on the screen at a time.
-func add_character(path, pos=Vector2(960, 540)):
+func add_character(path, pos=Vector2(960, 540), rot=0.0):
 	var new_scene_resource = load(path) # maybe find a less laggy way to do this?
 	var new_scene_instance = new_scene_resource.instantiate()
 	var character_id = new_scene_instance.name
@@ -260,10 +260,12 @@ func add_character(path, pos=Vector2(960, 540)):
 	# If the character already exists, just move it to the new position and return
 	if existing_character:
 		existing_character.position = pos
+		existing_character.rotation_degrees = rot
 		return
 	$Characters.add_child(new_scene_instance)
 
 	new_scene_instance.position = pos
+	new_scene_instance.rotation_degrees = rot
 
 # Given a character ID, finds the character node in the characters node with that ID and returns it. 
 # If no such character exists, returns null.
