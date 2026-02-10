@@ -217,8 +217,12 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 #endregion
 
-func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
+var rng = RandomNumberGenerator.new()
+func _on_dialogue_label_spoke(letter: String, _letter_index: int, _speed: float) -> void:
 	if not letter in [".", " "]:
+		if rng.randf_range(0.0, 1.0) > 0.65:
+			return
+		
 		#play sound
-		audio_stream_player.pitch_scale = randf_range(0.4, 0.5)
+		audio_stream_player.pitch_scale = randf_range(0.99, 1.01)
 		audio_stream_player.play()
