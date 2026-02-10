@@ -195,8 +195,8 @@ do play_sound_effect("quiet_dino_snarl")
 
 
 ~ shelter_2
-do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(480,540))
-do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(1440,540))
+do add_character("res://interactive narrative/gameplay/characters/tyran_neutral.tscn", Vector2(1440,540))
+do add_character("res://interactive narrative/gameplay/characters/tri_neutral.tscn", Vector2(480,540))
 Situated in the rear of the cave,[wait=0.2] the Nanotyrannus peers out at the Triceratops standing just outside. Backlit by what remains of [if Globals.time=="morning"]the dimming morning light[/if][if Globals.time=="noon"]the rapidly fading midday sun[/if][if Globals.time=="night"]the faltering moonlight[/if],[wait=0.2] the Triceratops is far more visible than the Tyrannosaur inside the cave.
 With its hearing impaired as rain begins to trickle,[wait=0.2] then pour from the sky,[wait=0.2] the Triceratops is unaware of the Nanotyrannus' presence,[wait=0.2] though this won't last forever.
 Undoubtedly,[wait=0.2] the Triceratops is seeking shelter from the storm,[wait=0.2] just as the Nanotyrannus is.
