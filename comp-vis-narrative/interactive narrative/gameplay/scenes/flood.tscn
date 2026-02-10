@@ -1,8 +1,114 @@
-[gd_scene load_steps=2 format=3 uid="uid://1b4uwcgd83ch"]
+[gd_scene load_steps=14 format=3 uid="uid://1b4uwcgd83ch"]
 
 [ext_resource type="Texture2D" uid="uid://dtvoarbktowky" path="res://interactive narrative/assets/backgrounds/flooded.jpg" id="1_nya3e"]
+[ext_resource type="Texture2D" uid="uid://bwl2atrc322tf" path="res://interactive narrative/shaders/textures/raindrop1.png" id="2_5ngf7"]
+[ext_resource type="Shader" uid="uid://pssp6nej2aw6" path="res://interactive narrative/gameplay/scenes/kuwahara.gdshader" id="3_x4hxh"]
+
+[sub_resource type="Curve" id="Curve_x4hxh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_fr4a2"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.7970778), 0.0, 3.643941, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_gpm83"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_edkmt"]
+curve_x = SubResource("Curve_x4hxh")
+curve_y = SubResource("Curve_fr4a2")
+curve_z = SubResource("Curve_gpm83")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xlag2"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1200, 1, 1)
+direction = Vector3(0.1, 1, 0)
+spread = 7.5
+initial_velocity_min = 1800.0
+initial_velocity_max = 2200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.95
+scale_curve = SubResource("CurveXYZTexture_edkmt")
+color = Color(0.9333369, 1, 1, 0.177)
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="Curve" id="Curve_juier"]
+_data = [Vector2(0, 1), 0.0, -0.83506936, 0, 0, Vector2(1, 0), 0.068646275, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kg3lc"]
+curve = SubResource("Curve_juier")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3yygf"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1920, 1080, 1)
+direction = Vector3(0, -1, 0)
+spread = 35.0
+initial_velocity_min = 23.67
+initial_velocity_max = 59.25
+gravity = Vector3(0, 98, 0)
+scale_min = 0.19999999
+scale_max = 0.19999999
+color = Color(1, 1, 1, 0.2901961)
+alpha_curve = SubResource("CurveTexture_kg3lc")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7bvg7"]
+polygon = PackedVector2Array(-4, 7, 289, 22, 664, 26, 1993.0215, 7, 1934.3484, 195, 444, 205, 32, 184)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fr4a2"]
+shader = ExtResource("3_x4hxh")
+shader_parameter/_KernelSize = 15
+shader_parameter/_Hardness = 8.0
+shader_parameter/_Sharpness = 1.0
+shader_parameter/_ZeroCrossing = 0.58
+shader_parameter/_Zeta = 1.0
 
 [node name="Cave" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8243923, 1, 0.9443291, 1)
+position = Vector2(960, 536)
+scale = Vector2(0.49947917, 0.50185186)
 texture = ExtResource("1_nya3e")
+
+[node name="Rain" type="GPUParticles2D" parent="."]
+position = Vector2(871, -88)
+amount = 8000
+texture = ExtResource("2_5ngf7")
+lifetime = 1.5
+preprocess = 2.0
+collision_base_size = 6.6
+visibility_rect = Rect2(-100, 400, 200, 200)
+process_material = SubResource("ParticleProcessMaterial_xlag2")
+
+[node name="Splashes" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(-1, -5)
+amount = 32000
+texture = ExtResource("2_5ngf7")
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_3yygf")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-32, 1146)
+scale = Vector2(1.0737466, 1)
+occluder = SubResource("OccluderPolygon2D_7bvg7")
+
+[node name="KUWAHARA" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="KUWAHARA"]
+material = SubResource("ShaderMaterial_fr4a2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
