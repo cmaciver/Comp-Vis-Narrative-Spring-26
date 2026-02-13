@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6a0ibe1xisjr"
+path="res://.godot/imported/footstep_5.wav-abbf33709606fa605d5d44bb31247ad4.sample"
+
+[deps]
+
+source_file="res://dungeon crawler/src/cave/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_5.wav"
+dest_files=["res://.godot/imported/footstep_5.wav-abbf33709606fa605d5d44bb31247ad4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

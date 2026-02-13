@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://b80llamgqo7fa"]
+
+[ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/cave/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
+[ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="3_hpd3r"]
+
+[sub_resource type="Environment" id="Environment_hpd3r"]
+ambient_light_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ponmn"]
+albedo_texture = ExtResource("3_hpd3r")
+uv1_triplanar = true
+
+[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_cekia"]
+
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_wj8lp"]
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_gx86y"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.51505303, 0.8571583, 0, -0.8571583, 0.51505303, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hpd3r")
+
+[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("2_cekia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82282287, 0)
+voxel_terrain = NodePath("../VoxelTerrain")
+
+[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_ponmn")
+stream = SubResource("VoxelStreamMemory_cekia")
+generator = SubResource("VoxelGeneratorFlat_wj8lp")
+mesher = SubResource("VoxelMesherTransvoxel_gx86y")
