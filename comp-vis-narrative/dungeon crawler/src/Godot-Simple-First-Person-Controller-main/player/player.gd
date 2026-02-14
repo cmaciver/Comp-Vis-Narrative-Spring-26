@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor():
 		if landing_velocity != 0:
-			landing_animation(landing_velocity)
+			landing_animation()
 			landing_velocity = 0
 
 		speed = run_speed
@@ -116,10 +116,10 @@ func _physics_process(delta: float) -> void:
 		voxel_tool.mode = VoxelTool.MODE_REMOVE
 		voxel_tool.do_sphere(marker.global_position, 2.0)
 		
-		voxel_terrain.save_modified_blocks()
+		#voxel_terrain.save_modified_blocks()
 		
 
-func landing_animation(landing_velocity):
+func landing_animation():
 	if landing_velocity >= 2:
 		play_random_footstep_sound()
 
