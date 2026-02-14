@@ -13,6 +13,9 @@ var landing_velocity
 var distance = 0
 var footstep_distance = 2.1
 
+var fossilsCollected = 0
+var fossilsReturned = 0
+
 @export var voxel_terrain : VoxelTerrain
 @onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
@@ -30,6 +33,17 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	# The code for raycasting to detect if an object is in front of the player is interactable
+	%InteractText.hide()
+	if %SeeCast.is_colliding():
+		var target = %SeeCast.get_collider()
+		if target != null and target.has_method("interact") and target.isInteractable:
+			%InteractText.text = target.interactableText
+			%InteractText.show()
+			if Input.is_key_pressed(KEY_E):
+				target.interact()
+	
 	if not is_on_floor():
 		velocity += get_gravity() * 2 * delta
 		landing_velocity = -velocity.y

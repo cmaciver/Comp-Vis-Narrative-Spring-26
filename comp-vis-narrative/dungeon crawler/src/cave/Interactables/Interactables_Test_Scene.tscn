@@ -1,0 +1,58 @@
+[gd_scene load_steps=12 format=3 uid="uid://de1ondxu0fe7l"]
+
+[ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/cave/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="1_ktndf"]
+[ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="2_eo7jn"]
+[ext_resource type="Script" uid="uid://bhws1gjnq3avn" path="res://dungeon crawler/src/cave/Interactables/InteractableFossil.gd" id="3_sq8tp"]
+
+[sub_resource type="Environment" id="Environment_hpd3r"]
+ambient_light_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ponmn"]
+albedo_texture = ExtResource("2_eo7jn")
+uv1_triplanar = true
+
+[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_cekia"]
+
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_wj8lp"]
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_gx86y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kmmrb"]
+margin = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktndf"]
+albedo_color = Color(0.24313726, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ktndf"]
+material = SubResource("StandardMaterial3D_ktndf")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.51505303, 0.8571583, 0, -0.8571583, 0.51505303, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hpd3r")
+
+[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("1_ktndf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6097498, 0)
+voxel_terrain = NodePath("../VoxelTerrain")
+
+[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_ponmn")
+stream = SubResource("VoxelStreamMemory_cekia")
+generator = SubResource("VoxelGeneratorFlat_wj8lp")
+mesher = SubResource("VoxelMesherTransvoxel_gx86y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7339978, 0.53065073, 0)
+script = ExtResource("3_sq8tp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02066493, 0)
+shape = SubResource("BoxShape3D_kmmrb")
+debug_color = Color(0.22754437, 0.55765605, 0.51093525, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_ktndf")
