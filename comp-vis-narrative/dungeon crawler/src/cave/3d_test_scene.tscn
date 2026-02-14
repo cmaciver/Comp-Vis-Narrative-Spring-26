@@ -1,36 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=7 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
-[ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="3_hpd3r"]
+[ext_resource type="PackedScene" uid="uid://bthmok281t0cp" path="res://dungeon crawler/src/cave/cave.tscn" id="3_qc5mi"]
+[ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
 
-[sub_resource type="Environment" id="Environment_hpd3r"]
-ambient_light_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qc5mi"]
+sky_horizon_color = Color(0.78111196, 0.7975087, 0.8217213, 1)
+ground_bottom_color = Color(0.2909786, 0.28756535, 0.28841603, 1)
+ground_horizon_color = Color(0.78111196, 0.7975087, 0.8217213, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ponmn"]
-albedo_texture = ExtResource("3_hpd3r")
-uv1_triplanar = true
+[sub_resource type="Sky" id="Sky_xbpmh"]
+sky_material = SubResource("ProceduralSkyMaterial_qc5mi")
 
-[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_cekia"]
-
-[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_wj8lp"]
-
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_gx86y"]
+[sub_resource type="Environment" id="Environment_h4ba3"]
+background_mode = 2
+sky = SubResource("Sky_xbpmh")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h4ba3")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.51505303, 0.8571583, 0, -0.8571583, 0.51505303, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.5519806, 0.8338569, 0, -0.8338569, -0.5519806, 0, 1.8421054, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hpd3r")
+[node name="Player" parent="." instance=ExtResource("2_cekia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4795957, 0.82282287, 0)
 
-[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("2_cekia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82282287, 0)
-voxel_terrain = NodePath("../VoxelTerrain")
+[node name="Cube" parent="." instance=ExtResource("4_xbpmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3010793, 0, 0)
 
-[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
-material_override = SubResource("StandardMaterial3D_ponmn")
-stream = SubResource("VoxelStreamMemory_cekia")
-generator = SubResource("VoxelGeneratorFlat_wj8lp")
-mesher = SubResource("VoxelMesherTransvoxel_gx86y")
+[node name="CaveMesh" parent="." instance=ExtResource("3_qc5mi")]

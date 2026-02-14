@@ -16,8 +16,8 @@ var footstep_distance = 2.1
 var fossilsCollected = 0
 var fossilsReturned = 0
 
-@export var voxel_terrain : VoxelTerrain
-@onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
+#@export var voxel_terrain : VoxelTerrain
+#@onready var voxel_tool : VoxelTool = voxel_terrain.get_voxel_tool()
 
 @onready var marker = $HeadPosition/LandingAnimation/Camera3D/DigMarker
 
@@ -113,8 +113,9 @@ func _physics_process(delta: float) -> void:
 
 	# digging code
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		voxel_tool.mode = VoxelTool.MODE_REMOVE
-		voxel_tool.do_sphere(marker.global_position, 2.0)
+		pass
+		#voxel_tool.mode = VoxelTool.MODE_REMOVE
+		#voxel_tool.do_sphere(marker.global_position, 2.0)
 		
 		#voxel_terrain.save_modified_blocks()
 		
