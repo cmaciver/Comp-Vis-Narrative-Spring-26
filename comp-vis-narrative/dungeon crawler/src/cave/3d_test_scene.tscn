@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b80llamgqo7fa"]
 
-[ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/cave/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
+[ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="3_hpd3r"]
 
 [sub_resource type="Environment" id="Environment_hpd3r"]

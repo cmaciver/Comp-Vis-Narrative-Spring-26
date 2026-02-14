@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://de1ondxu0fe7l"]
 
-[ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/cave/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="1_ktndf"]
+[ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="1_ktndf"]
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="2_eo7jn"]
-[ext_resource type="Script" uid="uid://bhws1gjnq3avn" path="res://dungeon crawler/src/cave/Interactables/InteractableFossil.gd" id="3_sq8tp"]
+[ext_resource type="Script" uid="uid://bhws1gjnq3avn" path="res://dungeon crawler/src/Interactables/InteractableFossil.gd" id="3_sq8tp"]
 
 [sub_resource type="Environment" id="Environment_hpd3r"]
 ambient_light_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
