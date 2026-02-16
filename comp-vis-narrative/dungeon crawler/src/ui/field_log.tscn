@@ -1,0 +1,212 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfsb7gumwb3u8"]
+
+[ext_resource type="Script" uid="uid://cm0bidrgpieuw" path="res://dungeon crawler/src/ui/field_log.gd" id="1_rpqmb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aodrc"]
+bg_color = Color(0.7291641, 0.53624403, 0.26989728, 1)
+
+[node name="FieldLog" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rpqmb")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 0
+offset_left = 710.0
+offset_top = 390.0
+offset_right = 1210.0
+offset_bottom = 690.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_aodrc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+theme_override_font_sizes/font_size = 24
+text = "Specimen Field Log"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="LineEntry" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry"]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry/VBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+text = "Date:"
+
+[node name="Date" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "DD - MM - YEAR"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/LineEntry/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[node name="LineEntry2" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry2"]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry2/VBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+text = "Collector(s):"
+
+[node name="Initials" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/LineEntry2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+max_length = 3
+caret_blink = true
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/LineEntry2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[node name="LineEntry3" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry3"]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry3/VBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+text = "Locality/ Field #:"
+
+[node name="Location" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry3/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hells Creek Formation"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/LineEntry3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[node name="LineEntry4" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry4"]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry4/VBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry4/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+text = "Description:"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/LineEntry4/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[node name="LineEntry5" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry5"]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry5/VBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_constants/separation = 125
+alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/LineEntry5/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "FOSSIL NAME HERE"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/LineEntry5/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[node name="LineEntry6" type="Control" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry6"]
+layout_mode = 0
+offset_right = 165.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LineEntry6/VBoxContainer"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_override_constants/separation = 125
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/LineEntry6/VBoxContainer"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+color = Color(0.19434929, 0.19434926, 0.19434926, 1)
