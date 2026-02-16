@@ -21,6 +21,8 @@ var stamina_drain_rate := 25.0 # units per second while sprinting
 var stamina_regen_rate := 15.0 # units per second while not sprinting
 var stamina_reenable_threshold := 0.5 # fraction of max to reenable sprint
 var can_sprint := stamina >= max_stamina * stamina_reenable_threshold # whether the player is currently allowed to sprint (i.e. has enough stamina)
+# How much stamina a jump costs.
+var jump_stamina_cost := 12.0
 
 var fossilsCollected = 0
 var fossilsReturned = 0
@@ -63,9 +65,19 @@ func _physics_process(delta: float) -> void:
 		landing_velocity = -velocity.y
 		distance = 0
 
-	# Jump with Space - only if on floor and no ceiling above
-	if Input.is_key_pressed(KEY_SPACE) and is_on_floor() and not $CeilingDetector.is_colliding():
+	# Jump with Space - only if on floor, no ceiling above, and the player isn't tired (tracked by can_sprint and stamina).
+	if Input.is_key_pressed(KEY_SPACE) and is_on_floor() and not $CeilingDetector.is_colliding() and can_sprint and stamina >= jump_stamina_cost:
 		velocity.y = jump_velocity
+		# Jumping costs stamina now.
+		stamina -= jump_stamina_cost
+
+		# < 0.0 shouldn't be possible due to the check above, but in the
+		# rare case where stamina = 0.0 after the subtraction, 
+		# let's ensure we properly mark the player as being too tired.
+		if stamina <= 0.0:
+			stamina = 0.0
+			can_sprint = false
+		_update_stamina_bar()
 		play_random_footstep_sound()
 
 	if not $CeilingDetector.is_colliding():
@@ -86,16 +98,26 @@ func _physics_process(delta: float) -> void:
 		var wants_slow_walk = Input.is_key_pressed(KEY_CTRL)
 		var wants_sprint = Input.is_key_pressed(KEY_SHIFT)
 
+		# Have to track this rather than
+		# just calling sprint() inside the sprint
+		# functions below since we want stamina to regenerate 
+		# when the player is crouching or slow walking, and sprint() 
+		# is where we handle stamina regeneration when not sprinting.
+		var do_sprint := false
 		# crouch overrides other movement speeds
 		if wants_crouch:
 			speed = crouch_speed
+			do_sprint = false
 		elif wants_slow_walk:
 			speed = walk_speed
+			do_sprint = false
 		elif wants_sprint and can_sprint and stamina > 0.0:
 			speed = sprint_speed
-			sprint(true, delta)
+			do_sprint = true
 		else:
-			sprint(false, delta)
+			do_sprint = false
+
+		sprint(do_sprint, delta)
 	else:
 		sprint(false, delta)
 
