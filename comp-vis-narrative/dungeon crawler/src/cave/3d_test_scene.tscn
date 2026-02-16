@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=8 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
 [ext_resource type="PackedScene" uid="uid://bthmok281t0cp" path="res://dungeon crawler/src/cave/cave.tscn" id="3_qc5mi"]
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
+[ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qc5mi"]
 sky_horizon_color = Color(0.78111196, 0.7975087, 0.8217213, 1)
@@ -29,8 +30,11 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_cekia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4795957, 0.82282287, 0)
+hud_path = NodePath("../Hud")
 
 [node name="Cube" parent="." instance=ExtResource("4_xbpmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3010793, 0, 0)
 
 [node name="CaveMesh" parent="." instance=ExtResource("3_qc5mi")]
+
+[node name="Hud" parent="." instance=ExtResource("5_v0cna")]

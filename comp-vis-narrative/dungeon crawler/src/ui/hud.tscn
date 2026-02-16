@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bal22hw5hh5ss"]
+
+[ext_resource type="Script" uid="uid://btilkgupnaat3" path="res://dungeon crawler/src/ui/hud.gd" id="1_i6cs6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6cs6"]
+bg_color = Color(0.749958, 0.5650139, 0.2277576, 1)
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_i6cs6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StaminaBar" type="ProgressBar" parent="Control"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 27.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_i6cs6")
+value = 100.0
+show_percentage = false
