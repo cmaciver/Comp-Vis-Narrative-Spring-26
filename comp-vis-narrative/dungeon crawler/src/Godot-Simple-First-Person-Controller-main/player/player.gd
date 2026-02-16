@@ -207,8 +207,10 @@ func _update_stamina_bar() -> void:
 
 	# If we have a valid HUD reference and it has the set_stamina method,
 	# call it to safely update the stamina bar display with the current stamina values.
+	# We pass the can_sprint value as well so the HUD can adjust visuals accordingly 
+	# (e.g. flashing and color change when sprinting is disabled).
 	if hud and hud.has_method("set_stamina"):
-		hud.set_stamina(stamina, max_stamina)
+		hud.set_stamina(stamina, max_stamina, can_sprint)
 
 ## Attempts to resolve the HUD node reference if it hasn't been set yet.
 ## This will look for the node at the specified hud_path and assign it to the hud variable.
