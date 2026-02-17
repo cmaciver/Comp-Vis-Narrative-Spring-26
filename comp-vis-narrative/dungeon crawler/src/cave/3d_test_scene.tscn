@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
-[ext_resource type="PackedScene" uid="uid://bthmok281t0cp" path="res://dungeon crawler/src/cave/cave.tscn" id="3_qc5mi"]
+[ext_resource type="PackedScene" uid="uid://bthmok281t0cp" path="res://dungeon crawler/src/cave/map.tscn" id="3_qc5mi"]
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
@@ -30,7 +30,7 @@ transform = Transform3D(1, 0, 0, 0, -0.5519806, 0.8338569, 0, -0.8338569, -0.551
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_cekia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4795957, 0.82282287, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4795957, 1.974828, 0)
 hud_path = NodePath("../Hud")
 audio_manager_path = NodePath("../DungeonCrawlerAudioManager")
 
