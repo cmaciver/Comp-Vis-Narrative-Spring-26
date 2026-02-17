@@ -33,6 +33,14 @@ var fossilsReturned = 0
 @export var hud_path: NodePath
 @onready var hud: CanvasLayer = get_node_or_null(hud_path)
 
+# This should be moved elsewhere, but for now to test the audio manager it is here.
+# Path to the audio manager node in the scene tree, which we will use to call methods on the audio manager to play sounds.
+@export var audio_manager_path: NodePath
+@onready var audio_manager: Node = get_node_or_null(audio_manager_path)
+
+# Tracks whether the test track has already been played, to ensure it only plays once.
+var has_played_test_track = false
+
 @onready var marker = $HeadPosition/LandingAnimation/Camera3D/DigMarker
 
 func _ready() -> void:
@@ -233,6 +241,13 @@ func _update_stamina_bar() -> void:
 	# (e.g. flashing and color change when sprinting is disabled).
 	if hud and hud.has_method("set_stamina"):
 		hud.set_stamina(stamina, max_stamina, can_sprint)
+
+	# TODO: Remove this once we have a better place to put the audio manager.
+	# For testing purposes, let's have the player play a test track when their stamina drops below the max value for the first time.
+	if not has_played_test_track and stamina < max_stamina:
+		has_played_test_track = true
+		if audio_manager and audio_manager.has_method("play_sound_effect"):
+			audio_manager.play_sound_effect("test_sfx")
 
 ## Attempts to resolve the HUD node reference if it hasn't been set yet.
 ## This will look for the node at the specified hud_path and assign it to the hud variable.
