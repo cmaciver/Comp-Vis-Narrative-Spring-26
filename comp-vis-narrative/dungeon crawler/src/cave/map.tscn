@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://bthmok281t0cp"]
+
+[ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="1_3g3xx"]
+[ext_resource type="Script" uid="uid://c2eo8mccn221" path="res://dungeon crawler/src/cave/voxel_terrain_editor_tool.gd" id="2_und1i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbpmh"]
+albedo_texture = ExtResource("1_3g3xx")
+uv1_triplanar = true
+
+[sub_resource type="VoxelStreamRegionFiles" id="VoxelStreamRegionFiles_3g3xx"]
+directory = "res://dungeon crawler/src/cave/data/"
+
+[sub_resource type="VoxelGeneratorFlat" id="VoxelGeneratorFlat_und1i"]
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_p4c85"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tyf61"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k7too"]
+noise = SubResource("FastNoiseLite_tyf61")
+seamless = true
+as_normal_map = true
+bump_strength = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6som"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.5019608)
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_k7too")
+
+[sub_resource type="SphereMesh" id="SphereMesh_k7too"]
+material = SubResource("StandardMaterial3D_p6som")
+
+[sub_resource type="BoxMesh" id="BoxMesh_und1i"]
+material = SubResource("StandardMaterial3D_p6som")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8pfsi"]
+size = Vector2(100, 100)
+
+[node name="MapMesh" type="Node3D"]
+
+[node name="VoxelTerrain" type="VoxelTerrain" parent="."]
+material_override = SubResource("StandardMaterial3D_xbpmh")
+stream = SubResource("VoxelStreamRegionFiles_3g3xx")
+generator = SubResource("VoxelGeneratorFlat_und1i")
+mesher = SubResource("VoxelMesherTransvoxel_p4c85")
+
+[node name="VoxelTerrainEditorTool" type="Node3D" parent="."]
+script = ExtResource("2_und1i")
+tool_mode = 3
+desired_height = 1.0
+
+[node name="CursorSphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -21.923363, 134.21504, 8.503424)
+visible = false
+mesh = SubResource("SphereMesh_k7too")
+
+[node name="CursorCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(15.2, 0, 0, 0, 15.2, 0, 0, 0, 15.2, -72, -6.5, 27)
+visible = false
+mesh = SubResource("BoxMesh_und1i")
+
+[node name="Objects" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9671931, 0)
+
+[node name="Camp" type="Label3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50352263, 0)
+billboard = 1
+text = "Camp"
+font_size = 128
+
+[node name="FossilSpot" type="Label3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.297419, 1.5331573, 0)
+billboard = 1
+modulate = Color(1, 0.21568628, 0.22352941, 1)
+text = "FossilSpot"
+font_size = 128
+
+[node name="plane at 0" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.1, 0)
+visible = false
+mesh = SubResource("PlaneMesh_8pfsi")
