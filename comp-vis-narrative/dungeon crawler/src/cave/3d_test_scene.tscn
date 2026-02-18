@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
-[ext_resource type="PackedScene" uid="uid://bthmok281t0cp" path="res://dungeon crawler/src/cave/map.tscn" id="3_qc5mi"]
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
+[ext_resource type="PackedScene" uid="uid://cewqwmowu52ym" path="res://dungeon crawler/src/cave/new map/terrain_generator.tscn" id="5_1aokg"]
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
 
@@ -37,8 +37,6 @@ audio_manager_path = NodePath("../DungeonCrawlerAudioManager")
 [node name="Cube" parent="." instance=ExtResource("4_xbpmh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3010793, 0, 0)
 
-[node name="CaveMesh" parent="." instance=ExtResource("3_qc5mi")]
-
 [node name="Hud" parent="." instance=ExtResource("5_v0cna")]
 
 [node name="DungeonCrawlerAudioManager" type="Node" parent="."]
@@ -49,3 +47,5 @@ script = ExtResource("5_h4ba3")
 [node name="BgmPlayer2" type="AudioStreamPlayer" parent="DungeonCrawlerAudioManager"]
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="DungeonCrawlerAudioManager"]
+
+[node name="TerrainGenerator" parent="." instance=ExtResource("5_1aokg")]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dss2b472po7tx"]
+
+[ext_resource type="Script" uid="uid://bqod17vfo5scp" path="res://dungeon crawler/src/cave/new map/terrain_patch.gd" id="1_qg8fa"]
+
+[node name="TerrainPatch" type="StaticBody3D"]
+script = ExtResource("1_qg8fa")

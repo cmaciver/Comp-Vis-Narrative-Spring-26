@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8gdd7xl4i6g2"
-path.s3tc="res://.godot/imported/dinos.jpg-e5f76b7838ea26bc3797deddf053163f.s3tc.ctex"
+uid="uid://fc6t4rfue54i"
+path.s3tc="res://.godot/imported/map v2.png-0851214b263ee2e7b142b44d57157d8d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://interactive narrative/shaders/textures/background/dinos.jpg"
-dest_files=["res://.godot/imported/dinos.jpg-e5f76b7838ea26bc3797deddf053163f.s3tc.ctex"]
+source_file="res://dungeon crawler/src/cave/new map/map v2.png"
+dest_files=["res://.godot/imported/map v2.png-0851214b263ee2e7b142b44d57157d8d.s3tc.ctex"]
 
 [params]
 
