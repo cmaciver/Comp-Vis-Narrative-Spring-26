@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="LandingAnimation" type="Node3D" parent="HeadPosition"]
 unique_name_in_owner = true
 
-[node name="Camera3D" type="Camera3D" parent="HeadPosition/LandingAnimation"]
+[node name="Camera3D" type="Camera3D" parent="HeadPosition/LandingAnimation" groups=["player_camera"]]
 unique_name_in_owner = true
 
 [node name="OrientationIndicator" type="MeshInstance3D" parent="HeadPosition/LandingAnimation/Camera3D"]

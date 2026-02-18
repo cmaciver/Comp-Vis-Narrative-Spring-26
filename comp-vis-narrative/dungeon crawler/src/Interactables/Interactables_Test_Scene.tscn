@@ -35,9 +35,8 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hpd3r")
 
-[node name="Player" parent="." node_paths=PackedStringArray("voxel_terrain") instance=ExtResource("1_ktndf")]
+[node name="Player" parent="." instance=ExtResource("1_ktndf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6097498, 0)
-voxel_terrain = NodePath("../VoxelTerrain")
 
 [node name="VoxelTerrain" type="VoxelTerrain" parent="."]
 material_override = SubResource("StandardMaterial3D_ponmn")
@@ -46,7 +45,7 @@ generator = SubResource("VoxelGeneratorFlat_wj8lp")
 mesher = SubResource("VoxelMesherTransvoxel_gx86y")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7339978, 0.53065073, 0)
+transform = Transform3D(1, 0, 0, 0, 2.9311316, 0, 0, 0, 3.2547793, 5.035048, 1.5526174, 0)
 script = ExtResource("3_sq8tp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -56,3 +55,10 @@ debug_color = Color(0.22754437, 0.55765605, 0.51093525, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
 mesh = SubResource("BoxMesh_ktndf")
+
+[node name="Camera3D" type="Camera3D" parent="StaticBody3D"]
+transform = Transform3D(-1.3429909e-08, 0, -1, 0, 0.34116516, 0, 0.3072405, 0, -4.126212e-09, -2.6051903, 0, 0)
+
+[node name="TargetCameraPoint" type="Node3D" parent="StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -2.605, 0, 0)
