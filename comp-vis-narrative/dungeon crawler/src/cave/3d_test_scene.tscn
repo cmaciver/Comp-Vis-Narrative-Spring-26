@@ -1,32 +1,82 @@
-[gd_scene load_steps=9 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=17 format=3 uid="uid://b80llamgqo7fa"]
 
+[ext_resource type="Shader" uid="uid://jk172qdhw4kq" path="res://dungeon crawler/src/shaders/sky.gdshader" id="1_1aokg"]
+[ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
+[ext_resource type="Script" uid="uid://tj7h7m7xc11w" path="res://dungeon crawler/src/cloud_scroll.gd" id="3_lj58m"]
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
 [ext_resource type="PackedScene" uid="uid://cewqwmowu52ym" path="res://dungeon crawler/src/cave/new map/terrain_generator.tscn" id="5_1aokg"]
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qc5mi"]
-sky_horizon_color = Color(0.78111196, 0.7975087, 0.8217213, 1)
-ground_bottom_color = Color(0.2909786, 0.28756535, 0.28841603, 1)
-ground_horizon_color = Color(0.78111196, 0.7975087, 0.8217213, 1)
+[sub_resource type="Gradient" id="Gradient_1aokg"]
+offsets = PackedFloat32Array(0.0043290043, 0.16017316, 0.83549786, 1)
+colors = PackedColorArray(0.20211649, 0.14270374, 0.1998787, 1, 0.3271455, 0.24115977, 0.28641954, 1, 0.83436775, 0.8313216, 0.6521811, 1, 0.99939936, 0.99999934, 0.84553736, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3jrgr"]
+gradient = SubResource("Gradient_1aokg")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lj58m"]
+noise_type = 0
+seed = 12
+frequency = 0.0069
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tsilk"]
+noise = SubResource("FastNoiseLite_lj58m")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tjbcq"]
+in_3d_space = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3jrgr"]
+shader = ExtResource("1_1aokg")
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_tsilk")
+shader_parameter/clouds_samples = 16
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.40000000596048
+shader_parameter/clouds_scale = 0.5
+shader_parameter/clouds_smoothness = 0.035
+shader_parameter/clouds_light_color = Color(0.78431374, 0.8156863, 0.78039217, 1)
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_tjbcq")
+shader_parameter/high_clouds_density = 0.20000000298024
+shader_parameter/top_color = Color(0.39215687, 0.7411765, 0.8980392, 1)
+shader_parameter/bottom_color = Color(0.1882353, 0.6156863, 0.5764706, 1)
+shader_parameter/sun_scatter = Color(0.9372549, 0.93333334, 0.8235294, 1)
+shader_parameter/astro_tint = Color(1, 1, 0.8980392, 1)
+shader_parameter/astro_sampler = ExtResource("2_3jrgr")
+shader_parameter/astro_scale = 8.70000012964044
+shader_parameter/astro_intensity = 1.40000000596048
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_xbpmh"]
-sky_material = SubResource("ProceduralSkyMaterial_qc5mi")
+sky_material = SubResource("ShaderMaterial_3jrgr")
 
 [sub_resource type="Environment" id="Environment_h4ba3"]
 background_mode = 2
 sky = SubResource("Sky_xbpmh")
-tonemap_mode = 2
+tonemap_mode = 1
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_emission = Color(0.3647059, 0, 0, 1)
+volumetric_fog_detail_spread = 3.48
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_3jrgr")
 
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h4ba3")
+script = ExtResource("3_lj58m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.5519806, 0.8338569, 0, -0.8338569, -0.5519806, 0, 1.8421054, 0)
+light_color = Color(1, 0.9411765, 0.9254902, 1)
+light_energy = 0.7
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_cekia")]
