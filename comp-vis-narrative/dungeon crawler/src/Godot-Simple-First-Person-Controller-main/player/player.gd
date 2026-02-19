@@ -8,6 +8,28 @@ var speed = run_speed
 var walk_speed = 3
 var crouch_speed = 1.8
 
+# Acceleration values (horizontal only). 
+# Corresponds to the formula 
+# 
+# v = v + accel * delta, 
+# 
+# where v is velocity, accel is acceleration, and delta is time since last frame.
+
+# How much the player accelerates when trying to reach max speed on the ground. 
+var accel_ground := 24.0
+
+# How much the player decelerates when trying to stop from max speed on the ground (i.e. when there is no input).
+var decel_ground := 30.0
+
+# How much the player accelerates when trying to reach max speed in the air. 
+# Ideally, this should be less than accel_ground to make the player feel less responsive in the air.
+var accel_air := 12.0
+
+# How much the player decelerates when trying to stop from max speed in the air.
+# Should be much lower than decel_ground so that it doesn't feel like you're jumping
+# through water or something when you're in the air with no input.
+var decel_air := 1.5
+
 var jump_velocity = 7
 var landing_velocity
 
@@ -102,8 +124,8 @@ func _physics_process(delta: float) -> void:
 		# Crouch with C key.
 		# Slow walk with Ctrl key.
 		# Sprint with Shift key (only if can_sprint and has stamina).
-		var wants_crouch = Input.is_key_pressed(KEY_C)
-		var wants_slow_walk = Input.is_key_pressed(KEY_CTRL)
+		var wants_crouch = Input.is_key_pressed(KEY_CTRL)
+		var wants_slow_walk = Input.is_key_pressed(KEY_C)
 		var wants_sprint = Input.is_key_pressed(KEY_SHIFT)
 
 		# Have to track this rather than
@@ -129,7 +151,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		sprint(false, delta)
 
-	if Input.is_key_pressed(KEY_C):
+	if Input.is_key_pressed(KEY_CTRL):
 		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.38, 0.1)
 
 	$MeshInstance3D.mesh.height = $CollisionShape3D.shape.height
@@ -150,13 +172,73 @@ func _physics_process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_D):
 		input_dir.x += 1
 
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+	# Horizontal acceleration model: We want to accelerate towards the desired velocity based on player input, 
+	# and decelerate when there is no input. 
+	# We also have different acceleration and deceleration values for when the player is on the ground vs in the air, 
+	# so air movement is less responsive to make it feel less like the player has some sort of jetpack.
+
+	# We first want to figure out the desired movement direction based on player input and camera orientation.
+	# transform.basis gives us the local coordinate system of the player, 
+	# so we can multiply the input direction (which is in the player's local space) by the basis to get the desired movement direction in world space.
+	var desired_dir := transform.basis * Vector3(input_dir.x, 0, input_dir.y)
+	if desired_dir.length() > 0:
+		desired_dir = desired_dir.normalized()
+
+	# Then we want to calculate the desired velocity based on the desired direction and current speed,
+	# where v_h is the horizontal velocity (i.e. the player's current velocity ignoring vertical velocity from jumping/falling).
+	var v_h := Vector3(velocity.x, 0, velocity.z)
+
+	# desired_vel is the velocity we want to be moving at based on player input.
+	var desired_vel: Vector3 = desired_dir * speed
+
+	# Here we determine the appropriate acceleration and deceleration values to use based on whether the player is on the ground or in the air.
+	var accel := 0.0
+	var decel := 0.0
+	if is_on_floor():
+		accel = accel_ground
+		decel = decel_ground
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		accel = accel_air
+		decel = decel_air
+
+	if desired_dir.length() > 0:
+		# If the player is providing input, we want to accelerate towards the desired velocity.
+		# We first figure out the difference between the desired velocity and current velocity (delta_v),
+		var delta_v := desired_vel - v_h
+		
+		# and then we want to make sure we don't accelerate faster than our acceleration value allows, 
+		# so we have a maximum change in velocity (max_step) that we can apply this frame based on our acceleration and delta time,
+		var max_step := accel * delta
+		if delta_v.length() > max_step:
+			# and if the change in velocity is greater than this max step, we clamp it down to the max step in the same direction.
+			delta_v = delta_v.normalized() * max_step
+
+		# Then we just add this change in velocity to our current velocity to get our new velocity 
+		# (we'll normalize the velocity later if we're going over max speed).
+		v_h += delta_v
+	else:
+		# If the player is not providing input, 
+		# we want to decelerate (i.e. accelerate in the opposite direction of our current velocity).
+		var decel_step := decel * delta
+		var v_len := v_h.length()
+
+		# If deceleration would reverse our direction 
+		# (i.e. the deceleration step is greater than our current velocity), 
+		# we just want to stop completely (set velocity to zero) rather than start moving in the opposite direction.
+		if v_len <= decel_step:
+			v_h = Vector3.ZERO
+		else:
+			v_h = v_h.normalized() * (v_len - decel_step)
+
+	# Finally, we want to make sure we don't exceed our max speed in the horizontal direction,
+	# so we clamp the horizontal velocity to the max speed if it's going over.
+	var max_speed: float = speed
+	var v_h_len := v_h.length()
+	if v_h_len > max_speed:
+		v_h = v_h.normalized() * max_speed
+
+	velocity.x = v_h.x
+	velocity.z = v_h.z
 
 	distance += get_real_velocity().length() * delta
 
