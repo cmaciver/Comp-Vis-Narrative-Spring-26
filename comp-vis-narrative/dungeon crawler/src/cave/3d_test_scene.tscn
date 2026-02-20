@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
 [ext_resource type="Script" uid="uid://tj7h7m7xc11w" path="res://dungeon crawler/src/cloud_scroll.gd" id="3_lj58m"]
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
-[ext_resource type="PackedScene" uid="uid://cewqwmowu52ym" path="res://dungeon crawler/src/cave/new map/terrain_generator.tscn" id="5_1aokg"]
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
+[ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.tscn" id="9_tjbcq"]
 
 [sub_resource type="Gradient" id="Gradient_1aokg"]
 offsets = PackedFloat32Array(0.0043290043, 0.16017316, 0.83549786, 1)
@@ -19,12 +19,15 @@ gradient = SubResource("Gradient_1aokg")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lj58m"]
 noise_type = 0
 seed = 12
-frequency = 0.0069
+frequency = 0.0061
+offset = Vector3(0, 63.83, 0)
+fractal_octaves = 4
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tsilk"]
 noise = SubResource("FastNoiseLite_lj58m")
 seamless = true
 in_3d_space = true
+normalize = false
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tjbcq"]
 in_3d_space = true
@@ -58,6 +61,7 @@ sky_material = SubResource("ShaderMaterial_3jrgr")
 [sub_resource type="Environment" id="Environment_h4ba3"]
 background_mode = 2
 sky = SubResource("Sky_xbpmh")
+ambient_light_sky_contribution = 0.5
 tonemap_mode = 1
 glow_enabled = true
 volumetric_fog_enabled = true
@@ -74,9 +78,8 @@ environment = SubResource("Environment_h4ba3")
 script = ExtResource("3_lj58m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.5519806, 0.8338569, 0, -0.8338569, -0.5519806, 0, 1.8421054, 0)
+transform = Transform3D(0.99996054, 0.00490358, -0.0074076587, 0.00888361, -0.5519589, 0.8338241, 0, -0.833857, -0.5519807, 0, 1.8421054, 0)
 light_color = Color(1, 0.9411765, 0.9254902, 1)
-light_energy = 0.7
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_cekia")]
@@ -85,7 +88,7 @@ hud_path = NodePath("../Hud")
 audio_manager_path = NodePath("../DungeonCrawlerAudioManager")
 
 [node name="Cube" parent="." instance=ExtResource("4_xbpmh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3010793, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6980124, 0.96978045, 0)
 
 [node name="Hud" parent="." instance=ExtResource("5_v0cna")]
 
@@ -98,4 +101,5 @@ script = ExtResource("5_h4ba3")
 
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="DungeonCrawlerAudioManager"]
 
-[node name="TerrainGenerator" parent="." instance=ExtResource("5_1aokg")]
+[node name="dc_terrain" parent="." instance=ExtResource("9_tjbcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -50)

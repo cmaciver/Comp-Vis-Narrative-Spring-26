@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=4 uid="uid://dx6f1pss0ivrs"]
+
+[ext_resource type="Texture2D" uid="uid://c7ggpngmboejh" path="res://dungeon crawler/src/assets/models/terrain/rocks_Rocks_lp_SM_Rock_01_BaseMap.png" id="1_i5jn7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_145x4"]
+resource_name = "SM_Rock_01"
+cull_mode = 2
+albedo_texture = ExtResource("1_i5jn7")
+metallic = 1.0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pnrxe"]
+_surfaces = [{
+"aabb": AABB(-29.99034, -22.276882, -35.795605, 55.37529, 48.88753, 38.896435),
+"format": 34896613377,
+"index_count": 42,
+"index_data": PackedByteArray("AAABAAYABAAAAAYABgAFAAQAAwAEAAUABgACAAUAAwAFAAcABwAFAAIAAQADAAcACAACAAYAAQAIAAYABwACAAgAAQAJAAgACQAHAAgAAQAHAAkA"),
+"lods": [28.635128, PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAwAFAAIAAgAFAAQAAwAEAAUA")],
+"name": "SM_Rock_01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("bP8yAAT/AAD/////Vv8AAFGsZS8AAAAAAABi9f//AADaHgAA5/0AAB49by2TBQAAzdueJkIwAADSHKTF5WkAAPfW9lheEwAA9+Hcz0hVAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ch2hq"]
+resource_name = "rocks_SM_Nature_Rock_04_002"
+_surfaces = [{
+"aabb": AABB(-29.99034, -22.276882, -35.795605, 55.37529, 48.88753, 38.896435),
+"attribute_data": PackedByteArray("RuoQVkbqe3nvy7Bc/+YfuG7t0dn70NHZ+9AD//vQydva7enoE+1b+q2ke0GtpE4ZJ8kJM5PIlSHE0qNbh89OYirXzXJ+tc8egrh0PT7FATqi2GrCbuij4Q=="),
+"format": 34896613399,
+"index_count": 42,
+"index_data": PackedByteArray("AAABAA4AAQAPAA4ADwACAA4AAQAQAA8ACgARABIACgALABEAEgARABMAEQAMABMAEQANAAwAAwAFABQAAwAEAAUABgAHABUAFQAJAAYAFQAIAAkA"),
+"lods": [28.635128, PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACAAJAAYACgALAAwACwANAAwA")],
+"material": SubResource("StandardMaterial3D_145x4"),
+"name": "SM_Rock_01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 22,
+"vertex_data": PackedByteArray("bP8yAAT/yun/////Vv9Z6lGsZS8AAJ7uAABi9f//xNfaHgAA5/3T0B49by2TBZLm2h4AAOf9se5s/zIABP/yz1GsZS8AAKDxHj1vLZMFEPr/////Vv/f0wAAYvX//9H2UaxlLwAArPUePW8tkwUS583bniZCMGfp99b2WF4T5Pr34dzPSFWc7tIcpMXlaSr99+Hcz0hVxtz31vZYXhOm6NIcpMXlafHezdueJkIwhNUbFD2/VMJAlq0NspUJkkjSwka93mdU2t2CSRZiX1o3Nw1LtkC8O51dy7icKI7fwzZmN4jGwTREqrMQeLfT3NGEKslvl3PaRzhJu+Yz1bUUQkyO89rBWY81")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pnrxe")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i5jn7"]
+points = PackedVector3Array(24.729177, 26.410542, 2.5456088, 25.251095, -22.206694, 2.9125185, 16.047255, -6.414565, -32.719116, -23.392632, -22.716385, 3.318699, -29.929464, 24.347935, 2.9669058, -16.817064, -13.46067, -34.814873, 18.495989, 17.720486, -21.860914, 16.995565, -14.868014, -28.623259, 14.392127, 26.502316, 3.318699, -23.76883, 15.95203, -18.520342, 15.273149, -22.716385, 3.318699, 17.620607, 16.281294, -23.23107, 8.578469, -12.320009, -35.30246, 24.616705, 25.46548, -0.057004407, 17.918076, -14.937523, -26.987438, 20.349148, 19.536371, -16.875887, -16.60977, -14.075779, -32.86931, 15.222495, -3.6390853, -31.988272, 7.814832, -13.265299, -35.434853, -22.510412, 14.863494, -20.09491, -28.42356, 23.147976, -0.544144, -24.85067, 24.461998, 2.3355472, -23.087183, 9.397239, -19.367079, 2.5497727, 16.493511, -21.71752, 16.530478, 1.1143283, -29.96784, 11.046677, -13.931741, -32.72526, -5.6249275, -13.01356, -35.12862, 16.894897, -11.438665, -30.229244, -25.580963, 16.04754, -11.887455, 14.031505, 17.438786, -21.761997, -22.50799, 13.242467, -20.902931, 24.74036, -21.751812, 0.8633788)
+
+[node name="Rock1" type="StaticBody3D"]
+
+[node name="SM_Rock_01" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
+mesh = SubResource("ArrayMesh_ch2hq")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_i5jn7")
