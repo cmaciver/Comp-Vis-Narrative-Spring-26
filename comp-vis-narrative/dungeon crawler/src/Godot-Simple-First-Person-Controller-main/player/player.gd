@@ -2,11 +2,28 @@ extends CharacterBody3D
 
 @export var footstep_sound: Array[AudioStream]
 
+# Base movement speeds in units per second.
 var run_speed = 5.5
+
+# Sprint speed is the maximum speed the player can reach when sprinting.
 var sprint_speed = 8.0
-var speed = run_speed
+
+# Current target movement speed, 
+# which will be set to either walk_speed, run_speed, or sprint_speed based on player input and stamina.
+var target_speed = 0.0
+
+# Walk speed is a slower movement speed for when the player is holding the slow walk key, allowing them to move more carefully.
 var walk_speed = 3
+
+# Crouch speed is the slowest movement speed for when the player is holding the crouch key.
 var crouch_speed = 1.8
+
+# Controls the maximum height multiplier for a run jump. 
+# A run jump is when the player is sprinting and jumps, allowing them to jump higher than a normal jump.
+# Note that if they jump immediately after starting to sprint, they might not get the full multiplier 
+# since the multiplier scales based on current speed, starting at 1.0x jump_velocity at any speed below run_speed
+# and scaling linearly up to sprint_jump_height_multiplier_max at sprint_speed or above.
+var sprint_jump_height_multiplier_max = 1.3
 
 # Acceleration values (horizontal only). 
 # Corresponds to the formula 
@@ -97,7 +114,26 @@ func _physics_process(delta: float) -> void:
 
 	# Jump with Space - only if on floor, no ceiling above, and the player isn't tired (tracked by can_sprint and stamina).
 	if Input.is_key_pressed(KEY_SPACE) and is_on_floor() and not $CeilingDetector.is_colliding() and can_sprint and stamina >= jump_stamina_cost:
-		velocity.y = jump_velocity
+		# velocity.y = jump_velocity
+
+		# var speed := velocity.length()
+		var horizontal_velocity := Vector3(velocity.x, 0, velocity.z)
+		var speed := horizontal_velocity.length()
+
+		# A run jump makes the player jump up to 1.5x higher than a normal jump, 
+		# so if the player is sprinting when they jump, we apply a multiplier which
+		# scales linearly from 1.0x jump_velocity at run_speed to 1.5x jump_velocity at sprint_speed.
+		if speed > run_speed:
+			# Formula: If we denote the sprint jump multiplier as m, the current speed as s, the run speed as r, the sprint speed as sp,
+			# and the max sprint jump multiplier as m_max, we can calculate m with the following formula:
+			# m = 1.0 + ((m_max - 1.0) * ((s - r) / (sp - r)))
+			# This will give us a multiplier of 1.0 when s = r, and a multiplier of m_max when s = sp, scaling linearly in between 
+			# (Just differentiate this with respect to s to see that the rate of change of the multiplier with respect to speed is constant).
+			var sprint_multiplier : float = 1.0 + ((sprint_jump_height_multiplier_max - 1.0) * ((speed - run_speed) / (sprint_speed - run_speed)))
+			velocity.y = jump_velocity * sprint_multiplier
+		else:
+			velocity.y = jump_velocity
+
 		# Jumping costs stamina now.
 		stamina -= jump_stamina_cost
 
@@ -120,7 +156,7 @@ func _physics_process(delta: float) -> void:
 			landing_animation()
 			landing_velocity = 0
 
-		speed = run_speed
+		target_speed = run_speed
 		# Crouch with C key.
 		# Slow walk with Ctrl key.
 		# Sprint with Shift key (only if can_sprint and has stamina).
@@ -136,13 +172,13 @@ func _physics_process(delta: float) -> void:
 		var do_sprint := false
 		# crouch overrides other movement speeds
 		if wants_crouch:
-			speed = crouch_speed
+			target_speed = crouch_speed
 			do_sprint = false
 		elif wants_slow_walk:
-			speed = walk_speed
+			target_speed = walk_speed
 			do_sprint = false
 		elif wants_sprint and can_sprint and stamina > 0.0:
-			speed = sprint_speed
+			target_speed = sprint_speed
 			do_sprint = true
 		else:
 			do_sprint = false
@@ -184,12 +220,12 @@ func _physics_process(delta: float) -> void:
 	if desired_dir.length() > 0:
 		desired_dir = desired_dir.normalized()
 
-	# Then we want to calculate the desired velocity based on the desired direction and current speed,
+	# Then we want to calculate the desired velocity based on the desired direction and current target_speed,
 	# where v_h is the horizontal velocity (i.e. the player's current velocity ignoring vertical velocity from jumping/falling).
 	var v_h := Vector3(velocity.x, 0, velocity.z)
 
 	# desired_vel is the velocity we want to be moving at based on player input.
-	var desired_vel: Vector3 = desired_dir * speed
+	var desired_vel: Vector3 = desired_dir * target_speed
 
 	# Here we determine the appropriate acceleration and deceleration values to use based on whether the player is on the ground or in the air.
 	var accel := 0.0
@@ -214,7 +250,7 @@ func _physics_process(delta: float) -> void:
 			delta_v = delta_v.normalized() * max_step
 
 		# Then we just add this change in velocity to our current velocity to get our new velocity 
-		# (we'll normalize the velocity later if we're going over max speed).
+		# (we'll normalize the velocity later if we're going over max target_speed).
 		v_h += delta_v
 	else:
 		# If the player is not providing input, 
@@ -230,9 +266,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			v_h = v_h.normalized() * (v_len - decel_step)
 
-	# Finally, we want to make sure we don't exceed our max speed in the horizontal direction,
-	# so we clamp the horizontal velocity to the max speed if it's going over.
-	var max_speed: float = speed
+	# Finally, we want to make sure we don't exceed our max target_speed in the horizontal direction,
+	# so we clamp the horizontal velocity to the max target_speed if it's going over.
+	var max_speed: float = target_speed
 	var v_h_len := v_h.length()
 	if v_h_len > max_speed:
 		v_h = v_h.normalized() * max_speed
@@ -244,7 +280,7 @@ func _physics_process(delta: float) -> void:
 
 	if distance >= footstep_distance:
 		distance = 0
-		if speed > walk_speed:
+		if target_speed > walk_speed:
 			play_random_footstep_sound()
 
 	move_and_slide()
