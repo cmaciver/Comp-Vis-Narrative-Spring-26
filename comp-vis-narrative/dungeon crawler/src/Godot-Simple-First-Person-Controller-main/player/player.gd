@@ -77,6 +77,13 @@ var fossilsReturned = 0
 @export var audio_manager_path: NodePath
 @onready var audio_manager: Node = get_node_or_null(audio_manager_path)
 
+# Inventory reference. The node is added under the player scene.
+@onready var inventory: Inventory = $Inventory # Onready avoids null before scene instantiation finishes.
+
+# Weight-to-stamina tuning. These multipliers scale drain/regen based on carried weight.
+var weight_stamina_drain_mult_per_unit := 0.02 # Higher values make heavy loads punish sprinting more aggressively.
+var weight_stamina_regen_mult_per_unit := 0.01 # Regen penalty keeps load meaningful even when resting.
+
 # Tracks whether the test track has already been played, to ensure it only plays once.
 var has_played_test_track = false
 
@@ -175,6 +182,9 @@ func _physics_process(delta: float) -> void:
 			target_speed = crouch_speed
 			do_sprint = false
 		elif wants_slow_walk:
+			# For now as a test, this also adds an item to the inventory.
+			inventory.add_item(load("res://dungeon crawler/src/Items/test_item.tres"), 1)
+			print("Added test item to inventory. Current total weight: " + str(inventory.get_total_weight()))
 			target_speed = walk_speed
 			do_sprint = false
 		elif wants_sprint and can_sprint and stamina > 0.0:
@@ -317,24 +327,45 @@ func play_random_footstep_sound() -> void:
 ## [br]
 ## **param** delta The time in seconds since the last frame, used to calculate stamina changes
 func sprint(active: bool, delta: float) -> void:
-	# If sprinting is active and allowed, drain stamina. 
-	if active and can_sprint:
-		# Drain stamina based on the defined rate and time elapsed.
-		# By using a constant here it's much easier to adjust the stamina system.
-		stamina -= stamina_drain_rate * delta
+	var carry_weight := 0.0
+	if inventory:
+		carry_weight = inventory.get_total_weight() # Query inventory each frame to keep stamina effects in sync with pickups/drops.
 
-		# If the player fully depletes their stamina, 
-		# we disable sprinting until they regenerate enough to reenable it.
+	# As the player picks up more weight, sprinting drains stamina faster and regeneration is slower.
+	# The current formula is a simple linear multiplier based on total carry weight.
+	# Denote the drain multiplier as m_d, the regen multiplier as m_r, the total carry weight as w, and the respective per-unit multipliers as k_d and k_r. 
+	# We have:
+	# 
+	# m_d = 1.0 + (w * k_d)
+	# m_r = 1.0 + (w * k_r)
+	# 
+	# As weight increases, the drain multiplier m_d increases linearly. 
+	# In turn, the amount of time the player can sprint continuously decreases.
+	# If they could sprint for s seconds at zero weight, then at weight w, we can solve for the new sprint time s' by setting up the equation:
+	# 
+	# stamina_drain_rate * m_d * s' = stamina_drain_rate * s
+	#
+	# Solving for s' gives us:
+	# s' = s / m_d = s / (1.0 + (w * k_d))
+	#
+	# So as w increases, the effective sprint time s' decreases inversely with the multiplier.
+
+	var drain_mult := 1.0 + carry_weight * weight_stamina_drain_mult_per_unit
+
+	# Doing this with regeneration amplifies the effect of weight on sprinting.
+	var regen_mult := 1.0 + carry_weight * weight_stamina_regen_mult_per_unit
+
+	# If sprinting is active and allowed, drain stamina (scaled by carried weight).
+	if active and can_sprint:
+		stamina -= stamina_drain_rate * drain_mult * delta
+
+		# If the player fully depletes their stamina, disable sprint until threshold is met.
 		if stamina <= 0.0:
 			stamina = 0.0
 			can_sprint = false
 	else:
-		# If the player is either not trying to sprint or is not allowed to sprint, we regenerate stamina.
-		stamina += stamina_regen_rate * delta
-		# Rather than let players immediately be able to sprint again after regenerating any epsilon > 0
-		# amount of stamina, we require them to regenerate to a certain threshold (e.g. 50% of max) before re-enabling sprinting.
-		# This prevents a rubber-bandy looking experience where players could theoretically sprint for a few frames,
-		# stop for a few frames to regenerate a tiny bit of stamina, then sprint again, repeatedly.
+		# If not sprinting or not allowed, regenerate stamina (penalized by carried weight).
+		stamina += (stamina_regen_rate / regen_mult) * delta
 		if not can_sprint and stamina >= max_stamina * stamina_reenable_threshold:
 			can_sprint = true
 

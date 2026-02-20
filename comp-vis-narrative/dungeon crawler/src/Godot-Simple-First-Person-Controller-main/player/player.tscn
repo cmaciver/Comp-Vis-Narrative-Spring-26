@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://jyncanbkjjnq"]
+[gd_scene load_steps=16 format=3 uid="uid://jyncanbkjjnq"]
 
 [ext_resource type="Script" uid="uid://dhq2urnsidbeb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.gd" id="1_oul6g"]
 [ext_resource type="AudioStream" uid="uid://eqlentp01xuq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_1.wav" id="2_2ieo8"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://b8j5dvefv2fmt" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_8.wav" id="9_e7oew"]
 [ext_resource type="AudioStream" uid="uid://48xt4llun7t8" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_9.wav" id="10_c35mf"]
 [ext_resource type="AudioStream" uid="uid://dly32slohyd7p" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_10.wav" id="11_65viv"]
+[ext_resource type="Script" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/inventory.gd" id="12_inventory"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 radius = 0.4
@@ -102,6 +103,9 @@ grow_vertical = 2
 [node name="FootstepSound" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
 max_polyphony = 10
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("12_inventory")
 
 [node name="VoxelViewer" type="VoxelViewer" parent="."]
 
