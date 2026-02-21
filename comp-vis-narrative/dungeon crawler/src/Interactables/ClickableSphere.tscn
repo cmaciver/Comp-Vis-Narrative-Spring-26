@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dclse061juh3e"]
+
+[ext_resource type="Script" uid="uid://cp6cao8ibv4df" path="res://dungeon crawler/src/Interactables/ClickableSphere.gd" id="1_0u4xo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f7wre"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0bhx"]
+albedo_color = Color(0.99557656, 0.3213734, 0.33283117, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_o523q"]
+
+[node name="ClickableSphere" type="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_0u4xo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f7wre")
+debug_color = Color(0.99215686, 0.09411765, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_n0bhx")
+transparency = 0.4
+mesh = SubResource("SphereMesh_o523q")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

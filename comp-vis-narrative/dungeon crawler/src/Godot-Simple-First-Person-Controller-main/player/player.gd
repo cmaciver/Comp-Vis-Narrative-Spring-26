@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		if target != null and target.has_method("interact") and target.isInteractable:
 			%InteractText.text = target.interactableText
 			%InteractText.show()
-			if Input.is_key_pressed(KEY_E):
+			if Input.is_action_just_pressed("interact"):
 				target.interact()
 	
 	if not is_on_floor():
