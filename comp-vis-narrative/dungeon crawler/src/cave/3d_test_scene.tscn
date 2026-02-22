@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.tscn" id="9_tjbcq"]
 
 [sub_resource type="Gradient" id="Gradient_1aokg"]
-offsets = PackedFloat32Array(0.0043290043, 0.16017316, 0.83549786, 1)
-colors = PackedColorArray(0.20211649, 0.14270374, 0.1998787, 1, 0.3271455, 0.24115977, 0.28641954, 1, 0.83436775, 0.8313216, 0.6521811, 1, 0.99939936, 0.99999934, 0.84553736, 1)
+offsets = PackedFloat32Array(0.0034013605, 0.2585034, 0.8503401, 1)
+colors = PackedColorArray(0.11246731, 0.07348486, 0.11100813, 1, 0.3271455, 0.24115977, 0.28641954, 1, 0.9055363, 0.79645973, 0.69420975, 1, 0.99999803, 0.9994487, 0.7879528, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3jrgr"]
 gradient = SubResource("Gradient_1aokg")
@@ -66,7 +66,8 @@ tonemap_mode = 1
 glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
-volumetric_fog_emission = Color(0.3647059, 0, 0, 1)
+volumetric_fog_emission = Color(1.504086e-09, 0.07898482, 0.090760164, 1)
+volumetric_fog_emission_energy = 0.0
 volumetric_fog_detail_spread = 3.48
 adjustment_enabled = true
 adjustment_color_correction = SubResource("GradientTexture1D_3jrgr")
@@ -79,7 +80,7 @@ script = ExtResource("3_lj58m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.99996054, 0.00490358, -0.0074076587, 0.00888361, -0.5519589, 0.8338241, 0, -0.833857, -0.5519807, 0, 1.8421054, 0)
-light_color = Color(1, 0.9411765, 0.9254902, 1)
+light_color = Color(0.87674063, 0.89736664, 0.9260121, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_cekia")]

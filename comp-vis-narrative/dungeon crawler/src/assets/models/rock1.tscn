@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://dx6f1pss0ivrs"]
 
-[ext_resource type="Texture2D" uid="uid://c7ggpngmboejh" path="res://dungeon crawler/src/assets/models/terrain/rocks_Rocks_lp_SM_Rock_01_BaseMap.png" id="1_i5jn7"]
+[ext_resource type="Texture2D" uid="uid://bgrjsjorlysef" path="res://dungeon crawler/src/assets/models/rock.png" id="1_i5jn7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_145x4"]
 resource_name = "SM_Rock_01"

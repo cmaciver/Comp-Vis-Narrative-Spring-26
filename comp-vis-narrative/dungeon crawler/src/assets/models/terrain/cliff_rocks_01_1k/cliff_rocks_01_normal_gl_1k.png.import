@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2wlqblfqo8bm"
-path.s3tc="res://.godot/imported/dc_terrain_ground_with_rocks_01_roughness_1k.png-f97202cd14ff896bda9ce84c09a20e27.s3tc.ctex"
+uid="uid://dsmhlp6iiky6x"
+path.s3tc="res://.godot/imported/cliff_rocks_01_normal_gl_1k.png-089ef6a60df36457f041f20f1be61918.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "98552902199448b5a1cd5c729e217a9b"
-}
 
 [deps]
 
-source_file="res://dungeon crawler/src/assets/models/terrain/dc_terrain_ground_with_rocks_01_roughness_1k.png"
-dest_files=["res://.godot/imported/dc_terrain_ground_with_rocks_01_roughness_1k.png-f97202cd14ff896bda9ce84c09a20e27.s3tc.ctex"]
+source_file="res://dungeon crawler/src/assets/models/terrain/cliff_rocks_01_1k/cliff_rocks_01_normal_gl_1k.png"
+dest_files=["res://.godot/imported/cliff_rocks_01_normal_gl_1k.png-089ef6a60df36457f041f20f1be61918.s3tc.ctex"]
 
 [params]
 

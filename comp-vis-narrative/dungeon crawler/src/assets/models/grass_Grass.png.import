@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2wlqblfqo8bm"
-path.s3tc="res://.godot/imported/dc_terrain_ground_with_rocks_01_roughness_1k.png-f97202cd14ff896bda9ce84c09a20e27.s3tc.ctex"
+uid="uid://ddjiytv77nj4g"
+path.s3tc="res://.godot/imported/grass_Grass.png-3ba6412b944ad29e71ee9a66302955b6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "98552902199448b5a1cd5c729e217a9b"
+"md5": "f28cb2c6c4d65010bd68a79c74c9b83f"
 }
 
 [deps]
 
-source_file="res://dungeon crawler/src/assets/models/terrain/dc_terrain_ground_with_rocks_01_roughness_1k.png"
-dest_files=["res://.godot/imported/dc_terrain_ground_with_rocks_01_roughness_1k.png-f97202cd14ff896bda9ce84c09a20e27.s3tc.ctex"]
+source_file="res://dungeon crawler/src/assets/models/grass_Grass.png"
+dest_files=["res://.godot/imported/grass_Grass.png-3ba6412b944ad29e71ee9a66302955b6.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
