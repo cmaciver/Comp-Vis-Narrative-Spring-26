@@ -12,7 +12,7 @@ signal inventory_changed
 ## **param** count How many units to try to add.
 ## [br]
 ## **returns** Remaining units that did not fit (0 means all stored).
-func add_item(item: Item, count: int = 1) -> int:
+func add_item_to_inventory(item: Item, count: int = 1) -> int:
 	if item == null or count <= 0:
 		return count # Guard against bad inputs; no state change if nothing meaningful to add.
 
@@ -56,7 +56,7 @@ func add_item(item: Item, count: int = 1) -> int:
 ## **param** count Desired number to remove.
 ## [br]
 ## **returns** Actual number removed.
-func remove_item(item_id: String, count: int = 1) -> int:
+func remove_item_from_inventory(item_id: String, count: int = 1) -> int:
 	if count <= 0:
 		# Nothing to remove.
 		return 0
