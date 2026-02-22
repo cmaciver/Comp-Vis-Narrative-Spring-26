@@ -48,12 +48,14 @@ mesher = SubResource("VoxelMesherTransvoxel_gx86y")
 transform = Transform3D(1, 0, 0, 0, 2.9311316, 0, 0, 0, 3.2547793, 5.035048, 1.5526174, 0)
 script = ExtResource("3_sq8tp")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="RockCollision" type="CollisionShape3D" parent="StaticBody3D"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02066493, 0)
 shape = SubResource("BoxShape3D_kmmrb")
 debug_color = Color(0.22754437, 0.55765605, 0.51093525, 0.41960785)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/RockCollision"]
+unique_name_in_owner = true
 mesh = SubResource("BoxMesh_ktndf")
 
 [node name="Camera3D" type="Camera3D" parent="StaticBody3D"]

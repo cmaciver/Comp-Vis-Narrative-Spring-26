@@ -5,6 +5,8 @@ var isInteractable = true
 var interactableText = "Press \"e\" to Mine Fossil"
 
 @onready var clickable_sphere_scene = preload("res://dungeon crawler/src/Interactables/ClickableSphere.tscn")
+@onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
+@onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
 
 @onready var rockCamera = $Camera3D
 var playerCamera: Camera3D
@@ -13,6 +15,7 @@ var dotsClicked: int
 
 #the radius that the dots can spawn in front of the camera during interaction
 @export var dotSpawnRadius: int = 300
+@export var miningHitsRequired = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,9 +29,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func interact():
-	print("You interacted with the fossil!")
 	enterRockCamera()
-	#raycastAndSpawnClickableSpheres()
 
 func enterRockCamera():
 	rockCamera.global_transform = playerCamera.global_transform
@@ -66,6 +67,39 @@ func deactivatePlayer():
 		for child in player.get_children():
 			if child is CollisionShape3D:
 				child.disabled = true
+
+func reactivatePlayer():
+	#move the camera back to the player
+	var tween = create_tween()
+	tween.tween_property(rockCamera, "global_transform", playerCamera.global_transform, 0.8)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_callback(reactivatePlayerFunctionality)
+
+func reactivatePlayerFunctionality():
+	#reenable player tree inputs
+	playerCamera.make_current()
+	rockCamera.current = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.set_process_input(true)
+		player.set_physics_process(true)
+		player.show()  # hides the mesh
+		#disable crosshair (THIS BREAKS CLICKING IF NOT HIDDEN)
+		var crosshair = player.get_node("Crosshair")
+		if crosshair:
+			crosshair.show()
+			
+		#disable the interact text (so that the player doesn't see "interact" during the interaction)
+		var canvas = player.get_node("CanvasLayer")
+		if canvas:
+			canvas.show()
+		# disable all collision shapes on the player (proably unnecessary)
+		for child in player.get_children():
+			if child is CollisionShape3D:
+				child.disabled = false
 	
 func raycastAndSpawnClickableSpheres():
 	#create the ray from the camera and see where it collides with the rock
@@ -97,7 +131,6 @@ func createAndCheckForRayCollision(spawnDotsRadius: int):
 	var center = (viewport_size / 2) - Vector2(random_X , random_Y)
 	var direction = rockCamera.project_ray_normal(center)
 	
-	
 	var origin = rockCamera.global_position
 	var end = origin + direction * 10
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
@@ -107,5 +140,25 @@ func createAndCheckForRayCollision(spawnDotsRadius: int):
 #function activated after each dot is clicked
 func dotClicked():
 	dotsClicked += 1
-	print(dotsClicked)
-	raycastAndSpawnClickableSpheres()
+	if(dotsClicked  >= miningHitsRequired):
+		spawnFossilCollectedPopup()
+		#TODO Break the rock at the end of the interaction
+		%MeshInstance3D.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
+		%RockCollision.hide()
+		isInteractable = false
+	else:
+		raycastAndSpawnClickableSpheres()
+
+func spawnFossilCollectedPopup():
+	var popup = fossil_collected_popup.instantiate()
+	get_tree().root.add_child(popup)
+	
+	#connect the popup closed to a function (weird syntax because it brings a parameter)
+	popup.collection_screen_closed.connect(func(weight): harvestPopupClosed(weight))
+
+func harvestPopupClosed(weight: int):
+	##TODO GIVE THE PLAYER THIS WEIGHT
+	print("You harvested " + str(weight) + " lbs")
+	var fieldLog = field_log_popup.instantiate()
+	get_tree().root.add_child(fieldLog)
+	fieldLog.log_screen_closed.connect(reactivatePlayer)

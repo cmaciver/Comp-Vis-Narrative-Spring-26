@@ -6,6 +6,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0bhx"]
 albedo_color = Color(0.99557656, 0.3213734, 0.33283117, 1)
+disable_receive_shadows = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_o523q"]
 
@@ -20,6 +21,7 @@ debug_color = Color(0.99215686, 0.09411765, 0, 1)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_n0bhx")
 transparency = 0.4
+cast_shadow = 0
 mesh = SubResource("SphereMesh_o523q")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
