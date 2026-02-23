@@ -6,11 +6,8 @@ signal collection_screen_closed(weight: float)
 @export var rotationSpeed: Vector3 = Vector3(0,50,0)
 
 #variables for fossil backlighting changes
-var lightCycleSpeed = 1.0
-var colors: Array[Color] = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW]
-var currLightIndex = 0
-var nextLightIndex = 1
-var weight = 0.0
+var lightCycleSpeed = 0.25
+var light_color = 0.0
 
 #variables for the randomly selected fossil weight
 var randomWeight = randi_range(50, 150)
@@ -34,16 +31,10 @@ func _process(delta: float) -> void:
 	%FossilMesh.rotation_degrees += rotationSpeed * delta
 	
 	#Logic handling the backlighting of the fossil changing
-	weight += delta * lightCycleSpeed
-	weight = fmod(weight, 4.0)
-	%FossilLight.light_color = Color.from_ok_hsl(weight / 4.0, 1.0, 0.5, 1.0)
+	light_color += delta * lightCycleSpeed
+	light_color = fmod(light_color, 1.0)
+	%FossilLight.light_color = Color.from_ok_hsl(light_color, 1.0, 0.5, 1.0)
 
-
-	#%FossilLight.light_color = colors[currLightIndex].lerp(colors[nextLightIndex], weight)
-	#if weight >= 1.0:
-		#weight = 0
-		#currLightIndex = nextLightIndex
-		#nextLightIndex = (nextLightIndex + 1) % colors.size()
 
 func moveIntoScreen():
 	var tween = create_tween()
