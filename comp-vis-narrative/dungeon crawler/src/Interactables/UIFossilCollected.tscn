@@ -60,7 +60,6 @@ offset_bottom = -102.99872
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 56
-text = "+100 lbs"
 
 [node name="ContinueText" type="Label" parent="ColorRect"]
 layout_mode = 1

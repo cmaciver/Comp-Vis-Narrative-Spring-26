@@ -35,11 +35,15 @@ func _process(delta: float) -> void:
 	
 	#Logic handling the backlighting of the fossil changing
 	weight += delta * lightCycleSpeed
-	%FossilLight.light_color = colors[currLightIndex].lerp(colors[nextLightIndex], weight)
-	if weight >= 1.0:
-		weight = 0
-		currLightIndex = nextLightIndex
-		nextLightIndex = (nextLightIndex + 1) % colors.size()
+	weight = fmod(weight, 4.0)
+	%FossilLight.light_color = Color.from_ok_hsl(weight / 4.0, 1.0, 0.5, 1.0)
+
+
+	#%FossilLight.light_color = colors[currLightIndex].lerp(colors[nextLightIndex], weight)
+	#if weight >= 1.0:
+		#weight = 0
+		#currLightIndex = nextLightIndex
+		#nextLightIndex = (nextLightIndex + 1) % colors.size()
 
 func moveIntoScreen():
 	var tween = create_tween()
@@ -55,6 +59,9 @@ func animatePrimaryTitle():
 	
 func animateWeightCountup():
 	var tween = create_tween()
+	tween.tween_interval(1.0)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_method(updateWeightLabel, 0, randomWeight, 3.0)
 	
 	#when it is done allow the user to click to continue
