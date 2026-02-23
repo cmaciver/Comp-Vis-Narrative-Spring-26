@@ -144,7 +144,7 @@ func dotClicked():
 	if(dotsClicked  >= miningHitsRequired):
 		spawnFossilCollectedPopup()
 		#TODO Break the rock at the end of the interaction
-		%MeshInstance3D.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
+		%FossilRock.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
 		%RockCollision.hide()
 		isInteractable = false
 	else:

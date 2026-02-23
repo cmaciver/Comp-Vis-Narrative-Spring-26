@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://de1ondxu0fe7l"]
+[gd_scene load_steps=13 format=3 uid="uid://de1ondxu0fe7l"]
 
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="1_ktndf"]
 [ext_resource type="Texture2D" uid="uid://54gwaeilro6q" path="res://icon.svg" id="2_eo7jn"]
 [ext_resource type="Script" uid="uid://bhws1gjnq3avn" path="res://dungeon crawler/src/Interactables/InteractableFossil.gd" id="3_sq8tp"]
+[ext_resource type="PackedScene" uid="uid://c7pnngh410vsd" path="res://dungeon crawler/src/assets/fossil_rock.tscn" id="4_wea4h"]
 
 [sub_resource type="Environment" id="Environment_hpd3r"]
 ambient_light_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
@@ -19,6 +20,7 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kmmrb"]
 margin = 0.0
+size = Vector3(1, 1.0463867, 0.91741943)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktndf"]
 albedo_color = Color(0.24313726, 1, 1, 1)
@@ -50,16 +52,21 @@ script = ExtResource("3_sq8tp")
 
 [node name="RockCollision" type="CollisionShape3D" parent="StaticBody3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02066493, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0.002528429, -0.106292725)
 shape = SubResource("BoxShape3D_kmmrb")
 debug_color = Color(0.22754437, 0.55765605, 0.51093525, 0.41960785)
 
+[node name="FossilRock" parent="StaticBody3D/RockCollision" instance=ExtResource("4_wea4h")]
+unique_name_in_owner = true
+transform = Transform3D(-2, 0, -1.509958e-07, 0, 1, 0, 3.019916e-07, 0, -1, 0.69946957, -0.49047998, 0.033548757)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/RockCollision"]
 unique_name_in_owner = true
+visible = false
 mesh = SubResource("BoxMesh_ktndf")
 
 [node name="Camera3D" type="Camera3D" parent="StaticBody3D"]
-transform = Transform3D(-1.3429909e-08, 0, -1, 0, 0.34116516, 0, 0.3072405, 0, -4.126212e-09, -2.6051903, 0, 0)
+transform = Transform3D(-1.3429909e-08, 0, -1, 0, 0.34116516, 0, 0.3072405, 0, -4.126212e-09, -2.6051903, 0, -0.09189143)
 
 [node name="TargetCameraPoint" type="Node3D" parent="StaticBody3D"]
 unique_name_in_owner = true
