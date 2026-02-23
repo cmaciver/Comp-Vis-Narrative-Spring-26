@@ -1,15 +1,26 @@
-Once, There Were Two Dinosaurs
-
-itch: https://i-cam.itch.io/once-there-were-two-dinosaurs
-(doesn't work on Chrome for some reason, try Firefox if you have issues)
-
 Team Fire 100:
 - Claire Aguiar
 - Cam MacIver
 - Alex Mize
 - Erik Svanes
 
-Built in Godot 4.5.1
+Games Built in Godot 4.5.1
+
+**(Dungeon Crawler) Dungeon Crawler Title HERE**
+
+itch:
+
+Controls
+
+External Assets
+- "Desert Rocks" (https://skfb.ly/6RxxV) by MartynaGrek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- Fossil and tool models provided by the North Carolina Museum of Natural Science
+
+
+**(Interactive Narrative) Once, There Were Two Dinosaurs**
+
+itch: https://i-cam.itch.io/once-there-were-two-dinosaurs
+(doesn't work on Chrome for some reason, try Firefox if you have issues)
 
 Controls
 - Mouse
