@@ -2,6 +2,8 @@ extends Area3D
 
 signal dot_clicked
 
+var rock_particle_scene = preload("res://dungeon crawler/src/Interactables/rock_particles.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -15,4 +17,9 @@ func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, n
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
 			emit_signal("dot_clicked")
+			
+			var particles := rock_particle_scene.instantiate()
+			add_sibling(particles)
+			particles.position = position
+			
 			queue_free()

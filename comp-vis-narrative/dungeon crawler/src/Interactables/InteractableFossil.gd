@@ -137,6 +137,7 @@ func createAndCheckForRayCollision(spawnDotsRadius: int):
 	
 #function activated after each dot is clicked
 func dotClicked():
+	# TODO camera shake?? could be fire...
 	dotsClicked += 1
 	if(dotsClicked  >= miningHitsRequired):
 		spawnFossilCollectedPopup()
@@ -145,6 +146,7 @@ func dotClicked():
 		%RockCollision.hide()
 		isInteractable = false
 	else:
+		
 		raycastAndSpawnClickableSpheres()
 
 func spawnFossilCollectedPopup():
