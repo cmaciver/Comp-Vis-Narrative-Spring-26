@@ -7,6 +7,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var clickable_sphere_scene = preload("res://dungeon crawler/src/Interactables/ClickableSphere.tscn")
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
+@onready var fossil_item_scene = preload("res://dungeon crawler/src/fossil_item.tscn")
 const TEST_FOSSIL_ITEM := preload("res://dungeon crawler/src/Items/test_item.tres") # Base item resource we can duplicate so each harvest has its own weight.
 
 @onready var rockCamera = $Camera3D
@@ -97,7 +98,12 @@ func reactivatePlayerFunctionality():
 			if child is CollisionShape3D:
 				child.disabled = false
 	
-		get_parent().queue_free()
+		#Spawn our fossil item
+		var new_fossil = fossil_item_scene.instantiate()
+		new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
+		get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
+		
+		get_parent().queue_free() #Free the interactable fossil
 	
 func raycastAndSpawnClickableSpheres():
 	#create the ray from the camera and see where it collides with the rock
