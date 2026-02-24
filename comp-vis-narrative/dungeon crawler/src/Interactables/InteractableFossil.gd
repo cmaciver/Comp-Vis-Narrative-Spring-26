@@ -23,11 +23,6 @@ func _ready() -> void:
 	playerCamera = get_tree().get_first_node_in_group("player_camera")
 	fossilCameraTargetPoint = rockCamera.global_transform
 	dotsClicked = 0
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func interact():
 	enterRockCamera()
@@ -101,6 +96,8 @@ func reactivatePlayerFunctionality():
 		for child in player.get_children():
 			if child is CollisionShape3D:
 				child.disabled = false
+	
+		get_parent().queue_free()
 	
 func raycastAndSpawnClickableSpheres():
 	#create the ray from the camera and see where it collides with the rock
