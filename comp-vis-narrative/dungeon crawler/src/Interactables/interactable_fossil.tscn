@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://sluh8dfaudfs"]
+
+[ext_resource type="Script" uid="uid://bhws1gjnq3avn" path="res://dungeon crawler/src/Interactables/InteractableFossil.gd" id="1_ivdir"]
+[ext_resource type="PackedScene" uid="uid://c7pnngh410vsd" path="res://dungeon crawler/src/assets/fossil_rock.tscn" id="2_nbvhb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kmmrb"]
+margin = 0.0
+size = Vector3(1, 1.0463867, 0.91741943)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktndf"]
+albedo_color = Color(0.24313726, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ktndf"]
+material = SubResource("StandardMaterial3D_ktndf")
+
+[node name="InteractableFossil" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.9311316, 0, 0, 0, 3.2547793, 0, 0, 0)
+script = ExtResource("1_ivdir")
+
+[node name="RockCollision" type="CollisionShape3D" parent="StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0.002528429, -0.106292725)
+shape = SubResource("BoxShape3D_kmmrb")
+debug_color = Color(0.22754437, 0.55765605, 0.51093525, 0.41960785)
+
+[node name="FossilRock" parent="StaticBody3D/RockCollision" instance=ExtResource("2_nbvhb")]
+unique_name_in_owner = true
+transform = Transform3D(-2, 0, -1.509958e-07, 0, 1, 0, 3.019916e-07, 0, -1, 0.69946957, -0.49047998, 0.033548757)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/RockCollision"]
+unique_name_in_owner = true
+visible = false
+mesh = SubResource("BoxMesh_ktndf")
+
+[node name="Camera3D" type="Camera3D" parent="StaticBody3D"]
+transform = Transform3D(-1.3429909e-08, 0, -1, 0, 0.34116516, 0, 0.3072405, 0, -4.126212e-09, -2.6051903, 0, -0.09189143)
+
+[node name="TargetCameraPoint" type="Node3D" parent="StaticBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -2.605, 0, 0)

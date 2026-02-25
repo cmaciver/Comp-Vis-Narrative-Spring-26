@@ -19,3 +19,4 @@ mono_crash.*.json
 # since these might contain user-specific configurations 
 # which we don't want to share across different environments.
 .vscode/settings.json
+comp-vis-narrative/addons/zylann.voxel/bin/~libvoxel.windows.editor.x86_64.dll

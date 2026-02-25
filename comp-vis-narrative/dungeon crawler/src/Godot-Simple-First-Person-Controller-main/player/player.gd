@@ -63,6 +63,8 @@ var can_sprint := stamina >= max_stamina * stamina_reenable_threshold # whether 
 # How much stamina a jump costs.
 var jump_stamina_cost := 12.0
 
+@export var is_holding = null #what the player is holding
+
 var fossilsCollected = 0
 var fossilsReturned = 0
 
@@ -104,11 +106,18 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	#logic for dropping a held item
+	if Input.is_action_just_pressed("interact") and is_holding != null:
+		if is_holding.has_method("drop"):
+			is_holding.drop()
+		is_holding = null
+		#drop item
+	
 	# The code for raycasting to detect if an object is in front of the player is interactable
 	%InteractText.hide()
 	if %SeeCast.is_colliding():
 		var target = %SeeCast.get_collider()
-		if target != null and target.has_method("interact") and target.isInteractable:
+		if is_holding == null and target != null and target.has_method("interact") and target.isInteractable:
 			%InteractText.text = target.interactableText
 			%InteractText.show()
 			if Input.is_action_just_pressed("interact"):
@@ -183,13 +192,14 @@ func _physics_process(delta: float) -> void:
 			do_sprint = false
 		elif wants_slow_walk:
 			# For now as a test, this also adds an item to the inventory.
-			inventory.add_item(load("res://dungeon crawler/src/Items/test_item.tres"), 1)
+			inventory.add_item_to_inventory(load("res://dungeon crawler/src/Items/test_item.tres"), 1)
 			print("Added test item to inventory. Current total weight: " + str(inventory.get_total_weight()))
 			target_speed = walk_speed
 			do_sprint = false
 		elif wants_sprint and can_sprint and stamina > 0.0:
 			target_speed = sprint_speed
 			do_sprint = true
+			print("Sprinting. Current stamina: " + str(stamina) + ", Current total weight: " + str(inventory.get_total_weight()))
 		else:
 			do_sprint = false
 
@@ -395,8 +405,9 @@ func _update_stamina_bar() -> void:
 	# For testing purposes, let's have the player play a test track when their stamina drops below the max value for the first time.
 	if not has_played_test_track and stamina < max_stamina:
 		has_played_test_track = true
-		if audio_manager and audio_manager.has_method("play_sound_effect"):
-			audio_manager.play_sound_effect("test_sfx")
+		#if audio_manager and audio_manager.has_method("play_sound_effect"):
+		#	audio_manager.play_sound_effect("test_sfx")
+		
 
 ## Attempts to resolve the HUD node reference if it hasn't been set yet.
 ## This will look for the node at the specified hud_path and assign it to the hud variable.

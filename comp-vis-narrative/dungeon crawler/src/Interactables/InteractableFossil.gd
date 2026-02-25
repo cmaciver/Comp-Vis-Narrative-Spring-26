@@ -7,6 +7,8 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var clickable_sphere_scene = preload("res://dungeon crawler/src/Interactables/ClickableSphere.tscn")
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
+@onready var fossil_item_scene = preload("res://dungeon crawler/src/fossil_item.tscn")
+const TEST_FOSSIL_ITEM := preload("res://dungeon crawler/src/Items/test_item.tres") # Base item resource we can duplicate so each harvest has its own weight.
 
 @onready var rockCamera = $Camera3D
 var playerCamera: Camera3D
@@ -15,18 +17,13 @@ var dotsClicked: int
 
 #the radius that the dots can spawn in front of the camera during interaction
 @export var dotSpawnRadius: int = 300
-@export var miningHitsRequired = 10
+@export var miningHitsRequired = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	playerCamera = get_tree().get_first_node_in_group("player_camera")
 	fossilCameraTargetPoint = rockCamera.global_transform
 	dotsClicked = 0
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func interact():
 	enterRockCamera()
@@ -100,6 +97,8 @@ func reactivatePlayerFunctionality():
 		for child in player.get_children():
 			if child is CollisionShape3D:
 				child.disabled = false
+		
+		get_parent().queue_free() #Free the interactable fossil
 	
 func raycastAndSpawnClickableSpheres():
 	#create the ray from the camera and see where it collides with the rock
@@ -139,14 +138,16 @@ func createAndCheckForRayCollision(spawnDotsRadius: int):
 	
 #function activated after each dot is clicked
 func dotClicked():
+	# TODO camera shake?? could be fire...
 	dotsClicked += 1
 	if(dotsClicked  >= miningHitsRequired):
 		spawnFossilCollectedPopup()
 		#TODO Break the rock at the end of the interaction
-		%MeshInstance3D.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
+		%FossilRock.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
 		%RockCollision.hide()
 		isInteractable = false
 	else:
+		
 		raycastAndSpawnClickableSpheres()
 
 func spawnFossilCollectedPopup():
@@ -157,7 +158,41 @@ func spawnFossilCollectedPopup():
 	popup.collection_screen_closed.connect(func(weight): harvestPopupClosed(weight))
 
 func harvestPopupClosed(weight: int):
-	##TODO GIVE THE PLAYER THIS WEIGHT
+	# QUICK AND EASY: We only have the test item right now, and I didn't feel like
+	# making a whole new item resource just for this, so we'll just duplicate the test item
+	# and then update that instance's weight property to whatever the popup tells us the harvest weight is. 
+	# This way we can feed that weight into the stamina/weight systems without needing to make a whole new item resource for it.
+	# TODO: Change this to use a proper "Fossil" item resource with its own properties and whatever.
+
+	# Duplicate the base item so changing weight here doesn't mutate the shared resource across pickups.
+	# This doesn't actually work but again, this is a quick demo of how the systems will connect.
+	var harvested_item: Item = TEST_FOSSIL_ITEM.duplicate(true)
+	# Stamp the harvested weight onto this instance to feed stamina/weight systems.
+	harvested_item.weight = float(weight)
+
+	# Once we put this item (safely so as to not cause any crashes) into the player's inventory, 
+	# the code there will automatically calculate the new total weight and apply any stamina penalties based on that.
+
+	# Items are added to the inventory by item reference with a function in the inventory script called add_item_to_inventory.
+	# From an object oriented programming perspective, the Player object has an Inventory object as a child,
+	# and the Inventory object has items as children of itself. The Inventory object is responsible for managing the items,
+	# and the Player object can ask the Inventory to add/remove items as needed using the Inventory's public add_item_to_inventory/remove_item_from_inventory functions.
+	# So to add the harvested item to the player's inventory, we need to get a reference to the player, 
+	# then get a reference to their inventory, and then call the add_item_to_inventory function on that inventory with the harvested item as an argument.
+
+	#this code is no longer needed now that we have a separate fossil item
+	#var player = get_tree().get_first_node_in_group("player")
+	#if player:
+		#var inv = player.get_node_or_null("Inventory")
+		#if inv and inv.has_method("add_item_to_inventory"):
+			#inv.add_item_to_inventory(harvested_item, 1)
+			
+	#Spawn our fossil item
+	var new_fossil = fossil_item_scene.instantiate()
+	new_fossil.weight = weight
+	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
+	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
+
 	print("You harvested " + str(weight) + " lbs")
 	var fieldLog = field_log_popup.instantiate()
 	get_tree().root.add_child(fieldLog)

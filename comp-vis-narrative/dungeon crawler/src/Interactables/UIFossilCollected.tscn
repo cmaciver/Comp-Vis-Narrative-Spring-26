@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://rtewig1fr8tg"]
+[gd_scene load_steps=6 format=3 uid="uid://rtewig1fr8tg"]
 
 [ext_resource type="Script" uid="uid://bbaireojr6405" path="res://dungeon crawler/src/Interactables/UIFossilCollected.gd" id="1_tyafr"]
+[ext_resource type="PackedScene" uid="uid://d3va2s1mg2efa" path="res://dungeon crawler/src/assets/small_fossil_rock.tscn" id="2_0o66p"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_l5my0"]
 
@@ -60,7 +61,6 @@ offset_bottom = -102.99872
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 56
-text = "+100 lbs"
 
 [node name="ContinueText" type="Label" parent="ColorRect"]
 layout_mode = 1
@@ -100,10 +100,14 @@ size = Vector2i(600, 600)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="ColorRect/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6832762)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0.863)
 
-[node name="FossilMesh" type="MeshInstance3D" parent="ColorRect/SubViewportContainer/SubViewport"]
+[node name="FossilMesh" parent="ColorRect/SubViewportContainer/SubViewport" instance=ExtResource("2_0o66p")]
 unique_name_in_owner = true
+
+[node name="FossilMeshOLD" type="MeshInstance3D" parent="ColorRect/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+visible = false
 mesh = SubResource("BoxMesh_l5my0")
 skeleton = NodePath("../../..")
 

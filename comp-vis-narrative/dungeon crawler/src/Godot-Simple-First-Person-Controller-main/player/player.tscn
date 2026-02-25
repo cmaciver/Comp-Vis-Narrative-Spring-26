@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://b8j5dvefv2fmt" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_8.wav" id="9_e7oew"]
 [ext_resource type="AudioStream" uid="uid://48xt4llun7t8" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_9.wav" id="10_c35mf"]
 [ext_resource type="AudioStream" uid="uid://dly32slohyd7p" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_10.wav" id="11_65viv"]
-[ext_resource type="Script" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/inventory.gd" id="12_inventory"]
+[ext_resource type="Script" uid="uid://bw1uro2u34bsq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/inventory.gd" id="12_inventory"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 radius = 0.4
@@ -60,6 +60,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1.2722708e-07, -0.99999994, 0, 2.9106166, -4.3711385e-08, 0, -0.0032356977, 0)
 
+[node name="HoldingLocation" type="Marker3D" parent="HeadPosition/LandingAnimation/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52424634, -0.8291837)
+
 [node name="CeilingDetector" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2.1, 0)
 
@@ -106,8 +110,6 @@ max_polyphony = 10
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("12_inventory")
-
-[node name="VoxelViewer" type="VoxelViewer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
