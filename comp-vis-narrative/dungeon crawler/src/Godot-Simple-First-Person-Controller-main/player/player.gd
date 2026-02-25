@@ -109,8 +109,8 @@ func _physics_process(delta: float) -> void:
 	#logic for dropping a held item
 	if Input.is_action_just_pressed("interact") and is_holding != null:
 		if is_holding.has_method("drop"):
-			is_holding.drop()
-		is_holding = null
+			if is_holding.drop():
+				is_holding = null
 		#drop item
 	
 	# The code for raycasting to detect if an object is in front of the player is interactable

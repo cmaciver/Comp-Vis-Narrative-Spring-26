@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Comp Vis Narrative"
-run/main_scene="uid://bls2yqek6o8yy"
+run/main_scene="uid://b80llamgqo7fa"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

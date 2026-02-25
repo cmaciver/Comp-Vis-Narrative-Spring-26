@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://dntf31hmvog6i"]
+[gd_scene load_steps=12 format=3 uid="uid://dntf31hmvog6i"]
 
 [ext_resource type="PackedScene" uid="uid://bp8p50ao7gvjv" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.glb" id="1_j7klb"]
-[ext_resource type="Shader" uid="uid://bjtm6bxk12q10" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.gdshader" id="2_a1brm"]
-[ext_resource type="PackedScene" uid="uid://dx6f1pss0ivrs" path="res://dungeon crawler/src/assets/models/rock1.tscn" id="2_m1nqi"]
+[ext_resource type="Shader" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.gdshader" id="2_a1brm"]
+[ext_resource type="PackedScene" uid="uid://dx6f1pss0ivrs" path="res://dungeon crawler/src/assets/enviro_scenes/rock1.tscn" id="2_m1nqi"]
 [ext_resource type="Texture2D" uid="uid://bt25gl16dwpr8" path="res://dungeon crawler/src/assets/models/terrain/cliff_rocks_01_1k/cliff_rocks_01_color_1k.png" id="3_b8wrx"]
 [ext_resource type="PackedScene" uid="uid://sluh8dfaudfs" path="res://dungeon crawler/src/Interactables/interactable_fossil.tscn" id="3_dggj0"]
 [ext_resource type="Texture2D" uid="uid://cm1oq0bbtljsn" path="res://dungeon crawler/src/assets/models/terrain/ground_06_2k/ground_06_baseColor_2k.png" id="4_urqel"]
 [ext_resource type="Texture2D" uid="uid://dsmhlp6iiky6x" path="res://dungeon crawler/src/assets/models/terrain/cliff_rocks_01_1k/cliff_rocks_01_normal_gl_1k.png" id="5_jjl5s"]
 [ext_resource type="Texture2D" uid="uid://cpyg1a1xj8848" path="res://dungeon crawler/src/assets/models/terrain/ground_06_2k/ground_06_normal_gl_2k.png" id="6_5gvst"]
+[ext_resource type="PackedScene" uid="uid://bvnliq7j7xrng" path="res://dungeon crawler/src/assets/enviro_scenes/tree_1.tscn" id="9_mo8mw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy6nu"]
 render_priority = 0
@@ -32,19 +33,70 @@ surface_material_override/0 = SubResource("ShaderMaterial_iy6nu")
 [node name="StaticBody3D" type="StaticBody3D" parent="chunk_1" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="chunk_1/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01681137, -0.002035141, -0.12645721)
 shape = SubResource("ConcavePolygonShape3D_m1nqi")
 
 [node name="Rock1" parent="." index="1" instance=ExtResource("2_m1nqi")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 45.87335, 0.21630335, 32.73508)
+transform = Transform3D(1.2263677, 0, 4.84727, 0, 4.9999995, 0, -4.84727, 0, 1.2263677, -22.43475, 0.21630335, -12.583527)
 
 [node name="Rock3" parent="." index="2" instance=ExtResource("2_m1nqi")]
-transform = Transform3D(-0.26908705, 4.992754, 0, -4.992754, -0.26908705, 0, 0, 0, 5, 44.162525, 1.6056247, 33.75011)
+transform = Transform3D(-0.06599994, 1.2245905, 4.84727, -4.992754, -0.2690871, 7.815421e-09, 0.26086757, -4.8402452, 1.2263677, -21.870346, 1.6056247, -10.6760025)
 
-[node name="Rock4" parent="." index="3" instance=ExtResource("2_m1nqi")]
-transform = Transform3D(-0.26908705, 4.992754, 0, -4.992754, -0.26908705, 0, 0, 0, 5, 42.741615, 2.9344583, 35.73757)
+[node name="Rock8" parent="." index="3" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(-0.057815943, 1.2270396, 6.8152614, -4.373652, -0.26962525, 1.0988481e-08, 0.22851989, -4.849925, 1.724273, -11.864778, 6.7212615, -4.548129)
 
-[node name="Rock2" parent="." index="4" instance=ExtResource("2_m1nqi")]
-transform = Transform3D(2.8297029, 0.9963846, 0, -0.9963846, 2.8297029, 0, 0, 0, 3, 45.817654, 0.09311724, 34.27016)
+[node name="Rock4" parent="." index="4" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(-0.06599994, 1.2245905, 4.84727, -4.992754, -0.2690871, 7.815421e-09, 0.26086757, -4.8402452, 1.2263677, -20.292107, 2.9344583, -8.811025)
 
-[node name="InteractableFossil" parent="." index="5" instance=ExtResource("3_dggj0")]
+[node name="Rock5" parent="." index="5" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(-4.28205, 0.4034953, 2.5497532, -2.5810513, -0.57903725, -4.242981, -0.047124088, -4.94994, 0.7041818, -18.209572, 3.9641728, -8.321671)
+
+[node name="Rock6" parent="." index="6" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(2.5118604, 1.2504365, 0.32801324, -0.491454, 0.26068574, 2.7696824, 1.1956825, -2.5197377, 0.44932318, -15.554644, 5.4310017, -6.5981603)
+
+[node name="Rock9" parent="." index="7" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(2.5118604, 1.2504365, 0.32801324, -0.491454, 0.26068574, 2.7696824, 1.1956825, -2.5197377, 0.44932318, -9.796436, 8.022678, -4.466693)
+
+[node name="Rock10" parent="." index="8" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(2.5118604, 1.2504365, 0.32801324, -0.491454, 0.26068574, 2.7696824, 1.1956825, -2.5197377, 0.44932318, -13.075786, 9.590324, -4.0230017)
+
+[node name="Rock7" parent="." index="9" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(2.742577, 0.29350877, -0.6105302, 0.5777393, 0.31597725, 2.7471802, 0.35371155, -2.7918875, 0.24673301, -13.7819195, 6.8611526, -5.8815784)
+
+[node name="Rock2" parent="." index="10" instance=ExtResource("2_m1nqi")]
+transform = Transform3D(0.6940512, 0.24438676, 2.9083614, -0.99638456, 2.8297026, 1.1006625e-08, -2.7432666, -0.9659489, 0.73582053, -20.96022, 0.09311724, -12.153019)
+
+[node name="InteractableFossil" parent="." index="11" instance=ExtResource("3_dggj0")]
 transform = Transform3D(-0.009285003, 0, 0.9999569, 0, 1, 0, -0.9999569, 0, -0.009285003, 51.241623, 2.7673593, 22.134207)
+
+[node name="InteractableFossil4" parent="." index="12" instance=ExtResource("3_dggj0")]
+transform = Transform3D(-0.9985073, 0, -0.054619018, 0, 1, 0, 0.054619018, 0, -0.9985073, -37.646008, 2.7673593, 87.568665)
+
+[node name="InteractableFossil5" parent="." index="13" instance=ExtResource("3_dggj0")]
+transform = Transform3D(-0.9985073, 0, -0.054619018, 0, 1, 0, 0.054619018, 0, -0.9985073, 37.34088, 2.7673593, 133.67313)
+
+[node name="InteractableFossil6" parent="." index="14" instance=ExtResource("3_dggj0")]
+transform = Transform3D(0.6773383, 0, -0.73567164, 0, 1, 0, 0.73567164, 0, 0.6773383, 130.5256, 2.7673593, 133.67313)
+
+[node name="InteractableFossil7" parent="." index="15" instance=ExtResource("3_dggj0")]
+transform = Transform3D(0.35148218, 0, -0.93619454, 0, 1, 0, 0.93619454, 0, 0.35148218, 126.62735, 2.7673593, 93.9998)
+
+[node name="InteractableFossil3" parent="." index="16" instance=ExtResource("3_dggj0")]
+transform = Transform3D(-0.89381015, 0, -0.44844562, 0, 1, 0, 0.44844562, 0, -0.89381015, -37.184025, 13.336846, -11.254292)
+
+[node name="InteractableFossil2" parent="." index="17" instance=ExtResource("3_dggj0")]
+transform = Transform3D(-0.3359119, 0, 0.9418934, 0, 1, 0, -0.9418934, 0, -0.3359119, 92.962204, 2.7673593, -35.0293)
+
+[node name="Foliage" type="Node3D" parent="." index="18"]
+
+[node name="tree_1" parent="Foliage" index="0" instance=ExtResource("9_mo8mw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.063084, 13.535214, 33.32642)
+
+[node name="tree_4" parent="Foliage" index="1" instance=ExtResource("9_mo8mw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.369505, 17.447943, 31.411282)
+
+[node name="tree_2" parent="Foliage" index="2" instance=ExtResource("9_mo8mw")]
+transform = Transform3D(0.6128356, 0, -0.5142301, 0, 0.8, 0, 0.5142301, 0, 0.6128356, 31.751253, 13.668473, 32.727306)
+
+[node name="tree_3" parent="Foliage" index="3" instance=ExtResource("9_mo8mw")]
+transform = Transform3D(0.011954883, 0, -0.6848957, 0, 0.685, 0, 0.6848957, 0, 0.011954883, 31.751253, 13.668473, 36.180458)
