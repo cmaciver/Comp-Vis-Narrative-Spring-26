@@ -17,7 +17,7 @@ var dotsClicked: int
 
 #the radius that the dots can spawn in front of the camera during interaction
 @export var dotSpawnRadius: int = 300
-@export var miningHitsRequired = 10
+@export var miningHitsRequired = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -97,11 +97,6 @@ func reactivatePlayerFunctionality():
 		for child in player.get_children():
 			if child is CollisionShape3D:
 				child.disabled = false
-	
-		#Spawn our fossil item
-		var new_fossil = fossil_item_scene.instantiate()
-		new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
-		get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
 		
 		get_parent().queue_free() #Free the interactable fossil
 	
@@ -185,11 +180,18 @@ func harvestPopupClosed(weight: int):
 	# So to add the harvested item to the player's inventory, we need to get a reference to the player, 
 	# then get a reference to their inventory, and then call the add_item_to_inventory function on that inventory with the harvested item as an argument.
 
-	var player = get_tree().get_first_node_in_group("player")
-	if player:
-		var inv = player.get_node_or_null("Inventory")
-		if inv and inv.has_method("add_item_to_inventory"):
-			inv.add_item_to_inventory(harvested_item, 1)
+	#this code is no longer needed now that we have a separate fossil item
+	#var player = get_tree().get_first_node_in_group("player")
+	#if player:
+		#var inv = player.get_node_or_null("Inventory")
+		#if inv and inv.has_method("add_item_to_inventory"):
+			#inv.add_item_to_inventory(harvested_item, 1)
+			
+	#Spawn our fossil item
+	var new_fossil = fossil_item_scene.instantiate()
+	new_fossil.weight = weight
+	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
+	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
 
 	print("You harvested " + str(weight) + " lbs")
 	var fieldLog = field_log_popup.instantiate()
