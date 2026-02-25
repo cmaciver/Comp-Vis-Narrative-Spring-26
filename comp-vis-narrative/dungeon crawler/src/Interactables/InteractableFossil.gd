@@ -192,6 +192,7 @@ func harvestPopupClosed(weight: int):
 	new_fossil.weight = weight
 	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
 	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
+	new_fossil.interact()
 
 	print("You harvested " + str(weight) + " lbs")
 	var fieldLog = field_log_popup.instantiate()
