@@ -7,7 +7,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var clickable_sphere_scene = preload("res://dungeon crawler/src/Interactables/ClickableSphere.tscn")
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
-@onready var fossil_item_scene = preload("res://dungeon crawler/src/fossil_item.tscn")
+@onready var fossil_item_scene = preload("res://dungeon crawler/src/Items/fossil_item.tscn")
 
 @onready var rockCamera = $Camera3D
 var playerCamera: Camera3D
