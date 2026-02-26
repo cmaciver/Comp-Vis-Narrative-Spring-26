@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=19 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="Shader" uid="uid://jk172qdhw4kq" path="res://dungeon crawler/src/shaders/sky.gdshader" id="1_1aokg"]
 [ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
 [ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/enviro_scenes/dc_terrain.tscn" id="9_tjbcq"]
+[ext_resource type="PackedScene" uid="uid://daeshrgahs38q" path="res://dungeon crawler/src/Interactables/HomeBase.tscn" id="9_tsilk"]
+[ext_resource type="Script" uid="uid://bo2panufp3xtm" path="res://dungeon crawler/src/Interactables/HomeBase.gd" id="10_tjbcq"]
 
 [sub_resource type="Gradient" id="Gradient_1aokg"]
 offsets = PackedFloat32Array(0.0034013605, 0.2585034, 0.8503401, 1)
@@ -104,3 +106,7 @@ script = ExtResource("5_h4ba3")
 
 [node name="dc_terrain" parent="." instance=ExtResource("9_tjbcq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -50)
+
+[node name="HomeBase" parent="." instance=ExtResource("9_tsilk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.666213, 1.5734241, 6.5781446)
+script = ExtResource("10_tjbcq")
