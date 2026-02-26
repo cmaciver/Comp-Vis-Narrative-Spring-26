@@ -1,15 +1,10 @@
 extends Area3D
 
 @export var victory_label: Label  # assign in Inspector
-
-func _ready():
-	body_entered.connect(_on_body_entered)
 	
 func _on_body_entered(body):
 	print("intersection :)")
-	if body.is_in_group("fossil"):
-		print("intersection with fossil!")
-		if body.is_holding != null:
+	if body.is_in_group("player") && body.is_holding != null:
 			body.is_holding.queue_free()
 			body.is_holding = null
 			show_victory_message()

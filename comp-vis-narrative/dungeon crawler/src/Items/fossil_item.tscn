@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ck5pxvklf6sbv"]
 
 [ext_resource type="PackedScene" uid="uid://d3va2s1mg2efa" path="res://dungeon crawler/src/assets/small_fossil_rock.tscn" id="1_1uki7"]
-[ext_resource type="Script" uid="uid://b57dk4b820rgi" path="res://dungeon crawler/src/fossil_item.gd" id="1_5lym3"]
+[ext_resource type="Script" uid="uid://b57dk4b820rgi" path="res://dungeon crawler/src/Items/fossil_item.gd" id="1_5lym3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5lym3"]
 height = 0.38131714
