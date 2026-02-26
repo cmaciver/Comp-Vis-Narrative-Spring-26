@@ -14,6 +14,9 @@ Controls
 
 External Assets
 - "Desert Rocks" (https://skfb.ly/6RxxV) by MartynaGrek is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Motorhome RV" (https://skfb.ly/onGXF) by BillyJJackson is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Camping Tent" (https://skfb.ly/oLGBy) by Adeel Qadir is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Stylised Rocks Asset Pack" (https://skfb.ly/pqzWP) by Bl4ckGh0st is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - Fossil and tool models provided by the North Carolina Museum of Natural Science
 
 
