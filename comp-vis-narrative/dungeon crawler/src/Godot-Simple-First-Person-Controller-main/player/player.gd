@@ -325,6 +325,27 @@ func landing_animation():
 	tween.tween_property(%LandingAnimation, "position:y", -amplitude, amplitude)
 	tween.tween_property(%LandingAnimation, "position:y", 0, amplitude)
 
+func remove_held_item() -> bool:
+	if(is_holding == null):
+		print("not holding anything")
+		return false
+	var held_item_name = is_holding.fossil_res.display_name
+	print("removing: ", held_item_name)
+	var held_item_id = null
+	for stack in inventory.slots:
+		if (stack.item.display_name == held_item_name):
+			held_item_id = stack.item.id
+			break
+	if (held_item_id == null):
+		print("couldn't find '", held_item_name, "' in the inventory")
+		return false
+	if (!inventory.has_method("remove_item_from_inventory")):
+		print("inventory doesn't have remove item method")
+	if (!inventory.remove_item_from_inventory(held_item_id, 1)):
+		print("couldn't remove item_id '", held_item_id, "' from inventory")
+		return false
+	print("item {id: ", held_item_id, ", name: ", held_item_name, "} was successfully removed")
+	return true
 
 func play_random_footstep_sound() -> void:
 	if footstep_sound.size() > 0:

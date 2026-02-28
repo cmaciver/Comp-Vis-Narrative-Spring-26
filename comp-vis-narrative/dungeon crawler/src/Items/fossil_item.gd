@@ -123,11 +123,7 @@ func drop() -> bool:
 		collision_mask = (1 << (WORLD_LAYER_BIT - 1)) | (1 << (PLAYER_LAYER_BIT - 1)) # collide with world and player again
 		position -= player.global_transform.basis.z * 1.25
 		
-		var inv = player.get_node_or_null("Inventory")
-		if inv and inv.has_method("remove_item_from_inventory"):
-			inv.remove_item_from_inventory("0", 1)
-		
-		return true
+		return player.remove_held_item()
 	return false
 
 # https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-private-method-integrate-forces

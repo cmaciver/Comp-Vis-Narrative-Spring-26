@@ -5,11 +5,13 @@ extends Area3D
 func _on_body_entered(body):
 	print("intersection :)")
 	if body.is_in_group("player") && body.is_holding != null:
+		if (body.remove_held_item()):
 			body.is_holding.queue_free()
 			body.is_holding = null
 			show_victory_message()
 
 func show_victory_message():
+	print("victory message")
 	if victory_label:
 		victory_label.text = "🦕 Fossil secured! Great find, paleontologist!"
 		victory_label.visible = true
