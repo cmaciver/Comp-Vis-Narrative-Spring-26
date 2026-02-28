@@ -87,6 +87,7 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_cekia")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4795957, 1.974828, 0)
+collision_layer = 4
 hud_path = NodePath("../Hud")
 audio_manager_path = NodePath("../DungeonCrawlerAudioManager")
 

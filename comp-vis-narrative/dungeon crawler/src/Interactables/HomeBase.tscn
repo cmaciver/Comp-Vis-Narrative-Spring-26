@@ -11,6 +11,7 @@ transparency = 1
 albedo_color = Color(1, 0.99607843, 0.5019608, 0.45882353)
 
 [node name="HomeBase" type="Area3D"]
+collision_mask = 5
 script = ExtResource("1_7xwmd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

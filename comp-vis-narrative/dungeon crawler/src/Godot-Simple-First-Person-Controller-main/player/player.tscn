@@ -59,6 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="SeeCast" type="RayCast3D" parent="HeadPosition/LandingAnimation/Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1.2722708e-07, -0.99999994, 0, 2.9106166, -4.3711385e-08, 0, -0.0032356977, 0)
+collision_mask = 3
 
 [node name="HoldingLocation" type="Marker3D" parent="HeadPosition/LandingAnimation/Camera3D"]
 unique_name_in_owner = true
