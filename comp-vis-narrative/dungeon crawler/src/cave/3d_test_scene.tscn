@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
 [ext_resource type="Script" uid="uid://tj7h7m7xc11w" path="res://dungeon crawler/src/cloud_scroll.gd" id="3_lj58m"]
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
-[ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
+[ext_resource type="Script" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
 [ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/enviro_scenes/dc_terrain.tscn" id="9_tjbcq"]
 [ext_resource type="PackedScene" uid="uid://daeshrgahs38q" path="res://dungeon crawler/src/Interactables/HomeBase.tscn" id="9_tsilk"]
@@ -109,7 +109,7 @@ script = ExtResource("5_h4ba3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -50)
 
 [node name="HomeBase" parent="." instance=ExtResource("9_tsilk")]
-transform = Transform3D(0.86725324, 0, 0.4978673, 0, 1, 0, -0.4978673, 0, 0.86725324, -2.6575382, 0.9277309, 4.566255)
+transform = Transform3D(0.85264015, 0, 0.52249855, 0, 1, 0, -0.52249855, 0, 0.85264015, -2.2672608, 1.1305755, 3.8324523)
 
 [node name="TwinkleParticle" parent="." instance=ExtResource("10_tjbcq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.251686, 1.8772414, -63.046936)
