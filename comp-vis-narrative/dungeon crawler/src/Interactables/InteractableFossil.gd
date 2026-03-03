@@ -8,6 +8,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
 @onready var fossil_item_scene = preload("res://dungeon crawler/src/Items/fossil_item.tscn")
+@export var fossil_scenes: Array[PackedScene]
 
 @onready var rockCamera = $Camera3D
 var playerCamera: Camera3D
@@ -175,7 +176,8 @@ func harvestPopupClosed(weight: int):
 			#inv.add_item_to_inventory(harvested_item, 1)
 			
 	#Spawn our fossil item
-	var new_fossil = fossil_item_scene.instantiate()
+	var rand_idx = randi_range(0, fossil_scenes.size() - 1)
+	var new_fossil = fossil_scenes[rand_idx].instantiate()
 	new_fossil.weight = weight
 	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
 	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
