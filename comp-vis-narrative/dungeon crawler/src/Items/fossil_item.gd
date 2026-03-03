@@ -24,6 +24,9 @@ var health = 100.0
 @export var min_damage_speed := 4.0 # Threshold speed before collisions cause damage
 @export var damage_per_speed := 1.0 # Damage multiplier per unit of impact speed
 
+#contains a fieldLofInfo.initials and fieldLogInfo.description after the fieldLog has been attached to the fossilItem
+var fieldLogInfo
+
 func _ready() -> void:
 	# Enable contact reporting so we can read contact data in _integrate_forces.
 	# https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-property-contact-monitor
@@ -235,4 +238,3 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		# This is opposed to calculating it as max_speed * damage_per_speed, as that would mean anything barely above the threshold could cause a lot of damage
 		# if the threshold is high enough, while something barely below the threshold would cause no damage at all, which could be frustrating.
 		health -= (max_speed - min_damage_speed) * damage_per_speed
-	

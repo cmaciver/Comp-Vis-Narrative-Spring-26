@@ -106,7 +106,7 @@ script = ExtResource("5_h4ba3")
 [node name="SfxPlayer" type="AudioStreamPlayer" parent="DungeonCrawlerAudioManager"]
 
 [node name="dc_terrain" parent="." instance=ExtResource("9_tjbcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, -50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.025024, 0.08579922, -50.06469)
 
 [node name="HomeBase" parent="." instance=ExtResource("9_tsilk")]
 transform = Transform3D(0.85264015, 0, 0.52249855, 0, 1, 0, -0.52249855, 0, 0.85264015, -2.2672608, 1.1305755, 3.8324523)
