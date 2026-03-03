@@ -11,9 +11,16 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @export var fossil_scenes: Array[PackedScene]
 
 @onready var rockCamera = $Camera3D
+
+#the fossils description that gets filled on the field log for the fossil
+@export var fossilDescription = "write a description"
+
 var playerCamera: Camera3D
 var fossilCameraTargetPoint: Transform3D
 var dotsClicked: int
+
+var fieldLog
+var new_fossil
 
 #the radius that the dots can spawn in front of the camera during interaction
 @export var dotSpawnRadius: int = 300
@@ -64,8 +71,13 @@ func deactivatePlayer():
 		for child in player.get_children():
 			if child is CollisionShape3D:
 				child.disabled = true
+	
 
 func reactivatePlayer():
+	new_fossil.fieldLogInfo = {
+		"initials": fieldLog.finishedInitials,
+		"description": fieldLog.finishedDescription
+	}
 	#move the camera back to the player
 	var tween = create_tween()
 	tween.tween_property(rockCamera, "global_transform", playerCamera.global_transform, 0.8)
@@ -174,16 +186,19 @@ func harvestPopupClosed(weight: int):
 		#var inv = player.get_node_or_null("Inventory")
 		#if inv and inv.has_method("add_item_to_inventory"):
 			#inv.add_item_to_inventory(harvested_item, 1)
-			
+	
+	print("You harvested " + str(weight) + " lbs")
+	fieldLog = field_log_popup.instantiate()
+	get_tree().root.add_child(fieldLog)
+	fieldLog.updateDescription(fossilDescription)
+	fieldLog.preparePopup()
+	
 	#Spawn our fossil item
 	var rand_idx = randi_range(0, fossil_scenes.size() - 1)
-	var new_fossil = fossil_scenes[rand_idx].instantiate()
+	new_fossil = fossil_scenes[rand_idx].instantiate()
 	new_fossil.weight = weight
 	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
 	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
 	new_fossil.interact()
 
-	print("You harvested " + str(weight) + " lbs")
-	var fieldLog = field_log_popup.instantiate()
-	get_tree().root.add_child(fieldLog)
 	fieldLog.log_screen_closed.connect(reactivatePlayer)

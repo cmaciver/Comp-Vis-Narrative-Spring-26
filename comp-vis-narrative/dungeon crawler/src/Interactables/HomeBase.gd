@@ -22,10 +22,13 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body):
 	print("intersection :)")
 	if body.is_in_group("player") && body.is_holding != null:
+		DungeonCrawlerData.collectedLogs.append(body.is_holding.fieldLogInfo)
+		print("Fossil's log attached to global data")
 		if (body.remove_held_item()):
 			body.is_holding.queue_free()
 			body.is_holding = null
 			show_victory_message()
+			print(DungeonCrawlerData.collectedLogs)
 
 func show_victory_message():
 	print("victory message")
