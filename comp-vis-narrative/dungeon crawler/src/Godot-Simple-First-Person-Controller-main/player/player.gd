@@ -112,6 +112,11 @@ func _physics_process(delta: float) -> void:
 			if is_holding.drop():
 				is_holding = null
 		#drop item
+		
+	if Input.is_action_just_pressed("toggle_map"):
+		$gps.visible = !$gps.is_visible_in_tree()
+		#$gps/Minimap.visible = $gps.is_visible_in_tree()
+		$gps/MeshInstance3D.get_surface_override_material(0).albedo_texture = $gps/Minimap/SubViewportContainer/SubViewport.get_texture()
 	
 	# The code for raycasting to detect if an object is in front of the player is interactable
 	%InteractText.hide()

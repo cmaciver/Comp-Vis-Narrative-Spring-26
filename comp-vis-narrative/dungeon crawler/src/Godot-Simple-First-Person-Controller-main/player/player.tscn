@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://jyncanbkjjnq"]
+[gd_scene load_steps=20 format=3 uid="uid://jyncanbkjjnq"]
 
 [ext_resource type="Script" uid="uid://dhq2urnsidbeb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.gd" id="1_oul6g"]
 [ext_resource type="AudioStream" uid="uid://eqlentp01xuq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_1.wav" id="2_2ieo8"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://48xt4llun7t8" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_9.wav" id="10_c35mf"]
 [ext_resource type="AudioStream" uid="uid://dly32slohyd7p" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_10.wav" id="11_65viv"]
 [ext_resource type="Script" uid="uid://bw1uro2u34bsq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/inventory.gd" id="12_inventory"]
+[ext_resource type="PackedScene" uid="uid://co6j1aa6gd4hb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/minimap.tscn" id="13_01n1v"]
+[ext_resource type="PackedScene" uid="uid://b4yber6kpfnqw" path="res://dungeon crawler/src/assets/models/gps.glb" id="13_vpijt"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 radius = 0.4
@@ -20,6 +22,10 @@ height = 1.85
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
 radius = 0.4
 height = 1.85
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_01n1v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01n1v"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oul6g"]
 top_radius = 0.05
@@ -37,6 +43,17 @@ mesh = SubResource("CapsuleMesh_oul6g")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0)
 shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="gps" parent="." instance=ExtResource("13_vpijt")]
+transform = Transform3D(-0.017396104, -0.07324795, -0.49429962, -0.48646873, 0.11553428, 2.1264222e-08, 0.114217095, 0.4809226, -0.07528537, 0.042608023, 1.3005846, -0.9075596)
+visible = false
+
+[node name="Minimap" parent="gps" instance=ExtResource("13_01n1v")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="gps"]
+transform = Transform3D(0.485, 1.1968487e-08, 2.2985835e-09, -7.688366e-09, 0.755, -2.4815418e-24, -3.844183e-09, -9.486402e-17, 0.29, 0.003363371, 0.08852565, -0.00041508675)
+mesh = SubResource("PlaneMesh_01n1v")
+surface_material_override/0 = SubResource("StandardMaterial3D_01n1v")
 
 [node name="HeadPosition" type="Node3D" parent="."]
 unique_name_in_owner = true
