@@ -129,6 +129,20 @@ func drop() -> bool:
 		return player.remove_held_item()
 	return false
 
+## Called when the fossil's health reaches 0. Rewrite this function to extend behavior on destruction.
+## Currently, it just prints a message and removes the fossil from the player's inventory if it's being held, 
+## then removes the fossil from the scene.
+func _on_health_depleted() -> void:
+	print("Fossil destroyed! Health has reached zero.")
+	
+	# Remove from player's inventory if being held
+	if player and player.is_holding == self:
+		if player.has_method("remove_held_item"):
+			player.remove_held_item()
+	
+	# Remove the fossil from the scene
+	queue_free()
+
 # https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-private-method-integrate-forces
 # This function is called during the physics step and allows us to read contact data to implement custom collision responses, 
 # in this case applying damage based on impact speed.
@@ -238,3 +252,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		# This is opposed to calculating it as max_speed * damage_per_speed, as that would mean anything barely above the threshold could cause a lot of damage
 		# if the threshold is high enough, while something barely below the threshold would cause no damage at all, which could be frustrating.
 		health -= (max_speed - min_damage_speed) * damage_per_speed
+		
+		# Check if fossil has been destroyed
+		if health <= 0:
+			_on_health_depleted()
