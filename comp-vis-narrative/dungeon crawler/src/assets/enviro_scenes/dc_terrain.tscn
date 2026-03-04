@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://dntf31hmvog6i"]
 
 [ext_resource type="PackedScene" uid="uid://bp8p50ao7gvjv" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.glb" id="1_j7klb"]
-[ext_resource type="Shader" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.gdshader" id="2_a1brm"]
+[ext_resource type="Shader" uid="uid://bjtm6bxk12q10" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.gdshader" id="2_a1brm"]
 [ext_resource type="PackedScene" uid="uid://dx6f1pss0ivrs" path="res://dungeon crawler/src/assets/enviro_scenes/rock1.tscn" id="2_m1nqi"]
 [ext_resource type="Texture2D" uid="uid://bt25gl16dwpr8" path="res://dungeon crawler/src/assets/models/terrain/cliff_rocks_01_1k/cliff_rocks_01_color_1k.png" id="3_b8wrx"]
 [ext_resource type="PackedScene" uid="uid://sluh8dfaudfs" path="res://dungeon crawler/src/Interactables/interactable_fossil.tscn" id="3_dggj0"]
@@ -328,3 +328,10 @@ transform = Transform3D(-1.4746577, 0, -0.27456295, 0, 1.5, 0, 0.27456295, 0, -1
 
 [node name="tent2" parent="." index="13" instance=ExtResource("11_4fnas")]
 transform = Transform3D(-0.9825861, 0, -1.1333686, 0, 1.5, 0, 1.1333686, 0, -0.9825861, 56.50999, 5.1619015, 56.168007)
+
+[node name="MinimapCamera" type="Camera3D" parent="." index="14"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 51.855667, 189.18805, 50.785923)
+visible = false
+cull_mask = 1048573
+projection = 1
+size = 192.39987
