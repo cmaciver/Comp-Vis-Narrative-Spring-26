@@ -8,6 +8,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
 @onready var fossil_item_scene = preload("res://dungeon crawler/src/Items/fossil_item.tscn")
+@onready var reinforcement_scene = preload("res://dungeon crawler/src/Interactables/ReinforcementMinigame.tscn")
 @export var fossil_scenes: Array[PackedScene]
 
 @onready var rockCamera = $Camera3D
@@ -153,14 +154,22 @@ func dotClicked():
 	# TODO camera shake?? could be fire...
 	dotsClicked += 1
 	if(dotsClicked  >= miningHitsRequired):
-		spawnFossilCollectedPopup()
+		spawnReinforcementMinigame()
 		#TODO Break the rock at the end of the interaction
 		%FossilRock.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
 		%RockCollision.hide()
 		isInteractable = false
 	else:
-		
+
 		raycastAndSpawnClickableSpheres()
+
+func spawnReinforcementMinigame():
+	var minigame = reinforcement_scene.instantiate()
+	get_tree().root.add_child(minigame)
+	minigame.reinforcement_complete.connect(onReinforcementComplete)
+
+func onReinforcementComplete():
+	spawnFossilCollectedPopup()
 
 func spawnFossilCollectedPopup():
 	var popup = fossil_collected_popup.instantiate()
