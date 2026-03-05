@@ -19,7 +19,7 @@ uniform sampler2D orm_texture_bg : hint_default_white;
 uniform sampler2D normal_texture_bg : hint_normal;
 
 uniform float line_thickness : hint_range(0.0, 2.0, 0.01) = 1.0;
-uniform float line_interval : hint_range(0.01, 100.0, 0.01) = 0.1;
+uniform float line_interval : hint_range(0.001, 10.0, 0.01) = 0.2;
 uniform vec3 line_color : source_color = vec3(0.9, 0.9, 0.9);
 
 const uint terrain_layer_mask = 1u; // Bitmask must include the primary target render layer.
@@ -60,12 +60,14 @@ vec3 fractal_contour_lines(float thickness, float interval, vec3 world_pos, vec3
 	// Blend out
 	float p = fract(depth - 0.5);
 	vec3 line = mix(mix(line_a, line_b, fract(depth)), line_c, (4.0 * p * (1.0 - p)));
-	return 1.0 - vec3(line);
+	return 1.0 - vec3(line_b);
 }
 
 void fragment() {
 	uint visible_layers = CAMERA_VISIBLE_LAYERS;
-	if (! ((visible_layers & map_layer_mask) == map_layer_mask) ) {
+	if (true || ! ((visible_layers & map_layer_mask) == map_layer_mask) ) {
+		
+		
 		// the minimap shader goes here
 		vec3 world_pos = (INV_VIEW_MATRIX * vec4(VERTEX,1.0)).xyz;
 		vec3 ddx = dFdx(world_pos);
@@ -75,11 +77,9 @@ void fragment() {
 		
 		// Y only
 		ALBEDO = mix(vec3(0.1), line_color, clamp(line.y, 0., 1.));
-		// XYZ
-		//ALBEDO = mix(vec3(0.1), line_color, clamp(line.x + line.y + line.z, 0., 1.));
 		
 		//ALBEDO = vec3(0., 0., 1.);
-		ALBEDO *= vec3(0.1, 0.7, 0.1);
+		ALBEDO *= vec3(0.1, 0.7, 0.1) * world_pos.y * 0.07;
 		
 		
 	} 
