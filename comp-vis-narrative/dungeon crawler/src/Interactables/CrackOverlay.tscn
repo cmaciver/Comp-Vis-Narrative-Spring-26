@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcrack0verlay1"]
+
+[ext_resource type="Script" path="res://dungeon crawler/src/Interactables/CrackOverlay.gd" id="1_crack"]
+
+[node name="CrackOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_crack")
