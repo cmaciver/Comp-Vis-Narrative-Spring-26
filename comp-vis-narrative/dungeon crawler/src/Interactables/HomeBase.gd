@@ -22,12 +22,23 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body):
 	print("intersection :)")
 	if body.is_in_group("player") && body.is_holding != null:
+		#get the current time to store
 		var time = Time.get_time_dict_from_system()
-		print("%02d:%02d" % [time.hour, time.minute])
+		var hour = time.hour
+		var minute = time.minute
+		var period = "am"
+		if hour >= 12:
+			period = "pm"
+		hour = hour % 12
+		if hour == 0:
+			hour = 12
+		
+		#store fossil info for journal
 		DungeonCrawlerData.collectedLogs.append(
 			{ "initials": body.is_holding.fieldLogInfo.initials,
 			"description": body.is_holding.fieldLogInfo.description,
-			"time": "%02d:%02d" % [time.hour, time.minute]
+			"time": "%d:%02d%s" % [hour, minute, period],
+			"fossil_path": body.is_holding.fossilScenePath
 			})
 		print("Fossil's log attached to global data")
 		if (body.remove_held_item()):

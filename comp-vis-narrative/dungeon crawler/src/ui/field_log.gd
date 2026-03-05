@@ -17,11 +17,9 @@ func preparePopup():
 	%ContinueInfo.modulate.a = 0.0
 	fadeInContinueText()
 
-func updateWithFossilInfo(info):
-	if info.description != null:
-		%Description.text = info.description
-	if info.initials != null:
-		%Initials.text = info.initials
+func updateWithFossilInfo(intials, description):
+	%Initials.text = intials
+	%Description.text = description
 	
 func updateDescription(description):
 	%Description.text = description

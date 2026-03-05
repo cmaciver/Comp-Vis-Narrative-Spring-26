@@ -196,6 +196,7 @@ func harvestPopupClosed(weight: int):
 	#Spawn our fossil item
 	var rand_idx = randi_range(0, fossil_scenes.size() - 1)
 	new_fossil = fossil_scenes[rand_idx].instantiate()
+	new_fossil.fossilScenePath = fossil_scenes[rand_idx].resource_path
 	new_fossil.weight = weight
 	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
 	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
