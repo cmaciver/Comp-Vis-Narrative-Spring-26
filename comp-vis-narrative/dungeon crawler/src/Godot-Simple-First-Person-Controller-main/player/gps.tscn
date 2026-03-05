@@ -40,6 +40,6 @@ size = 192.39987
 [node name="gpsMesh" parent="." instance=ExtResource("2_uevy6")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gpsMesh"]
-transform = Transform3D(0.3910291, -1.4901161e-08, -2.7939677e-09, -2.2351742e-08, 0.81985396, -7.450581e-09, -7.450581e-09, -1.4901161e-08, 0.3709013, 0.00538826, 0.071546435, -0.0017522722)
+transform = Transform3D(0.44187045, -1.5428885e-08, -3.1572378e-09, -2.5257902e-08, 0.84888905, -8.419301e-09, -8.419301e-09, -1.5428885e-08, 0.41912565, 0.00538826, 0.071546435, -0.0017522722)
 mesh = SubResource("PlaneMesh_yrf83")
 surface_material_override/0 = SubResource("StandardMaterial3D_3pfer")
