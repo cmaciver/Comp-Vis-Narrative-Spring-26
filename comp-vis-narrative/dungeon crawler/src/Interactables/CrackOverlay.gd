@@ -118,8 +118,11 @@ func erase_at_global(global_pos: Vector2, radius: int):
 	if not is_ready or damaged_image == null or damaged_texture_rect == null:
 		return
 
-	# Convert global position to local position relative to the texture rect
-	var local_pos = global_pos - damaged_texture_rect.global_position
+	# Convert global position to local position, accounting for rotation
+	# First get position relative to this Control's origin (which is rotated)
+	var local_to_control = (global_pos - global_position).rotated(-rotation)
+	# Then offset by the texture rect's local position
+	var local_pos = local_to_control - damaged_texture_rect.position
 
 	# Erase circle from damaged image (set alpha to 0)
 	for dx in range(-radius, radius + 1):
