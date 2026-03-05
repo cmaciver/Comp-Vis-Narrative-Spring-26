@@ -65,7 +65,7 @@ vec3 fractal_contour_lines(float thickness, float interval, vec3 world_pos, vec3
 
 void fragment() {
 	uint visible_layers = CAMERA_VISIBLE_LAYERS;
-	if (true || ! ((visible_layers & map_layer_mask) == map_layer_mask) ) {
+	if (! ((visible_layers & map_layer_mask) == map_layer_mask) ) {
 		
 		
 		// the minimap shader goes here
