@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dntf31hmvog6i"]
+[gd_scene load_steps=20 format=3 uid="uid://dntf31hmvog6i"]
 
 [ext_resource type="PackedScene" uid="uid://bp8p50ao7gvjv" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.glb" id="1_j7klb"]
 [ext_resource type="Shader" uid="uid://bjtm6bxk12q10" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.gdshader" id="2_a1brm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxab0038s5n57" path="res://dungeon crawler/src/assets/models/camp/motorhome_rv.glb" id="10_ifgep"]
 [ext_resource type="PackedScene" uid="uid://cum1vva1g30y0" path="res://dungeon crawler/src/assets/enviro_scenes/tent.tscn" id="11_4fnas"]
 [ext_resource type="PackedScene" uid="uid://cusy7ddlxtvyc" path="res://dungeon crawler/src/assets/models/stylized_handpainted_grass.glb" id="12_2qr1u"]
+[ext_resource type="PackedScene" uid="uid://bvbhxl6ewerg" path="res://dungeon crawler/src/shaders/aux particles/twinkle_particle.tscn" id="15_hhpuk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fnas"]
 
@@ -524,3 +525,21 @@ visible = false
 cull_mask = 1048573
 projection = 1
 size = 192.39987
+
+[node name="TwinkleParticle" parent="." index="19" instance=ExtResource("15_hhpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.944452, 0.41086054, -14.908006)
+
+[node name="TwinkleParticle2" parent="." index="20" instance=ExtResource("15_hhpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.71964, 0.41441393, -19.329744)
+
+[node name="TwinkleParticle3" parent="." index="21" instance=ExtResource("15_hhpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.79133, 0.41441393, 80.3764)
+
+[node name="TwinkleParticle4" parent="." index="22" instance=ExtResource("15_hhpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.33664, 3.5871644, 131.56517)
+
+[node name="TwinkleParticle5" parent="." index="23" instance=ExtResource("15_hhpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.775436, 3.5871644, 134.12245)
+
+[node name="TwinkleParticle6" parent="." index="24" instance=ExtResource("15_hhpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.302643, 1.7629366, 87.742516)
