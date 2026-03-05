@@ -81,6 +81,7 @@ var fossilsReturned = 0
 
 # Inventory reference. The node is added under the player scene.
 @onready var inventory: Inventory = $Inventory # Onready avoids null before scene instantiation finishes.
+var is_map_open : bool = false
 
 # Weight-to-stamina tuning. These multipliers scale drain/regen based on carried weight.
 var weight_stamina_drain_mult_per_unit := 0.02 # Higher values make heavy loads punish sprinting more aggressively.
@@ -89,7 +90,7 @@ var weight_stamina_regen_mult_per_unit := 0.01 # Regen penalty keeps load meanin
 # Tracks whether the test track has already been played, to ensure it only plays once.
 var has_played_test_track = false
 
-@onready var marker = $HeadPosition/LandingAnimation/Camera3D/DigMarker
+
 
 @onready var journal_scene = preload("res://dungeon crawler/src/ui/journal.tscn")
 var journal_instance = null
@@ -99,6 +100,9 @@ func _ready() -> void:
 	_resolve_hud()
 	_update_stamina_bar()
 
+	%GPS/gpsMesh.transform = %GPS/DownPos.transform
+	%GPS/gpsMesh/MeshInstance3D.get_surface_override_material(0).albedo_texture = %GPS/Minimap/SubViewportContainer/SubViewport.get_texture()
+	$MapMarker.visible = true
 
 func _input(event: InputEvent) -> void:	
 	#open the journal
@@ -138,9 +142,14 @@ func _physics_process(delta: float) -> void:
 		#drop item
 		
 	if Input.is_action_just_pressed("toggle_map"):
-		$gps.visible = !$gps.is_visible_in_tree()
-		#$gps/Minimap.visible = $gps.is_visible_in_tree()
-		$gps/MeshInstance3D.get_surface_override_material(0).albedo_texture = $gps/Minimap/SubViewportContainer/SubViewport.get_texture()
+		is_map_open = not is_map_open
+		var tween = get_tree().create_tween()
+		if is_map_open:
+			tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(%GPS/gpsMesh, "transform", Transform3D(), 0.5)
+		else:
+			tween.tween_property(%GPS/gpsMesh, "transform", %GPS/DownPos.transform, 0.25) # DownPos is a marker that has a very small scale
+			
 	
 	# The code for raycasting to detect if an object is in front of the player is interactable
 	%InteractText.hide()

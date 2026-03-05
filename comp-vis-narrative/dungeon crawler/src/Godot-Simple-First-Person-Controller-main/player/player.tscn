@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://jyncanbkjjnq"]
+[gd_scene load_steps=18 format=3 uid="uid://jyncanbkjjnq"]
 
 [ext_resource type="Script" uid="uid://dhq2urnsidbeb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.gd" id="1_oul6g"]
 [ext_resource type="AudioStream" uid="uid://eqlentp01xuq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_1.wav" id="2_2ieo8"]
@@ -12,8 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://48xt4llun7t8" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_9.wav" id="10_c35mf"]
 [ext_resource type="AudioStream" uid="uid://dly32slohyd7p" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/footsteps/footstep_10.wav" id="11_65viv"]
 [ext_resource type="Script" uid="uid://bw1uro2u34bsq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/inventory.gd" id="12_inventory"]
-[ext_resource type="PackedScene" uid="uid://co6j1aa6gd4hb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/minimap.tscn" id="13_01n1v"]
-[ext_resource type="PackedScene" uid="uid://b4yber6kpfnqw" path="res://dungeon crawler/src/assets/models/gps.glb" id="13_vpijt"]
+[ext_resource type="PackedScene" uid="uid://co6j1aa6gd4hb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/gps.tscn" id="13_01n1v"]
+[ext_resource type="Texture2D" uid="uid://dmyntxi5adslh" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/sounds/player map marker.png" id="13_4w5w8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oul6g"]
 radius = 0.4
@@ -22,10 +22,6 @@ height = 1.85
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
 radius = 0.4
 height = 1.85
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_01n1v"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01n1v"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oul6g"]
 top_radius = 0.05
@@ -38,26 +34,12 @@ footstep_sound = Array[AudioStream]([ExtResource("2_2ieo8"), ExtResource("3_ebec
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_oul6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0)
 shape = SubResource("CapsuleShape3D_oul6g")
-
-[node name="gps" parent="." instance=ExtResource("13_vpijt")]
-transform = Transform3D(-0.017396104, -0.07324795, -0.49429962, -0.48646873, 0.11553428, 2.1264222e-08, 0.114217095, 0.4809226, -0.07528537, 0.40403688, 1.383265, -0.5824718)
-visible = false
-
-[node name="Minimap" parent="gps" instance=ExtResource("13_01n1v")]
-layer = -1
-rotation = 0.18938862
-scale = Vector2(2.204416, 0.845)
-transform = Transform2D(2.165, 0.415, 0, 0.845, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="gps"]
-transform = Transform3D(0.3910291, -1.4901161e-08, -2.7939677e-09, -2.2351742e-08, 0.8198539, -7.450581e-09, -7.450581e-09, -1.4901161e-08, 0.3709013, 0.00538826, 0.097067356, -0.0017522722)
-mesh = SubResource("PlaneMesh_01n1v")
-surface_material_override/0 = SubResource("StandardMaterial3D_01n1v")
 
 [node name="HeadPosition" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -68,14 +50,12 @@ unique_name_in_owner = true
 
 [node name="Camera3D" type="Camera3D" parent="HeadPosition/LandingAnimation" groups=["player_camera"]]
 unique_name_in_owner = true
+cull_mask = 1048571
 
 [node name="OrientationIndicator" type="MeshInstance3D" parent="HeadPosition/LandingAnimation/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.35)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_oul6g")
-
-[node name="DigMarker" type="Marker3D" parent="HeadPosition/LandingAnimation/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="SeeCast" type="RayCast3D" parent="HeadPosition/LandingAnimation/Camera3D"]
 unique_name_in_owner = true
@@ -86,8 +66,22 @@ collision_mask = 3
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52424634, -0.8291837)
 
+[node name="GPS" parent="HeadPosition" instance=ExtResource("13_01n1v")]
+unique_name_in_owner = true
+transform = Transform3D(0.25, 0, 0, 0, 0.18080205, -0.1726575, 0, 0.1726575, 0.18080205, 0, -0.18646157, -0.21118528)
+
+[node name="DownPos" type="Marker3D" parent="HeadPosition/GPS"]
+transform = Transform3D(0.00050562026, 0.0007541844, 0.00041899216, -0.0008589969, 0.00039477722, 0.00032599954, 8.045498e-05, -0.00052474474, 0.0008474492, 0, 2.0189998, 2.763)
+
 [node name="CeilingDetector" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2.1, 0)
+
+[node name="MapMarker" type="Sprite3D" parent="."]
+transform = Transform3D(13.454228, 0, 0, 0, -9.1247523e-07, 20.875, 0, -20.875, -9.1247523e-07, 0, 401.6, 0)
+visible = false
+layers = 4
+cast_shadow = 0
+texture = ExtResource("13_4w5w8")
 
 [node name="Crosshair" type="Control" parent="."]
 layout_mode = 3

@@ -61,8 +61,8 @@ void fragment() {
 		
 		// Y only
 		ALBEDO = mix(vec3(0.1), line_color, clamp(line.y, 0., 1.));
-		
-		ALBEDO *= vec3(0.1, 0.7, 0.1) * pow(world_pos.y, 2) * 0.01;
+		ALBEDO += vec3(0.15);
+		ALBEDO *= vec3(0.2, 0.7, 0.2) * pow(world_pos.y, 2) * 0.01;
 		
 		
 	} 
