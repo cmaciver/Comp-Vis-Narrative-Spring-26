@@ -6,6 +6,7 @@ func load_entry(entry: Dictionary, index: int):
 	$FossilNumberLabel.text = "Fossil #%d/%d" % [index + 1, DungeonCrawlerData.collectedLogs.size()]
 	$FossilTimeFoundLabel.text = "Time Found: " + entry["time"]
 	%FieldLog.updateWithFossilInfo(entry.initials, entry.description)
+	%FieldLog.disableEdits()
 	load_fossil(entry["fossil_path"])
 
 #load in the fossil into the subviewport and then rotate it
@@ -21,6 +22,8 @@ func load_fossil(path: String):
 	var fossil_scene = load(path)
 	var fossil = fossil_scene.instantiate()
 	viewport.add_child(fossil)
+	#rotate so that it faces the camera better
+	fossil.rotate_x(deg_to_rad(90))
 	
 	fossil.gravity_scale = 0
 	fossil.freeze = true

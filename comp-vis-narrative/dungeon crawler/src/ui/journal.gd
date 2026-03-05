@@ -4,6 +4,7 @@ extends Control
 @onready var slot_b = $ColorRect/JournalB
 @onready var right_button = $ColorRect/RightButton
 @onready var left_button = $ColorRect/LeftButton
+@onready var no_fossil_found_box = $ColorRect/NoFossilsFoundBox
 
 var current_index = 0
 var is_animating = false
@@ -23,7 +24,10 @@ func _ready() -> void:
 		incoming_slot.hide()
 		left_button.hide()
 		right_button.hide()
+		no_fossil_found_box.show()
 		return
+	
+	no_fossil_found_box.hide()
 	
 	loadEntryInto(active_slot, 0)
 	update_buttons()
@@ -32,8 +36,23 @@ func loadEntryInto(slot, index: int):
 	slot.load_entry(DungeonCrawlerData.collectedLogs[index], index)
 	
 func update_buttons():
-	left_button.disabled = current_index == 0
-	right_button.disabled = current_index == DungeonCrawlerData.collectedLogs.size()
+	#disable and hide the left arrow at index 0
+	if current_index == 0:
+		left_button.hide()
+		left_button.disabled = true
+	else:
+		left_button.show()
+		left_button.disabled = false
+	
+	#disable and hide the right arrow at index size - 1
+	if current_index == DungeonCrawlerData.collectedLogs.size() - 1:
+		right_button.hide()
+		right_button.disabled = true
+	else:
+		right_button.show()
+		right_button.disabled = false
+	#left_button.disabled = current_index == 0
+	#right_button.disabled = current_index == DungeonCrawlerData.collectedLogs.size()
 
 #moving the journals off and onto the screen
 func navigate(direction: int):

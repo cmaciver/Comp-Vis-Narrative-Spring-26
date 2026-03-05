@@ -5,10 +5,16 @@ signal log_screen_closed
 var finishedInitials
 var finishedDescription
 
+#needed to tell if the log can be edited (important for the journal)
+var is_interactive = false
+
 func _ready() -> void:
+	#hiding the continue text for the sake of the logbook
+	%ContinueInfo.hide()
 	%Date.text = str(Time.get_date_dict_from_system()["day"]) + " - " + str(Time.get_date_dict_from_system()["month"]) + " - " + str(Time.get_date_dict_from_system()["year"])
 
 func preparePopup():
+	is_interactive = true
 	#move offscreen for the shifting function
 	position = Vector2(0, get_viewport_rect().size.y)
 	moveIntoScreen()
@@ -23,6 +29,11 @@ func updateWithFossilInfo(intials, description):
 	
 func updateDescription(description):
 	%Description.text = description
+
+#so that the player can not edit the log in their journal
+func disableEdits():
+	is_interactive = false
+	%Initials.editable = false
 
 func moveIntoScreen():
 	var tween = create_tween()
@@ -39,6 +50,7 @@ func moveOffScreen():
 	
 
 func fadeInContinueText():
+	%ContinueInfo.show()
 	var tween = create_tween()
 	
 	#wait 4 seconds
@@ -49,7 +61,7 @@ func fadeInContinueText():
 
 #detect the enter key being pressed and then close this menu after sending a signal
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER and is_interactive == true:
 		finishedInitials = %Initials.text
 		finishedDescription = %Description.text
 		emit_signal("log_screen_closed")
