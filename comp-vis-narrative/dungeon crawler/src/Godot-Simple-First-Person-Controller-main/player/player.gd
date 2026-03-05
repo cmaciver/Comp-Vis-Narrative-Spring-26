@@ -91,20 +91,44 @@ var has_played_test_track = false
 
 @onready var marker = $HeadPosition/LandingAnimation/Camera3D/DigMarker
 
+@onready var journal_scene = preload("res://dungeon crawler/src/ui/journal.tscn")
+var journal_instance = null
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_resolve_hud()
 	_update_stamina_bar()
 
 
-func _input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:	
+	#open the journal
+	if event.is_action_pressed("open_journal"):
+		if journal_instance == null:
+			#open journal scene
+			journal_instance = journal_scene.instantiate()
+			get_tree().root.add_child(journal_instance)
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			#close the journal
+			journal_instance.queue_free()
+			journal_instance = null
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	#stop looking around while journal is open
+	if journal_instance != null:
+		return
+	
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= event.relative.x / 10
 		%Camera3D.rotation_degrees.x -= event.relative.y / 10
 		%Camera3D.rotation_degrees.x = clamp(%Camera3D.rotation_degrees.x, -90, 90)
 
-
 func _physics_process(delta: float) -> void:
+	
+	if journal_instance != null:
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
 	
 	#logic for dropping a held item
 	if Input.is_action_just_pressed("interact") and is_holding != null:

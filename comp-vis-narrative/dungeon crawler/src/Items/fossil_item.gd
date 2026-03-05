@@ -76,6 +76,8 @@ var health = 100.0
 
 #contains a fieldLofInfo.initials and fieldLogInfo.description after the fieldLog has been attached to the fossilItem
 var fieldLogInfo
+#used to save the path of the scene used for this script to know what scene to instantiate in the logbook (saved to the globals when the fossil is deposited)
+var fossilScenePath
 
 func _ready() -> void:
 	# Enable contact reporting so we can read contact data in _integrate_forces.
