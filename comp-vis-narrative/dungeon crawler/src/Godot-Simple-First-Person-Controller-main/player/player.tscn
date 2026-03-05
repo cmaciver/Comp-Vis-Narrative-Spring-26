@@ -45,13 +45,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0)
 shape = SubResource("CapsuleShape3D_oul6g")
 
 [node name="gps" parent="." instance=ExtResource("13_vpijt")]
-transform = Transform3D(-0.017396104, -0.07324795, -0.49429962, -0.48646873, 0.11553428, 2.1264222e-08, 0.114217095, 0.4809226, -0.07528537, 0.042608023, 1.3005846, -0.9075596)
+transform = Transform3D(-0.017396104, -0.07324795, -0.49429962, -0.48646873, 0.11553428, 2.1264222e-08, 0.114217095, 0.4809226, -0.07528537, 0.40403688, 1.383265, -0.5824718)
 visible = false
 
 [node name="Minimap" parent="gps" instance=ExtResource("13_01n1v")]
+layer = -1
+rotation = 0.18938862
+scale = Vector2(2.204416, 0.845)
+transform = Transform2D(2.165, 0.415, 0, 0.845, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gps"]
-transform = Transform3D(0.485, 1.1968487e-08, 2.2985835e-09, -7.688366e-09, 0.755, -2.4815418e-24, -3.844183e-09, -9.486402e-17, 0.29, 0.003363371, 0.08852565, -0.00041508675)
+transform = Transform3D(0.3910291, -1.4901161e-08, -2.7939677e-09, -2.2351742e-08, 0.8198539, -7.450581e-09, -7.450581e-09, -1.4901161e-08, 0.3709013, 0.00538826, 0.097067356, -0.0017522722)
 mesh = SubResource("PlaneMesh_01n1v")
 surface_material_override/0 = SubResource("StandardMaterial3D_01n1v")
 
