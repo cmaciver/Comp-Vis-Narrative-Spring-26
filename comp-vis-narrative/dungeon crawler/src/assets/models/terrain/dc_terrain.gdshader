@@ -19,7 +19,7 @@ uniform sampler2D orm_texture_bg : hint_default_white;
 uniform sampler2D normal_texture_bg : hint_normal;
 
 uniform float line_thickness : hint_range(0.0, 2.0, 0.01) = 1.0;
-uniform float line_interval : hint_range(0.001, 10.0, 0.01) = 0.2;
+uniform float line_interval = 1.9;
 uniform vec3 line_color : source_color = vec3(0.9, 0.9, 0.9);
 
 const uint terrain_layer_mask = 1u; // Bitmask must include the primary target render layer.
@@ -39,28 +39,12 @@ vec3 fractal_contour_lines(float thickness, float interval, vec3 world_pos, vec3
 	float ma = max(1.0, thickness);
 	float mx = max(0.0, 1.0 - thickness);
 
-	// Line A
-	float inv_interval_a = 1.0 / interval_a;
-	vec3 f_a = abs(fract((y + interval_a * 0.5) * inv_interval_a) - 0.5);
-	vec3 df_a = y_fwidth * inv_interval_a;
-	vec3 line_a = clamp((f_a - df_a * mi) / (df_a * (ma - mi)), mx, 1.0);
+    float inv_interval = 1.0 / interval;
+    vec3 f = abs(fract((y + interval * 0.5) * inv_interval) - 0.5);
+    vec3 df = y_fwidth * inv_interval;
+    vec3 line = clamp((f - df * mi) / (df * (ma - mi)), mx, 1.0);
 
-	// Line B
-	float inv_interval_b = 1.0 / interval_b;
-	vec3 f_b = abs(fract((y + interval_b * 0.5) * inv_interval_b) - 0.5);
-	vec3 df_b = y_fwidth * inv_interval_b;
-	vec3 line_b = clamp((f_b - df_b * mi) / (df_b * (ma - mi)), mx, 1.0);
-
-	// Line C
-	float inv_interval_c = 1.0 / interval_c;
-	vec3 f_c = abs(fract((y + interval_c * 0.5) * inv_interval_c) - 0.5);
-	vec3 df_c = y_fwidth * inv_interval_c;
-	vec3 line_c = clamp((f_c - df_c * mi) / (df_c * (ma - mi)), mx, 1.0);
-
-	// Blend out
-	float p = fract(depth - 0.5);
-	vec3 line = mix(mix(line_a, line_b, fract(depth)), line_c, (4.0 * p * (1.0 - p)));
-	return 1.0 - vec3(line_b);
+    return 1.0 - vec3(line);
 }
 
 void fragment() {
@@ -78,8 +62,7 @@ void fragment() {
 		// Y only
 		ALBEDO = mix(vec3(0.1), line_color, clamp(line.y, 0., 1.));
 		
-		//ALBEDO = vec3(0., 0., 1.);
-		ALBEDO *= vec3(0.1, 0.7, 0.1) * world_pos.y * 0.07;
+		ALBEDO *= vec3(0.1, 0.7, 0.1) * pow(world_pos.y, 2) * 0.01;
 		
 		
 	} 
