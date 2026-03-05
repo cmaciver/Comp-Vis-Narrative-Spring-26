@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=20 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="Shader" uid="uid://jk172qdhw4kq" path="res://dungeon crawler/src/shaders/sky.gdshader" id="1_1aokg"]
 [ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://spxf7oewffyu" path="res://dungeon crawler/src/cave/cube.tscn" id="4_xbpmh"]
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
+[ext_resource type="PackedScene" uid="uid://co6j1aa6gd4hb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/minimap.tscn" id="7_qi052"]
 [ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/enviro_scenes/dc_terrain.tscn" id="9_tjbcq"]
 [ext_resource type="PackedScene" uid="uid://daeshrgahs38q" path="res://dungeon crawler/src/Interactables/HomeBase.tscn" id="9_tsilk"]
 [ext_resource type="PackedScene" uid="uid://bvbhxl6ewerg" path="res://dungeon crawler/src/shaders/aux particles/twinkle_particle.tscn" id="10_tjbcq"]
@@ -95,6 +96,9 @@ audio_manager_path = NodePath("../DungeonCrawlerAudioManager")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6980124, 0.96978045, 0)
 
 [node name="Hud" parent="." instance=ExtResource("5_v0cna")]
+
+[node name="Minimap" parent="." instance=ExtResource("7_qi052")]
+visible = false
 
 [node name="DungeonCrawlerAudioManager" type="Node" parent="."]
 script = ExtResource("5_h4ba3")

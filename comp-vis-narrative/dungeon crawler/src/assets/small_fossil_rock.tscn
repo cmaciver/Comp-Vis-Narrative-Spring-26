@@ -1,7 +1,13 @@
-[gd_scene load_steps=7 format=4 uid="uid://d3va2s1mg2efa"]
+[gd_scene load_steps=13 format=4 uid="uid://d3va2s1mg2efa"]
 
 [ext_resource type="Texture2D" uid="uid://6rctmwb5vkad" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_BaseColour.png" id="1_hi0so"]
 [ext_resource type="Texture2D" uid="uid://b5xetqsbg0oaj" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_Roughness.png" id="2_p0ba3"]
+[ext_resource type="PackedScene" uid="uid://qcin0k2l5qbg" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trex_arm.tscn" id="3_rvt7k"]
+[ext_resource type="PackedScene" uid="uid://byc64lqmv5f3x" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trex_foot_bone.tscn" id="4_56inm"]
+[ext_resource type="PackedScene" uid="uid://dbsdhvtep81p6" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trex_tooth.tscn" id="5_6yuep"]
+[ext_resource type="PackedScene" uid="uid://ds411ua20vgis" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trike_jaw.tscn" id="6_h145t"]
+[ext_resource type="PackedScene" uid="uid://c1q07cfalnubn" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trike_skull.tscn" id="7_os3gi"]
+[ext_resource type="PackedScene" uid="uid://bvpmge2p2xnvl" path="res://dungeon crawler/src/assets/fossil_variants/fossil_turtle_arm.tscn" id="8_ylc3s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yo35"]
 resource_name = "M_Desert_Rock"
@@ -55,14 +61,45 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="rock_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_jpj0o")
 skeleton = NodePath("")
 
 [node name="FossilPreview" type="Node3D" parent="."]
 transform = Transform3D(0.48469266, 0.12277211, 0, -0.12277211, 0.48469266, 0, 0, 0, 0.5, -0.021805197, 0.28513244, -0.013406217)
+visible = false
 
 [node name="CSGTorus3D" type="CSGTorus3D" parent="FossilPreview"]
 transform = Transform3D(0.02390661, -0.6906312, -0.72281164, -0.25938827, 0.6939723, -0.6716546, 0.96547717, 0.20354599, -0.16255094, 0.045617044, -0.15929002, 0.1544587)
 inner_radius = 0.25
 outer_radius = 0.5
 material = SubResource("StandardMaterial3D_hi0so")
+
+[node name="TrexForelimb" parent="." instance=ExtResource("3_rvt7k")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = null
+
+[node name="TrexAstragalus" parent="." instance=ExtResource("4_56inm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+script = null
+
+[node name="TrexTooth" parent="." instance=ExtResource("5_6yuep")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+script = null
+
+[node name="TrikeQuadrate" parent="." instance=ExtResource("6_h145t")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+script = null
+
+[node name="TrikeSkull" parent="." instance=ExtResource("7_os3gi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+script = null
+
+[node name="TrikeQuadrate2" parent="." instance=ExtResource("8_ylc3s")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+visible = false
+script = null

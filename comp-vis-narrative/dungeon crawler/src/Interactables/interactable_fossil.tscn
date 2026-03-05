@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://sluh8dfaudfs"]
+[gd_scene load_steps=12 format=3 uid="uid://sluh8dfaudfs"]
 
 [ext_resource type="Script" uid="uid://bhws1gjnq3avn" path="res://dungeon crawler/src/Interactables/InteractableFossil.gd" id="1_ivdir"]
 [ext_resource type="PackedScene" uid="uid://qcin0k2l5qbg" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trex_arm.tscn" id="2_a8sac"]
 [ext_resource type="PackedScene" uid="uid://c7pnngh410vsd" path="res://dungeon crawler/src/assets/fossil_rock.tscn" id="2_nbvhb"]
 [ext_resource type="PackedScene" uid="uid://byc64lqmv5f3x" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trex_foot_bone.tscn" id="3_dq3wb"]
+[ext_resource type="PackedScene" uid="uid://dbsdhvtep81p6" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trex_tooth.tscn" id="4_grbpi"]
+[ext_resource type="PackedScene" uid="uid://ds411ua20vgis" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trike_jaw.tscn" id="5_boakm"]
+[ext_resource type="PackedScene" uid="uid://c1q07cfalnubn" path="res://dungeon crawler/src/assets/fossil_variants/fossil_trike_skull.tscn" id="6_2l622"]
+[ext_resource type="PackedScene" uid="uid://bvpmge2p2xnvl" path="res://dungeon crawler/src/assets/fossil_variants/fossil_turtle_arm.tscn" id="7_1q4ho"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kmmrb"]
 margin = 0.0
@@ -20,7 +24,7 @@ material = SubResource("StandardMaterial3D_ktndf")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 2.9311316, 0, 0, 0, 3.2547793, 0, 0, 0)
 script = ExtResource("1_ivdir")
-fossil_scenes = Array[PackedScene]([ExtResource("2_a8sac"), ExtResource("3_dq3wb")])
+fossil_scenes = Array[PackedScene]([ExtResource("2_a8sac"), ExtResource("3_dq3wb"), ExtResource("4_grbpi"), ExtResource("5_boakm"), ExtResource("6_2l622"), ExtResource("7_1q4ho")])
 
 [node name="RockCollision" type="CollisionShape3D" parent="StaticBody3D"]
 unique_name_in_owner = true

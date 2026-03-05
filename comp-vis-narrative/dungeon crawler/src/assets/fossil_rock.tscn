@@ -1,8 +1,14 @@
-[gd_scene load_steps=8 format=4 uid="uid://c7pnngh410vsd"]
+[gd_scene load_steps=14 format=4 uid="uid://c7pnngh410vsd"]
 
 [ext_resource type="Texture2D" uid="uid://dfstm3fu0i03n" path="res://dungeon crawler/src/assets/models/fossil_rocks/desert_rocks_0.jpg" id="1_13avs"]
 [ext_resource type="Texture2D" uid="uid://dt583kfuqqdqx" path="res://dungeon crawler/src/assets/models/fossil_rocks/desert_rocks_1.png" id="2_2lmfh"]
 [ext_resource type="Texture2D" uid="uid://h1gv5kddofk8" path="res://dungeon crawler/src/assets/models/fossil_rocks/desert_rocks_2.png" id="3_pnaca"]
+[ext_resource type="PackedScene" uid="uid://bp6ncn3uhjah1" path="res://assets/fossils/_trex_astragalus.gltf" id="4_fwq8r"]
+[ext_resource type="PackedScene" uid="uid://yuhpcrb1dj85" path="res://assets/fossils/_trex_forelimb.gltf" id="5_a70ib"]
+[ext_resource type="PackedScene" uid="uid://chkd5mnftopmj" path="res://assets/fossils/_trex_tooth.gltf" id="6_073dx"]
+[ext_resource type="PackedScene" uid="uid://dfxhlci7scbae" path="res://assets/fossils/_trike_quadrate.gltf" id="7_qdp2t"]
+[ext_resource type="PackedScene" uid="uid://bflsgamb7xjpv" path="res://assets/fossils/_trike_skull.gltf" id="8_6lv6p"]
+[ext_resource type="PackedScene" uid="uid://djl7xcauc8wal" path="res://assets/fossils/_turtle_humerus.gltf" id="9_ootxo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnmab"]
 resource_name = "TCE_Rocks_v04_Desert_Mat"
@@ -71,3 +77,27 @@ transform = Transform3D(-0.11307827, -0.23466384, -0.9654769, -0.23466381, 0.950
 inner_radius = 0.25
 outer_radius = 0.5
 material = SubResource("StandardMaterial3D_13avs")
+
+[node name="_trex_astragalus" parent="FossilPreview" instance=ExtResource("4_fwq8r")]
+transform = Transform3D(0.95010823, -0.31192032, 0, 0.31192032, 0.95010823, 0, 0, 0, 1, 0.03317654, 0.11636007, -0.056942105)
+visible = false
+
+[node name="_trex_forelimb" parent="FossilPreview" instance=ExtResource("5_a70ib")]
+transform = Transform3D(0.8432145, -0.20438685, -0.49720713, 0.1169254, 0.9724911, -0.20146745, 0.5247071, 0.11174403, 0.84391665, 0.032471895, 0.12153977, -0.09428537)
+visible = false
+
+[node name="_trex_tooth" parent="FossilPreview" instance=ExtResource("6_073dx")]
+transform = Transform3D(-0.39846912, -0.35777873, 0.84452116, -0.08081882, 0.93089336, 0.35623756, -0.9136141, 0.07369646, -0.39984754, 0.12316489, 0.07983518, -0.046686053)
+visible = false
+
+[node name="_trike_quadrate" parent="FossilPreview" instance=ExtResource("7_qdp2t")]
+transform = Transform3D(0.741403, -0.09520362, -0.06129935, 0.11165047, 0.6822699, 0.29076052, 0.018855002, -0.29655316, 0.6886224, -0.06362617, 0.06217462, 0.12671554)
+visible = false
+
+[node name="_trike_skull" parent="FossilPreview" instance=ExtResource("8_6lv6p")]
+transform = Transform3D(-0.12780191, -0.96107763, 0.24493986, 0.16533999, -0.26415482, -0.95020217, 0.97792065, -0.080939636, 0.19266355, 0.100384414, -0.07478976, 0.060212493)
+visible = false
+
+[node name="_turtle_humerus" parent="FossilPreview" instance=ExtResource("9_ootxo")]
+transform = Transform3D(0.9807066, -0.195484, 0, 0.195484, 0.9807066, 0, 0, 0, 1, -0.04243076, 0.07395542, -0.15134299)
+visible = false

@@ -136,6 +136,11 @@ func _physics_process(delta: float) -> void:
 			if is_holding.drop():
 				is_holding = null
 		#drop item
+		
+	if Input.is_action_just_pressed("toggle_map"):
+		$gps.visible = !$gps.is_visible_in_tree()
+		#$gps/Minimap.visible = $gps.is_visible_in_tree()
+		$gps/MeshInstance3D.get_surface_override_material(0).albedo_texture = $gps/Minimap/SubViewportContainer/SubViewport.get_texture()
 	
 	# The code for raycasting to detect if an object is in front of the player is interactable
 	%InteractText.hide()
@@ -223,7 +228,8 @@ func _physics_process(delta: float) -> void:
 		elif wants_sprint and can_sprint and stamina > 0.0:
 			target_speed = sprint_speed
 			do_sprint = true
-			print("Sprinting. Current stamina: " + str(stamina) + ", Current total weight: " + str(inventory.get_total_weight()))
+			# dear god
+			#print("Sprinting. Current stamina: " + str(stamina) + ", Current total weight: " + str(inventory.get_total_weight()))
 		else:
 			do_sprint = false
 

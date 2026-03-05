@@ -11,8 +11,58 @@ var interactableText = "Press \"e\" to pick up"
 @export var hold_distance := 1.0
 @export var hold_height := 1.0
 
+# Strength of the positional spring pulling the fossil toward the target hold point.
+# larger values increase the restoring force for a given position error.
+# Example: big (e.g. 2000) -> item snaps to target very quickly but may produce strong collision impulses or jitter;
+#          small (e.g. 100) -> item is very floaty and slow to return.
+# `hold_spring_strength` should be balanced with `hold_damping` and `max_hold_force`.
+@export var hold_spring_strength := 1400.0
+
+# Linear damping applied to the velocity error (viscous term that resists motion).
+# Higher damping reduces oscillation/overshoot from the positional spring; too-high values feel sluggish.
+# Example: big (e.g. 200) -> critically or over-damped (no bounce, may feel heavy); small (e.g. 10) -> under-damped, oscillatory float.
+# When you raise `hold_spring_strength`, increase `hold_damping` to maintain stability.
+@export var hold_damping := 200.0
+
+# Maximum magnitude of the positional force applied (force cap for safety/stability).
+# Prevents the spring+damping force from becoming unbounded and doing weird things like maybe launching the fossil if some tremendous position error occurs even if for a single frame.
+# Example: big (e.g. 8000) -> allows very aggressive corrections (may shove through light obstacles); small (e.g. 200) -> weak corrections, item may not snap back.
+# Set `max_hold_force` >= (`hold_spring_strength` * typical_target_distance) to allow intended corrections.
+@export var max_hold_force := 4000.0
+
+# Rotational spring strength for correcting orientation (applied as torque via PD controller).
+# larger values make orientation correct faster across all axes (pitch/yaw/roll).
+# Example: big (e.g. 600) -> quick orientation recovery but risks oscillation without adequate damping;
+#          small (e.g. 10) -> very slow or no recovery; item may stay tilted.
+# Tune with `hold_rotation_damping` and `max_hold_torque` (higher spring needs higher damping and torque cap).
+@export var hold_rotation_spring := 120.0
+
+# Rotational damping applied to angular velocity to reduce spin and overshoot in rotation.
+# Higher values kill residual angular velocity faster (damps spin); too high can feel unresponsive.
+# Example: big (e.g. 80) -> strongly damps tumble/oscillation; small (e.g. 2) -> allows prolonged tumbling.
+# Increase this when increasing `hold_rotation_spring` for stability.
+@export var hold_rotation_damping := 28.0
+
+# Maximum allowed torque magnitude for rotational correction (safety cap).
+# Caps the rotational PD output so angular acceleration stays reasonable.
+# Example: big (e.g. 1000) -> permits very strong torque corrections; small (e.g. 20) -> weak correction and slow orienting.
+# Choose this so typical `angle_error * hold_rotation_spring` can be delivered without saturating constantly.
+@export var max_hold_torque := 260.0
+
+# Euclidean distance threshold: if the fossil center is farther than this from the target hold point, force-release it.
+# Smaller values cause earlier release when item is pulled away by collisions; larger values are more lenient.
+# Example: big (e.g. 3.5) -> tolerates larger displacements before dropping; small (e.g. 1.0) -> strict, drops quickly when pulled.
+# Set in relation to `max_hold_force` so the item isn't allowed to float very far because forces are too weak.
+@export var max_hold_distance_from_target := 2.0
+
 # Keeps track of the camera's yaw angle (theta) for positioning the fossil while held.
 var _hold_theta := 0.0
+
+# This flag represents ownership of the current hold session by this script.
+# We set it true when interact() starts holding, and false immediately when a drop/force-release begins.
+# The immediate false transition is critical: it prevents additional physics ticks from scheduling extra releases
+# before player.remove_held_item() has finished mutating external state.
+var _hold_session_active := false
 
 # Collision bits
 const PLAYER_LAYER_BIT := 3
@@ -41,12 +91,17 @@ func _ready() -> void:
 
 func interact():
 	if player != null:
-		reparent(player, true)
+		# Keep the rigid body under world/terrain while held.
+		# RigidBody3D nodes behave most predictably when simulated in world space rather than inheriting a fast-moving parent transform.
+		# Parenting to the player can create visible jitter/choppiness because the body is influenced by both parent transform changes and physics.
+		reparent(get_tree().root.get_node("Node3D/dc_terrain"), true)
 		gravity_scale = 0.0
 		rotation = Vector3(0.0, 0.0, 0.0)
 		isInteractable = false
 		freeze = false
 		sleeping = false
+		# The player has started a new hold session.
+		_hold_session_active = true
 		# https://forum.godotengine.org/t/collisions-layers-masks/66193/2
 		# Collision layer is what the body lies in. It's its little world, it just exists in that layer.
 		collision_layer = (1 << (FOSSIL_LAYER_BIT - 1))
@@ -119,6 +174,8 @@ func drop() -> bool:
 	var cast = player.get_node("HeadPosition/LandingAnimation/Camera3D/SeeCast")
 	var collider = cast.get_collider()
 	if collider == null: #this check isn't perfect but it's better than nothing
+		# Any normal drop path ends the hold session.
+		_hold_session_active = false
 		reparent(get_tree().root.get_node("Node3D/dc_terrain"), true)
 		gravity_scale = 1.0
 		isInteractable = true
@@ -131,72 +188,248 @@ func drop() -> bool:
 		return player.remove_held_item()
 	return false
 
+## This function is called to forcefully release the hold on the fossil.
+## Currently it's only triggered when the fossil is pulled too far from the target hold point.
+## Some notes:
+## - The fossil is already parented under world terrain while held, so we do not need scene-tree surgery here.
+## - Avoiding deferred callbacks keeps control flow easier to reason about and prevents queued stale releases.
+## - We still keep this idempotent by checking hold session + current ownership before mutating
+##
+## For those that don't know, idempotent means that calling the function multiple times has the same effect as calling it once. 
+## In this case, if the hold session is already inactive or if the player is not currently holding this fossil, 
+## then calling _force_release_hold() will do nothing. This prevents issues where multiple calls to _force_release_hold() 
+## could cause a null reference error.
+func _force_release_hold() -> void:
+
+	# If the hold session is already inactive, we can just return early. 
+	# This prevents any further logic from running multiple times if _force_release_hold() is called again before the first call has finished processing.
+	if not _hold_session_active:
+		return
+	
+	# Safety check to ensure we don't accidentally mutate state if something has already changed.
+	if player == null or player.is_holding != self:
+		_hold_session_active = false
+		return
+
+	# Analogous to drop(), but we skip the collision check and we also don't need to reparent since we're already in world space.
+	_hold_session_active = false
+	gravity_scale = 1.0
+	isInteractable = true
+	freeze = false
+	sleeping = false
+	collision_layer = (1 << (FOSSIL_LAYER_BIT - 1))
+	collision_mask = (1 << (WORLD_LAYER_BIT - 1)) | (1 << (PLAYER_LAYER_BIT - 1))
+
+	print("Hold released due to exceeding max hold distance.")
+	if player.has_method("remove_held_item"):
+		player.remove_held_item()
+
+	# Note that in general it is other script's responsibility to set player.is_holding = null.
+	# The only time this is not true is when the player is still holding the fossil and presses
+	# the drop key, which in player's _physics_process checks for input and then calls fossil.drop(). 
+	# In that case, since drop() returns true, the player script will set player.is_holding = null.
+	if player.is_holding == self:
+		player.is_holding = null
+
+## Called when the fossil's health reaches 0. Rewrite this function to extend behavior on destruction.
+## Currently, it just prints a message and removes the fossil from the player's inventory if it's being held, 
+## then removes the fossil from the scene.
+func _on_health_depleted() -> void:
+	print("Fossil destroyed! Health has reached zero.")
+	
+	# Health depletion should terminate any active hold session immediately.
+	# This also prevents force-hold logic from running again during the same frame.
+	_hold_session_active = false
+	
+	# Remove from player's inventory if being held
+	if player and player.is_holding == self:
+		if player.has_method("remove_held_item"):
+			player.remove_held_item()
+		if player.is_holding == self:
+			player.is_holding = null
+	
+	# Remove the fossil from the scene
+	queue_free()
+
 # https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-private-method-integrate-forces
 # This function is called during the physics step and allows us to read contact data to implement custom collision responses, 
 # in this case applying damage based on impact speed.
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# See the above comments in interact() for the rationale behind this code. 
-	if player and player.is_holding == self:
+	if player and player.is_holding == self and _hold_session_active:
 		# If we have a player and the player is holding this fossil, 
-		# let's position the fossil in front of the player at the specified hold distance and height, and rotate it with the player's camera yaw.
+		# we compute a target hold position in front of the player and drive the fossil toward it using physically applied forces.
+		#
+		# We avoid setting state.transform directly each frame while held. Hard-setting transforms is effectively teleporting the body,
+		# which can conflict with collision response and can produce clipping/tunneling behavior around nearby geometry.
+		#
+		# Instead we use a spring-damper model:
+		#   hold_force = (position_error * hold_spring_strength) + (velocity_error * hold_damping)
+		# and clamp the result to max_hold_force for stability and predictable gameplay feel.
+		#
+		# This gives a much more "in-hand" feel while still letting world collisions push the fossil away naturally.
+
+		# First we calculate the target hold position based on the player's current position and camera orientation, using the same logic as in interact().
 		var cam: Node3D = player.get_node_or_null(camera_path)
 		var cam_basis: Basis = cam.global_transform.basis if cam else player.global_transform.basis
 		var forward: Vector3 = -cam_basis.z.normalized()
 		_hold_theta = atan2(forward.x, forward.z)
-		# print("Camera theta (deg)=", rad_to_deg(_hold_theta))
 		var origin: Vector3 = player.global_transform.origin
 		var offset := Vector3(sin(_hold_theta) * hold_distance, hold_height, cos(_hold_theta) * hold_distance)
 		var target: Vector3 = origin + offset
-		# In interact(), we were done after setting the global position.
-		# But here, we need to do something more involved. When we do global_position = player_origin + offset in interact(),
-		# we're immediately moving the fossil to the target position, which is fine for the initial placement when we pick it up. 
-		# But if we did that every physics frame in _integrate_forces, we would be essentially teleporting the fossil to the target 
-		# position every frame, which could break the physics simulation.
-		# Instead, we want to apply a force that moves the fossil towards the target position in a more natural way that still allows for physics interactions.
 
-		# xf is the transform of the body in the physics simulation. 
-		# That is, the physics engine is simulating the movement of the fossil based on forces and collisions, 
-		# and xf is the current position and orientation of the fossil in that simulation.
-		var xf := state.transform
+		# See interact() comments for explanation of the cylindrical hold positioning logic.
 
-		# By setting the origin of the transform to the target position, 
-		# we are effectively telling the physics engine that the position we want the fossil to be at is the target position in front of the player.
-		xf.origin = target
+		# Now we have the target hold position, we can calculate the spring force to apply to the fossil to pull it toward that target.
 
-		# Now for the rotation. We want the fossil to rotate with the player's camera yaw, which is represented by _hold_theta.
+		# to_target is the vector from the fossil's current position to the target hold position. This is our position error.
+		var to_target := target - state.transform.origin
+		var distance_to_target := to_target.length()
+
+		# In case the fossil is pulled very far from the target hold point (e.g. by a strong collision), 
+		# we want to release it so it doesn't feel like the player has mile long arms or strings attached to the fossil.
+		if distance_to_target > max_hold_distance_from_target:
+			# Release immediately when the fossil is pulled too far from the target hold point.
+			# This avoids asynchronous/deferred cleanup and keeps the hold lifecycle local to this script.
+			_force_release_hold()
+			return
+
+		# Use the carrier's real velocity as desired velocity so the fossil tracks the player's movement more tightly.
+		# This significantly reduces the "floating on a string" feeling during acceleration/strafe turns because the body
+		# is not only pulled to a position, it is also asked to match the carrier's velocity.
+		var desired_velocity := Vector3.ZERO
+		if player.has_method("get_real_velocity"):
+			desired_velocity = player.get_real_velocity()
+
+		# Spring term pulls toward target. Damping/velocity term aligns body velocity with the carrier velocity.
+		# Combined, these make the object snap back and hold at the target quickly,
+		# but still feel much better than having it teleport to the target every frame and clip through nearby geometry.
+
+		# Velocity error is the difference between the desired velocity (e.g. player's velocity) and the fossil's current velocity.
+		var velocity_error := desired_velocity - state.linear_velocity
+
+		# Hold force is the sum of the spring force (proportional to position error) and the damping force (proportional to velocity error).
+		# Remember that the ODE spring equation is 
+		# F = kx + bx' + mx'' where k is the spring constant, b is the damping coefficient, and m is the mass.
+		# In our case, we are directly calculating the force F to apply each frame based on the current position error (x) and velocity error (x'), 
+		# where the spring constant k is hold_spring_strength and the damping coefficient b is hold_damping.
+		# We omit the mass term since the physics engine will take care of that when we apply the force.
+		# Rather than try to solve the differential equation for a specific desired response, we can experimentally tune hold_spring_strength and hold_damping to achieve a good feel.
+		var hold_force := (to_target * hold_spring_strength) + (velocity_error * hold_damping)
+
+		# Once we have the hold force, we limit it to the maximum allowed force to prevent any extreme values that could result in anomalous behavior.
+		if hold_force.length() > max_hold_force:
+			hold_force = hold_force.normalized() * max_hold_force
+
+		# https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-method-apply-central-force
+		# Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.
+		# This is equivalent to using apply_force() at the body's center of mass.
+		state.apply_central_force(hold_force)
+
+
+		# So the above code handles getting the fossil to the right position, but we also want it to have the right orientation while held.
+		# In our case, we want the fossil to maintain a consistent orientation relative to the player's camera yaw, so it doesn't feel like it's spinning around while held. 
+		# We can achieve this by applying a corrective torque to the fossil that tries to align its orientation with the desired orientation based on the camera yaw.
+
+		# https://en.wikipedia.org/wiki/Euler_angles
+		# Euler angles are a way to represent 3D rotations using three angles (often called pitch, yaw, and roll).
+		# However, Euler angles can suffer from gimbal lock and can be unintuitive to work with when trying to calculate smooth rotational corrections, 
+		# especially when you want to correct across multiple axes simultaneously.
+		# https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation
+		# Instead of using Euler angles, we can use quaternions to represent the fossil's current orientation and the desired orientation, 
+		# and then calculate the rotational error as a quaternion difference.
+		#
+		# Brief primer for readers unfamiliar with these terms:
+		# Euler angles describe a rotation by applying three separate rotations around the coordinate axes (for example: rotate around X, then Y, then Z).
+		# This is intuitive because you can think "pitch, yaw, roll" like a plane, but it has practical problems: the order of the rotations matters
+		# (rotating X then Y is different from Y then X), and certain combinations cause two axes to align so one degree of freedom is lost,
+		# which is called gimbal lock. In gimbal lock a small change in desired orientation can require a very large or poorly behaved
+		# change in the Euler angles, which makes smooth control difficult. For an intuitive example of gimbal lock, see https://en.wikipedia.org/wiki/Gimbal_lock.
+		#
+		# Quaternions are a compact mathematical way to represent 3D rotation without those singularities (points where the representation becomes undefined). 
+		# A quaternion can be thought of as an axis (a unit 3D direction) plus an angle around that axis (an axis-angle representation),
+		# but encoded as a 4-component value that  composes cleanly. Quaternion multiplication composes rotations without re-ordering pitfalls, 
+		# and taking the "difference" between two quaternions produces a single quaternion that describes the minimal rotation from one orientation to the other. 
+		# Converting that quaternion error into an axis and angle lets us drive a good looking torque without teleports: torque = axis * angle * gain, with additional
+		# damping applied to the angular velocity. That proportional derivative (PD) style controller corrects pitch/yaw/roll simultaneously and avoids the instability
+		# and ambiguity Euler-based corrections would introduce.
+		#
+		# Formally, this can be described in the lens of group theory.
+		# The set of all 3D rotations about the origin forms a mathematical group called SO(3) (the special orthogonal group in 3 dimensions).
+		# A group is a set equipped with a composition operation (here: perform rotation A then rotation B) that has an identity element,
+		# inverses, and associativity. SO(3) is non-commutative (nonabelian): the order of rotations matters. Unit quaternions (quaternions of length 1)
+		# form a group under multiplication that is closely related to SO(3). In fact, unit quaternions provide a double-cover of SO(3)
+		# (commonly written as SU(2) or Spin(3) in algebraic terms), which means each rotation in SO(3) corresponds to two opposite unit
+		# quaternions. Practically, this algebraic structure is why quaternion multiplication cleanly represents rotation composition,
+		# why inverses are simple (conjugate the quaternion), and why taking a quaternion difference (desired * inverse(current)) maps
+		# naturally to the minimal group element that transforms the current orientation into the desired one.
+		#
+		# This group-theoretic perspective is helpful because the PD-style torque controller we're using is effectively operating on the
+		# Lie-group manifold of rotations (basically a mathematical object that lets us both do calculus and group operations):
+		# we compute an error element in the group (the quaternion error), convert it into a tangent-space
+		# axis-angle (an element of the Lie algebra), and apply forces proportional to that tangent error and its derivative. That avoids
+		# the discontinuities and singularities that appear if one tries to treat rotations as simple 3D vectors.
+
+		# We want the fossil to rotate with the player's camera yaw, which is represented by _hold_theta.
 		# This is so that if for example the player is holding the fossil and looking around, if they look to the north, 
 		# they will see the front of the fossil, and if they look to the south, they will still see the front of the fossil, 
 		# instead of the fossil always being oriented in the same direction regardless of where the player is looking.
-
-		# To achieve this, we can construct a new basis for the transform that has the desired yaw angle.
-		# We can create a basis from Euler angles, where we set the yaw (rotation around the vertical axis) 
-		# to _hold_theta, and leave pitch and roll as 0.
-		# https://docs.godotengine.org/en/stable/classes/class_basis.html
-		# https://en.wikipedia.org/wiki/Euler_angles
-		# Euler angles are the three angles that represent rotations around the three principal axes (usually x, y, z).
-		# In Godot, the convention is that yaw is rotation around the y axis, pitch is rotation around the x axis, and roll is rotation around the z axis.
-		# So by creating a basis with Euler angles of (0, _hold_theta, 0), we are creating a rotation that only has yaw and no pitch or roll, 
-		# which has the effect of rotating the fossil to match the camera's yaw while ignoring the camera's pitch and roll.
-		var yaw_basis: Basis = Basis(Vector3.UP, cam_basis.get_euler().y)
+		# Moreover, since we're using quaternions we don't have to think about order of rotations, we can just use the earlier
+		# explained algebraic approach to basically do:
+		#
+		# error_q = desired_q * inverse(current_q)
+		#
+		# Then convert error_q to axis-angle and apply a PD controller:
+		# 
+		# torque = axis * angle * hold_rotation_spring - angular_velocity * hold_rotation_damping
+		#
 
 		# We orthonormalize the basis to ensure it is a valid rotation matrix. All rotation matrices should be orthonormal, 
 		# meaning each column is a unit vector and the columns are mutually orthogonal (defined in various ways but one simple one 
 		# is that the dot product of any two different columns should be zero).
-		yaw_basis.orthonormalized()
+		# https://docs.godotengine.org/en/stable/classes/class_basis.html
+		var current_basis: Basis = state.transform.basis.orthonormalized()
+		var desired_basis: Basis = Basis(Vector3.UP, _hold_theta).orthonormalized()
 
-		# By setting the basis of the transform to our new yaw_basis, 
-		# the physics engine will now understand that the orientation we want for the fossil is the one defined by yaw_basis, 
-		# which has the correct yaw angle to match the player's camera.
-		xf.basis = yaw_basis
+		# current_q is the fossil's current orientation as a quaternion, and desired_q is the target orientation based on the camera yaw.
+		# https://docs.godotengine.org/en/stable/classes/class_quaternion.html
+		var current_q: Quaternion = current_basis.get_rotation_quaternion()
+		var desired_q: Quaternion = desired_basis.get_rotation_quaternion()
+		var error_q: Quaternion = (desired_q * current_q.inverse()).normalized()
 
-		# Now that we have set the desired position and orientation in the transform, we assign it back to the physics state.
-		state.transform = xf
+		# Quaternions q and -q represent the same orientation; forcing positive w selects the shorter corrective path.
+		# Why is this true? Think of it this way: if we have a desired orientation and a current orientation, 
+		# there are actually two paths to get from the current orientation to the desired orientation: one is the "short way" and the other is the "long way" that goes around the opposite direction.
+		# Like if I'm looking slightly to the left of something and want to look right at it I can either turn a little bit to the right (short way) or turn almost all the way around to the left (long way).
+		# Since quaternions represent rotations in a double-cover way, both q and -q represent the same rotation. However, when we calculate the error quaternion as desired * inverse(current),
+		# we might get either the short path or the long path depending on the signs of the quaternion components. 
+		# By enforcing that the w component of the error quaternion is positive, we ensure that we always take the short path for correction, which results in more intuitive behavior.
+		# Now you might be asking "well that makes sense, but why does the positive w component correspond to the short path?"
+		# The quaternion representing a rotation can be expressed as q = [v*sin(theta/2), cos(theta/2)] where v is the rotation axis and theta is the rotation angle.
+		# When theta is between 0 and 180 degrees, cos(theta/2) is positive, which corresponds to the short path. When theta is between 180 and 360 degrees, cos(theta/2) is negative, which corresponds to the long path. 
+		# By enforcing w > 0, we ensure that theta is always between 0 and 180 degrees, thus taking the short path.
+		if error_q.w < 0.0:
+			error_q = Quaternion(-error_q.x, -error_q.y, -error_q.z, -error_q.w)
 
-		# When the fossil is being held, it should not be able to move independently due to physics forces, because we want it to stay in front of the player.
-		# So we set its linear and angular velocity to zero to prevent it from drifting or rotating due to physics while it's being held.
-		state.linear_velocity = Vector3.ZERO
-		state.angular_velocity = Vector3.ZERO
+		# Angle error is the angle of rotation needed to correct the orientation, and axis error is the axis around which we need to apply that rotation.
+		var angle_error: float = error_q.get_angle()
+		var axis_error: Vector3 = error_q.get_axis()
+
+		var rotation_torque := Vector3.ZERO
+		if angle_error > 0.0001:
+			rotation_torque = (axis_error * angle_error * hold_rotation_spring) - (state.angular_velocity * hold_rotation_damping)
+		else:
+			# Near the target orientation, we mostly want to remove all residual angular velocity to avoid micro-jitter.
+			rotation_torque = -state.angular_velocity * hold_rotation_damping
+
+		# As with the positional force, we clamp the rotation torque to a maximum value to prevent extreme corrections that could produce erratic behavior.
+		if rotation_torque.length() > max_hold_torque:
+			rotation_torque = rotation_torque.normalized() * max_hold_torque
+
+		# https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-method-apply-torque
+		# Applies a rotational force (torque) to the body. Like apply_central_force, this is time dependent and meant to be applied every physics update. 
+		state.apply_torque(rotation_torque)
 
 	# https://docs.godotengine.org/en/stable/classes/class_physicsdirectbodystate3d.html#class-physicsdirectbodystate3d-method-get-contact-count
 	# Returns the number of contacts (collisions) currently involving this body. 
@@ -240,3 +473,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		# This is opposed to calculating it as max_speed * damage_per_speed, as that would mean anything barely above the threshold could cause a lot of damage
 		# if the threshold is high enough, while something barely below the threshold would cause no damage at all, which could be frustrating.
 		health -= (max_speed - min_damage_speed) * damage_per_speed
+		
+		# Check if fossil has been destroyed
+		if health <= 0:
+			_on_health_depleted()
