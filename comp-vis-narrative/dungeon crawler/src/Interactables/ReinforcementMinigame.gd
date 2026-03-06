@@ -138,7 +138,83 @@ func complete_minigame():
 	# Update instruction text
 	%InstructionLabel.text = "Jacketing fossil..."
 
-	# White flash jacket overlay
+	# Start the burlap strip animation
+	animate_jacketing()
+
+func animate_jacketing():
+	var fossil_rect = %FossilImage.get_rect()
+
+	# Burlap strip settings
+	var num_strips = 6
+	var strip_width = fossil_rect.size.x * 0.35
+	var strip_height = fossil_rect.size.y * 1.2
+	var strip_color = Color(0.95, 0.93, 0.88, 0.92)
+
+	# Center-out placement order: center first, then alternate left/right
+	# Indices represent order of placement, values are x-position multipliers (0=left, 1=right)
+	var placement_order = [0.5, 0.25, 0.75, 0.0, 1.0, 0.5]  # center, left, right, far left, far right, center overlay
+	var directions = ["top", "left", "right", "left", "right", "top"]  # Where each strip comes from
+
+	var tween = create_tween()
+	var strips_since_pause = 0
+
+	for i in num_strips:
+		var strip = ColorRect.new()
+		strip.color = strip_color
+		strip.size = Vector2(strip_width, strip_height)
+		strip.pivot_offset = strip.size / 2  # Pivot at center for rotation and scale
+
+		# Target position based on placement order (center-out with overlap)
+		var x_mult = placement_order[i]
+		var target_x = x_mult * (fossil_rect.size.x - strip_width * 0.3) + strip_width * 0.15 - strip_width / 2
+		var target_y = fossil_rect.size.y / 2 - strip_height / 2
+
+		# Slight rotation for natural look
+		strip.rotation = randf_range(-0.15, 0.15)
+
+		# Starting position based on direction
+		var start_offset = Vector2.ZERO
+		var direction = directions[i]
+		match direction:
+			"top":
+				start_offset = Vector2(0, -120)
+			"left":
+				start_offset = Vector2(-100, -60)
+			"right":
+				start_offset = Vector2(100, -60)
+
+		strip.position = Vector2(target_x, target_y) + start_offset
+		strip.modulate.a = 0
+		strip.scale = Vector2(1, 1)
+
+		%FossilContainer.add_child(strip)
+
+		# Determine if this is the "slide and tuck" strip (one in the middle)
+		var is_slow_strip = (i == 3)
+		var travel_time = 0.5 if is_slow_strip else 0.25
+
+		# Beat 1: Fast travel to position + fade in
+		tween.tween_property(strip, "position", Vector2(target_x, target_y), travel_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(strip, "modulate:a", strip_color.a, travel_time * 0.7)
+
+		# Beat 2: Press/squish effect - compress Y then bounce back
+		tween.tween_property(strip, "scale:y", 0.95, 0.08).set_ease(Tween.EASE_OUT)
+		tween.tween_property(strip, "scale:y", 1.0, 0.10).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+
+		# Rhythm: base stagger with longer pauses every 2-3 strips
+		strips_since_pause += 1
+		if strips_since_pause >= 2 and i < num_strips - 1 and randf() > 0.4:
+			tween.tween_interval(randf_range(0.35, 0.45))  # Reaching for next piece
+			strips_since_pause = 0
+		else:
+			tween.tween_interval(0.14)
+
+	# After all strips placed, brief pause then transition
+	tween.tween_interval(0.5)
+	tween.tween_callback(finish_jacketing)
+
+func finish_jacketing():
+	# Final white overlay fade
 	var jacket = ColorRect.new()
 	jacket.color = Color.WHITE
 	jacket.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -146,10 +222,7 @@ func complete_minigame():
 	add_child(jacket)
 
 	var tween = create_tween()
-	tween.tween_property(jacket, "modulate:a", 0.85, 0.4)
-	tween.tween_interval(0.4)
-	# Fade to full white before transitioning
-	tween.tween_property(jacket, "modulate:a", 1.0, 0.2)
+	tween.tween_property(jacket, "modulate:a", 1.0, 0.4)
 	tween.tween_callback(finish_and_transition)
 
 func finish_and_transition():
