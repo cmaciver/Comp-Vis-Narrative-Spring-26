@@ -59,6 +59,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_time += delta
 	_apply_visuals()
+	
+	if Input.is_action_just_pressed("esc") && $Control/Panel.is_visible_in_tree():
+		$Control/Panel.hide()
 
 
 ## Updates the stamina bar with the current stamina values and sprinting state.
