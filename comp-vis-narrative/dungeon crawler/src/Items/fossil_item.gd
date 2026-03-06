@@ -16,13 +16,13 @@ var interactableText = "Press \"e\" to pick up"
 # Example: big (e.g. 2000) -> item snaps to target very quickly but may produce strong collision impulses or jitter;
 #          small (e.g. 100) -> item is very floaty and slow to return.
 # `hold_spring_strength` should be balanced with `hold_damping` and `max_hold_force`.
-@export var hold_spring_strength := 1400.0
+@export var hold_spring_strength := 1000.0
 
 # Linear damping applied to the velocity error (viscous term that resists motion).
 # Higher damping reduces oscillation/overshoot from the positional spring; too-high values feel sluggish.
 # Example: big (e.g. 200) -> critically or over-damped (no bounce, may feel heavy); small (e.g. 10) -> under-damped, oscillatory float.
 # When you raise `hold_spring_strength`, increase `hold_damping` to maintain stability.
-@export var hold_damping := 200.0
+@export var hold_damping := 100.0
 
 # Maximum magnitude of the positional force applied (force cap for safety/stability).
 # Prevents the spring+damping force from becoming unbounded and doing weird things like maybe launching the fossil if some tremendous position error occurs even if for a single frame.

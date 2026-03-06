@@ -167,7 +167,7 @@ func dotClicked():
 		raycastAndSpawnClickableSpheres()
 
 
-func shake_camera(duration: float = 0.2, amount: float = 0.15, shakes: int = 5):
+func shake_camera(duration: float = 0.2, amount: float = 0.05, shakes: int = 3):
 	var original_pos: Vector3 = %TargetCameraPoint.position
 	
 	var tween := get_tree().create_tween()
