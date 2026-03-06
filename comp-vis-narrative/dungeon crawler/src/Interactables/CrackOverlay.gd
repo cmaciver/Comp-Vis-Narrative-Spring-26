@@ -118,16 +118,21 @@ func erase_at_global(global_pos: Vector2, radius: int):
 	if not is_ready or damaged_image == null or damaged_texture_rect == null:
 		return
 
-	# Convert global position to local position, accounting for rotation
+	# Convert global position to local position, accounting for rotation and scale
 	# First get position relative to this Control's origin (which is rotated)
 	var local_to_control = (global_pos - global_position).rotated(-rotation)
+	# Account for scale
+	local_to_control = local_to_control / scale
 	# Then offset by the texture rect's local position
 	var local_pos = local_to_control - damaged_texture_rect.position
 
+	# Adjust brush radius for scale (bigger brush in image space when scaled down)
+	var adjusted_radius = int(radius / scale.x)
+
 	# Erase circle from damaged image (set alpha to 0)
-	for dx in range(-radius, radius + 1):
-		for dy in range(-radius, radius + 1):
-			if dx * dx + dy * dy <= radius * radius:
+	for dx in range(-adjusted_radius, adjusted_radius + 1):
+		for dy in range(-adjusted_radius, adjusted_radius + 1):
+			if dx * dx + dy * dy <= adjusted_radius * adjusted_radius:
 				var px = int(local_pos.x) + dx
 				var py = int(local_pos.y) + dy
 				if px >= 0 and px < damaged_image.get_width() and py >= 0 and py < damaged_image.get_height():

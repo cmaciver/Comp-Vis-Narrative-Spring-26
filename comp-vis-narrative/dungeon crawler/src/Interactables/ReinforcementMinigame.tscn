@@ -19,19 +19,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.6)
+color = Color(0, 0, 0, 0.7)
 
-[node name="FossilContainer" type="Control" parent="."]
+[node name="DiscoveryTitle" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
+offset_left = -300.0
+offset_top = -50.0
+offset_right = 300.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Fossil Discovered!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FossilContainer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -55,6 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProgressContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -70,7 +91,8 @@ theme_override_constants/separation = 15
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Glue Progress: 0%"
+theme_override_font_sizes/font_size = 28
+text = "Consolidant: 0%"
 
 [node name="ProgressBar" type="ProgressBar" parent="ProgressContainer"]
 unique_name_in_owner = true
@@ -81,17 +103,19 @@ value = 0.0
 show_percentage = false
 
 [node name="InstructionLabel" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -60.0
-offset_right = 200.0
+offset_left = -350.0
+offset_top = -80.0
+offset_right = 350.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Hold mouse and trace cracks to apply glue"
+theme_override_font_sizes/font_size = 24
+text = "Apply consolidant to stabilize cracks before jacketing"
 horizontal_alignment = 1
