@@ -19,6 +19,7 @@ mesh = SubResource("BoxMesh_pmt2c")
 shape = SubResource("BoxShape3D_tdrsx")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)

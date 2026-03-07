@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=19 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="Shader" uid="uid://jk172qdhw4kq" path="res://dungeon crawler/src/shaders/sky.gdshader" id="1_1aokg"]
 [ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://co6j1aa6gd4hb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/gps.tscn" id="7_qi052"]
 [ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/enviro_scenes/dc_terrain.tscn" id="9_tjbcq"]
 [ext_resource type="PackedScene" uid="uid://daeshrgahs38q" path="res://dungeon crawler/src/Interactables/HomeBase.tscn" id="9_tsilk"]
+[ext_resource type="PackedScene" uid="uid://dh131yvgouluo" path="res://dungeon crawler/src/Hazards/Cactus.tscn" id="10_tjbcq"]
 
 [sub_resource type="Gradient" id="Gradient_1aokg"]
 offsets = PackedFloat32Array(0.0034013605, 0.2585034, 0.8503401, 1)
@@ -108,3 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.025024, 0.08579922, -50.0
 
 [node name="HomeBase" parent="." instance=ExtResource("9_tsilk")]
 transform = Transform3D(0.85264015, 0, 0.52249855, 0, 1, 0, -0.52249855, 0, 0.85264015, -2.2672608, 1.1305755, 3.8324523)
+
+[node name="Cactus" parent="." instance=ExtResource("10_tjbcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.702369, 1.363764, 1.2369565)
