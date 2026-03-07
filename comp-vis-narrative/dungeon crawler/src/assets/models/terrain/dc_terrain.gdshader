@@ -59,10 +59,18 @@ void fragment() {
 		vec3 world_normal = normalize(cross(ddy, ddx));
 		vec3 line = fractal_contour_lines(line_thickness, line_interval, world_pos, CAMERA_POSITION_WORLD, ddx, ddy);
 		
-		// Y only
+		// add in the countour lines
 		ALBEDO = mix(vec3(0.1), line_color, clamp(line.y, 0., 1.));
-		ALBEDO += vec3(0.15);
-		ALBEDO *= vec3(0.2, 0.7, 0.2) * pow(world_pos.y, 2) * 0.01;
+		
+		// make higher points greener
+		ALBEDO *= pow(world_pos.y, 2) * 0.01;
+		
+		// add a little brightness to everything
+		ALBEDO += vec3(0.1);
+		
+		// make it all green and solid
+		ALBEDO *= vec3(0.2, 0.7, 0.2);
+		//ALPHA = 1.0;
 		
 		
 	} 
