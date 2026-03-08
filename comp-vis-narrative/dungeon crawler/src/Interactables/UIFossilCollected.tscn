@@ -104,6 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0.863)
 
 [node name="FossilMesh" parent="ColorRect/SubViewportContainer/SubViewport" instance=ExtResource("2_0o66p")]
 unique_name_in_owner = true
+visible = false
 
 [node name="FossilMeshOLD" type="MeshInstance3D" parent="ColorRect/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
