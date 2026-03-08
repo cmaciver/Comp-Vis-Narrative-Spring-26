@@ -1,4 +1,4 @@
-extends StaticBody3D
+extends Node3D
 
 var isInteractable = true
 
@@ -10,7 +10,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var fossil_item_scene = preload("res://dungeon crawler/src/Items/fossil_item.tscn")
 @export var fossil_scenes: Array[PackedScene]
 
-@onready var rockCamera = $Camera3D
+@onready var rockCamera = $StaticBody3D/Camera3D
 
 #the fossils description that gets filled on the field log for the fossil
 @export var fossilDescription = "write a description"
@@ -122,7 +122,7 @@ func reactivatePlayerFunctionality():
 			if child is CollisionShape3D:
 				child.disabled = false
 		
-		get_parent().queue_free() #Free the interactable fossil
+		queue_free() #Free the interactable fossil
 	
 func raycastAndSpawnClickableSpheres():
 	#create the ray from the camera and see where it collides with the rock
@@ -193,8 +193,8 @@ func shake_camera(duration: float = 0.2, amount: float = 0.05, shakes: int = 3):
 		offset *= float(shakes - i) / shakes 
 		
 		# adapted from https://github.com/EvilBunnyMan/TweenFX/blob/main/addons/TweenFX/TweenFX.gd
-		tween.tween_property($Camera3D, "position", original_pos + offset, duration / (shakes * 2))
-		tween.tween_property($Camera3D, "position", original_pos, duration / (shakes * 2))
+		tween.tween_property($StaticBody3D/Camera3D, "position", original_pos + offset, duration / (shakes * 2))
+		tween.tween_property($StaticBody3D/Camera3D, "position", original_pos, duration / (shakes * 2))
 
 
 
