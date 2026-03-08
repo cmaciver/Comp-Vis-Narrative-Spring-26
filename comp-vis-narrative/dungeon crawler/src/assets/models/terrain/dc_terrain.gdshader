@@ -50,30 +50,39 @@ vec3 fractal_contour_lines(float thickness, float interval, vec3 world_pos, vec3
 void fragment() {
 	uint visible_layers = CAMERA_VISIBLE_LAYERS;
 	if (! ((visible_layers & map_layer_mask) == map_layer_mask) ) {
-		
-		
+
+
 		// the minimap shader goes here
 		vec3 world_pos = (INV_VIEW_MATRIX * vec4(VERTEX,1.0)).xyz;
 		vec3 ddx = dFdx(world_pos);
 		vec3 ddy = dFdy(world_pos);
 		vec3 world_normal = normalize(cross(ddy, ddx));
 		vec3 line = fractal_contour_lines(line_thickness, line_interval, world_pos, CAMERA_POSITION_WORLD, ddx, ddy);
-		
+
+
+
 		// add in the countour lines
 		ALBEDO = mix(vec3(0.1), line_color, clamp(line.y, 0., 1.));
-		
+
 		// make higher points greener
 		ALBEDO *= pow(world_pos.y, 2) * 0.01;
-		
+
 		// add a little brightness to everything
 		ALBEDO += vec3(0.1);
-		
+
+		// add the grid lines
+		float line_strength = 0.1;
+		if (mod(world_pos.x, 5.) < 0.56) ALBEDO += line_strength;
+		if (mod(world_pos.z, 5.) < 0.56) ALBEDO += line_strength;
+
+
+
 		// make it all green and solid
 		ALBEDO *= vec3(0.2, 0.7, 0.2);
-		//ALPHA = 1.0;
-		
-		
-	} 
+
+
+
+	}
 	else {
 		// WORLD NORMAL MIX SHADER
 		// This shader can  be used to mix two PBR materials based on a world normal. This is useful for
@@ -87,18 +96,18 @@ void fragment() {
 		// LINE 47 - Compare the up vector to the surface with the normal map applied using the dot product.
 		// LINE 48 - Remap the dot-product to a clamped mask using the smoothstep function.
 		// LINE 50 - Mix the various textures and apply them, using the mask.
-		
+
 		// normal terrain shader goes here
 		vec2 fg_uv = UV * uv_scale_fg.xy;
 		vec2 bg_uv = UV * uv_scale_bg.xy;
 		vec3 albedo_tex_fg = texture(albedo_texture_fg, fg_uv).rgb;
 		vec3 orm_tex_fg = texture(orm_texture_fg, fg_uv).rgb;
 		vec3 normal_tex_fg = texture(normal_texture_fg, fg_uv).rgb;
-		
+
 		vec3 albedo_tex_bg = texture(albedo_texture_bg, bg_uv).rgb;
 		vec3 orm_tex_bg = texture(orm_texture_bg, bg_uv).rgb;
 		vec3 normal_tex_bg = texture(normal_texture_bg, bg_uv).rgb;
-		
+
 		vec3 bg_normal = normal_tex_bg * 2.0 - 1.0;
 		bg_normal.z = sqrt(1.0 - bg_normal.x * bg_normal.x - bg_normal.y * bg_normal.y);
 		vec3 normal_applied = bg_normal.x * TANGENT + bg_normal.y * BINORMAL + bg_normal.z * NORMAL;
@@ -114,4 +123,3 @@ void fragment() {
 		NORMAL_MAP = mix(normal_tex_bg, normal_tex_fg, mask);
 	}
 }
-
