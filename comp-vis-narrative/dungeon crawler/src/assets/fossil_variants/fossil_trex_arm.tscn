@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://qcin0k2l5qbg"]
+[gd_scene load_steps=10 format=4 uid="uid://qcin0k2l5qbg"]
 
 [ext_resource type="Script" uid="uid://b57dk4b820rgi" path="res://dungeon crawler/src/Items/fossil_item.gd" id="1_jou3f"]
 [ext_resource type="PackedScene" uid="uid://yuhpcrb1dj85" path="res://assets/fossils/_trex_forelimb.gltf" id="2_1d4fd"]
 [ext_resource type="Texture2D" uid="uid://6rctmwb5vkad" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_BaseColour.png" id="3_guqmt"]
 [ext_resource type="Texture2D" uid="uid://b5xetqsbg0oaj" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_Roughness.png" id="4_mour4"]
+[ext_resource type="PackedScene" uid="uid://bgyg6eu45f8b3" path="res://dungeon crawler/src/Interactables/rock_particles.tscn" id="5_y44lq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yo35"]
 resource_name = "M_Desert_Rock"
@@ -56,13 +57,15 @@ radius = 0.35009766
 mass = 30.0
 script = ExtResource("1_jou3f")
 
-[node name="TrexForelimb" type="Node3D" parent="."]
+[node name="SmallFossilRock" type="Node3D" parent="."]
+
+[node name="TrexForelimb" type="Node3D" parent="SmallFossilRock"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="_trex_forelimb" parent="TrexForelimb" instance=ExtResource("2_1d4fd")]
+[node name="_trex_forelimb" parent="SmallFossilRock/TrexForelimb" instance=ExtResource("2_1d4fd")]
 transform = Transform3D(0.18874954, 0.018735697, 0.4626257, -0.19398211, 0.45682973, 0.06064297, -0.42040995, -0.2023749, 0.17972161, -0.07708763, 0.21736512, -0.12533909)
 
-[node name="Desert_Rock17" type="MeshInstance3D" parent="TrexForelimb"]
+[node name="Desert_Rock17" type="MeshInstance3D" parent="SmallFossilRock/TrexForelimb"]
 transform = Transform3D(-4.3711387e-10, 0.01, -2.6226832e-10, 0, -4.3711387e-10, -0.006, -0.01, -4.3711387e-10, 1.1464113e-17, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vlqds")
 skeleton = NodePath("")
@@ -70,3 +73,5 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17777526, 0)
 shape = SubResource("CylinderShape3D_5lym3")
+
+[node name="RockParticles" parent="." instance=ExtResource("5_y44lq")]

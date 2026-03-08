@@ -21,5 +21,6 @@ func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, n
 			var particles := rock_particle_scene.instantiate()
 			add_sibling(particles)
 			particles.position = position
+			particles.play_particles()
 			
 			queue_free()

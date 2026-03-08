@@ -1,10 +1,16 @@
 extends RigidBody3D
 
+const MAX_HEALTH := 100.0
+
 var isInteractable = true
 var interactableText = "Press \"e\" to pick up"
 @onready var fossil_res = preload("res://dungeon crawler/src/Items/fossil.tres")
 @onready var player
 @onready var camera_path := NodePath("HeadPosition/LandingAnimation/Camera3D")
+@onready var rock_particles: GPUParticles3D = $RockParticles
+
+# How many particle effects to play when taking damage.
+var damage_particle_count := 20
 
 # Distances in cylindrical coordinates relative to the player
 # to use when positioning the fossil while it's being held. 
@@ -70,9 +76,23 @@ const FOSSIL_LAYER_BIT := 2
 const WORLD_LAYER_BIT := 1
 
 var weight = 0.0
-var health = 100.0
+var health = MAX_HEALTH
+
 @export var min_damage_speed := 4.0 # Threshold speed before collisions cause damage
 @export var damage_per_speed := 1.0 # Damage multiplier per unit of impact speed
+
+# Ranges for visual damage effect. Darkness is interpolated between these based on damage ratio.
+
+# The minimum darkness multiplier to apply to the material colors when the fossil is at 100% health. 
+@export_range(0.0, 1.0, 0.01) var min_darkness := 0.0
+
+# The maximum darkness multiplier to apply to the material colors when the fossil is at 0% health.
+# A value like 1.0 would result in total blackness at 0 health, which looks a little off.
+# So we use a value less than 1.0 to allow the fossil to still be somewhat visible even when fully damaged.
+@export_range(0.0, 1.0, 0.01) var max_darkness := 0.65
+
+var _damage_materials: Array[Dictionary] = []
+var _is_destroying := false
 
 #contains a fieldLofInfo.initials and fieldLogInfo.description after the fieldLog has been attached to the fossilItem
 var fieldLogInfo
@@ -87,7 +107,133 @@ func _ready() -> void:
 	max_contacts_reported = 8
 	sleeping = false # ensure physics stays active so _integrate_forces runs
 	fossil_res.weight = weight
+	health = clamp(health, 0.0, MAX_HEALTH)
 	player = get_tree().root.get_node("Node3D/Player")
+	_cache_damage_materials()
+	_update_damage_visuals()
+
+## This function is called to play damage particles when the fossil takes damage.
+## [br]
+##  **Param**: particle_count (int) - The number of particles to emit.
+func play_damage_particles(particle_count: int) -> void:
+	if rock_particles == null:
+		print("Error: rock_particles is null, cannot play damage particles.")
+		return
+
+	# Delegate to the rock_particles node to handle playing the particle effect.
+	rock_particles.play_particles(particle_count)
+
+## This function is called when the fossil is readied. 
+## It collects all materials used in the fossil's visual representation and caches them in the _damage_materials array, along with their base colors
+## so that we can modify their colors later to visually represent damage.
+func _cache_damage_materials() -> void:
+	# Clear any previously cached materials in case this is called more than once for some reason. We want to avoid duplicates and stale references.
+	_damage_materials.clear()
+
+	# We assume that all visual MeshInstance3D nodes are children (or descendants) of a common root node, which is called "SmallFossilRock".
+	var visual_root := get_node_or_null("SmallFossilRock")
+	if visual_root == null:
+		return
+
+	# DFS traversal to find all MeshInstance3D nodes under visual_root, then for each material used by those mesh instances, 
+	# we create a duplicate of the material and store it in _damage_materials along with its base color.
+	var mesh_instances := _collect_mesh_instances(visual_root)
+
+	for mesh_instance in mesh_instances:
+
+		# First we check if the mesh instance has a material override. 
+		if mesh_instance.material_override is BaseMaterial3D:
+			# If it does, we duplicate the override material and set it back as the new override, then register that duplicated material for damage visualization.
+			var override_material := mesh_instance.material_override.duplicate() as BaseMaterial3D
+			mesh_instance.material_override = override_material
+
+			# Note that if a material is used as an override on multiple mesh instances, this will create separate duplicates for each instance, 
+			# which is fine for our purposes since they can have different damage states.
+			_register_damage_material(override_material)
+			continue
+
+		if mesh_instance.mesh == null:
+			continue
+
+		# If there is no material override, we check the materials assigned to each surface of the mesh. 
+		# For each active material, we duplicate it and set it as a surface override,
+		# then register that duplicated material for damage visualization.
+		for surface_index in mesh_instance.mesh.get_surface_count():
+			var active_material := mesh_instance.get_active_material(surface_index)
+			if active_material is BaseMaterial3D:
+				var surface_material := active_material.duplicate() as BaseMaterial3D
+				mesh_instance.set_surface_override_material(surface_index, surface_material)
+				_register_damage_material(surface_material)
+
+
+## This function recursively collects all MeshInstance3D nodes in the subtree rooted at the given node.
+## [br]
+##  **Param**: root (Node) - The root node of the subtree to search.
+## [br]
+##  **Returns**: Array[MeshInstance3D] - A list of all MeshInstance3D nodes found.
+func _collect_mesh_instances(root: Node) -> Array[MeshInstance3D]:
+	var mesh_instances: Array[MeshInstance3D] = []
+	_append_mesh_instances(root, mesh_instances)
+	return mesh_instances
+
+## This function is a helper for _collect_mesh_instances that performs a depth-first traversal of the node tree, 
+## appending any MeshInstance3D nodes it finds to the provided mesh_instances array.
+## [br]
+##  **Param**: node (Node) - The current node being processed.
+## [br]
+##  **Param**: mesh_instances (Array[MeshInstance3D]) - The array to which found MeshInstance3D nodes should be appended.
+func _append_mesh_instances(node: Node, mesh_instances: Array[MeshInstance3D]) -> void:
+	# Base case: if the current node is a MeshInstance3D, we add it to the list of mesh instances.
+	if node is MeshInstance3D:
+		mesh_instances.append(node as MeshInstance3D)
+
+	# Recursive case: we call this function on all children of the current node to continue the depth-first traversal.
+	for child in node.get_children():
+		_append_mesh_instances(child, mesh_instances)
+
+## This function registers a material for damage visualization by storing a reference to it along with its base color in the _damage_materials array.
+## [br]
+##  **Param**: material (BaseMaterial3D) - The material to register for damage visualization.
+func _register_damage_material(material: BaseMaterial3D) -> void:
+	# We only need to know the base color of the material to apply our damage darkening effect, so we store that along with the material reference.
+	_damage_materials.append({
+		"material": material,
+		"base_color": material.albedo_color,
+	})
+
+
+## This function updates the visual appearance of the fossil based on its current health.
+## It calculates a damage ratio based on the current health and uses it to determine how much to darken the material colors.
+## Specifically, it linearly interpolates between min_darkness and max_darkness based on the damage ratio, 
+## and then applies that darkness as a multiplier to the base color of each registered material.
+func _update_damage_visuals() -> void:
+	# First we determine how much damage the fossil has taken as a ratio of its max health. 
+	# This will be a value between 0 and 1, where 0 means no damage and 1 means fully damaged.
+	var damage_ratio : float = clamp((MAX_HEALTH - health) / MAX_HEALTH, 0.0, 1.0)
+
+	# We ensure that the darkness value is clamped between min_darkness and max_darkness, and we use linear interpolation to calculate it based on the damage ratio.
+	# This way, when the damage ratio is 0 (no damage), darkness will be at min_darkness, and when the damage ratio is 1 (fully damaged), darkness will be at max_darkness, with a smooth transition in between.
+	var darkness : float = clamp(lerp(min_darkness, max_darkness, damage_ratio), min_darkness, max_darkness)
+
+	# We calculate brightness as the inverse of darkness, so that as the fossil takes more damage and darkness increases, brightness decreases.
+	var brightness : float = 1.0 - darkness
+
+	# For each material that we want to darken...
+	for material_entry in _damage_materials:
+		# ...We figure out what material it is...
+		var material := material_entry["material"] as BaseMaterial3D
+		# ...What the base color of that material is (the original undamaged color that we cached when we registered the material)...
+		var base_color := material_entry["base_color"] as Color
+
+		# ...And finally we apply the darkness as a multiplier to the base color and set that as the new albedo color of the material.
+		# For those who may not know but are interested, albedo color is basically the base color of a material that is used in lighting calculations. 
+		# By multiplying the base color by the brightness factor, we effectively darken the material as the fossil takes damage.
+		material.albedo_color = Color(
+			base_color.r * brightness,
+			base_color.g * brightness,
+			base_color.b * brightness,
+			base_color.a
+		)
 
 func interact():
 	if player != null:
@@ -235,11 +381,20 @@ func _force_release_hold() -> void:
 ## Currently, it just prints a message and removes the fossil from the player's inventory if it's being held, 
 ## then removes the fossil from the scene.
 func _on_health_depleted() -> void:
+	if _is_destroying:
+		return
+	_is_destroying = true
+
 	print("Fossil destroyed! Health has reached zero.")
 	
 	# Health depletion should terminate any active hold session immediately.
 	# This also prevents force-hold logic from running again during the same frame.
 	_hold_session_active = false
+	isInteractable = false
+	freeze = true
+	sleeping = true
+	collision_layer = 0
+	collision_mask = 0
 	
 	# Remove from player's inventory if being held
 	if player and player.is_holding == self:
@@ -248,7 +403,20 @@ func _on_health_depleted() -> void:
 		if player.is_holding == self:
 			player.is_holding = null
 	
-	# Remove the fossil from the scene
+	_queue_free_after_depletion()
+
+
+## This function queues the fossil for deletion after a delay to allow any final effects (like particles) to play out.
+func _queue_free_after_depletion() -> void:
+	# We check if the rock_particles node has a method to get the cleanup delay, 
+	# which allows us to synchronize the fossil's removal with the duration of any death particles or effects.
+	var cleanup_delay := 0.0
+	if rock_particles and rock_particles.has_method("get_cleanup_delay"):
+		cleanup_delay = rock_particles.get_cleanup_delay()
+
+	if cleanup_delay > 0.0:
+		await get_tree().create_timer(cleanup_delay).timeout
+
 	queue_free()
 
 # https://docs.godotengine.org/en/stable/classes/class_rigidbody3d.html#class-rigidbody3d-private-method-integrate-forces
@@ -472,7 +640,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		# We calculate damage as a linear function of how much the impact speed exceeds the threshold, multiplied by our damage multiplier.
 		# This is opposed to calculating it as max_speed * damage_per_speed, as that would mean anything barely above the threshold could cause a lot of damage
 		# if the threshold is high enough, while something barely below the threshold would cause no damage at all, which could be frustrating.
-		health -= (max_speed - min_damage_speed) * damage_per_speed
+		var damage_amount := (max_speed - min_damage_speed) * damage_per_speed
+		health = clamp(health - damage_amount, 0.0, MAX_HEALTH)
+
+		# Give a visual indicator of damage, 
+		# both when it happens via particles and by darkening the fossil's materials based on its current health.
+		play_damage_particles(damage_particle_count)
+		_update_damage_visuals()
 		
 		# Check if fossil has been destroyed
 		if health <= 0:

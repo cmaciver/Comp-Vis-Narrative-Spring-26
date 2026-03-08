@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://ds411ua20vgis"]
+[gd_scene load_steps=10 format=4 uid="uid://ds411ua20vgis"]
 
 [ext_resource type="Script" uid="uid://b57dk4b820rgi" path="res://dungeon crawler/src/Items/fossil_item.gd" id="1_3bshf"]
 [ext_resource type="Texture2D" uid="uid://6rctmwb5vkad" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_BaseColour.png" id="3_1g0e2"]
 [ext_resource type="PackedScene" uid="uid://dfxhlci7scbae" path="res://assets/fossils/_trike_quadrate.gltf" id="4_3bshf"]
 [ext_resource type="Texture2D" uid="uid://b5xetqsbg0oaj" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_Roughness.png" id="4_lj73n"]
+[ext_resource type="PackedScene" uid="uid://bgyg6eu45f8b3" path="res://dungeon crawler/src/Interactables/rock_particles.tscn" id="5_mx5u1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5lym3"]
 height = 0.38131714
@@ -56,14 +57,18 @@ shadow_mesh = SubResource("ArrayMesh_hn8gg")
 mass = 30.0
 script = ExtResource("1_3bshf")
 
+[node name="SmallFossilRock" type="Node3D" parent="."]
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17777526, 0)
 shape = SubResource("CylinderShape3D_5lym3")
 
-[node name="Desert_Rock25" type="MeshInstance3D" parent="."]
+[node name="Desert_Rock25" type="MeshInstance3D" parent="SmallFossilRock"]
 transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.007, 0, 0.01, -3.059797e-10, 0, -0.0915299, 0)
 mesh = SubResource("ArrayMesh_hi7xe")
 skeleton = NodePath("")
 
-[node name="_trike_quadrate" parent="." instance=ExtResource("4_3bshf")]
+[node name="_trike_quadrate" parent="SmallFossilRock" instance=ExtResource("4_3bshf")]
 transform = Transform3D(0.4, 0, 0, 0, -0.3992303, -0.024802655, 0, 0.024802655, -0.3992303, 0.039252307, 0.16833012, 0.07128083)
+
+[node name="RockParticles" parent="." instance=ExtResource("5_mx5u1")]
