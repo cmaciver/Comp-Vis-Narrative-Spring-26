@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
 [ext_resource type="Script" uid="uid://tj7h7m7xc11w" path="res://dungeon crawler/src/cloud_scroll.gd" id="3_lj58m"]
-[ext_resource type="Script" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
+[ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
 [ext_resource type="PackedScene" uid="uid://bal22hw5hh5ss" path="res://dungeon crawler/src/ui/hud.tscn" id="5_v0cna"]
 [ext_resource type="PackedScene" uid="uid://co6j1aa6gd4hb" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/gps.tscn" id="7_qi052"]
 [ext_resource type="PackedScene" uid="uid://dntf31hmvog6i" path="res://dungeon crawler/src/assets/enviro_scenes/dc_terrain.tscn" id="9_tjbcq"]
