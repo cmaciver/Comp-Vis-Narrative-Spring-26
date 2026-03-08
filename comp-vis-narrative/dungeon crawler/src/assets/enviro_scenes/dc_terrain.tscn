@@ -1,4 +1,4 @@
-[gd_scene load_steps=286 format=4 uid="uid://dntf31hmvog6i"]
+[gd_scene load_steps=288 format=4 uid="uid://dntf31hmvog6i"]
 
 [ext_resource type="PackedScene" uid="uid://bp8p50ao7gvjv" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.glb" id="1_j7klb"]
 [ext_resource type="Shader" uid="uid://bjtm6bxk12q10" path="res://dungeon crawler/src/assets/models/terrain/dc_terrain.gdshader" id="2_a1brm"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://bvbhxl6ewerg" path="res://dungeon crawler/src/shaders/aux particles/twinkle_particle.tscn" id="15_hhpuk"]
 [ext_resource type="PackedScene" uid="uid://1upujf37bwbh" path="res://dungeon crawler/src/assets/enviro_scenes/rockgroup_1.tscn" id="16_de12o"]
 [ext_resource type="PackedScene" uid="uid://cum1vva1g30y0" path="res://dungeon crawler/src/assets/enviro_scenes/tent.tscn" id="17_1cdwe"]
+[ext_resource type="PackedScene" uid="uid://w38xlpj8ctm2" path="res://dungeon crawler/src/assets/models/camp/campfire.glb" id="18_kaxju"]
+[ext_resource type="PackedScene" uid="uid://d1haq0oqr1atj" path="res://dungeon crawler/src/assets/models/camp/camping_chair_free.glb" id="19_2udg4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fnas"]
 
@@ -5683,3 +5685,12 @@ transform = Transform3D(-2.7324317, 1.9677756e-16, 2.382288e-16, 3.3462637e-16, 
 [node name="pCube36_lambert12_02" type="MeshInstance3D" parent="backpack3/group53/pCube362" index="0"]
 mesh = SubResource("ArrayMesh_wkom8")
 skeleton = NodePath("")
+
+[node name="Sketchfab_Scene" parent="." index="33" instance=ExtResource("18_kaxju")]
+transform = Transform3D(1.5, 0, 0, 0, 1.255, 0, 0, 0, 1.5, 51.370846, 0.5658033, 51.770676)
+
+[node name="Sketchfab_Scene2" parent="." index="34" instance=ExtResource("19_2udg4")]
+transform = Transform3D(0.07279303, 0, -0.018060302, 0, 0.074999996, 0, 0.018060302, 0, 0.07279303, 49.63384, 0.5546094, 51.319756)
+
+[node name="Sketchfab_Scene3" parent="." index="35" instance=ExtResource("19_2udg4")]
+transform = Transform3D(0.03254564, 0.0025061169, 0.06752407, -0.0018148185, 0.07495377, -0.0019071507, -0.06754619, -0.0008063265, 0.03258623, 50.563866, 0.55454755, 52.800022)
