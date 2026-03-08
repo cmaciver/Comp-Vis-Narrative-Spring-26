@@ -111,4 +111,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.025024, 0.08579922, -50.0
 transform = Transform3D(0.85264015, 0, 0.52249855, 0, 1, 0, -0.52249855, 0, 0.85264015, -2.2672608, 1.1305755, 3.8324523)
 
 [node name="Cactus" parent="." instance=ExtResource("10_tjbcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.702369, 1.363764, 1.2369565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.702369, 0.6355665, 1.2369565)
