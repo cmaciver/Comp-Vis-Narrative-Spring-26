@@ -40,9 +40,6 @@ func _on_body_entered(body):
 			"time": "%d:%02d%s" % [hour, minute, period],
 			"fossil_path": body.is_holding.fossilScenePath
 			})
-			
-		player.levelUpManager_instance.giveXp(body.is_holding.weight)
-			
 		print("Fossil's log attached to global data")
 		if (body.remove_held_item()):
 			body.is_holding.queue_free()

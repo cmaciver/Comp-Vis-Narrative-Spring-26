@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxbwjriwqb7io"
-path="res://.godot/imported/Arrow.png-07105742b425932680fbb455d3b70955.ctex"
+uid="uid://2u5b6xniuf1k"
+path="res://.godot/imported/crack_1_glued.png-2e0a68c1f4f07ce84005f4b2619829bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dungeon crawler/src/ui/Arrow.png"
-dest_files=["res://.godot/imported/Arrow.png-07105742b425932680fbb455d3b70955.ctex"]
+source_file="res://dungeon crawler/src/assets/reinforcement/crack_1_glued.png"
+dest_files=["res://.godot/imported/crack_1_glued.png-2e0a68c1f4f07ce84005f4b2619829bf.ctex"]
 
 [params]
 

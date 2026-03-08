@@ -8,6 +8,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
 @onready var fossil_item_scene = preload("res://dungeon crawler/src/Items/fossil_item.tscn")
+@onready var reinforcement_scene = preload("res://dungeon crawler/src/Interactables/ReinforcementMinigame.tscn")
 @export var fossil_scenes: Array[PackedScene]
 
 @onready var rockCamera = $Camera3D
@@ -151,41 +152,24 @@ func createAndCheckForRayCollision(spawnDotsRadius: int):
 #function activated after each dot is clicked
 func dotClicked():
 	# TODO camera shake?? could be fire...
-	shake_camera()
-	
-	# TODO sound effect?? kickin rocks?? could be one hundred...
-	
 	dotsClicked += 1
 	if(dotsClicked  >= miningHitsRequired):
-		spawnFossilCollectedPopup()
+		spawnReinforcementMinigame()
 		#TODO Break the rock at the end of the interaction
 		%FossilRock.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
 		%RockCollision.hide()
 		isInteractable = false
 	else:
-		
+
 		raycastAndSpawnClickableSpheres()
 
+func spawnReinforcementMinigame():
+	var minigame = reinforcement_scene.instantiate()
+	get_tree().root.add_child(minigame)
+	minigame.reinforcement_complete.connect(onReinforcementComplete)
 
-func shake_camera(duration: float = 0.2, amount: float = 0.05, shakes: int = 3):
-	var original_pos: Vector3 = %TargetCameraPoint.position
-	
-	var tween := get_tree().create_tween()
-	for i in range(shakes):
-		var offset = Vector3(
-			randf_range(-amount, amount),
-			randf_range(-amount, amount),
-			randf_range(-amount, amount) # see if it should be 2D only? EDIT nah 3D is chill
-		)
-		# decrease the size of the shakes linearly
-		offset *= float(shakes - i) / shakes 
-		
-		# adapted from https://github.com/EvilBunnyMan/TweenFX/blob/main/addons/TweenFX/TweenFX.gd
-		tween.tween_property($Camera3D, "position", original_pos + offset, duration / (shakes * 2))
-		tween.tween_property($Camera3D, "position", original_pos, duration / (shakes * 2))
-
-
-
+func onReinforcementComplete():
+	spawnFossilCollectedPopup()
 
 func spawnFossilCollectedPopup():
 	var popup = fossil_collected_popup.instantiate()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btgodxx8uigif"
-path="res://.godot/imported/XPBarFrame.png-ca71d45a1d59e48f473a2cb5dcecdc86.ctex"
+uid="uid://1e4dt6jdrkjq"
+path="res://.godot/imported/crack_1.png-338be69290c3f8ff20cd15c365b26d06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dungeon crawler/src/ui/XPBarFrame.png"
-dest_files=["res://.godot/imported/XPBarFrame.png-ca71d45a1d59e48f473a2cb5dcecdc86.ctex"]
+source_file="res://dungeon crawler/src/assets/reinforcement/crack_1.png"
+dest_files=["res://.godot/imported/crack_1.png-338be69290c3f8ff20cd15c365b26d06.ctex"]
 
 [params]
 
