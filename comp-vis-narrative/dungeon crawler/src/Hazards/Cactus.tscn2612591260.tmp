@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh131yvgouluo"]
+
+[ext_resource type="Script" uid="uid://dvnx1kte4r3ac" path="res://dungeon crawler/src/Hazards/Cactus.gd" id="1_pmt2c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pmt2c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdrsx"]
+
+[node name="Cactus" type="StaticBody3D"]
+script = ExtResource("1_pmt2c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_pmt2c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tdrsx")
