@@ -373,6 +373,16 @@ func landing_animation():
 	tween.tween_property(%LandingAnimation, "position:y", -amplitude, amplitude)
 	tween.tween_property(%LandingAnimation, "position:y", 0, amplitude)
 
+## This function shall reset the player's motion state by zeroing out velocity and landing velocity, 
+## and resetting distance to zero. Velocity is the player's current movement velocity, 
+## landing_velocity is used to determine the intensity of the landing animation when the player lands on the ground, 
+## and distance is used to track how far the player has moved for purposes of playing footstep sounds.
+func reset_motion_state() -> void:
+	velocity = Vector3.ZERO
+	landing_velocity = 0
+	target_speed = 0.0
+	distance = 0
+
 func remove_held_item() -> bool:
 	if(is_holding == null):
 		print("not holding anything")

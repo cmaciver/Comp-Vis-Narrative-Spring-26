@@ -58,6 +58,12 @@ func deactivatePlayer():
 	playerCamera.current = false
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
+		# Zero their velocity and reset their motion state to prevent them from moving during the interaction 
+		# which can cause the fossil breaks during the extraction sequence.
+		if player.has_method("reset_motion_state"):
+			player.reset_motion_state()
+		elif "velocity" in player:
+			player.velocity = Vector3.ZERO
 		player.set_process_input(false)
 		player.set_physics_process(false)
 		player.hide()  # hides the mesh
