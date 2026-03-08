@@ -95,6 +95,9 @@ var has_played_test_track = false
 @onready var journal_scene = preload("res://dungeon crawler/src/ui/journal.tscn")
 var journal_instance = null
 
+@onready var levelUp_scene = preload("res://dungeon crawler/src/ui/levelUpManager.tscn")
+var levelUpManager_instance = null
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_resolve_hud()
@@ -103,6 +106,9 @@ func _ready() -> void:
 	%GPS/gpsMesh.transform = %GPS/DownPos.transform
 	%GPS/gpsMesh/MeshInstance3D.get_surface_override_material(0).albedo_texture = %GPS/Minimap/SubViewportContainer/SubViewport.get_texture()
 	$MapMarker.visible = true
+	
+	levelUpManager_instance = levelUp_scene.instantiate()
+	get_tree().root.add_child.call_deferred(levelUpManager_instance)
 
 func _input(event: InputEvent) -> void:	
 	#open the journal
