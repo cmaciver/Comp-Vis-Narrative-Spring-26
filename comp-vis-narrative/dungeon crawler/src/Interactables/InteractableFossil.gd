@@ -73,11 +73,14 @@ func deactivatePlayer():
 				child.disabled = true
 	
 
-func reactivatePlayer():
+func reactivatePlayer(initials: String, description: String):
 	new_fossil.fieldLogInfo = {
-		"initials": fieldLog.finishedInitials,
-		"description": fieldLog.finishedDescription
+		"initials": initials,
+		"description": description
 	}
+	#now give the player the fossil to avvoid race conditions
+	new_fossil.interact()
+	
 	#move the camera back to the player
 	var tween = create_tween()
 	tween.tween_property(rockCamera, "global_transform", playerCamera.global_transform, 0.8)
@@ -225,6 +228,6 @@ func harvestPopupClosed(weight: int):
 	new_fossil.weight = weight
 	new_fossil.position = get_parent().position + Vector3(0.0, -0.2, 0.0)
 	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
-	new_fossil.interact()
+	#new_fossil.interact() #commented out because of race condition
 
 	fieldLog.log_screen_closed.connect(reactivatePlayer)

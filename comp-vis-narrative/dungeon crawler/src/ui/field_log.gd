@@ -1,6 +1,6 @@
 extends Control
 
-signal log_screen_closed
+signal log_screen_closed(initials, description)
 
 var finishedInitials
 var finishedDescription
@@ -64,5 +64,5 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER and is_interactive == true:
 		finishedInitials = %Initials.text
 		finishedDescription = %Description.text
-		emit_signal("log_screen_closed")
+		emit_signal("log_screen_closed", finishedInitials, finishedDescription)
 		moveOffScreen()

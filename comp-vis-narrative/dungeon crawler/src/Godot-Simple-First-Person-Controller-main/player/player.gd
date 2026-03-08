@@ -94,6 +94,7 @@ var has_played_test_track = false
 
 @onready var journal_scene = preload("res://dungeon crawler/src/ui/journal.tscn")
 var journal_instance = null
+var is_journal_opened = false
 
 @onready var levelUp_scene = preload("res://dungeon crawler/src/ui/levelUpManager.tscn")
 var levelUpManager_instance = null
@@ -112,16 +113,18 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:	
 	#open the journal
-	if event.is_action_pressed("open_journal"):
+	if event.is_action_pressed("open_journal") || (event.is_action_pressed("esc") && is_journal_opened):
 		if journal_instance == null:
 			#open journal scene
 			journal_instance = journal_scene.instantiate()
+			is_journal_opened = true
 			get_tree().root.add_child(journal_instance)
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			#close the journal
 			journal_instance.queue_free()
 			journal_instance = null
+			is_journal_opened = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	#stop looking around while journal is open
