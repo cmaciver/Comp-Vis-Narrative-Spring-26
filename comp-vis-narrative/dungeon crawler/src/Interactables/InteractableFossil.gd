@@ -88,7 +88,7 @@ func reactivatePlayer(initials: String, description: String):
 		"description": description
 	}
 	#now give the player the fossil to avvoid race conditions
-	new_fossil.interact()
+	#new_fossil.interact()
 	
 	#move the camera back to the player
 	var tween = create_tween()
@@ -239,4 +239,5 @@ func harvestPopupClosed(weight: int):
 	get_parent().get_parent().add_child(new_fossil) #this is ugly sorry
 	#new_fossil.interact() #commented out because of race condition
 
+	new_fossil.interact()
 	fieldLog.log_screen_closed.connect(reactivatePlayer)
