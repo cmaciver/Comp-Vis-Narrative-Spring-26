@@ -26,6 +26,9 @@ var new_fossil
 @export var dotSpawnRadius: int = 300
 @export var miningHitsRequired = 5
 
+#used to select which fossil to give the player (global to give the popup menu the info)
+var rand_idx = randi_range(0, fossil_scenes.size() - 1)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	playerCamera = get_tree().get_first_node_in_group("player_camera")
@@ -193,6 +196,7 @@ func shake_camera(duration: float = 0.2, amount: float = 0.05, shakes: int = 3):
 func spawnFossilCollectedPopup():
 	var popup = fossil_collected_popup.instantiate()
 	get_tree().root.add_child(popup)
+	popup.load_fossil(fossil_scenes[rand_idx].resource_path)
 	
 	#connect the popup closed to a function (weird syntax because it brings a parameter)
 	popup.collection_screen_closed.connect(func(weight): harvestPopupClosed(weight))
@@ -222,7 +226,6 @@ func harvestPopupClosed(weight: int):
 	fieldLog.preparePopup()
 	
 	#Spawn our fossil item
-	var rand_idx = randi_range(0, fossil_scenes.size() - 1)
 	new_fossil = fossil_scenes[rand_idx].instantiate()
 	new_fossil.fossilScenePath = fossil_scenes[rand_idx].resource_path
 	new_fossil.weight = weight

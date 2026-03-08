@@ -13,6 +13,8 @@ var light_color = 0.0
 var randomWeight = randi_range(50, 150)
 var userCanExitPage = false
 
+var displayedFossil
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#move offscreen for the shifting function
@@ -28,13 +30,28 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#logic hanlding the rotation of the fossil
-	%FossilMesh.rotation_degrees += rotationSpeed * delta
+	if displayedFossil:
+		displayedFossil.rotation_degrees += rotationSpeed * delta
+	#%FossilMesh.rotation_degrees += rotationSpeed * delta
 	
 	#Logic handling the backlighting of the fossil changing
 	light_color += delta * lightCycleSpeed
 	light_color = fmod(light_color, 1.0)
 	%FossilLight.light_color = Color.from_ok_hsl(light_color, 1.0, 0.5, 1.0)
 
+func load_fossil(path: String):
+	var viewport = $ColorRect/SubViewportContainer/SubViewport
+
+	# Load and add the new one
+	var fossil_scene = load(path)
+	var fossil = fossil_scene.instantiate()
+	viewport.add_child(fossil)
+	#rotate so that it faces the camera better
+	#fossil.rotate_x(deg_to_rad(90))
+	
+	fossil.gravity_scale = 0
+	fossil.freeze = true
+	displayedFossil = fossil
 
 func moveIntoScreen():
 	var tween = create_tween()
