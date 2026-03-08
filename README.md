@@ -19,6 +19,8 @@ External Assets
 - "Stylised Rocks Asset Pack" (https://skfb.ly/pqzWP) by Bl4ckGh0st is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - https://www.freepnglogos.com/images/crack-31103.html Crack image
 - "Campfire" (https://skfb.ly/ouI9n) by Callum Behrendt is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Draft Backpacks" (https://skfb.ly/6RTwN) by Vadim Rychkov is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Camping Chair (FREE!!!)" (https://skfb.ly/oJsoX) by SyntaX is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - Fossil and tool models provided by the North Carolina Museum of Natural Science
 
 
