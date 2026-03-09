@@ -164,11 +164,13 @@ func _physics_process(delta: float) -> void:
 	%InteractText.hide()
 	if %SeeCast.is_colliding():
 		var target = %SeeCast.get_collider()
-		if is_holding == null and target != null and target.has_method("interact") and target.isInteractable:
-			%InteractText.text = target.interactableText
-			%InteractText.show()
-			if Input.is_action_just_pressed("interact"):
-				target.interact()
+		if target != null and is_instance_valid(target):
+			var interactable = target if target.has_method("interact") else target.get_parent()
+			if is_holding == null and interactable != null and interactable.has_method("interact") and interactable.isInteractable:
+				%InteractText.text = interactable.interactableText
+				%InteractText.show()
+				if Input.is_action_just_pressed("interact"):
+					interactable.interact()
 	
 	if not is_on_floor():
 		velocity += get_gravity() * 2 * delta
