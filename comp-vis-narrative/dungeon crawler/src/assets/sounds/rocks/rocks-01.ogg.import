@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c1o8x3yydm6bp"
+path="res://.godot/imported/rocks-01.ogg-ce4dd56d72be8e28c101f9887bef60bc.oggvorbisstr"
+
+[deps]
+
+source_file="res://dungeon crawler/src/assets/sounds/rocks/rocks-01.ogg"
+dest_files=["res://.godot/imported/rocks-01.ogg-ce4dd56d72be8e28c101f9887bef60bc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
