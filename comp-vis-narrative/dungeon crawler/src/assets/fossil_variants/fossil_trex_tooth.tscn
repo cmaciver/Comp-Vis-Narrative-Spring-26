@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chkd5mnftopmj" path="res://assets/fossils/_trex_tooth.gltf" id="2_rwcys"]
 [ext_resource type="Texture2D" uid="uid://6rctmwb5vkad" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_BaseColour.png" id="3_fvstb"]
 [ext_resource type="Texture2D" uid="uid://b5xetqsbg0oaj" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_Roughness.png" id="4_2na5y"]
-[ext_resource type="PackedScene" uid="uid://bgyg6eu45f8b3" path="res://dungeon crawler/src/Interactables/rock_particles.tscn" id="5_4v04m"]
+[ext_resource type="PackedScene" uid="uid://cbefnf5h3s60v" path="res://dungeon crawler/src/Interactables/rock_particles.tscn" id="5_4v04m"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5lym3"]
 height = 0.38131714

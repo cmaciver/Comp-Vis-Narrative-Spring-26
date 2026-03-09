@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://yuhpcrb1dj85" path="res://assets/fossils/_trex_forelimb.gltf" id="2_1d4fd"]
 [ext_resource type="Texture2D" uid="uid://6rctmwb5vkad" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_BaseColour.png" id="3_guqmt"]
 [ext_resource type="Texture2D" uid="uid://b5xetqsbg0oaj" path="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_Roughness.png" id="4_mour4"]
-[ext_resource type="PackedScene" uid="uid://bgyg6eu45f8b3" path="res://dungeon crawler/src/Interactables/rock_particles.tscn" id="5_y44lq"]
+[ext_resource type="PackedScene" uid="uid://cbefnf5h3s60v" path="res://dungeon crawler/src/Interactables/rock_particles.tscn" id="5_y44lq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yo35"]
 resource_name = "M_Desert_Rock"
