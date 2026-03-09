@@ -48,9 +48,7 @@ func _damage_player() -> void:
 
 	# Try to locate the audio manager by node name in the active scene tree.
 	var audio_manager = get_tree().root.get_node("Node3D/DungeonCrawlerAudioManager")
-	print("Audio manager: ", audio_manager)
 	if audio_manager and audio_manager.has_method("play_sound_effect"):
-		print("Playing player pain sound effect")
 		# We want playerPain5 to have a 1% chance of playing while the other 4 pain sounds have an equal share of the remaining 99% chance.
 		var rand_num = randi_range(1, 100)
 		var sound_key = ""

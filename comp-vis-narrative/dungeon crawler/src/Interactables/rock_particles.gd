@@ -33,6 +33,15 @@ func play_particles(particle_count: int = amount) -> void:
 	restart()
 	emitting = true
 
+	# Try to locate the audio manager by node name in the active scene tree.
+	var audio_manager = get_tree().root.get_node("Node3D/DungeonCrawlerAudioManager")
+	if audio_manager and audio_manager.has_method("play_sound_effect"):
+		# Randomly select one of the rock sounds to play for variety.
+		# audio_manager.play_sound_effect("rockSound" + str(randi_range(1, 6)))
+		# Also with a random pitch scale up or down between -0.3 and 0.3.
+		var pitch_scale = 1.0 + randf_range(-0.3, 0.3)
+		audio_manager.play_sound_effect("rockSound" + str(randi_range(1, 6)), pitch_scale, 0.25)
+
 	# If configured to queue_free after finishing, set up a timer to call the cleanup function after the specified delay.
 	if queue_free_after_finish:
 		_queue_free_after_play(playback_token)

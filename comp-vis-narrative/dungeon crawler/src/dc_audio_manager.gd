@@ -9,6 +9,12 @@ const playerPain2: AudioStreamWAV = preload("res://dungeon crawler/src/assets/so
 const playerPain3: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain3.wav")
 const playerPain4: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain4.wav")
 const playerPain5: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain5.wav")
+const rockSound1: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-01.ogg")
+const rockSound2: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-02.ogg")
+const rockSound3: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-03.ogg")
+const rockSound4: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-04.ogg")
+const rockSound5: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-05.ogg")
+const rockSound6: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-06.ogg")
 
 # Defines a map between a string and a sound effect,
 # so that the main script can just call play_sound("sfx_name"),
@@ -19,7 +25,13 @@ var sound_effects_map = {
 	"playerPain2": playerPain2,
 	"playerPain3": playerPain3,
 	"playerPain4": playerPain4,
-	"playerPain5": playerPain5
+	"playerPain5": playerPain5,
+	"rockSound1": rockSound1,
+	"rockSound2": rockSound2,
+	"rockSound3": rockSound3,
+	"rockSound4": rockSound4,
+	"rockSound5": rockSound5,
+	"rockSound6": rockSound6
 }
 
 var background_music_map = {
@@ -150,12 +162,21 @@ func switch_background_music(key: String, fade_time: float = 4.0) -> void:
 ## If the key is not found in the sound_effects_map, does nothing.
 ## [br]
 ## **param** key The key of the sound effect to play.
-func play_sound_effect(key: String) -> void:
+## [br]
+## **param** pitch_scale The pitch scale to apply when playing the sound effect. 1.0 means normal pitch, less than 1.0 means lower pitch, greater than 1.0 means higher pitch.
+##                       Defaults to 1.0 (normal pitch) if not specified.
+## [br]
+## **param** volume_scale A linear multiplier applied to the `AudioStreamPlayer.volume_linear` property
+##                        before playback. Defaults to 1.0 (no scaling). Values less than 1.0 lower the volume; values
+##                        greater than 1.0 increase it.
+func play_sound_effect(key: String, pitch_scale: float = 1.0, volume_scale: float = 1.0) -> void:
 
 	# Basic validation of parameters.
 	if not sound_effects_map.has(key):
 		print("Unknown sound effect key: %s" % key)
 		return
-	
+
 	sfx_player.stream = sound_effects_map[key]
+	sfx_player.pitch_scale = pitch_scale
+	sfx_player.volume_linear = max(0.0, volume_scale)
 	sfx_player.play()
