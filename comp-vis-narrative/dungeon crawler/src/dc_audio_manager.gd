@@ -3,7 +3,7 @@ class_name DungeonCrawlerAudioManager
 
 # So long as the audio streams have looping enabled, they will automatically loop when played with no 
 # extra work being needed here to accomplish this.
-const TEST_TRACK: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/BravuraExcerpt.wav")
+const TEST_TRACK: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/fossil hunting.wav")
 const playerPain1: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain1.wav")
 const playerPain2: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain2.wav")
 const playerPain3: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain3.wav")
@@ -20,7 +20,6 @@ const rockSound6: AudioStream = preload("res://dungeon crawler/src/assets/sounds
 # so that the main script can just call play_sound("sfx_name"),
 # or switch_background_music("bgm_name"), and this script will know which sound to play.
 var sound_effects_map = {
-	"test_sfx": TEST_TRACK,
 	"playerPain1": playerPain1,
 	"playerPain2": playerPain2,
 	"playerPain3": playerPain3,
@@ -35,7 +34,7 @@ var sound_effects_map = {
 }
 
 var background_music_map = {
-
+	"fossil_hunting": TEST_TRACK
 }
 
 # Two AudioStreamPlayers are used for background music, so that we can crossfade between them.
@@ -56,10 +55,14 @@ var current_bgm_key := ""
 
 # Current volume of the background music, measured in percent of the max volume, on a linear scale.
 # In the steady state, music will be playing at this volume (I think?).
-var bgm_max_volume_linear := 1.0
+@export var bgm_max_volume_linear := 0.5
 
 # Used to determine silence volume for fading in from silence/out to silence.
 var bgm_silence_linear := 0.00
+
+func _ready():
+	print("the game is started")
+	switch_background_music("fossil_hunting", 0.0)
 
 ## Switches the background music to the given key, fading out the old music and fading in the new music over the given fade time.
 ## If the key is an empty string, just fades out the current music without fading in new music.
