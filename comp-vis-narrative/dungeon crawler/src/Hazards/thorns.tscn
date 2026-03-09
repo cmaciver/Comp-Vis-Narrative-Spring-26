@@ -105,6 +105,3 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 transform = Transform3D(0.0026121752, 0, 0.0036921317, 0, 0.004522753, 0, -0.0036921317, 0, 0.0026121752, 0.015434384, 0.02641794, 0.019450605)
 mesh = SubResource("ArrayMesh_nshdd")
 skeleton = NodePath("")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
