@@ -64,6 +64,18 @@ func _ready():
 	print("the game is started")
 	switch_background_music("fossil_hunting", 0.0)
 
+## Makes the background music lerp to the given target volume over the given fade time. 
+## [br]
+## **param** target_volume_linear The target volume to fade to, measured in percent of the max volume, on a linear scale.
+## [br]
+## **param** fade_time The time in seconds to fade to the target volume.
+func fade_bgm_to_volume(target_volume_linear: float, fade_time: float) -> void:
+	if current_bgm_player == null:
+		print("No background music is currently playing, cannot fade.")
+		return
+	var tween = get_tree().create_tween()
+	tween.tween_property(current_bgm_player, "volume_linear", target_volume_linear, fade_time)
+
 ## Switches the background music to the given key, fading out the old music and fading in the new music over the given fade time.
 ## If the key is an empty string, just fades out the current music without fading in new music.
 ## If the key is the same as the currently playing music, does nothing.
