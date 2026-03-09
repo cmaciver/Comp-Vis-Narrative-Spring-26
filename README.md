@@ -6,7 +6,7 @@ Team Fire 100:
 
 Games Built in Godot 4.5.1
 
-**(Dungeon Crawler) Dungeon Crawler Title HERE**
+**(Dungeon Crawler) Fossil Finders**
 
 itch:
 
@@ -22,6 +22,7 @@ External Assets
 - "Draft Backpacks" (https://skfb.ly/6RTwN) by Vadim Rychkov is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - "Camping Chair (FREE!!!)" (https://skfb.ly/oJsoX) by SyntaX is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - "Desert Shrubs" https://sketchfab.com/3d-models/desert-shrubs-3f116a7e0c464f2798fe25c7dae4fabb
+- "Desert" (https://skfb.ly/6SzJG) by fld is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - Fossil and tool models provided by the North Carolina Museum of Natural Science
 
 Sound effect sources
