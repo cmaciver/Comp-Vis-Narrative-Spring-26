@@ -20,7 +20,7 @@ radius = 0.4
 height = 1.85
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
-radius = 0.4
+radius = 0.25
 height = 1.85
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oul6g"]
