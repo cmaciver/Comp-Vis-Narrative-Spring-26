@@ -4,12 +4,22 @@ class_name DungeonCrawlerAudioManager
 # So long as the audio streams have looping enabled, they will automatically loop when played with no 
 # extra work being needed here to accomplish this.
 const TEST_TRACK: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/BravuraExcerpt.wav")
+const playerPain1: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain1.wav")
+const playerPain2: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain2.wav")
+const playerPain3: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain3.wav")
+const playerPain4: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain4.wav")
+const playerPain5: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain5.wav")
 
 # Defines a map between a string and a sound effect,
 # so that the main script can just call play_sound("sfx_name"),
 # or switch_background_music("bgm_name"), and this script will know which sound to play.
 var sound_effects_map = {
-	"test_sfx": TEST_TRACK
+	"test_sfx": TEST_TRACK,
+	"playerPain1": playerPain1,
+	"playerPain2": playerPain2,
+	"playerPain3": playerPain3,
+	"playerPain4": playerPain4,
+	"playerPain5": playerPain5
 }
 
 var background_music_map = {

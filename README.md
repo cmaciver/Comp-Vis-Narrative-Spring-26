@@ -23,6 +23,9 @@ External Assets
 - "Camping Chair (FREE!!!)" (https://skfb.ly/oJsoX) by SyntaX is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 - Fossil and tool models provided by the North Carolina Museum of Natural Science
 
+Sound effect sources
+
+- All player pain wav files: from *NPC/PLAYER - Damage Grunts (Male)* by SoundBiterSFX -- https://freesound.org/s/731505/ -- License: Attribution 4.0
 
 **(Interactive Narrative) Once, There Were Two Dinosaurs**
 

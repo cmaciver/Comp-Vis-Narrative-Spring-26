@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=17 format=3 uid="uid://b80llamgqo7fa"]
 
 [ext_resource type="Shader" uid="uid://jk172qdhw4kq" path="res://dungeon crawler/src/shaders/sky.gdshader" id="1_1aokg"]
 [ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
