@@ -5252,68 +5252,61 @@ transform = Transform3D(1.0646701, 7.2759576e-11, 0.65496385, -0.0012231458, 1.2
 transform = Transform3D(1.0000002, 9.429641e-09, 0, -1.2805685e-09, 1.0000018, 0, 1.013279e-06, -1.0011718e-08, 1, -0.0044002533, 1.335978, -0.16059113)
 shape = SubResource("BoxShape3D_4fnas")
 
-[node name="MinimapCamera" type="Camera3D" parent="." index="16"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 51.855667, 189.18805, 50.785923)
-visible = false
-cull_mask = 1048573
-projection = 1
-size = 192.39987
-
-[node name="TwinkleParticle" parent="." index="17" instance=ExtResource("15_hhpuk")]
+[node name="TwinkleParticle" parent="." index="16" instance=ExtResource("15_hhpuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.651882, 1.6043489, -13.335455)
 
-[node name="TwinkleParticle2" parent="." index="18" instance=ExtResource("15_hhpuk")]
+[node name="TwinkleParticle2" parent="." index="17" instance=ExtResource("15_hhpuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.71964, 0.41441393, -19.329744)
 
-[node name="TwinkleParticle3" parent="." index="19" instance=ExtResource("15_hhpuk")]
+[node name="TwinkleParticle3" parent="." index="18" instance=ExtResource("15_hhpuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.79133, 0.41441393, 80.3764)
 
-[node name="TwinkleParticle4" parent="." index="20" instance=ExtResource("15_hhpuk")]
+[node name="TwinkleParticle4" parent="." index="19" instance=ExtResource("15_hhpuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.33664, 3.5871644, 131.56517)
 
-[node name="TwinkleParticle5" parent="." index="21" instance=ExtResource("15_hhpuk")]
+[node name="TwinkleParticle5" parent="." index="20" instance=ExtResource("15_hhpuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.775436, 1.5158725, 134.12245)
 
-[node name="TwinkleParticle6" parent="." index="22" instance=ExtResource("15_hhpuk")]
+[node name="TwinkleParticle6" parent="." index="21" instance=ExtResource("15_hhpuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.302643, 1.7629366, 87.742516)
 
-[node name="Rockgroup1" parent="." index="23" instance=ExtResource("16_de12o")]
+[node name="Rockgroup1" parent="." index="22" instance=ExtResource("16_de12o")]
 transform = Transform3D(2.617974, 0, 1.4649956, 0, 3, 0, -1.4649956, 0, 2.617974, 64.5367, -0.41522378, 108.81036)
 
-[node name="Rockgroup11" parent="." index="24" instance=ExtResource("16_de12o")]
+[node name="Rockgroup11" parent="." index="23" instance=ExtResource("16_de12o")]
 transform = Transform3D(1.1796114, 0, -2.7583542, 0, 3, 0, 2.7583542, 0, 1.1796114, 43.202553, -0.41522378, 76.333595)
 
-[node name="Rockgroup12" parent="." index="25" instance=ExtResource("16_de12o")]
+[node name="Rockgroup12" parent="." index="24" instance=ExtResource("16_de12o")]
 transform = Transform3D(-2.752411, 0, -1.1934136, 0, 3, 0, 1.1934136, 0, -2.752411, 45.067932, 1.4996998, 76.333595)
 
-[node name="Rockgroup5" parent="." index="26" instance=ExtResource("16_de12o")]
+[node name="Rockgroup5" parent="." index="25" instance=ExtResource("16_de12o")]
 transform = Transform3D(3.93778, 0, -0.70277274, 0, 4, 0, 0.70277274, 0, 3.93778, 114.44623, -0.41522378, 18.74007)
 
-[node name="Rockgroup6" parent="." index="27" instance=ExtResource("16_de12o")]
+[node name="Rockgroup6" parent="." index="26" instance=ExtResource("16_de12o")]
 transform = Transform3D(3.774765, 0, -1.3233094, 0, 4, 0, 1.3233094, 0, 3.774765, 114.44623, -0.41522378, 50.860767)
 
-[node name="Rockgroup7" parent="." index="28" instance=ExtResource("16_de12o")]
+[node name="Rockgroup7" parent="." index="27" instance=ExtResource("16_de12o")]
 transform = Transform3D(5.9656825, 0, -0.6408123, 0, 6, 0, 0.6408123, 0, 5.9656825, -14.8009815, -0.63843125, 85.23599)
 
-[node name="Rockgroup8" parent="." index="29" instance=ExtResource("16_de12o")]
+[node name="Rockgroup8" parent="." index="28" instance=ExtResource("16_de12o")]
 transform = Transform3D(3.8972464, 0, 4.5619607, 0, 6.000001, 0, -4.5619607, 0, 3.8972464, -14.8009815, -0.63843125, 92.580734)
 
-[node name="Rockgroup9" parent="." index="30" instance=ExtResource("16_de12o")]
+[node name="Rockgroup9" parent="." index="29" instance=ExtResource("16_de12o")]
 transform = Transform3D(0.4655794, 0, 2.9636526, 0, 3, 0, -2.9636526, 0, 0.4655794, -10.235458, 0.57487327, 135.73622)
 
-[node name="Rockgroup3" parent="." index="31" instance=ExtResource("16_de12o")]
+[node name="Rockgroup3" parent="." index="30" instance=ExtResource("16_de12o")]
 transform = Transform3D(0.6681174, 0, 2.924657, 0, 3, 0, -2.924657, 0, 0.6681174, 14.11377, -0.41522378, -15.577724)
 
-[node name="Rockgroup4" parent="." index="32" instance=ExtResource("16_de12o")]
+[node name="Rockgroup4" parent="." index="31" instance=ExtResource("16_de12o")]
 transform = Transform3D(-2.498212, 0, 0.09453107, 0, 2.5, 0, -0.09453107, 0, -2.498212, -17.709953, -0.41522378, -21.384607)
 
-[node name="Rockgroup2" parent="." index="33" instance=ExtResource("16_de12o")]
+[node name="Rockgroup2" parent="." index="32" instance=ExtResource("16_de12o")]
 transform = Transform3D(1.2460814, 0, 2.7289717, 0, 3.000001, 0, -2.7289717, 0, 1.2460814, 50.13204, -0.41522378, 106.5601)
 
-[node name="Rockgroup10" parent="." index="34" instance=ExtResource("16_de12o")]
+[node name="Rockgroup10" parent="." index="33" instance=ExtResource("16_de12o")]
 transform = Transform3D(-0.07177795, -3.7804098, -0.15719664, 1.456147, -0.18634796, 3.1890237, -3.1928957, -4.9384592e-08, 1.457915, 99.77641, 1.8597867, 121.71807)
 
-[node name="Telescope" type="Node3D" parent="." index="35"]
+[node name="Telescope" type="Node3D" parent="." index="34"]
 transform = Transform3D(-0.086748786, 0, -0.049745858, 0, 0.099999994, 0, 0.049745858, 0, -0.086748786, 59.14335, 0.50494885, 54.341465)
 
 [node name="group10" type="Node3D" parent="Telescope" index="0"]
@@ -5651,16 +5644,16 @@ transform = Transform3D(0.29706487, -0.0026133738, -0.062444452, 0, 0.33243227, 
 mesh = SubResource("ArrayMesh_13per")
 skeleton = NodePath("")
 
-[node name="tent" parent="." index="36" instance=ExtResource("17_1cdwe")]
+[node name="tent" parent="." index="35" instance=ExtResource("17_1cdwe")]
 transform = Transform3D(-1.3326819, -0.0046914616, -0.42887846, 0.041752424, 1.3918483, -0.14496534, 0.42686704, -0.1507853, -1.3247824, 52.75112, 4.8109856, 56.84358)
 
-[node name="tent3" parent="." index="37" instance=ExtResource("17_1cdwe")]
+[node name="tent3" parent="." index="36" instance=ExtResource("17_1cdwe")]
 transform = Transform3D(0.34939015, -0.013710731, 1.4586767, -0.049570866, 1.4989563, 0.025962811, -1.457899, -0.05425267, 0.34869394, 45.774635, 5.2743053, 46.383137)
 
-[node name="tent2" parent="." index="38" instance=ExtResource("17_1cdwe")]
+[node name="tent2" parent="." index="37" instance=ExtResource("17_1cdwe")]
 transform = Transform3D(-0.45906714, -0.0027129562, -1.2162442, -0.0041468996, 1.2999927, -0.0013345329, 1.21624, 0.0034084637, -0.45907322, 56.124783, 4.460872, 54.233875)
 
-[node name="backpack1" type="Node3D" parent="." index="39"]
+[node name="backpack1" type="Node3D" parent="." index="38"]
 transform = Transform3D(-0.08842648, 5.784462e-17, 0.28667188, 0.048256785, 0.29571903, 0.014885232, -0.28258106, 0.050500367, -0.087164626, 53.076313, 0.53500044, 56.026863)
 
 [node name="pCube86" type="Node3D" parent="backpack1" index="0"]
@@ -5831,7 +5824,7 @@ transform = Transform3D(0.0038860661, 0.008896255, 0.15954635, -0.026123313, -0.
 mesh = SubResource("ArrayMesh_vwg3a")
 skeleton = NodePath("")
 
-[node name="backpack2" type="Node3D" parent="." index="40"]
+[node name="backpack2" type="Node3D" parent="." index="39"]
 transform = Transform3D(0.16296159, -0.09214865, -0.16349255, 0.0039183423, 0.20855868, -0.12364338, 0.18954733, 0.07491263, 0.14311719, 46.12185, 1.0334406, 52.93129)
 
 [node name="pCylinder63" type="Node3D" parent="backpack2" index="0"]
@@ -6051,7 +6044,7 @@ transform = Transform3D(-1.1143296, -0.5588675, -0.7731129, 0.6153428, 0.4873276
 mesh = SubResource("ArrayMesh_qa6mb")
 skeleton = NodePath("")
 
-[node name="backpack3" type="Node3D" parent="." index="41"]
+[node name="backpack3" type="Node3D" parent="." index="40"]
 transform = Transform3D(-0.064161524, 6.2144694e-18, 0.027987482, 0, 0.07, -1.5543122e-17, -0.027987482, -1.424672e-17, -0.064161524, 55.274723, 0.6066313, 52.36031)
 
 [node name="pCube31" type="Node3D" parent="backpack3" index="0"]
@@ -6226,315 +6219,315 @@ transform = Transform3D(-2.7324317, 1.9677756e-16, 2.382288e-16, 3.3462637e-16, 
 mesh = SubResource("ArrayMesh_wkom8")
 skeleton = NodePath("")
 
-[node name="Sketchfab_Scene" parent="." index="42" instance=ExtResource("18_kaxju")]
+[node name="Sketchfab_Scene" parent="." index="41" instance=ExtResource("18_kaxju")]
 transform = Transform3D(1.5, 0, 0, 0, 1.255, 0, 0, 0, 1.5, 51.370846, 0.5658033, 51.770676)
 
-[node name="Sketchfab_Scene2" parent="." index="43" instance=ExtResource("19_2udg4")]
+[node name="Sketchfab_Scene2" parent="." index="42" instance=ExtResource("19_2udg4")]
 transform = Transform3D(0.07279303, 0, -0.018060302, 0, 0.074999996, 0, 0.018060302, 0, 0.07279303, 49.63384, 0.5546094, 51.319756)
 
-[node name="Sketchfab_Scene3" parent="." index="44" instance=ExtResource("19_2udg4")]
+[node name="Sketchfab_Scene3" parent="." index="43" instance=ExtResource("19_2udg4")]
 transform = Transform3D(0.03254564, 0.0025061169, 0.06752407, -0.0018148185, 0.07495377, -0.0019071507, -0.06754619, -0.0008063265, 0.03258623, 50.563866, 0.55454755, 52.800022)
 
-[node name="Lizard3" parent="." index="45" instance=ExtResource("20_v0a7k")]
+[node name="Lizard3" parent="." index="44" instance=ExtResource("20_v0a7k")]
 transform = Transform3D(0.0063206987, 0, 0.0077491137, 0, 0.01, 0, -0.0077491137, 0, 0.0063206987, 49.728153, 0.94334435, 51.332874)
 
-[node name="Lizard4" parent="." index="46" instance=ExtResource("20_v0a7k")]
+[node name="Lizard4" parent="." index="45" instance=ExtResource("20_v0a7k")]
 transform = Transform3D(0.008345106, 0.00023212211, -0.0055050277, -0.002512363, 0.009052347, -0.0034268107, 0.0049037975, 0.0042427727, 0.007612598, 92.01882, 0.80605745, -32.975082)
 
-[node name="shrub_1" type="MeshInstance3D" parent="." index="47"]
+[node name="shrub_1" type="MeshInstance3D" parent="." index="46"]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, -4.440892e-16, 0, 4.440892e-16, 0.02, 42.99046, 1.3623145, 67.27285)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_13" type="MeshInstance3D" parent="." index="48"]
+[node name="shrub_13" type="MeshInstance3D" parent="." index="47"]
 transform = Transform3D(0.019607352, -0.0039435653, 8.7564744e-17, 0.0039435653, 0.019607352, -4.353707e-16, 0, 4.440892e-16, 0.02, 105.32915, 6.8559923, 33.33465)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_20" type="MeshInstance3D" parent="." index="49"]
+[node name="shrub_20" type="MeshInstance3D" parent="." index="48"]
 transform = Transform3D(0.018500455, -0.0037209382, 0.006624782, 0.003943565, 0.019607352, -4.3537067e-16, -0.006494722, 0.0013062629, 0.018870937, 118.103645, 0.32816267, 50.86826)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_21" type="MeshInstance3D" parent="." index="50"]
+[node name="shrub_21" type="MeshInstance3D" parent="." index="49"]
 transform = Transform3D(0.018500453, -0.003720938, 0.0066247825, 0.0064331684, 0.01694971, -0.008445215, -0.0040431996, 0.009942933, 0.01687574, 117.91474, 0.8321557, 47.711094)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_17" type="MeshInstance3D" parent="." index="51"]
+[node name="shrub_17" type="MeshInstance3D" parent="." index="50"]
 transform = Transform3D(0.019607352, -0.003943565, 8.756474e-17, 0.0039315694, 0.019547712, 0.0015587419, -0.00030735, -0.00152814, 0.019939166, 81.412285, 0.45190144, -28.025263)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_18" type="MeshInstance3D" parent="." index="52"]
+[node name="shrub_18" type="MeshInstance3D" parent="." index="51"]
 transform = Transform3D(0.01741313, 0.00319525, 0.009304463, -0.0025753835, 0.019736603, -0.0019579742, -0.009494741, 0.0005065948, 0.017595258, 80.4151, 0.35925865, -26.752766)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_19" type="MeshInstance3D" parent="." index="53"]
+[node name="shrub_19" type="MeshInstance3D" parent="." index="52"]
 transform = Transform3D(-0.012694282, -0.00012328528, 0.015454444, -0.0025753833, 0.019736603, -0.0019579744, -0.015238846, -0.00323281, -0.012542976, 80.4151, 0.5033107, -18.364223)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_14" type="MeshInstance3D" parent="." index="54"]
+[node name="shrub_14" type="MeshInstance3D" parent="." index="53"]
 transform = Transform3D(0.024406362, 0.005415676, -1.2025218e-16, -0.005415307, 0.024404699, 0.0002918997, 6.323337e-05, -0.00028496838, 0.024998296, 105.50863, 18.662672, 78.264175)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_9" type="MeshInstance3D" parent="." index="55"]
+[node name="shrub_9" type="MeshInstance3D" parent="." index="54"]
 transform = Transform3D(0.02943241, 0.0058080247, -1.2896407e-16, -0.0058080247, 0.02943241, -6.535309e-16, 0, 6.661339e-16, 0.03, 64.80541, 0.37593484, 75.94797)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_7" type="MeshInstance3D" parent="." index="56"]
+[node name="shrub_7" type="MeshInstance3D" parent="." index="55"]
 transform = Transform3D(0.008959323, -0.00399026, 0.017430099, 0.008136966, 0.018269915, -4.056736e-16, -0.015922321, 0.0070914063, 0.009807733, -26.287449, 1.8460162, 42.52064)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_6" type="MeshInstance3D" parent="." index="57"]
+[node name="shrub_6" type="MeshInstance3D" parent="." index="56"]
 transform = Transform3D(0.019417679, 0.0047705225, 0.00044254801, -0.0047910055, 0.019334663, 0.0017936224, 0, -0.0018474117, 0.019914493, 10.898613, 8.445113, 70.945786)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_4" type="MeshInstance3D" parent="." index="58"]
+[node name="shrub_4" type="MeshInstance3D" parent="." index="57"]
 transform = Transform3D(0.02, 0, 0, 0, 0.015704175, 0.0123846205, 0, -0.0123846205, 0.015704175, 44.975506, 2.6740272, 74.29683)
 mesh = SubResource("ArrayMesh_dcvit")
 skeleton = NodePath("")
 
-[node name="shrub_15" type="MeshInstance3D" parent="." index="59"]
+[node name="shrub_15" type="MeshInstance3D" parent="." index="58"]
 transform = Transform3D(0.019722011, -0.0033229836, 7.378506e-17, 0.0033229836, 0.019722011, -4.3791664e-16, 0, 4.440892e-16, 0.02, 82.384186, 11.654307, 119.83526)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_28" type="MeshInstance3D" parent="." index="60"]
+[node name="shrub_28" type="MeshInstance3D" parent="." index="59"]
 transform = Transform3D(0.019722013, -0.0033229839, 7.378506e-17, 0.003275232, 0.019438606, -0.0033783894, 0.00056131656, 0.0033314314, 0.019712597, 131.0354, 10.029193, 125.11718)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_29" type="MeshInstance3D" parent="." index="61"]
+[node name="shrub_29" type="MeshInstance3D" parent="." index="60"]
 transform = Transform3D(0.019722013, -0.0033229839, 7.378506e-17, 0.003275232, 0.019438606, -0.0033783894, 0.00056131656, 0.0033314314, 0.019712597, 137.92963, 13.708025, 134.50871)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_30" type="MeshInstance3D" parent="." index="62"]
+[node name="shrub_30" type="MeshInstance3D" parent="." index="61"]
 transform = Transform3D(0.019913472, 0.0016543579, -0.00084662327, -0.0012263973, 0.018544054, 0.0073901433, 0.001396288, -0.007306255, 0.018565267, 131.56021, 15.829399, 142.83493)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_16" type="MeshInstance3D" parent="." index="63"]
+[node name="shrub_16" type="MeshInstance3D" parent="." index="62"]
 transform = Transform3D(0.017897755, -0.008925831, 1.9819334e-16, 0.008925831, 0.017897755, -3.9741018e-16, -1.09708085e-23, 4.4408937e-16, 0.020000003, 72.86413, 9.954377, 119.83526)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_10" type="MeshInstance3D" parent="." index="64"]
+[node name="shrub_10" type="MeshInstance3D" parent="." index="63"]
 transform = Transform3D(0.02, 0, 0, 0, 0.01945907, 0.0046200156, 0, -0.0046200156, 0.01945907, 61.52931, 5.4510236, 108.85224)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_27" type="MeshInstance3D" parent="." index="65"]
+[node name="shrub_27" type="MeshInstance3D" parent="." index="64"]
 transform = Transform3D(0.01267977, -0.015048526, -0.0035728542, 0.015466847, 0.012336826, 0.0029290363, 0, -0.0046200147, 0.019459069, 99.73934, 3.5045214, 121.59544)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_23" type="MeshInstance3D" parent="." index="66"]
+[node name="shrub_23" type="MeshInstance3D" parent="." index="65"]
 transform = Transform3D(0.02, 0, 0, 0, 0.01966928, -0.0036220546, 0, 0.0036220546, 0.01966928, 61.4898, -0.3767829, 95.39438)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_24" type="MeshInstance3D" parent="." index="67"]
+[node name="shrub_24" type="MeshInstance3D" parent="." index="66"]
 transform = Transform3D(0.016174387, 0.002130473, 0.011569364, 0.0014216335, 0.019171137, -0.005517817, -0.011677674, 0.005284735, 0.015352632, 48.24163, 0.10384798, 110.07659)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_25" type="MeshInstance3D" parent="." index="68"]
+[node name="shrub_25" type="MeshInstance3D" parent="." index="67"]
 transform = Transform3D(-0.0012144793, 0.013211153, 0.014966303, 0.002134419, 0.01499396, -0.0130623635, -0.019848656, 0.0008040189, -0.0023204004, 51.080814, 2.840169, 109.68526)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_26" type="MeshInstance3D" parent="." index="69"]
+[node name="shrub_26" type="MeshInstance3D" parent="." index="68"]
 transform = Transform3D(-0.0023224973, -5.5022483e-06, 0.019864686, 0.00079794234, 0.019983828, 9.8825454e-05, -0.019848656, 0.00080401916, -0.0023204004, 49.76752, 4.982977, 109.68526)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="Rockgroup21" parent="." index="70" instance=ExtResource("16_de12o")]
+[node name="Rockgroup21" parent="." index="69" instance=ExtResource("16_de12o")]
 transform = Transform3D(-2.7421305, 0.27722192, 1.184851, 1.2168165, 0.6463538, 2.664881, -0.00902319, 2.9163983, -0.70323783, 19.906237, 13.14237, 132.7056)
 
-[node name="shrub_31" type="MeshInstance3D" parent="." index="71"]
+[node name="shrub_31" type="MeshInstance3D" parent="." index="70"]
 transform = Transform3D(-0.011823668, 0.0069891335, 0.014537976, 0.014348298, 0.012793204, 0.005519061, -0.007370695, 0.013692539, -0.012577241, 23.759459, 11.408194, 134.84999)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_32" type="MeshInstance3D" parent="." index="72"]
+[node name="shrub_32" type="MeshInstance3D" parent="." index="71"]
 transform = Transform3D(-0.019638501, 0.0026471731, -0.0027058579, 0.0028924888, 0.019716192, -0.0017044265, 0.0024418663, -0.002064954, -0.019742675, 23.523632, 13.949461, 137.73582)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_5" type="MeshInstance3D" parent="." index="73"]
+[node name="shrub_5" type="MeshInstance3D" parent="." index="72"]
 transform = Transform3D(0.014940056, 2.974671e-17, 0.0013396725, 0, 0.015, -3.3306696e-16, -0.0013396725, 3.3173595e-16, 0.014940056, -14.87672, 1.3255098, 88.517555)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="shrub_8" type="MeshInstance3D" parent="." index="74"]
+[node name="shrub_8" type="MeshInstance3D" parent="." index="73"]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, -4.440892e-16, 0, 4.440892e-16, 0.02, 36.54319, 0.46380353, 61.792076)
 mesh = SubResource("ArrayMesh_inv8e")
 skeleton = NodePath("")
 
-[node name="shrub_33" type="MeshInstance3D" parent="." index="75"]
+[node name="shrub_33" type="MeshInstance3D" parent="." index="74"]
 transform = Transform3D(0.02, 0, 0, 0, 0.019841285, 0.0025146296, 0, -0.0025146296, 0.019841285, 29.063023, 7.376481, 73.05345)
 mesh = SubResource("ArrayMesh_inv8e")
 skeleton = NodePath("")
 
-[node name="shrub_22" type="MeshInstance3D" parent="." index="76"]
+[node name="shrub_22" type="MeshInstance3D" parent="." index="75"]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, -4.440892e-16, 0, 4.440892e-16, 0.02, 83.23595, 3.4959452, 94.41053)
 mesh = SubResource("ArrayMesh_inv8e")
 skeleton = NodePath("")
 
-[node name="shrub_11" type="MeshInstance3D" parent="." index="77"]
+[node name="shrub_11" type="MeshInstance3D" parent="." index="76"]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, -4.440892e-16, 0, 4.440892e-16, 0.02, 63.790665, -0.21953583, 14.327854)
 mesh = SubResource("ArrayMesh_inv8e")
 skeleton = NodePath("")
 
-[node name="shrub_12" type="MeshInstance3D" parent="." index="78"]
+[node name="shrub_12" type="MeshInstance3D" parent="." index="77"]
 transform = Transform3D(0.02, 0, 0, 0, 0.02, -4.440892e-16, 0, 4.440892e-16, 0.02, 106.87344, 9.791982, 23.062302)
 mesh = SubResource("ArrayMesh_inv8e")
 skeleton = NodePath("")
 
-[node name="Thorns" parent="." index="79" instance=ExtResource("39_rrjim")]
+[node name="Thorns" parent="." index="78" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 68.03443, 0.25347304, 73.64549)
 
-[node name="Thorns9" parent="." index="80" instance=ExtResource("39_rrjim")]
+[node name="Thorns9" parent="." index="79" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.7996032, 0.8725986, 0, -0.8725986, 1.7996032, 0, 0, 0, 2, 75.08279, 0.017726898, 94.281334)
 
-[node name="Thorns19" parent="." index="81" instance=ExtResource("39_rrjim")]
+[node name="Thorns19" parent="." index="80" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.7996032, 0.8725986, 0, -0.7580345, 1.5633321, 0.99064445, 0.43221748, -0.89138347, 1.7374187, 68.712395, 2.5985808, 120.33729)
 
-[node name="Thorns20" parent="." index="82" instance=ExtResource("39_rrjim")]
+[node name="Thorns20" parent="." index="81" instance=ExtResource("39_rrjim")]
 transform = Transform3D(3.2165012, 2.172358, -0.96694416, -1.516069, 3.1266642, 1.9812889, 1.8318446, -1.226716, 3.337591, 52.36208, 6.0460296, 118.74319)
 
-[node name="Thorns10" parent="." index="83" instance=ExtResource("39_rrjim")]
+[node name="Thorns10" parent="." index="82" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.3058832, 0.6332016, 1.3761268, -0.87259865, 1.7996032, -3.892485e-08, -1.238241, -0.60040313, 1.4513012, 61.176506, 0.017726898, 132.60231)
 
-[node name="Thorns8" parent="." index="84" instance=ExtResource("39_rrjim")]
+[node name="Thorns8" parent="." index="83" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.7485485, 0, 1.299875, 0, 1.5, 0, -1.299875, 0, 0.7485485, 68.468506, 1.1565425, 57.786568)
 
-[node name="Thorns5" parent="." index="85" instance=ExtResource("39_rrjim")]
+[node name="Thorns5" parent="." index="84" instance=ExtResource("39_rrjim")]
 transform = Transform3D(2.430612, -1.6107063, 0.7055141, 1.546861, 2.530934, 0.44899482, -0.8362693, 0, 2.8810854, 109.145744, 0.3870361, -37.069386)
 
-[node name="Thorns7" parent="." index="86" instance=ExtResource("39_rrjim")]
+[node name="Thorns7" parent="." index="85" instance=ExtResource("39_rrjim")]
 transform = Transform3D(-0.66398805, -0.11280591, 2.9234219, 1.546861, 2.530934, 0.4489948, -2.483212, 1.6067513, -0.50200486, 105.92723, 0.46075463, -39.204926)
 
-[node name="Thorns6" parent="." index="87" instance=ExtResource("39_rrjim")]
+[node name="Thorns6" parent="." index="86" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.455531, -1.1383431, 4.847336, 2.5781016, 4.2182226, 0.7483243, -4.259798, 2.4312077, 0.97125924, 107.70818, 1.4023359, -40.25725)
 
-[node name="Thorns2" parent="." index="88" instance=ExtResource("39_rrjim")]
+[node name="Thorns2" parent="." index="87" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 65.46062, -0.08027625, 106.05159)
 
-[node name="Thorns3" parent="." index="89" instance=ExtResource("39_rrjim")]
+[node name="Thorns3" parent="." index="88" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.3935962, -0.42830828, 0.87432444, 0, 1.5266601, 0.74787015, -0.973597, -0.61307573, 1.2514982, 63.70408, 0.42815626, 107.3723)
 
-[node name="Thorns4" parent="." index="90" instance=ExtResource("39_rrjim")]
+[node name="Thorns4" parent="." index="89" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.03335531, -1.5744731, -0.6402517, 0.4623887, -0.6078171, 1.5188007, -1.6355689, -0.20394425, 0.41632023, 63.109352, 2.3045127, 108.82433)
 
-[node name="Rockgroup22" parent="." index="91" instance=ExtResource("16_de12o")]
+[node name="Rockgroup22" parent="." index="90" instance=ExtResource("16_de12o")]
 transform = Transform3D(1.0248792, 0, -2.8195074, 0, 3.000001, 0, 2.8195074, 0, 1.0248792, -35.14203, 1.0071423, 119.65742)
 
-[node name="shrub_34" type="MeshInstance3D" parent="." index="92"]
+[node name="shrub_34" type="MeshInstance3D" parent="." index="91"]
 transform = Transform3D(-0.0032165728, 0.0045598713, -0.019205758, -2.0715038e-10, 0.019459065, 0.0046200138, 0.019739648, 0.00074303144, -0.0031295782, -34.699688, 6.8733897, 116.68245)
 mesh = SubResource("ArrayMesh_aw3fk")
 skeleton = NodePath("")
 
-[node name="Thorns29" parent="." index="93" instance=ExtResource("39_rrjim")]
+[node name="Thorns29" parent="." index="92" instance=ExtResource("39_rrjim")]
 transform = Transform3D(-0.273409, 0, -1.67787, 0, 1.7000003, 0, 1.67787, 0, -0.273409, -32.567764, 1.3420899, 121.013016)
 
-[node name="Thorns30" parent="." index="94" instance=ExtResource("39_rrjim")]
+[node name="Thorns30" parent="." index="93" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.7367928, 0.67397904, -1.3758229, -1.9705247e-08, 1.5266597, 0.7478701, 1.532037, -0.32413247, 0.6616658, -33.58878, 1.8505225, 119.066925)
 
-[node name="Thorns31" parent="." index="95" instance=ExtResource("39_rrjim")]
+[node name="Thorns31" parent="." index="94" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.6089132, 0.45450988, -0.30793002, 0.46238858, -0.6078172, 1.518801, 0.29596758, -1.5211768, -0.6988734, -34.926266, 3.7268786, 118.246414)
 
-[node name="Thorns11" parent="." index="96" instance=ExtResource("39_rrjim")]
+[node name="Thorns11" parent="." index="95" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.51104087, -4.956039, -0.4201408, 1.2641089, -0.2790659, 4.829509, -4.810496, -0.599836, 1.2244719, 61.461937, 12.5270605, 123.83943)
 
-[node name="Thorns12" parent="." index="97" instance=ExtResource("39_rrjim")]
+[node name="Thorns12" parent="." index="96" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.857398, 3.315738, 1.2473806, -1.0893693, 1.8747694, -3.3613272, -3.3709579, 1.2211156, 1.7735637, 61.461937, 12.5270605, 123.83943)
 
-[node name="Thorns27" parent="." index="98" instance=ExtResource("39_rrjim")]
+[node name="Thorns27" parent="." index="97" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.4991939, 3.4241526, 1.4239386, -1.0893694, 1.8747694, -3.3613272, -3.5448139, 0.8720213, 1.6352023, 29.152653, 12.5270605, 128.5636)
 
-[node name="Thorns28" parent="." index="99" instance=ExtResource("39_rrjim")]
+[node name="Thorns28" parent="." index="98" instance=ExtResource("39_rrjim")]
 transform = Transform3D(-3.4854348, -1.9622734, 0.03513837, -1.0893693, 1.8747693, -3.3613267, 1.6324924, -2.93849, -2.168007, 29.152653, 13.238982, 142.26422)
 
-[node name="Thorns13" parent="." index="100" instance=ExtResource("39_rrjim")]
+[node name="Thorns13" parent="." index="99" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.857398, 3.315738, 1.2473807, -2.9775958, 2.2242668, -1.4787054, -1.9193771, -0.2419126, 3.5010686, 67.903625, 11.381501, 123.83943)
 
-[node name="Thorns15" parent="." index="101" instance=ExtResource("39_rrjim")]
+[node name="Thorns15" parent="." index="100" instance=ExtResource("39_rrjim")]
 transform = Transform3D(2.6105313, 0.28360128, 1.450757, -0.335966, 2.9810488, 0.02179563, -1.4395322, -0.18143438, 2.6258006, 65.97441, 11.381501, 123.83943)
 
-[node name="Thorns16" parent="." index="102" instance=ExtResource("39_rrjim")]
+[node name="Thorns16" parent="." index="101" instance=ExtResource("39_rrjim")]
 transform = Transform3D(-1.508631, -0.18893221, 2.5861816, -0.33596596, 2.9810488, 0.021795666, -2.5712173, -0.27866235, -1.520259, 72.6476, 10.688754, 123.454025)
 
-[node name="Thorns17" parent="." index="103" instance=ExtResource("39_rrjim")]
+[node name="Thorns17" parent="." index="102" instance=ExtResource("39_rrjim")]
 transform = Transform3D(-1.1872194, 2.2454782, 1.5963515, 0.98962176, 1.969816, -2.0348153, -2.571217, -0.27866232, -1.5202589, 86.17412, 10.701157, 120.61186)
 
-[node name="Thorns18" parent="." index="104" instance=ExtResource("39_rrjim")]
+[node name="Thorns18" parent="." index="103" instance=ExtResource("39_rrjim")]
 transform = Transform3D(1.9229807, 1.1150401, 2.0146534, 0.9896218, 1.9698159, -2.0348153, -2.0791326, 1.9688857, 0.89481694, 84.49246, 10.252556, 121.61982)
 
-[node name="Thorns14" parent="." index="105" instance=ExtResource("39_rrjim")]
+[node name="Thorns14" parent="." index="104" instance=ExtResource("39_rrjim")]
 transform = Transform3D(3.3194613, -1.4202077, 1.7216829, 1.1389368, 3.7315533, 0.8822332, -1.9193771, -0.2419126, 3.5010686, 79.06362, 10.693597, 120.66448)
 
-[node name="Thorns21" parent="." index="106" instance=ExtResource("39_rrjim")]
+[node name="Thorns21" parent="." index="105" instance=ExtResource("39_rrjim")]
 transform = Transform3D(3.3194613, -1.4202077, 1.7216829, 1.1389368, 3.7315533, 0.8822332, -1.9193771, -0.2419126, 3.5010686, 109.93047, 8.788075, 122.7116)
 
-[node name="Thorns24" parent="." index="107" instance=ExtResource("39_rrjim")]
+[node name="Thorns24" parent="." index="106" instance=ExtResource("39_rrjim")]
 transform = Transform3D(3.3194618, -1.420208, 1.7216831, 1.475235, 3.7116585, 0.2174282, -1.6747739, 0.45453548, 3.603962, 142.16205, 16.27453, 128.04245)
 
-[node name="Thorns25" parent="." index="108" instance=ExtResource("39_rrjim")]
+[node name="Thorns25" parent="." index="107" instance=ExtResource("39_rrjim")]
 transform = Transform3D(2.378551, -0.85057604, -1.6183369, 1.1064256, 2.7837439, 0.1630714, 1.4554435, -0.72614765, 2.5207922, 142.16205, 16.166452, 140.02405)
 
-[node name="Thorns26" parent="." index="109" instance=ExtResource("39_rrjim")]
+[node name="Thorns26" parent="." index="108" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.16843379, 1.1994014, -2.7446432, 1.574203, 2.3032591, 1.1031238, 2.548237, -1.5021429, -0.5000515, 135.62923, 16.166452, 144.16792)
 
-[node name="Thorns22" parent="." index="110" instance=ExtResource("39_rrjim")]
+[node name="Thorns22" parent="." index="109" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.8213389, -1.1363841, 3.7462044, 3.1019995, 2.5239444, 0.085520625, -2.3880987, 2.8876188, 1.399519, 113.380035, 4.797104, 125.33809)
 
-[node name="Thorns23" parent="." index="111" instance=ExtResource("39_rrjim")]
+[node name="Thorns23" parent="." index="110" instance=ExtResource("39_rrjim")]
 transform = Transform3D(0.82133895, -1.1363838, 3.746204, -3.6124759, 1.2549204, 1.1726911, -1.5084535, -3.6240597, -0.7686106, 113.380035, 4.797104, 134.26083)
 
-[node name="Skull" parent="." index="112" instance=ExtResource("40_knlhw")]
+[node name="Skull" parent="." index="111" instance=ExtResource("40_knlhw")]
 transform = Transform3D(-0.37057692, 0.04466085, -1.452817, -0.43804768, 1.4261521, 0.15557602, 1.3859241, 0.46270412, -0.33929002, 91.603485, 0.9510751, -33.005177)
 
-[node name="Skull2" parent="." index="113" instance=ExtResource("40_knlhw")]
+[node name="Skull2" parent="." index="112" instance=ExtResource("40_knlhw")]
 transform = Transform3D(-0.99255145, -0.16002245, 1.1132088, -0.51623327, 1.3839082, -0.26134524, -0.99917173, -0.55604947, -0.9708059, 63.939987, 0.0060760975, 105.719505)
 
-[node name="Rockgroup13" parent="." index="114" instance=ExtResource("41_dr3qu")]
+[node name="Rockgroup13" parent="." index="113" instance=ExtResource("41_dr3qu")]
 transform = Transform3D(-1.7257439, 0, -2.453937, 0, 3, 0, 2.453937, 0, -1.7257439, 71.660576, 0.6539736, 51.5814)
 
-[node name="Rockgroup17" parent="." index="115" instance=ExtResource("41_dr3qu")]
+[node name="Rockgroup17" parent="." index="114" instance=ExtResource("41_dr3qu")]
 transform = Transform3D(-1.7257439, 0, -2.453937, 0, 3, 0, 2.453937, 0, -1.7257439, 120.78706, -0.2788806, 19.662193)
 
-[node name="Rockgroup14" parent="." index="116" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup14" parent="." index="115" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(0.2727459, -0.43768308, -1.9323674, 0.061170895, 1.9515208, -0.4333874, 1.9803709, 0, 0.2795214, 67.68679, 0.7909045, 56.267715)
 
-[node name="Rockgroup23" parent="." index="117" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup23" parent="." index="116" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(0.2727459, -0.4376831, -1.9323674, -0.67481464, 1.8134484, -0.5059953, 1.8628572, 0.7209988, 0.09962785, -6.017601, 2.9992208, 26.215553)
 
-[node name="Rockgroup24" parent="." index="118" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup24" parent="." index="117" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(2.4595015, 0.42751023, -0.13448553, -0.24880819, 1.9264872, 1.5737665, 0.37275434, -1.534888, 1.9378266, -37.142754, 1.7395039, 26.215553)
 
-[node name="Rockgroup25" parent="." index="119" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup25" parent="." index="118" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(3.8203726, -1.1852242, -0.0007095796, 1.1769887, 3.7941067, -0.46845898, 0.13948025, 0.44721302, 3.9724739, -27.91652, 1.1251621, 60.55368)
 
-[node name="Rockgroup18" parent="." index="120" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup18" parent="." index="119" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(0.2727459, -0.43768308, -1.9323674, 0.061170895, 1.9515208, -0.4333874, 1.9803709, 0, 0.2795214, 95.83422, -0.4003849, -12.081945)
 
-[node name="Rockgroup19" parent="." index="121" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup19" parent="." index="120" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(-1.5724214, 0.9514431, -0.7888267, 1.2269484, 1.3552136, -0.81116855, 0.14862394, -1.1216741, -1.6491694, 91.77488, -0.4003849, -10.153046)
 
-[node name="Rockgroup20" parent="." index="122" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup20" parent="." index="121" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(0.54481775, 0.6009724, 1.8281155, 1.2269483, 1.3552136, -0.8111683, -1.4824883, 1.3424708, 0.0004913211, 95.31345, -0.9729862, -6.8457)
 
-[node name="Rockgroup16" parent="." index="123" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup16" parent="." index="122" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(-1.015022, -1.1152296, -2.5934522, -0.098500654, 2.7683024, -1.1518674, 2.821352, -0.30457127, -0.97324604, 81.64616, 0.21017385, 95.00696)
 
-[node name="Rockgroup15" parent="." index="124" instance=ExtResource("42_qpx8i")]
+[node name="Rockgroup15" parent="." index="123" instance=ExtResource("42_qpx8i")]
 transform = Transform3D(-1.9407519, 0, 0.48320028, -0.057798978, 1.9856402, -0.23214696, -0.47973093, -0.23923405, -1.9268174, 79.40722, -0.48632717, 26.025448)

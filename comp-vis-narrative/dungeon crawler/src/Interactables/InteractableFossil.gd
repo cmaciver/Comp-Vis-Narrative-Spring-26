@@ -41,7 +41,7 @@ func interact():
 	# Lerp the sound effect to 0.25 to make it a little more quiet when in the fossil mining interaction
 	var audio_manager = get_tree().root.get_node("Node3D/DungeonCrawlerAudioManager")
 	if audio_manager and audio_manager.has_method("play_sound_effect"):
-		audio_manager.fade_bgm_to_volume(0.25, 1.0)
+		audio_manager.fade_bgm_to_volume(0.15, 2.0)
 
 	enterRockCamera()
 
