@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cflf0qdt7ya85"
+path="res://.godot/imported/counter blip.ogg-b9c9066609143183acd04210e179e7cb.oggvorbisstr"
+
+[deps]
+
+source_file="res://dungeon crawler/src/assets/sounds/ui/counter blip.ogg"
+dest_files=["res://.godot/imported/counter blip.ogg-b9c9066609143183acd04210e179e7cb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

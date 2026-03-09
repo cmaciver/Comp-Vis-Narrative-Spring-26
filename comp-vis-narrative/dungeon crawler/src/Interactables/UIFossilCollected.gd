@@ -11,6 +11,7 @@ var light_color = 0.0
 
 #variables for the randomly selected fossil weight
 var randomWeight = randi_range(50, 150)
+var prevWeight = 0
 var userCanExitPage = false
 
 var displayedFossil
@@ -66,17 +67,32 @@ func animatePrimaryTitle():
 	tween.tween_property(%PrimaryTitle, "theme_override_font_sizes/font_size", 56, 1.0)
 	
 func animateWeightCountup():
+	total_times_called = 0
+	last_time_sound_played = -10
+	
 	var tween = create_tween()
 	tween.tween_interval(1.0)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_trans(Tween.TRANS_QUINT)
 	tween.tween_method(updateWeightLabel, 0, randomWeight, 3.0)
 	
 	#when it is done allow the user to click to continue
 	tween.tween_callback(updateWeightFinished)
-	
+
+# very temp very hacky persistant variable for tracking how many times this function has been called
+var total_times_called = 0
+var last_time_sound_played = -10
 func updateWeightLabel(value: float):
 	%WeightTitle.text = "+ " + str(snappedi(value, 1)) + " lbs"
+	
+	if prevWeight != value and total_times_called - last_time_sound_played > 2:
+		$WeightTickSFX.pitch_scale += 0.02
+		$WeightTickSFX.play()
+		last_time_sound_played = total_times_called
+		
+
+	prevWeight = value
+	total_times_called += 1
 
 func updateWeightFinished():
 	userCanExitPage = true

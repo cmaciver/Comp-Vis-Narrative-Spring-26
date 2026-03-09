@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://rtewig1fr8tg"]
+[gd_scene load_steps=7 format=3 uid="uid://rtewig1fr8tg"]
 
 [ext_resource type="Script" uid="uid://bbaireojr6405" path="res://dungeon crawler/src/Interactables/UIFossilCollected.gd" id="1_tyafr"]
 [ext_resource type="PackedScene" uid="uid://d3va2s1mg2efa" path="res://dungeon crawler/src/assets/small_fossil_rock.tscn" id="2_0o66p"]
+[ext_resource type="AudioStream" uid="uid://cflf0qdt7ya85" path="res://dungeon crawler/src/assets/sounds/ui/counter blip.ogg" id="3_nry88"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_l5my0"]
 
@@ -126,5 +127,9 @@ light_color = Color(1, 0.26000598, 0.2008352, 1)
 light_energy = 16.0
 light_size = 1.0
 omni_range = 34.728
+
+[node name="WeightTickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nry88")
+volume_db = -20.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
