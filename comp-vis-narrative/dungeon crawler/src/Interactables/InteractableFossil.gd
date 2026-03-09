@@ -8,6 +8,7 @@ var interactableText = "Press \"e\" to Mine Fossil"
 @onready var fossil_collected_popup = preload("res://dungeon crawler/src/Interactables/UIFossilCollected.tscn")
 @onready var field_log_popup = preload("res://dungeon crawler/src/ui/field_log.tscn")
 @onready var fossil_item_scene = preload("res://dungeon crawler/src/Items/fossil_item.tscn")
+@onready var reinforcement_scene = preload("res://dungeon crawler/src/Interactables/ReinforcementMinigame.tscn")
 @export var fossil_scenes: Array[PackedScene]
 
 @onready var rockCamera = $StaticBody3D/Camera3D
@@ -27,10 +28,11 @@ var new_fossil
 @export var miningHitsRequired = 5
 
 #used to select which fossil to give the player (global to give the popup menu the info)
-var rand_idx = randi_range(0, fossil_scenes.size() - 1)
+var rand_idx: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rand_idx = randi_range(0, fossil_scenes.size() - 1)
 	playerCamera = get_tree().get_first_node_in_group("player_camera")
 	fossilCameraTargetPoint = rockCamera.global_transform
 	dotsClicked = 0
@@ -169,7 +171,7 @@ func dotClicked():
 	
 	dotsClicked += 1
 	if(dotsClicked  >= miningHitsRequired):
-		spawnFossilCollectedPopup()
+		spawnReinforcementMinigame()
 		#TODO Break the rock at the end of the interaction
 		%FossilRock.hide() ###I WANT TO REPLACE THIS WITH SOME SORT OF ROCK BLOWING INTO MANY PIECES but doing this after MVP
 		%RockCollision.hide()
@@ -198,6 +200,15 @@ func shake_camera(duration: float = 0.2, amount: float = 0.05, shakes: int = 3):
 
 
 
+
+func spawnReinforcementMinigame():
+	var minigame = reinforcement_scene.instantiate()
+	minigame.fossil_index = rand_idx
+	get_tree().root.add_child(minigame)
+	minigame.reinforcement_complete.connect(onReinforcementComplete)
+
+func onReinforcementComplete():
+	spawnFossilCollectedPopup()
 
 func spawnFossilCollectedPopup():
 	var popup = fossil_collected_popup.instantiate()
