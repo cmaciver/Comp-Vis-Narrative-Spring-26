@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 			_damage_player()
 
 func _on_body_entered(body: Node3D) -> void:
-	print("Something entered: ", body.name)
+	#print("Something entered: ", body.name)
 	if body == self:
 		return
 	var player = get_tree().get_first_node_in_group("player")
