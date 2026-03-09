@@ -240,9 +240,6 @@ func _physics_process(delta: float) -> void:
 			target_speed = crouch_speed
 			do_sprint = false
 		elif wants_slow_walk:
-			# For now as a test, this also adds an item to the inventory.
-			inventory.add_item_to_inventory(load("res://dungeon crawler/src/Items/test_item.tres"), 1)
-			print("Added test item to inventory. Current total weight: " + str(inventory.get_total_weight()))
 			target_speed = walk_speed
 			do_sprint = false
 		elif wants_sprint and can_sprint and stamina > 0.0:

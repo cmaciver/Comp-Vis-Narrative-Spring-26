@@ -3,17 +3,38 @@ class_name DungeonCrawlerAudioManager
 
 # So long as the audio streams have looping enabled, they will automatically loop when played with no 
 # extra work being needed here to accomplish this.
-const TEST_TRACK: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/BravuraExcerpt.wav")
+const TEST_TRACK: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/fossil hunting.wav")
+const playerPain1: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain1.wav")
+const playerPain2: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain2.wav")
+const playerPain3: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain3.wav")
+const playerPain4: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain4.wav")
+const playerPain5: AudioStreamWAV = preload("res://dungeon crawler/src/assets/sounds/playerPain5.wav")
+const rockSound1: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-01.ogg")
+const rockSound2: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-02.ogg")
+const rockSound3: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-03.ogg")
+const rockSound4: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-04.ogg")
+const rockSound5: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-05.ogg")
+const rockSound6: AudioStream = preload("res://dungeon crawler/src/assets/sounds/rocks/rocks-06.ogg")
 
 # Defines a map between a string and a sound effect,
 # so that the main script can just call play_sound("sfx_name"),
 # or switch_background_music("bgm_name"), and this script will know which sound to play.
 var sound_effects_map = {
-	"test_sfx": TEST_TRACK
+	"playerPain1": playerPain1,
+	"playerPain2": playerPain2,
+	"playerPain3": playerPain3,
+	"playerPain4": playerPain4,
+	"playerPain5": playerPain5,
+	"rockSound1": rockSound1,
+	"rockSound2": rockSound2,
+	"rockSound3": rockSound3,
+	"rockSound4": rockSound4,
+	"rockSound5": rockSound5,
+	"rockSound6": rockSound6
 }
 
 var background_music_map = {
-
+	"fossil_hunting": TEST_TRACK
 }
 
 # Two AudioStreamPlayers are used for background music, so that we can crossfade between them.
@@ -34,10 +55,26 @@ var current_bgm_key := ""
 
 # Current volume of the background music, measured in percent of the max volume, on a linear scale.
 # In the steady state, music will be playing at this volume (I think?).
-var bgm_max_volume_linear := 1.0
+@export var bgm_max_volume_linear := 0.5
 
 # Used to determine silence volume for fading in from silence/out to silence.
 var bgm_silence_linear := 0.00
+
+func _ready():
+	print("the game is started")
+	switch_background_music("fossil_hunting", 0.0)
+
+## Makes the background music lerp to the given target volume over the given fade time. 
+## [br]
+## **param** target_volume_linear The target volume to fade to, measured in percent of the max volume, on a linear scale.
+## [br]
+## **param** fade_time The time in seconds to fade to the target volume.
+func fade_bgm_to_volume(target_volume_linear: float, fade_time: float) -> void:
+	if current_bgm_player == null:
+		print("No background music is currently playing, cannot fade.")
+		return
+	var tween = get_tree().create_tween()
+	tween.tween_property(current_bgm_player, "volume_linear", target_volume_linear, fade_time)
 
 ## Switches the background music to the given key, fading out the old music and fading in the new music over the given fade time.
 ## If the key is an empty string, just fades out the current music without fading in new music.
@@ -140,12 +177,21 @@ func switch_background_music(key: String, fade_time: float = 4.0) -> void:
 ## If the key is not found in the sound_effects_map, does nothing.
 ## [br]
 ## **param** key The key of the sound effect to play.
-func play_sound_effect(key: String) -> void:
+## [br]
+## **param** pitch_scale The pitch scale to apply when playing the sound effect. 1.0 means normal pitch, less than 1.0 means lower pitch, greater than 1.0 means higher pitch.
+##                       Defaults to 1.0 (normal pitch) if not specified.
+## [br]
+## **param** volume_scale A linear multiplier applied to the `AudioStreamPlayer.volume_linear` property
+##                        before playback. Defaults to 1.0 (no scaling). Values less than 1.0 lower the volume; values
+##                        greater than 1.0 increase it.
+func play_sound_effect(key: String, pitch_scale: float = 1.0, volume_scale: float = 1.0) -> void:
 
 	# Basic validation of parameters.
 	if not sound_effects_map.has(key):
 		print("Unknown sound effect key: %s" % key)
 		return
-	
+
 	sfx_player.stream = sound_effects_map[key]
+	sfx_player.pitch_scale = pitch_scale
+	sfx_player.volume_linear = max(0.0, volume_scale)
 	sfx_player.play()

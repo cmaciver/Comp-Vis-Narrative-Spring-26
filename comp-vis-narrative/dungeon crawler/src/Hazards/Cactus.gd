@@ -45,3 +45,15 @@ func _damage_player() -> void:
 			var flash = player.hud.get_node_or_null("Control/DamageFlash")
 			if flash:
 				flash.flash()
+
+	# Try to locate the audio manager by node name in the active scene tree.
+	var audio_manager = get_tree().root.get_node("Node3D/DungeonCrawlerAudioManager")
+	if audio_manager and audio_manager.has_method("play_sound_effect"):
+		# We want playerPain5 to have a 1% chance of playing while the other 4 pain sounds have an equal share of the remaining 99% chance.
+		var rand_num = randi_range(1, 100)
+		var sound_key = ""
+		if rand_num <= 1:
+			sound_key = "playerPain5"
+		else:
+			sound_key = "playerPain" + str(randi_range(1, 4))
+		audio_manager.play_sound_effect(sound_key)

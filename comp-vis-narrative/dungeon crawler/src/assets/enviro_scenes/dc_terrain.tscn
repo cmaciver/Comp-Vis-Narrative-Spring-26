@@ -4220,24 +4220,31 @@ shape = SubResource("ConcavePolygonShape3D_m1nqi")
 
 [node name="InteractableFossil4" parent="." index="1" instance=ExtResource("3_dggj0")]
 transform = Transform3D(0.13097626, 0, 0.99138546, 0, 1, 0, -0.99138546, 0, 0.13097626, -24.055676, 17.710821, 78.12171)
+fossilDescription = "Found upon a hill to the West of basecamp"
 
 [node name="InteractableFossil5" parent="." index="2" instance=ExtResource("3_dggj0")]
 transform = Transform3D(-0.47781825, 0, -0.87845886, 0, 1, 0, 0.87845886, 0, -0.47781825, 28.013845, 11.678444, 138.98874)
+fossilDescription = "Found on the west of the south ravine"
 
 [node name="InteractableFossil6" parent="." index="3" instance=ExtResource("3_dggj0")]
 transform = Transform3D(0.91531146, 0, -0.40274674, 0, 1, 0, 0.40274674, 0, 0.91531146, 138.33655, 14.833187, 139.50508)
+fossilDescription = "Found on the east side of the south ravine"
 
 [node name="InteractableFossil8" parent="." index="4" instance=ExtResource("3_dggj0")]
 transform = Transform3D(-0.9723169, 0, -0.23366582, 0, 1, 0, 0.23366582, 0, -0.9723169, 114.476326, 14.568094, 86.53018)
+fossilDescription = "Deep down a ravine to the east"
 
 [node name="InteractableFossil9" parent="." index="5" instance=ExtResource("3_dggj0")]
 transform = Transform3D(-0.37774408, 0, -0.92591023, 0, 1, 0, 0.92591023, 0, -0.37774408, 73.074394, 13.089809, -14.747426)
+fossilDescription = "Found on a steep hill north east of basecamp"
 
 [node name="InteractableFossil3" parent="." index="6" instance=ExtResource("3_dggj0")]
 transform = Transform3D(-0.89381015, 0, -0.44844562, 0, 1, 0, 0.44844562, 0, -0.89381015, -37.184025, 13.336846, -11.254292)
+fossilDescription = "Found on a steep hill north west of basecamp"
 
 [node name="InteractableFossil7" parent="." index="7" instance=ExtResource("3_dggj0")]
 transform = Transform3D(-0.08863345, 0, 0.99606425, 0, 1, 0, -0.99606425, 0, -0.08863345, 51.026474, 3.0643373, 21.997282)
+fossilDescription = "A rock found near basecamp"
 
 [node name="RockSet1" type="Node3D" parent="." index="8"]
 
