@@ -1,16 +1,16 @@
 extends StaticBody3D
 
 # the amount of time between hits
-@export var damage_interval: float = 0.5
+@export var damage_interval: float = 1.5
 
 var player_inside: bool = false
 var timer: float = 0.0
 
 func _ready() -> void:
-	print("Cactus ready, Area3D: ", $Area3D)
+	#print("Cactus ready, Area3D: ", $Area3D)
 	$Area3D.body_entered.connect(_on_body_entered)
 	$Area3D.body_exited.connect(_on_body_exited)
-	print("Signal connected")
+	#print("Signal connected")
 
 func _physics_process(delta: float) -> void:
 	if player_inside:
@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 		if timer >= damage_interval:
 			timer = 0.0
 			_damage_player()
+			_drop_item()
 
 func _on_body_entered(body: Node3D) -> void:
 	#print("Something entered: ", body.name)
@@ -33,6 +34,13 @@ func _on_body_exited(body: Node3D) -> void:
 	if body == player:
 		player_inside = false
 		timer = 0.0
+
+func _drop_item() -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	if not player:
+		return
+	if player.is_holding and player.is_holding.has_method("_force_release_hold"):
+		player.is_holding._force_release_hold()
 
 func _damage_player() -> void:
 	var player = get_tree().get_first_node_in_group("player")
