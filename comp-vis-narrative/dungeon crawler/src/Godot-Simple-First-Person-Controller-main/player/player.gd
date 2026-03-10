@@ -115,12 +115,20 @@ func _input(event: InputEvent) -> void:
 	#open the journal
 	if event.is_action_pressed("open_journal") || (event.is_action_pressed("esc") && is_journal_opened):
 		if journal_instance == null:
+			# Lerp the sound effect to 0.25 to make it a little more quiet when in the fossil mining interaction
+			var audio_manager = get_tree().root.get_node("Node3D/DungeonCrawlerAudioManager")
+			if audio_manager and audio_manager.has_method("play_sound_effect"):
+				audio_manager.fade_bgm_to_volume(0.15, 1.0)
 			#open journal scene
 			journal_instance = journal_scene.instantiate()
 			is_journal_opened = true
 			get_tree().root.add_child(journal_instance)
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
+			# Lerp the sound effect to 0.25 to make it a little more quiet when in the fossil mining interaction
+			var audio_manager = get_tree().root.get_node("Node3D/DungeonCrawlerAudioManager")
+			if audio_manager and audio_manager.has_method("play_sound_effect"):
+				audio_manager.fade_bgm_to_volume(0.5, 1.0)
 			#close the journal
 			journal_instance.queue_free()
 			journal_instance = null
