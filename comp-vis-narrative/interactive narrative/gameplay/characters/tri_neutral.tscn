@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://djcu6d4uyyx6e"]
-
-[ext_resource type="Texture2D" uid="uid://b8lgtsump2smn" path="res://interactive narrative/assets/dinos/tri_neutral.png" id="1_n0i1u"]
-[ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_irbsy"]
-
-[node name="TriNeutral" type="Sprite2D"]
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("1_n0i1u")
-script = ExtResource("2_irbsy")

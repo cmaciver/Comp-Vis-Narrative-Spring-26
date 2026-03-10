@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://x48kg3no8ofm"]
-
-[ext_resource type="Texture2D" uid="uid://bpet4wp5k337g" path="res://interactive narrative/assets/dinos/disaster_dinos.png" id="1_pkeo7"]
-[ext_resource type="Script" uid="uid://exso1fhxwj50" path="res://interactive narrative/gameplay/characters/character.gd" id="2_m2867"]
-
-[node name="DisasterDinos" type="Sprite2D"]
-texture = ExtResource("1_pkeo7")
-script = ExtResource("2_m2867")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c76xvyd1u8plm"]
-
-[ext_resource type="Texture2D" uid="uid://grqmm65758ke" path="res://interactive narrative/assets/dinos/tyran_fight_1.png" id="1_cwcl1"]
-[ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_hw2k3"]
-
-[node name="TyranFight1" type="Sprite2D"]
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("1_cwcl1")
-script = ExtResource("2_hw2k3")

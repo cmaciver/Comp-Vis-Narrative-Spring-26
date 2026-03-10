@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://tijstr20n76s"]
-
-[ext_resource type="Texture2D" uid="uid://btvtkrh2xipvs" path="res://interactive narrative/assets/dinos/tyran_neutral.png" id="1_u7q17"]
-[ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_0nkn8"]
-
-[node name="TyranNeutral" type="Sprite2D"]
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("1_u7q17")
-script = ExtResource("2_0nkn8")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://b63a5h1p0is2m"]
-
-[ext_resource type="Texture2D" uid="uid://b84xindoiyxe0" path="res://interactive narrative/assets/dinos/tri_eating.png" id="1_dq58g"]
-[ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_cofdu"]
-
-[node name="TriEating" type="Sprite2D"]
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("1_dq58g")
-script = ExtResource("2_cofdu")

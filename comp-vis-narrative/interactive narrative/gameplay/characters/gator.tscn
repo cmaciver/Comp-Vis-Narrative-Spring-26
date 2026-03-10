@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bos1hktyecvv0"]
-
-[ext_resource type="Texture2D" uid="uid://cqo6xwkb5yw2k" path="res://interactive narrative/assets/other_animal/gator.png" id="1_4v607"]
-[ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_i43gx"]
-
-[node name="Gator" type="Sprite2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_4v607")
-script = ExtResource("2_i43gx")

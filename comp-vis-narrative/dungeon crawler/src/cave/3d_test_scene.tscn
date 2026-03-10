@@ -1,7 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://b80llamgqo7fa"]
+[gd_scene load_steps=12 format=3 uid="uid://b80llamgqo7fa"]
 
-[ext_resource type="Shader" uid="uid://jk172qdhw4kq" path="res://dungeon crawler/src/shaders/sky.gdshader" id="1_1aokg"]
-[ext_resource type="Texture2D" uid="uid://5nwqul7o72cu" path="res://dungeon crawler/src/assets/sun.png" id="2_3jrgr"]
 [ext_resource type="PackedScene" uid="uid://jyncanbkjjnq" path="res://dungeon crawler/src/Godot-Simple-First-Person-Controller-main/player/player.tscn" id="2_cekia"]
 [ext_resource type="Script" uid="uid://tj7h7m7xc11w" path="res://dungeon crawler/src/cloud_scroll.gd" id="3_lj58m"]
 [ext_resource type="Script" uid="uid://dj8x2gcuyxrsu" path="res://dungeon crawler/src/dc_audio_manager.gd" id="5_h4ba3"]
@@ -16,47 +14,14 @@ colors = PackedColorArray(0.11246731, 0.07348486, 0.11100813, 1, 0.3271455, 0.24
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3jrgr"]
 gradient = SubResource("Gradient_1aokg")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lj58m"]
-noise_type = 0
-seed = 12
-frequency = 0.0061
-offset = Vector3(0, 63.83, 0)
-fractal_octaves = 4
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tsilk"]
-noise = SubResource("FastNoiseLite_lj58m")
-seamless = true
-in_3d_space = true
-normalize = false
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tjbcq"]
-in_3d_space = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3jrgr"]
-shader = ExtResource("1_1aokg")
-shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_tsilk")
-shader_parameter/clouds_samples = 16
-shader_parameter/shadow_sample = 4
-shader_parameter/clouds_density = 0.40000000596048
-shader_parameter/clouds_scale = 0.5
-shader_parameter/clouds_smoothness = 0.035
-shader_parameter/clouds_light_color = Color(0.78431374, 0.8156863, 0.78039217, 1)
-shader_parameter/clouds_shadow_intensity = 1.0
-shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_tjbcq")
-shader_parameter/high_clouds_density = 0.20000000298024
-shader_parameter/top_color = Color(0.39215687, 0.7411765, 0.8980392, 1)
-shader_parameter/bottom_color = Color(0.1882353, 0.6156863, 0.5764706, 1)
-shader_parameter/sun_scatter = Color(0.9372549, 0.93333334, 0.8235294, 1)
-shader_parameter/astro_tint = Color(1, 1, 0.8980392, 1)
-shader_parameter/astro_sampler = ExtResource("2_3jrgr")
-shader_parameter/astro_scale = 8.70000012964044
-shader_parameter/astro_intensity = 1.40000000596048
-shader_parameter/stars_intensity = 0.0
-shader_parameter/shooting_stars_intensity = 0.0
-shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1aokg"]
+sky_top_color = Color(0.39215687, 0.7411765, 0.8980392, 1)
+sky_horizon_color = Color(0.9372549, 0.93333334, 0.8235294, 1)
+ground_bottom_color = Color(0.1882353, 0.6156863, 0.5764706, 1)
+ground_horizon_color = Color(0.9372549, 0.93333334, 0.8235294, 1)
 
 [sub_resource type="Sky" id="Sky_xbpmh"]
-sky_material = SubResource("ShaderMaterial_3jrgr")
+sky_material = SubResource("ProceduralSkyMaterial_1aokg")
 
 [sub_resource type="Environment" id="Environment_h4ba3"]
 background_mode = 2
@@ -105,3 +70,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.025024, 0.08579922, -50.0
 
 [node name="HomeBase" parent="." instance=ExtResource("9_tsilk")]
 transform = Transform3D(0.85264015, 0, 0.52249855, 0, 1, 0, -0.52249855, 0, 0.85264015, -2.2672608, 1.1305755, 3.8324523)
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]

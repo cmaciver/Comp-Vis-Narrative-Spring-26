@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://j2xvrqts5qb1"]
-
-[ext_resource type="Texture2D" uid="uid://dr0q1c807cri7" path="res://interactive narrative/assets/other_animal/turtle.png" id="1_jtsln"]
-[ext_resource type="Script" uid="uid://exso1fhxwj50" path="res://interactive narrative/gameplay/characters/character.gd" id="2_t8acc"]
-
-[node name="Turtle" type="Sprite2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_jtsln")
-script = ExtResource("2_t8acc")

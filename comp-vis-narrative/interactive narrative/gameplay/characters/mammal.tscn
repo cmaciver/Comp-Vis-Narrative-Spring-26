@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://by0ovmgoga8ht"]
-
-[ext_resource type="Texture2D" uid="uid://bgecku4vrslf7" path="res://interactive narrative/assets/other_animal/mammal.png" id="1_wnwr0"]
-[ext_resource type="Script" path="res://interactive narrative/gameplay/characters/character.gd" id="2_hglni"]
-
-[node name="Mammal" type="Sprite2D"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_wnwr0")
-script = ExtResource("2_hglni")
