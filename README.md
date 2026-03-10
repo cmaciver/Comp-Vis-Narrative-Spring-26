@@ -72,4 +72,6 @@ Sound effect sources
 - `tyranEatingOutOfCave.wav` and `tyranEatingInCave.wav`: from *Tearing flesh.wav* by aworldwhere === https://freesound.org/s/434394/ === License: Attribution 3.0
 - `tyranFallOutOfCave.wav` and `tyranFallInCave.wav`: from Pixabay === https://pixabay.com/sound-effects/film-special-effects-giant-fall-impact-352446/ === License: Pixabay License
 - `tyranDrownRoar.wav`: from *Dinosaur Roar* by The_Great_Q === https://freesound.org/s/733873/ === License: Attribution NonCommercial 4.0
-
+- `fh_Paper_Swipe_Surface2_Long_01.wav` by Frank1100 -- https://freesound.org/s/147281/ -- License: Creative Commons 0
+- Quiet Page Turn - 1 by SpaceJoe -- https://freesound.org/s/484961/ -- License: Creative Commons 0
+- `arpege haut.wav` by nicolasdrweski -- https://freesound.org/s/248050/ -- License: Attribution 4.0
