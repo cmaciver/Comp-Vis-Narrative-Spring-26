@@ -20,3 +20,4 @@ mono_crash.*.json
 # which we don't want to share across different environments.
 .vscode/settings.json
 comp-vis-narrative/addons/zylann.voxel/bin/~libvoxel.windows.editor.x86_64.dll
+/comp-vis-narrative/builds
