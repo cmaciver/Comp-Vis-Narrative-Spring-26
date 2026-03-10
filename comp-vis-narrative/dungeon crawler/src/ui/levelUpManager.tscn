@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://xi6fgbvqrgna"]
+[gd_scene load_steps=12 format=3 uid="uid://xi6fgbvqrgna"]
 
 [ext_resource type="Script" uid="uid://c6trg02pm3g6q" path="res://dungeon crawler/src/ui/levelUpManager.gd" id="1_fwb8v"]
 [ext_resource type="Texture2D" uid="uid://c70ckjxmxx5e5" path="res://dungeon crawler/src/ui/XPBarBackground.png" id="1_hjwym"]
@@ -6,6 +6,10 @@
 [ext_resource type="Shader" uid="uid://cdv6vgft8s1mr" path="res://dungeon crawler/src/ui/xpBarFillShader.gdshader" id="3_1px3y"]
 [ext_resource type="Texture2D" uid="uid://btgodxx8uigif" path="res://dungeon crawler/src/ui/XPBarFrame.png" id="3_7etr6"]
 [ext_resource type="Texture2D" uid="uid://dxbwjriwqb7io" path="res://dungeon crawler/src/ui/Arrow.png" id="6_1px3y"]
+[ext_resource type="AudioStream" uid="uid://cflf0qdt7ya85" path="res://dungeon crawler/src/assets/sounds/ui/counter blip.ogg" id="7_1rtik"]
+[ext_resource type="AudioStream" uid="uid://bgphhio1ewo8i" path="res://dungeon crawler/src/assets/sounds/ui/levelUpAchieved_SFX.wav" id="8_k1vuw"]
+[ext_resource type="AudioStream" uid="uid://dseid8wirnqr2" path="res://dungeon crawler/src/assets/sounds/ui/Long_Paper_Swipe_SFX_Reversed.wav" id="9_8oev1"]
+[ext_resource type="AudioStream" uid="uid://dp32s347u2scu" path="res://dungeon crawler/src/assets/sounds/ui/Long_Paper_Swipe_SFX.wav" id="10_0k1kh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1rtik"]
 shader = ExtResource("3_1px3y")
@@ -214,3 +218,16 @@ offset_top = 3.0
 offset_right = 117.0
 offset_bottom = 38.0
 color = Color(0.3764706, 0.3764706, 0.3764706, 0.6784314)
+
+[node name="WeightTickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_1rtik")
+volume_db = -20.0
+
+[node name="LevelUpAchievedSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_k1vuw")
+
+[node name="LongPaperSwipeSfxReversed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8oev1")
+
+[node name="LongPaperSwipeSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0k1kh")

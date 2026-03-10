@@ -66,6 +66,8 @@ func navigate(direction: int):
 	is_animating = true
 	current_index = new_index
 	
+	$PageTurnSfx.play()
+	
 	#bring the incoming slot into the screen from the correct direction
 	incoming_slot.position.x = size.x * direction
 	incoming_slot.show()

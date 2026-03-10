@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dp32s347u2scu"
+path="res://.godot/imported/Long_Paper_Swipe_SFX.wav-69e8a120d08b08ce0c29ab14404e0801.sample"
+
+[deps]
+
+source_file="res://dungeon crawler/src/assets/sounds/ui/Long_Paper_Swipe_SFX.wav"
+dest_files=["res://.godot/imported/Long_Paper_Swipe_SFX.wav-69e8a120d08b08ce0c29ab14404e0801.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

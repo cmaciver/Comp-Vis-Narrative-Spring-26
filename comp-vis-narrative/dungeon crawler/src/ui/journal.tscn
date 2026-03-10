@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://i7lmxftap3oo"]
+[gd_scene load_steps=5 format=3 uid="uid://i7lmxftap3oo"]
 
 [ext_resource type="Script" uid="uid://pk5n0t4ftntk" path="res://dungeon crawler/src/ui/journal.gd" id="1_mpe0b"]
 [ext_resource type="PackedScene" uid="uid://cqy4b7jhg5fhc" path="res://dungeon crawler/src/ui/single_journal_entry.tscn" id="1_py6ed"]
 [ext_resource type="Texture2D" uid="uid://05syvwc4ii72" path="res://dungeon crawler/src/assets/fossil_variants/yellow-cartoon-triangle-button-png.png" id="2_mpe0b"]
+[ext_resource type="AudioStream" uid="uid://0mj7cqoroh30" path="res://dungeon crawler/src/assets/sounds/ui/Page_Turn_SFX.wav" id="4_1bii6"]
 
 [node name="Journal" type="Control"]
 layout_mode = 3
@@ -87,6 +88,9 @@ text = "You must find fossils to display
 them in your log journal!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PageTurnSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1bii6")
 
 [connection signal="pressed" from="ColorRect/RightButton" to="." method="_on_right_button_pressed"]
 [connection signal="pressed" from="ColorRect/LeftButton" to="." method="_on_left_button_pressed"]
