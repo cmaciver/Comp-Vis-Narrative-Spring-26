@@ -78,7 +78,10 @@ func giveXp(xp: int):
 		tween.tween_property(journalTip, "modulate:a", 0.0, 1).set_delay(2.0)
 
 func level_up(xp: int):
+	#reset sfx pitch back to 1 for the next level
+	$WeightTickSFX.pitch_scale = 1.0
 	start_rainbow()
+	$LevelUpAchievedSfx.play()
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(tween.TRANS_QUART)
@@ -109,12 +112,15 @@ func swipeInPromotionGroup():
 	currRankIndex = currRankIndex + 1
 	promotionLabel.show()
 	
+	$LongPaperSwipeSfx.play()
 	var tween = create_tween()
 	tween.tween_property(promotionLabel, "position:x", center_x, 1)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_QUART)
 	
 	tween.tween_interval(1.5)
+	
+	tween.tween_callback($LongPaperSwipeSfxReversed.play)
 	
 	tween.tween_property(promotionLabel, "position:x", screen_width + promotionLabel.size.x, 1)\
 		.set_ease(Tween.EASE_IN)\
@@ -126,8 +132,20 @@ func swipeInPromotionGroup():
 func set_weight_label(value: float):
 	weightLabel.text = str(roundi(value)) + " / " + str(totalWeight) + " lbs"
 
+var prevWeight = 0
+var total_times_called = 0
+var last_time_sound_played = -10
 func set_xp_label(value: float):
 	xpLabel.text = str(roundi(value)) + " xp"
+	
+	if prevWeight != value and total_times_called - last_time_sound_played > 2:
+		$WeightTickSFX.pitch_scale += 0.02
+		$WeightTickSFX.play()
+		last_time_sound_played = total_times_called
+		
+
+	prevWeight = value
+	total_times_called += 1
 
 #Activates the rainbow shader (I have literally no idea how this shader works but it does)
 func start_rainbow():
