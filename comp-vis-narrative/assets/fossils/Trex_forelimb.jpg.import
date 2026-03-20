@@ -3,22 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxwaepncxk4ui"
-path.s3tc="res://.godot/imported/Trex_forelimb.jpg-2cf32e9d284f4240da7cc33be7955f92.s3tc.ctex"
+path="res://.godot/imported/Trex_forelimb.jpg-2cf32e9d284f4240da7cc33be7955f92.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/fossils/Trex_forelimb.jpg"
-dest_files=["res://.godot/imported/Trex_forelimb.jpg-2cf32e9d284f4240da7cc33be7955f92.s3tc.ctex"]
+dest_files=["res://.godot/imported/Trex_forelimb.jpg-2cf32e9d284f4240da7cc33be7955f92.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.6
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

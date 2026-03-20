@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtmqwrv7pfldr"
-path.s3tc="res://.godot/imported/campfire_0.png-35a33731323e74a161ee0943a6fda692.s3tc.ctex"
+path="res://.godot/imported/campfire_0.png-35a33731323e74a161ee0943a6fda692.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "b2bebea4e7eb278ef6fc9ffe9d0c9ed0"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/camp/campfire_0.png"
-dest_files=["res://.godot/imported/campfire_0.png-35a33731323e74a161ee0943a6fda692.s3tc.ctex"]
+dest_files=["res://.godot/imported/campfire_0.png-35a33731323e74a161ee0943a6fda692.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

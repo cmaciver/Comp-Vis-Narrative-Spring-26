@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jqgmn21pe6i7"
-path.s3tc="res://.godot/imported/cactus__pack_15.png-e984115735a2dd1dd8127ac5d5f99b18.s3tc.ctex"
+path="res://.godot/imported/cactus__pack_15.png-e984115735a2dd1dd8127ac5d5f99b18.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "99510c1912639e397b31e7ec855b64db"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/cactus/cactus__pack_15.png"
-dest_files=["res://.godot/imported/cactus__pack_15.png-e984115735a2dd1dd8127ac5d5f99b18.s3tc.ctex"]
+dest_files=["res://.godot/imported/cactus__pack_15.png-e984115735a2dd1dd8127ac5d5f99b18.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

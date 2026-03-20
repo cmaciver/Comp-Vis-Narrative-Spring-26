@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x0ww4tfhaams"
-path.s3tc="res://.godot/imported/rock_particle.png-3e8d27d56d688417b0f55ba7f502247f.s3tc.ctex"
+path="res://.godot/imported/rock_particle.png-3e8d27d56d688417b0f55ba7f502247f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/terrain/rock_particle.png"
-dest_files=["res://.godot/imported/rock_particle.png-3e8d27d56d688417b0f55ba7f502247f.s3tc.ctex"]
+dest_files=["res://.godot/imported/rock_particle.png-3e8d27d56d688417b0f55ba7f502247f.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

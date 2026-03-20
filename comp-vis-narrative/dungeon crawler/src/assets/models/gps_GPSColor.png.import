@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chr5vvm8jlch"
-path.s3tc="res://.godot/imported/gps_GPSColor.png-e5b3a31865e7e247421a8fb561e7b077.s3tc.ctex"
+path="res://.godot/imported/gps_GPSColor.png-e5b3a31865e7e247421a8fb561e7b077.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "b2145a12ab7f310eb59b39a2192a4299"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/gps_GPSColor.png"
-dest_files=["res://.godot/imported/gps_GPSColor.png-e5b3a31865e7e247421a8fb561e7b077.s3tc.ctex"]
+dest_files=["res://.godot/imported/gps_GPSColor.png-e5b3a31865e7e247421a8fb561e7b077.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,22 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b34yolabr57w"
-path.s3tc="res://.godot/imported/Astragalus.jpg-0e0e89fb335e1409a4025ca9f5c76015.s3tc.ctex"
+path="res://.godot/imported/Astragalus.jpg-0e0e89fb335e1409a4025ca9f5c76015.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/fossils/Astragalus.jpg"
-dest_files=["res://.godot/imported/Astragalus.jpg-0e0e89fb335e1409a4025ca9f5c76015.s3tc.ctex"]
+dest_files=["res://.godot/imported/Astragalus.jpg-0e0e89fb335e1409a4025ca9f5c76015.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.6
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://la5nvg8ju41s"
-path.s3tc="res://.godot/imported/Lizard_1.jpg-5b3c3587bc983ee47d185b9201575da9.s3tc.ctex"
+path="res://.godot/imported/Lizard_1.jpg-5b3c3587bc983ee47d185b9201575da9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "d129e11949e64f9ac56b8ca8b64daeef"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/Lizard_1.jpg"
-dest_files=["res://.godot/imported/Lizard_1.jpg-5b3c3587bc983ee47d185b9201575da9.s3tc.ctex"]
+dest_files=["res://.godot/imported/Lizard_1.jpg-5b3c3587bc983ee47d185b9201575da9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wefos0p2w4yx"
-path.s3tc="res://.godot/imported/shrubs_Image_12.png-cd93e3c683a34d68e910e760415f66f9.s3tc.ctex"
+path="res://.godot/imported/shrubs_Image_12.png-cd93e3c683a34d68e910e760415f66f9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "270b8df2b8c05c514e3809f0cac58042"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/shrubs/shrubs_Image_12.png"
-dest_files=["res://.godot/imported/shrubs_Image_12.png-cd93e3c683a34d68e910e760415f66f9.s3tc.ctex"]
+dest_files=["res://.godot/imported/shrubs_Image_12.png-cd93e3c683a34d68e910e760415f66f9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

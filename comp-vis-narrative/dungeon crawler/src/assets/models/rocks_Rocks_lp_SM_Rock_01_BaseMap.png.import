@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxk77pvxqhxhx"
-path.s3tc="res://.godot/imported/rocks_Rocks_lp_SM_Rock_01_BaseMap.png-51d5fd383442557f79f38eb74ba1d5ef.s3tc.ctex"
+path="res://.godot/imported/rocks_Rocks_lp_SM_Rock_01_BaseMap.png-51d5fd383442557f79f38eb74ba1d5ef.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "1f99b1de2ccf3b7447bc8d093470aade"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/rocks_Rocks_lp_SM_Rock_01_BaseMap.png"
-dest_files=["res://.godot/imported/rocks_Rocks_lp_SM_Rock_01_BaseMap.png-51d5fd383442557f79f38eb74ba1d5ef.s3tc.ctex"]
+dest_files=["res://.godot/imported/rocks_Rocks_lp_SM_Rock_01_BaseMap.png-51d5fd383442557f79f38eb74ba1d5ef.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

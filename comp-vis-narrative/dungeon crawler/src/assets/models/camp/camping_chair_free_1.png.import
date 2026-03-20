@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5pu2747gsc5i"
-path.s3tc="res://.godot/imported/camping_chair_free_1.png-a6bddaa171801b1ae78caf71686107e0.s3tc.ctex"
+path="res://.godot/imported/camping_chair_free_1.png-a6bddaa171801b1ae78caf71686107e0.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "d361f3dc1691f422d4dacaf9c7c18c53"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/camp/camping_chair_free_1.png"
-dest_files=["res://.godot/imported/camping_chair_free_1.png-a6bddaa171801b1ae78caf71686107e0.s3tc.ctex"]
+dest_files=["res://.godot/imported/camping_chair_free_1.png-a6bddaa171801b1ae78caf71686107e0.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

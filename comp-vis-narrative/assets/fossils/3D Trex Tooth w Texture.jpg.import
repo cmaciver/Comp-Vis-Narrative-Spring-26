@@ -3,22 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l0r7lspqubpf"
-path.s3tc="res://.godot/imported/3D Trex Tooth w Texture.jpg-4ea7133c25f79e00d2e6e2ff44388bfb.s3tc.ctex"
+path="res://.godot/imported/3D Trex Tooth w Texture.jpg-4ea7133c25f79e00d2e6e2ff44388bfb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/fossils/3D Trex Tooth w Texture.jpg"
-dest_files=["res://.godot/imported/3D Trex Tooth w Texture.jpg-4ea7133c25f79e00d2e6e2ff44388bfb.s3tc.ctex"]
+dest_files=["res://.godot/imported/3D Trex Tooth w Texture.jpg-4ea7133c25f79e00d2e6e2ff44388bfb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.5
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1

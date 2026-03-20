@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3fnadasx2at1"
-path.s3tc="res://.godot/imported/target.png-f49faa657ccdd672473829c1a0adc9ee.s3tc.ctex"
+path="res://.godot/imported/target.png-f49faa657ccdd672473829c1a0adc9ee.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://dungeon crawler/src/Interactables/target.png"
-dest_files=["res://.godot/imported/target.png-f49faa657ccdd672473829c1a0adc9ee.s3tc.ctex"]
+dest_files=["res://.godot/imported/target.png-f49faa657ccdd672473829c1a0adc9ee.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

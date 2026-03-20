@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt583kfuqqdqx"
-path.s3tc="res://.godot/imported/desert_rocks_1.png-a358709a3ddaf51facc4d62afa145d16.s3tc.ctex"
+path="res://.godot/imported/desert_rocks_1.png-a358709a3ddaf51facc4d62afa145d16.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "e40d401c6e7f854a5a91027d76c7c54d"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/fossil_rocks/desert_rocks_1.png"
-dest_files=["res://.godot/imported/desert_rocks_1.png-a358709a3ddaf51facc4d62afa145d16.s3tc.ctex"]
+dest_files=["res://.godot/imported/desert_rocks_1.png-a358709a3ddaf51facc4d62afa145d16.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

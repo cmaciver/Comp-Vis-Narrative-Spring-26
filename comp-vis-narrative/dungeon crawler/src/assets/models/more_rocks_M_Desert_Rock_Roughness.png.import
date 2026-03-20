@@ -3,10 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5xetqsbg0oaj"
-path.s3tc="res://.godot/imported/more_rocks_M_Desert_Rock_Roughness.png-b533b98643f1291f2bfdd53a0a235deb.s3tc.ctex"
+path="res://.godot/imported/more_rocks_M_Desert_Rock_Roughness.png-b533b98643f1291f2bfdd53a0a235deb.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "5de75ce0a3899ed76c144d7d7c84003b"
@@ -15,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://dungeon crawler/src/assets/models/more_rocks_M_Desert_Rock_Roughness.png"
-dest_files=["res://.godot/imported/more_rocks_M_Desert_Rock_Roughness.png-b533b98643f1291f2bfdd53a0a235deb.s3tc.ctex"]
+dest_files=["res://.godot/imported/more_rocks_M_Desert_Rock_Roughness.png-b533b98643f1291f2bfdd53a0a235deb.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
